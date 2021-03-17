@@ -5,8 +5,11 @@
     </button>
   
     <div class="collapse navbar-collapse d-lg-flex justify-content-between" id="navbarColor03">
-      <form class="my-2 my-lg-0 mx-lg-auto w-25">
-        <input class="form-control mr-sm-2 rounded-pill" type="text" placeholder="Search">
+      <form class="my-2 my-lg-0 mx-lg-auto">
+        <div class="form-control mr-sm-2 rounded-pill w-100 w-md-50" id="search-input">
+          <i class="bi bi-search"></i>
+          <input type="text" class="border-0" placeholder="Search">
+        </div>
       </form>
       <ul class="navbar-nav d-sm-flex flex-sm-row">
         @guest
@@ -17,17 +20,18 @@
             <a href="#" class="btn btn-primary my-1 my-lg-0 w-100">Register</a>
           </li>
         @else
-          <li class="nav-item mr-lg-1">
+          <li class="nav-item mx-sm-1 flex-fill">
             <a href="#" class="btn btn-primary my-1 my-lg-0 w-100">My Courses</a>
           </li>
-          <li class="nav-item dropdown">
+          <li class="nav-item mx-sm-1 flex-fill dropdown">
               <a class="nav-link dropdown-toggle w-100" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Username</a>
-              <div class="dropdown-menu dropdown-menu-right">
-                  <a class="dropdown-item" href="#">Action</a>
-                  <a class="dropdown-item" href="#">Another action</a>
-                  <a class="dropdown-item" href="#">Something else here</a>
-                  <div class="dropdown-divider"></div>
-                  <a class="dropdown-item" href="#">Separated link</a>
+              <div class="dropdown-menu dropdown-menu-right" id="userMenu">
+                <img class="rounded-circle" src="{{ asset('img/avatar.jpeg')}}" alt="">
+                <a class="dropdown-item" href="#">Action</a>
+                <a class="dropdown-item" href="#">Another action</a>
+                <a class="dropdown-item" href="#">Something else here</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#">Separated link</a>
               </div>
           </li>
         @endguest
