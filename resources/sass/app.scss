@@ -79,6 +79,10 @@
     .item-footer-text {
         align-self: flex-start;
     }
+
+    .item-footer-link:hover {
+        text-decoration: none;
+    }
     .container-footer-social {
         display: flex;
         flex-direction: column;
