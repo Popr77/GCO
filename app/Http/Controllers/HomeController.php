@@ -30,4 +30,9 @@ class HomeController extends Controller
     {
         return view('pages.unregistered');
     }
+
+    public function dashboard()
+    {
+        return view('pages.admin.dashboard');
+    }
 }
