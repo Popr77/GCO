@@ -15336,7 +15336,6 @@ h3 {
   font-size: 11px;
   line-height: 22px;
   font-weight: 500;
-  text-transform: uppercase;
 }
 
 .navbar-form input, .navbar-form .form-control {
@@ -15477,6 +15476,10 @@ h3 {
   outline: none;
 }
 
-#userMenu img {
-  width: 50%;
+#navUserMenuInfo {
+  padding: 0.25rem 1.5rem;
+}
+#navUserMenuInfo img {
+  width: 75px;
+  height: 75px;
 }

@@ -25,13 +25,19 @@
           </li>
           <li class="nav-item mx-sm-1 flex-fill dropdown">
               <a class="nav-link dropdown-toggle w-100" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Username</a>
-              <div class="dropdown-menu dropdown-menu-right" id="userMenu">
-                <img class="rounded-circle" src="{{ asset('img/avatar.jpeg')}}" alt="">
+              <div class="dropdown-menu dropdown-menu-right" id="navUserMenu">
+                <div id="navUserMenuInfo" class="d-flex align-items-center">
+                  <img class="rounded-circle" src="{{ asset('img/avatar.jpeg')}}" alt="">
+                  <div class="ml-2">
+                    <h4 class="mb-0">First Last</h4>
+                    <h6>@username</h6>
+                  </div> 
+                </div>
+                <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="#">Action</a>
                 <a class="dropdown-item" href="#">Another action</a>
                 <a class="dropdown-item" href="#">Something else here</a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#">Separated link</a>
+                <a class="dropdown-item" href="#">Logout</a>
               </div>
           </li>
         @endguest
