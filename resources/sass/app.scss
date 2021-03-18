@@ -8,8 +8,89 @@
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
+@import '~bootstrap-icons/font/bootstrap-icons';
 
 // Bootswatch
 @import 'bootswatch';
 
 // CUSTOM CSS
+
+#search-input {
+  display: flex;
+
+  i {
+    position: relative;
+    z-index: 2;
+  }
+
+  input {
+    width: 100%;
+    margin-left: 6px;
+
+    &:focus {
+      outline: none;
+    }
+  }
+}
+
+#userMenu {
+  img {
+    width: 50%;
+  }
+}
+
+
+
+
+.container-footer-text{
+    display: flex;
+    flex-direction: column;
+
+}
+.container-footer-links{
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    justify-content: space-around;
+
+}
+
+.item-footer-text {
+    align-self: auto;
+}
+
+
+.item-footer-link {
+    align-self: center;
+
+}
+
+.container-footer-social {
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;
+    margin-top: 60px;
+}
+
+
+
+
+@media (min-width: 768px) {
+    .item-footer-text {
+        align-self: flex-start;
+    }
+    .container-footer-social {
+        display: flex;
+        flex-direction: column;
+        margin-top: initial;
+        justify-content: center;
+        align-content:center;
+        height: 100%;
+    }
+    .item-footer-social {
+        vertical-align: middle;
+    }
+
+}
+
+
