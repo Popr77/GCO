@@ -41,6 +41,23 @@
                 <a class="dropdown-item" href="#">Help</a>
                 <a class="dropdown-item" href="#">Logout</a>
               </div>
+
+              <div class="d-none" id="navUserMenuMobile">
+                <div id="navUserMenuInfoMobile" class="d-flex align-items-center">
+                  <img class="rounded-circle" src="{{ asset('img/avatar.jpeg')}}" alt="">
+                  <div class="ml-2">
+                    <h4 class="mb-0">First Last</h4>
+                    <h6>@username</h6>
+                  </div>
+                </div>
+                <hr>
+                <a class="" href="#">Profile</a>
+                <a class="" href="#">Edit Profile</a>
+                <a class="" href="#">Account Settings</a>
+                <a class="" href="#">Purchase History</a>
+                <a class="" href="#">Help</a>
+                <a class="" href="#">Logout</a>
+              </div>
           </li>
         @endguest
       </ul>
