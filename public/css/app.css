@@ -15513,6 +15513,12 @@ h1, h2 {
   justify-content: space-around;
   flex-direction: row;
   margin-top: 60px;
+  position: relative;
+}
+
+container-footer-social li a i {
+  z-index: 500;
+  position: relative;
 }
 
 .btn-lessons-menu {
@@ -15520,7 +15526,7 @@ h1, h2 {
   right: 20px;
   position: fixed;
   margin-top: 60px;
-  z-index: 9002;
+  z-index: 9999;
 }
 .btn-lessons-menu a {
   text-decoration: none;
@@ -15530,20 +15536,20 @@ h1, h2 {
   text-decoration: none;
 }
 
-.lessons-menu, .lesson-menu2 {
+.lessons-menu {
   top: 0;
   right: 0;
   position: fixed;
   margin-top: 20px;
   background-color: #f8f9fa;
-  z-index: 9000;
+  z-index: 9997;
   overflow: auto;
-  max-height: 400px;
+  min-height: 400px;
   scrollbar-width: none;
   -ms-overflow-style: none;
   /* scroll IE and Edge */
 }
-.lessons-menu p, .lesson-menu2 p {
+.lessons-menu p {
   margin-bottom: 0px;
 }
 
@@ -15573,6 +15579,10 @@ h1, h2 {
     vertical-align: middle;
   }
 
+  .master-video-container {
+    margin-left: 9vw;
+  }
+
   .btn-lessons-menu {
     display: none;
   }
@@ -15583,12 +15593,15 @@ h1, h2 {
     position: fixed;
     background-color: #f8f9fa;
     display: initial;
-    margin-top: 130px;
+    margin-top: 57px;
     overflow: auto;
-    max-height: 400px;
+    height: 643px;
     scrollbar-width: none;
     -ms-overflow-style: none;
     /* scroll IE and Edge */
+  }
+  .lessons-menu2 p {
+    margin-bottom: 0px;
   }
 
   .lessons-menu2::-webkit-scrollbar {
@@ -15596,8 +15609,9 @@ h1, h2 {
     display: none;
   }
 
-  .master-video-container {
-    margin-left: 9vw;
+  .lesson-menu-quizz2 {
+    top: 635px;
+    right: 0;
   }
 }
 .container-lesson-text {
