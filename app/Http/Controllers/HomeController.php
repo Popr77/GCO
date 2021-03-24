@@ -23,11 +23,11 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        return view('pages.unregistered');
     }
 
-    public function unregistered()
+    public function registered()
     {
-        return view('pages.unregistered');
+        return view('pages.registered');
     }
 }
