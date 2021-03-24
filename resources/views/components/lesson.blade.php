@@ -3,7 +3,7 @@
 {{--    <iframe id="ytplayer" class="mx-auto iframe-lesson" type="text/html" width="640" height="360"--}}
 {{--            src="http://www.youtube.com/embed/M7lc1UVf-VE?autoplay=1&origin=http://example.com"--}}
 {{--            frameborder="0"/>--}}
-    <div class="master-video-container col-lg-8 mt-5 rounded">
+    <div class="master-video-container col-md-7 mt-5 rounded">
         <div class="video-container">
             <div id="ytplayer" class="mx-auto mb-3 iframe-lesson"></div>
         </div>
@@ -18,37 +18,52 @@
 
     <div class="collapse" id="collapseExample">
         <div class="card card-body lessons-menu rounded col-lg-2 py-3 px-4" id="lesson-menu">
-
             <h4 class="text-primary text-center">Lessons</h4>
-            <h5 class="ml-2 mt-3">Module 1</h5>
-            <p class="ml-4">Lesson 1</p>
-            <p class="ml-4">Lesson 2</p>
-            <p class="ml-4">- Quizz</p>
+            <div class=" d-flex flex-row container-fluid">
+                <div>
+                    <h5 class="ml-2 mt-3">Module 1</h5>
+                    <p class="ml-4">Lesson 1</p>
+                    <p class="ml-4">Lesson 2</p>
+                    <p class="ml-4">- Quizz</p>
+                </div>
+                <div>
+                    <h5 class="ml-2 mt-3">Module 2</h5>
+                    <p class="ml-4">Lesson 3</p>
+                    <p class="ml-4">Lesson 4</p>
+                    <p class="ml-4">Lesson 5</p>
+                    <p class="ml-4">- Quizz</p>
+                </div>
+                <div>
+                    <h5 class="ml-2 mt-3">Module 3</h5>
+                    <p class="ml-4">Lesson 6</p>
+                    <p class="ml-4">Lesson 7</p>
+                    <p class="ml-4">- Quizz</p>
+                </div>
+                <div>
 
-            <h5 class="ml-2 mt-3">Module 2</h5>
-            <p class="ml-4">Lesson 3</p>
-            <p class="ml-4">Lesson 4</p>
-            <p class="ml-4">Lesson 5</p>
-            <p class="ml-4">- Quizz</p>
+                    <h5 class="ml-2 mt-3">Module 4</h5>
+                    <p class="ml-4">Lesson 8</p>
+                    <p class="ml-4">- Quizz</p>
+                </div>
+                <div>
+                    <h5 class="ml-2 mt-3">Module 5</h5>
+                    <p class="ml-4">Lesson 9</p>
+                    <p class="ml-4">Lesson 10</p>
+                    <p class="ml-4">Lesson 11</p>
+                    <p class="ml-4">- Quizz</p>
+                </div>
+            </div>
 
-            <h5 class="ml-2 mt-3">Module 3</h5>
-            <p class="ml-4">Lesson 6</p>
-            <p class="ml-4">Lesson 7</p>
-            <p class="ml-4">- Quizz</p>
-
-            <h5 class="ml-2 mt-3">Module 4</h5>
-            <p class="ml-4">Lesson 8</p>
-            <p class="ml-4">- Quizz</p>
-
-            <h5 class="ml-2 mt-3">Module 5</h5>
-            <p class="ml-4">Lesson 9</p>
-            <p class="ml-4">Lesson 10</p>
-            <p class="ml-4">Lesson 11</p>
-            <p class="ml-4">- Quizz</p>
+            <div class="lesson-menu-quizz bg-light mt-0 container-fluid text-center
+    position-fixed py-3  my-auto">
+                <button class="btn btn-primary">Take Quizz</button>
+            </div>
         </div>
+
+
     </div>
 
-    <div class="lessons-menu2 rounded col-lg-2 py-3 px-4" >
+    <div class="lessons-menu2 rounded col-2 py-3 px-4" >
 
         <h4 class="text-primary text-center">Lessons</h4>
         <h5 class="ml-2 mt-3">Module 1</h5>
@@ -76,10 +91,45 @@
         <p class="ml-4">Lesson 10</p>
         <p class="ml-4">Lesson 11</p>
         <p class="ml-4">- Quizz</p>
+        <h5 class="ml-2 mt-3">Module 5</h5>
+        <p class="ml-4">Lesson 9</p>
+        <p class="ml-4">Lesson 10</p>
+        <p class="ml-4">Lesson 11</p>
+        <p class="ml-4">- Quizz</p>
+        <h5 class="ml-2 mt-3">Module 5</h5>
+        <p class="ml-4">Lesson 9</p>
+        <p class="ml-4">Lesson 10</p>
+        <p class="ml-4">Lesson 11</p>
+        <p class="ml-4">- Quizz</p>
+        <h5 class="ml-2 mt-3">Module 5</h5>
+        <p class="ml-4">Lesson 9</p>
+        <p class="ml-4">Lesson 10</p>
+        <p class="ml-4">Lesson 11</p>
+        <p class="ml-4">- Quizz</p>
+        <h5 class="ml-2 mt-3">Module 5</h5>
+        <p class="ml-4">Lesson 9</p>
+        <p class="ml-4">Lesson 10</p>
+        <p class="ml-4">Lesson 11</p>
+        <p class="ml-4">- Quizz</p>
+        <h5 class="ml-2 mt-3">Module 5</h5>
+        <p class="ml-4">Lesson 9</p>
+        <p class="ml-4">Lesson 10</p>
+        <p class="ml-4">Lesson 11</p>
+        <p class="ml-4">- Quizz</p>
+
+        <div class="lesson-menu-quizz2 mt-0 container-fluid col-2 text-center
+    position-fixed bg-light py-3">
+            <button class="btn btn-primary ">Take Quizz</button>
+        </div>
+
     </div>
+{{--    <div class="lesson-menu-quizz container-fluid col-2 text-center--}}
+{{--    position-fixed bg-light py-3">--}}
+{{--        <button class="btn btn-primary ">Take Quizz</button>--}}
+{{--    </div>--}}
 
 
-    <div class="container container-lesson-text mt-5 mb-5 rounded">
+    <div class="container container-lesson-text ml-1 mt-5 mb-5 rounded">
         <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has
             been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley
             of type and scrambled it to make a type specimen book. It has survived not only five centuries, but
@@ -98,7 +148,7 @@
                 desktop publishing software like Aldus PageMaker
                 including versions of Lorem Ipsum.</p>
         </div>
-        <div class="p-2 col-lg-5"><img class="col-12" src="public/img/lessonImg.png" alt=""></div>
+        <div class="p-2 col-lg-5"><img class="col-12" src="asset('img/avatar.jpeg')" alt=""></div>
     </div>
 
 

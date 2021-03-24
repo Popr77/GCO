@@ -73,6 +73,11 @@ h1, h2{
     justify-content: space-around;
     flex-direction: row;
     margin-top: 60px;
+    position: relative;
+}
+container-footer-social li a i{
+    z-index: 500;
+    position: relative;
 }
 
 .btn-lessons-menu{
@@ -81,22 +86,22 @@ h1, h2{
     position: fixed;
     margin-top: 60px;
 
-    z-index: 9002;
+    z-index: 9999;
     a{ text-decoration: none; color: black}
 
     a:visited{text-decoration: none;}
 }
 
-.lessons-menu, .lesson-menu2{
+.lessons-menu{
     top: 0;
     right: 0;
     position: fixed;
     margin-top: 20px;
     background-color: $gray-100;
 
-    z-index: 9000;
+    z-index: 9997;
     overflow: auto;
-    max-height: 400px;
+    min-height: 400px;
     scrollbar-width: none; //scroll firefox
     -ms-overflow-style: none;  /* scroll IE and Edge */
 
@@ -104,6 +109,9 @@ h1, h2{
 }
 .lessons-menu2{
     display: none;
+}
+.lesson-menu-quizz{
+    //top: 250px;
 }
 
 
@@ -127,29 +135,39 @@ h1, h2{
         vertical-align: middle;
     }
 
+    .master-video-container{
+        margin-left: 9vw;
+
+    }
+
     .btn-lessons-menu{
         display: none;
     }
+
     .lessons-menu2{
         top: 0;
         right: 0;
         position: fixed;
         background-color: $gray-100;
         display: initial;
-        margin-top: 130px;
+        margin-top: 57px;
         overflow: auto;
-        max-height: 400px;
+        height: 643px;
         scrollbar-width: none; //scroll firefox
         -ms-overflow-style: none;  /* scroll IE and Edge */
+        p{ margin-bottom: 0px; }
     }
     .lessons-menu2::-webkit-scrollbar{ /* Hide scrollbar for Chrome, Safari and Opera */
         display: none;
     }
-
-    .master-video-container{
-        margin-left: 9vw;
-
+    .lesson-menu-quizz2{
+        top: 635px;
+        right: 0;
     }
+
+
+
+
 
 }
 
