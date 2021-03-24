@@ -15329,7 +15329,7 @@ h3 {
 }
 
 .bg-light {
-  background-color: #f8f5f0 !important;
+  background-color: #f8f9fa !important;
 }
 
 .sandstone, .tooltip, .dropdown-menu .dropdown-item, .pagination, .breadcrumb, .nav-pills .nav-link, .nav-tabs .nav-link, .btn, .navbar .nav-link {
@@ -15461,6 +15461,10 @@ h3 {
   color: #b9a78a;
 }
 
+h1, h2 {
+  color: #325d88;
+}
+
 #search-input {
   display: flex;
 }
@@ -15482,4 +15486,137 @@ h3 {
 #navUserMenuInfo img {
   width: 75px;
   height: 75px;
+}
+
+.container-footer-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.container-footer-links {
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  justify-content: space-around;
+}
+
+.item-footer-text {
+  align-self: auto;
+}
+
+.item-footer-link {
+  align-self: center;
+}
+
+.container-footer-social {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row;
+  margin-top: 60px;
+}
+
+.btn-lessons-menu {
+  top: 0;
+  right: 20px;
+  position: fixed;
+  margin-top: 60px;
+  z-index: 9002;
+}
+.btn-lessons-menu a {
+  text-decoration: none;
+  color: black;
+}
+.btn-lessons-menu a:visited {
+  text-decoration: none;
+}
+
+.lessons-menu, .lesson-menu2 {
+  top: 0;
+  right: 0;
+  position: fixed;
+  margin-top: 20px;
+  background-color: #f8f9fa;
+  z-index: 9000;
+  overflow: auto;
+  max-height: 400px;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  /* scroll IE and Edge */
+}
+.lessons-menu p, .lesson-menu2 p {
+  margin-bottom: 0px;
+}
+
+.lessons-menu2 {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .item-footer-text {
+    align-self: flex-start;
+  }
+
+  .item-footer-link:hover {
+    text-decoration: none;
+  }
+
+  .container-footer-social {
+    display: flex;
+    flex-direction: column;
+    margin-top: initial;
+    justify-content: center;
+    align-content: center;
+    height: 100%;
+  }
+
+  .item-footer-social {
+    vertical-align: middle;
+  }
+
+  .btn-lessons-menu {
+    display: none;
+  }
+
+  .lessons-menu2 {
+    top: 0;
+    right: 0;
+    position: fixed;
+    background-color: #f8f9fa;
+    display: initial;
+    margin-top: 130px;
+    overflow: auto;
+    max-height: 400px;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    /* scroll IE and Edge */
+  }
+
+  .lessons-menu2::-webkit-scrollbar {
+    /* Hide scrollbar for Chrome, Safari and Opera */
+    display: none;
+  }
+
+  .master-video-container {
+    margin-left: 9vw;
+  }
+}
+.container-lesson-text {
+  padding: 50px;
+  background-color: #f8f5f0;
+}
+
+.video-container {
+  padding-bottom: 56.25%;
+  padding-top: 30px;
+  height: 0;
+  overflow: hidden;
+  margin-left: 0;
+}
+
+.video-container iframe, .video-container object, .video-container embed {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
 }

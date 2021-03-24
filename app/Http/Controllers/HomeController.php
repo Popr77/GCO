@@ -25,4 +25,14 @@ class HomeController extends Controller
     {
         return view('home');
     }
+
+    public function unregistered()
+    {
+        return view('pages.unregistered');
+    }
+
+    public function lesson()
+    {
+        return view('pages.lesson');
+    }
 }
