@@ -31,8 +31,4 @@ class HomeController extends Controller
         return view('pages.unregistered');
     }
 
-    public function lesson()
-    {
-        return view('pages.lesson');
-    }
 }
