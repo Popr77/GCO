@@ -39,24 +39,13 @@
                 <a class="dropdown-item" href="#">Account Settings</a>
                 <a class="dropdown-item" href="#">Purchase History</a>
                 <a class="dropdown-item" href="#">Help</a>
-                <a class="dropdown-item" href="#">Logout</a>
-              </div>
+                <a class="dropdown-item" href="{{ route('logout') }}"
+                                       onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">Logout</a>
 
-              <div class="d-none" id="navUserMenuMobile">
-                <div id="navUserMenuInfoMobile" class="d-flex align-items-center">
-                  <img class="rounded-circle" src="{{ asset('img/avatar.jpeg')}}" alt="">
-                  <div class="ml-2">
-                    <h4 class="mb-0">First Last</h4>
-                    <h6>@username</h6>
-                  </div>
-                </div>
-                <hr>
-                <a class="" href="#">Profile</a>
-                <a class="" href="#">Edit Profile</a>
-                <a class="" href="#">Account Settings</a>
-                <a class="" href="#">Purchase History</a>
-                <a class="" href="#">Help</a>
-                <a class="" href="#">Logout</a>
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                  @csrf
+                </form>
               </div>
           </li>
         @endguest
