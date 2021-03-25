@@ -3,11 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Content;
-use App\Models\Lesson;
 use Illuminate\Http\Request;
-use phpDocumentor\Reflection\Types\Integer;
 
-class LessonController extends Controller
+class ContentController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,7 +14,7 @@ class LessonController extends Controller
      */
     public function index()
     {
-        return view('pages.lesson');
+        //
     }
 
     /**
@@ -24,13 +22,9 @@ class LessonController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Integer $num)
+    public function create()
     {
-//        $num = $request->input('name');
-
-        $num = $_GET['num'];
-//        dd('okay');
-        return view('pages.admin.create-lesson', ['num' => $num]);
+        //
     }
 
     /**
@@ -41,28 +35,16 @@ class LessonController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
-            'name' => 'required|max:255'
-        ]);
-
-        Lesson::create([
-            'name' => $request->name,
-            'address' => $request->address,
-            'description' => $request->description,
-            'retired' => $request->retired
-        ]);
-
-        Content::create($request->all());
-        return redirect('lessons')->with('status','Item created successfully!');
+        //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Lesson  $lesson
+     * @param  \App\Models\Content  $content
      * @return \Illuminate\Http\Response
      */
-    public function show(Lesson $lesson)
+    public function show(Content $content)
     {
         //
     }
@@ -70,10 +52,10 @@ class LessonController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Lesson  $lesson
+     * @param  \App\Models\Content  $content
      * @return \Illuminate\Http\Response
      */
-    public function edit(Lesson $lesson)
+    public function edit(Content $content)
     {
         //
     }
@@ -82,10 +64,10 @@ class LessonController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Lesson  $lesson
+     * @param  \App\Models\Content  $content
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Lesson $lesson)
+    public function update(Request $request, Content $content)
     {
         //
     }
@@ -93,10 +75,10 @@ class LessonController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Lesson  $lesson
+     * @param  \App\Models\Content  $content
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Lesson $lesson)
+    public function destroy(Content $content)
     {
         //
     }
