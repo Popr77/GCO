@@ -1,18 +1,16 @@
-<<<<<<< Updated upstream
-<div class="container col-lg-12 mx-auto mt-5" style="width:auto; border: none">
-=======
 <div class="container col-lg-12 mx-auto mt-5" >
     <h2 class="text-center">Create Lesson</h2>
     <form method="post"  action="{{ url('lesson')}}">
         @csrf
         <div class="form-group col-6 form-show mx-auto">
-            <label for="name" class="mt-3">Name</label>
+            <label for="name" class="mt-3">Name</label> 
             <input
                 type="text"
                 id="name"
                 name="name"
                 autocomplete="name"
                 placeholder="Lesson name"
+
                 class="form-control
             @error('name') is-invalid @enderror"
                 value="{{ old('name') }}"
@@ -97,7 +95,7 @@
         </div>
 
     </form>
->>>>>>> Stashed changes
+
 
 </div>
 

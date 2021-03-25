@@ -19,18 +19,17 @@ Route::get('/', function () {
 
 Auth::routes();
 
-<<<<<<< Updated upstream
+
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/unregistered', [App\Http\Controllers\HomeController::class, 'unregistered']);
 Route::get('/lesson', [App\Http\Controllers\HomeController::class, 'lesson']);
 Route::get('/lessons', [App\Http\Controllers\HomeController::class, 'lesson']);
-=======
+
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index']);
 Route::get('/registered', [App\Http\Controllers\HomeController::class, 'registered']);
-//Route::get('/lesson', [App\Http\Controllers\HomeController::class, 'lesson']);
+Route::get('/lesson', [App\Http\Controllers\HomeController::class, 'lesson']);
 //Route::get('/lessons', [App\Http\Controllers\HomeController::class, 'lesson']);
->>>>>>> Stashed changes
 
 Route::prefix('/lesson')->group(function(){
     Route::get('', [App\Http\Controllers\LessonController::class, 'index']);
