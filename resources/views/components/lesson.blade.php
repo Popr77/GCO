@@ -1,4 +1,4 @@
-<div class="container col-lg-12 mx-auto mt-5" style="width:auto; border: none">
+<div class="container col-lg-12 mx-auto mt-5 text-center">
     <h2 class="text-center">Lesson 1</h2>
 {{--    <iframe id="ytplayer" class="mx-auto iframe-lesson" type="text/html" width="640" height="360"--}}
 {{--            src="http://www.youtube.com/embed/M7lc1UVf-VE?autoplay=1&origin=http://example.com"--}}

@@ -15610,6 +15610,32 @@ container-footer-social li a i {
     top: 635px;
     right: 0;
   }
+
+  .welcome-message {
+    height: 400px;
+  }
+
+  .initial-message {
+    margin: 150px;
+    text-align: center;
+  }
+
+  .container-lesson-text {
+    padding: 50px;
+    background-color: #f8f5f0;
+  }
+
+  .quill-box {
+    height: 200px;
+  }
+
+  .video-container {
+    padding-bottom: 56.25%;
+    padding-top: 30px;
+    height: 0;
+    overflow: hidden;
+    margin-left: 0;
+  }
 }
 .container-lesson-text {
   padding: 50px;
