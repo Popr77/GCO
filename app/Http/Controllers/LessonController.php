@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Content;
+use App\Models\ContentType;
 use App\Models\Lesson;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use phpDocumentor\Reflection\Types\Integer;
 
 class LessonController extends Controller
@@ -28,6 +30,10 @@ class LessonController extends Controller
     {
 //        $num = $request->input('name');
 
+//        $num  = ContentType::select('id')->where('name','text')->first();
+//        $lesson_id = Lesson::latest('id')->first();
+//        dd($lesson_id);
+
         $num = $_GET['num'];
 //        dd('okay');
         return view('pages.admin.create-lesson', ['num' => $num]);
@@ -41,21 +47,40 @@ class LessonController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
-            'name' => 'required|max:255'
-        ]);
-
         Lesson::create([
-            'name' => $request->name,
-            'address' => $request->address,
-            'description' => $request->description,
-            'retired' => $request->retired
+            'title' => $request->title,
+            'lesson_number' => $request->lesson_number,
+            'module_id' => $request->module_id
         ]);
 
-        Content::create($request->all());
-        return redirect('lessons')->with('status','Item created successfully!');
-    }
+        $lesson_id = Lesson::latest('id')->first();
 
+        $index = 0;
+        foreach ($request as $item) {
+
+            $quillItem = $request->input(('editor'.$index));
+            if (!is_null($quillItem)){
+                $contains = Str::contains($quillItem, 'youtube.com');
+
+                if ($contains){
+                    $nameType = 'link';
+                }else{
+                    $nameType = 'text';
+                }
+
+                //Id from ContentType Table
+                $content_type_id = ContentType::select('id')->where('name', $nameType)->first();
+
+              Content::create([
+                  'content_type_id' => (integer)$content_type_id->id,
+                  'lesson_id' => $lesson_id->id,
+                  'content' => $quillItem
+              ]);
+            }
+            $index++;
+        }
+        return redirect('lesson')->with('status', 'Lesson created successfully!');
+    }
     /**
      * Display the specified resource.
      *

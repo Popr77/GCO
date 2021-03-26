@@ -11,6 +11,7 @@ class Lesson extends Model
 
     protected $fillable = [
         'title',
-        'lesson_number'
+        'lesson_number',
+        'module_id'
     ];
 }

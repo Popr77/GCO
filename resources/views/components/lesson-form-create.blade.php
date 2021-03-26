@@ -3,20 +3,58 @@
     <form method="post"  action="{{ url('lesson')}}">
         @csrf
         <div class="form-group col-6 form-show mx-auto">
-            <label for="name" class="mt-3">Name</label> 
+            <label for="title" class="mt-3">Name</label>
             <input
                 type="text"
-                id="name"
-                name="name"
-                autocomplete="name"
+                id="title"
+                name="title"
+                autocomplete="title"
                 placeholder="Lesson name"
 
                 class="form-control
-            @error('name') is-invalid @enderror"
-                value="{{ old('name') }}"
+            @error('title') is-invalid @enderror"
+                value="{{ old('title') }}"
                 required
                 aria-describedby="nameHelp">
-            @error('name')
+            @error('title')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+            @enderror
+
+            <label for="lesson_number" class="mt-3">Number of the Lesson</label>
+            <input
+                type="text"
+                id="lesson_number"
+                name="lesson_number"
+                autocomplete="Lesson Number"
+                placeholder="Lesson Number"
+
+                class="form-control
+            @error('lesson_number') is-invalid @enderror"
+                value="{{ old('lesson_number') }}"
+                required
+                aria-describedby="nameHelp">
+            @error('lesson_number')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+            @enderror
+
+            <label for="module_id" class="mt-3">Module Number</label>
+            <input
+                type="text"
+                id="module_id"
+                name="module_id"
+                autocomplete="Module Number"
+                placeholder="Module Number"
+
+                class="form-control
+            @error('module_id') is-invalid @enderror"
+                value="{{ old('module_id') }}"
+                required
+                aria-describedby="nameHelp">
+            @error('module_id')
             <span class="invalid-feedback" role="alert">
                 <strong>{{ $message }}</strong>
             </span>
@@ -25,69 +63,50 @@
             <label for="name" class="mt-3">Video Link</label>
             <input
                 type="text"
-                id="videoLink"
-                name="videoLink"
-                autocomplete="videoLink"
+                id="video-link"
+                name="video-link"
+                autocomplete="video-link"
                 placeholder="Youtube Video Link"
                 class="form-control
-            @error('videoLink') is-invalid @enderror"
-                value="{{ old('videoLink') }}"
+            @error('video-link') is-invalid @enderror"
+                value="{{ old('video-link') }}"
                 required
                 aria-describedby="nameHelp">
-            @error('videoLink')
+            @error('video-link')
             <span class="invalid-feedback" role="alert">
                 <strong>{{ $message }}</strong>
             </span>
             @enderror
 
-{{--            <label for="text1" class="mt-3">Text 1</label>--}}
-{{--            <textarea--}}
-{{--                rows="7"--}}
-{{--                id="text1"--}}
-{{--                name="text1"--}}
-{{--                class="form-control--}}
-{{--            @error('text1') is-invalid @enderror"--}}
-{{--                required--}}
-{{--                aria-describedby="nameHelp"> {{ old('text1') }} </textarea>--}}
-{{--            @error('text1')--}}
-{{--            <span class="invalid-feedback" role="alert">--}}
-{{--                <strong>{{ $message }}</strong>--}}
-{{--            </span>--}}
-{{--            @enderror--}}
-
-{{--            <label for="text2" class="mt-3">Text 2</label>--}}
-{{--            <textarea--}}
-{{--                rows="7"--}}
-{{--                id="text2"--}}
-{{--                name="text2"--}}
-{{--                class="form-control--}}
-{{--            @error('text2') is-invalid @enderror"--}}
-{{--                required--}}
-{{--                aria-describedby="nameHelp"> {{ old('text2') }} </textarea>--}}
-{{--            @error('text2')--}}
-{{--            <span class="invalid-feedback" role="alert">--}}
-{{--                <strong>{{ $message }}</strong>--}}
-{{--            </span>--}}
-{{--            @enderror--}}
-
-{{--            <label for="text3" class="mt-3">Text 3</label>--}}
-{{--            <textarea--}}
-{{--                rows="7"--}}
-{{--                id="text3"--}}
-{{--                name="text3"--}}
-{{--                class="form-control--}}
-{{--            @error('text3') is-invalid @enderror"--}}
-{{--                required--}}
-{{--                aria-describedby="nameHelp"> {{ old('text3') }} </textarea>--}}
-{{--            @error('text3')--}}
-{{--            <span class="invalid-feedback" role="alert">--}}
-{{--                <strong>{{ $message }}</strong>--}}
-{{--            </span>--}}
-{{--            @enderror--}}
+            <input
+                type="text"
+                id="lol"
+                name="lol"
+                autocomplete="video-link"
+                placeholder="Youtube Video Link"
+                class="form-control
+            @error('lol') is-invalid @enderror"
+                value="{{ old('video-link') }}"
+                aria-describedby="nameHelp">
 
             @for($i = 0; $i < $num; $i++)
-                <label for="{{'text' . $i}}" class="mt-3">{{'Content '.($i+1)}}</label>
-                <div id="{{'editor' . $i}}" class="quill-box rounded"></div>
+                <label for="{{'editor' . $i}}" class="mt-3">{{'Content '.($i+1)}}</label>
+
+                <textarea
+                    rows="7"
+                    id="{{'editor' . $i}}"
+                    name="{{'editor' . $i}}"
+                    class="form-control
+            @error('editor' . $i) is-invalid @enderror"
+                    required
+                    aria-describedby="nameHelp"> {{ old('editor'.$i) }} </textarea>
+                @error('editor' . $i)
+                <span class="invalid-feedback" role="alert">
+            <strong>{{ $message }}</strong>
+        </span>
+                @enderror
+
+{{--                <div type="text" id="{{'editor' . $i}}" name="{{'editor' . $i}}" class="quill-box rounded"></div>--}}
             @endfor
             <div class="div-show text-right mt-3">
                 <button type="submit" class="mt-2 mb-5 btn btn-primary mx-auto">Create</button>

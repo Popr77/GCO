@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class ContentTypeSeeder extends Seeder
 {
@@ -13,6 +14,16 @@ class ContentTypeSeeder extends Seeder
      */
     public function run()
     {
-        //
+        DB::table('content_types')->insert([
+            'name' => 'link'
+        ]);
+
+        DB::table('content_types')->insert([
+        'name' => 'text'
+        ]);
+
+        DB::table('content_types')->insert([
+        'name' => 'img'
+        ]);
     }
 }

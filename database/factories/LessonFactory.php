@@ -22,7 +22,9 @@ class LessonFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'title' => $this->faker->name,
+            'lesson_number' => rand(1,20),
+            'module_id' => rand(1,20)
         ];
     }
 }

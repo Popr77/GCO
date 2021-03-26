@@ -34,7 +34,7 @@ Route::get('/lesson', [App\Http\Controllers\HomeController::class, 'lesson']);
 Route::prefix('/lesson')->group(function(){
     Route::get('', [App\Http\Controllers\LessonController::class, 'index']);
     Route::get('create', [App\Http\Controllers\LessonController::class,'create']);
-    Route::post('', 'LessonController@store');
+    Route::post('', [App\Http\Controllers\LessonController::class,'store']);
     Route::get('{project}/edit', 'LessonController@edit');
     Route::put('{project}', 'LessonController@update');
     Route::delete('{project}', 'LessonController@destroy');
