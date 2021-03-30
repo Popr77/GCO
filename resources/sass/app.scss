@@ -107,18 +107,11 @@ container-footer-social li a i{
 
 
 .title-courses {
-    margin: 80px;
+    margin-top: 150px;
     text-align: center;
     color: $blue;
 }
 
-.button-categories {
-    display: flex;
-    margin-right: 100px;
-    justify-content: flex-end;
-    font-size: 30px;
-    color: $blue;
-}
 
 .btn-lessons-menu{
   top: 0;
@@ -130,11 +123,8 @@ container-footer-social li a i{
   a{ text-decoration: none; color: black}
 
 
-/* Tablet */
-
   a:visited{text-decoration: none;}
 }
-
 
 .lessons-menu{
     top: 0;
@@ -157,10 +147,6 @@ container-footer-social li a i{
 .lesson-menu-quizz{
     //top: 250px;
 }
-
-
-
-
 
     .master-video-container{
         margin-left: 9vw;
@@ -211,7 +197,20 @@ container-footer-social li a i{
 
 .video-container iframe, .video-container object, .video-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
 
+.course-name {
+    text-decoration: none;
+    font-size: 15px;
+    color: $blue;
+}
 
+.course-name:hover {
+    text-decoration: none;
+}
+
+.course-rating {
+    border: none;
+    color: #f9c70c;
+}
 
 
 // Small devices (landscape phones, 576px and up)
@@ -261,7 +260,6 @@ container-footer-social li a i{
 
   .master-video-container{
       margin-left: 9vw;
-
   }
 }
 
@@ -278,6 +276,5 @@ container-footer-social li a i{
 
 // Extra large devices (large desktops, 1200px and up)
 @media (min-width: 1200px) {
-
 }
 
