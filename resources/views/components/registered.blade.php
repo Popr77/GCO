@@ -11,7 +11,7 @@
 
 <!-- Courses title and categories button -->
 
-<h1 class="title-courses mb-5">Enjoy our Courses</h1>
+<h1 class="title-courses text-center mb-5">Enjoy our Courses</h1>
 
 <!-- Courses grid -->
 
@@ -21,6 +21,7 @@
             Categories
         </button>
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" href="/categories">See All</a>
             <a class="dropdown-item" href="#">Programming</a>
             <a class="dropdown-item" href="#">Music</a>
             <a class="dropdown-item" href="#">Networking</a>
