@@ -19,16 +19,23 @@ use Illuminate\Support\Facades\Route;
 Auth::routes();
 
 
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/unregistered', [App\Http\Controllers\HomeController::class, 'unregistered']);
+Route::get('/lesson', [App\Http\Controllers\HomeController::class, 'lesson']);
+Route::get('/lessons', [App\Http\Controllers\HomeController::class, 'lesson']);
+
+
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index']);
 Route::get('/registered', [App\Http\Controllers\HomeController::class, 'registered']);
 Route::get('/lesson', [App\Http\Controllers\HomeController::class, 'lesson']);
+
 Route::get('/lessons', [App\Http\Controllers\HomeController::class, 'lesson']);
 Route::get('/categories', [App\Http\Controllers\HomeController::class, 'categories']);
 
 Route::prefix('/lesson')->group(function(){
-    Route::get('', 'LessonController@index');
-    Route::get('create', 'LessonController@create');
-    Route::post('', 'LessonController@store');
+    Route::get('', [App\Http\Controllers\LessonController::class, 'index']);
+    Route::get('create', [App\Http\Controllers\LessonController::class,'create']);
+    Route::post('', [App\Http\Controllers\LessonController::class,'store']);
     Route::get('{project}/edit', 'LessonController@edit');
     Route::put('{project}', 'LessonController@update');
     Route::delete('{project}', 'LessonController@destroy');
