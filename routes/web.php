@@ -13,9 +13,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
+
 
 Auth::routes();
 
@@ -29,7 +28,9 @@ Route::get('/lessons', [App\Http\Controllers\HomeController::class, 'lesson']);
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index']);
 Route::get('/registered', [App\Http\Controllers\HomeController::class, 'registered']);
 Route::get('/lesson', [App\Http\Controllers\HomeController::class, 'lesson']);
-//Route::get('/lessons', [App\Http\Controllers\HomeController::class, 'lesson']);
+
+Route::get('/lessons', [App\Http\Controllers\HomeController::class, 'lesson']);
+Route::get('/categories', [App\Http\Controllers\HomeController::class, 'categories']);
 
 Route::prefix('/lesson')->group(function(){
     Route::get('', [App\Http\Controllers\LessonController::class, 'index']);
