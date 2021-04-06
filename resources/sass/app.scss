@@ -4,107 +4,92 @@
 // VARIABLE OVERRIDES GO HERE
 
 // Variables
-@import 'variables';
+@import "variables";
 
 // Bootstrap
-@import '~bootstrap/scss/bootstrap';
-@import '~bootstrap-icons/font/bootstrap-icons';
+@import "~bootstrap/scss/bootstrap";
+@import "~bootstrap-icons/font/bootstrap-icons";
 
 // Bootswatch
-@import 'bootswatch';
+@import "bootswatch";
 
 // CUSTOM CSS
 
-
-h1, h2{
+h1,
+h2 {
     color: $blue;
 }
 
+// NAVBAR
 #search-input {
-  display: flex;
+    display: flex;
 
-  i {
-    position: relative;
-    z-index: 2;
-  }
-
-  input {
-    width: 100%;
-    margin-left: 6px;
-
-    &:focus {
-      outline: none;
+    i {
+        position: relative;
+        z-index: 2;
     }
-  }
+
+    input {
+        width: 100%;
+        margin-left: 6px;
+
+        &:focus {
+            outline: none;
+        }
+    }
 }
 
 #navUserMenu {
-  display: block;
+    display: block;
 
-  #navUserMenuInfo {
-    padding: 0.25rem 1.5rem;
-    img {
-      width: 75px;
-      height: 75px;
+    #navUserMenuInfo {
+        padding: 0.25rem 1.5rem;
+        img {
+            width: 75px;
+            height: 75px;
+        }
     }
-  }
 }
 
 .welcome-message {
     background-color: whitesmoke;
-    height:400px;
-    border: none
+    height: 400px;
 }
 
-.welcome {
-    background-color: whitesmoke;
-    height: 250px;
-    border: none;
+.card {
+    height: 500px;
 }
 
-.initial-message {
-    margin-top: 80px;
-    text-align: center;
-}
-
-.recommended {
-    border: none;
-    padding-bottom: 100px;
-}
-
-.container-footer-text{
+.container-footer-text {
     display: flex;
     flex-direction: column;
 }
-.container-footer-links{
+.container-footer-links {
     display: flex;
     flex-direction: row;
     align-content: center;
     justify-content: space-around;
-
 }
 
 .item-footer-text {
-  align-self: auto;
+    align-self: auto;
 }
 
 .item-footer-link {
-  align-self: center;
+    align-self: center;
 }
 
 .container-footer-social {
-
     display: flex;
     justify-content: space-around;
     flex-direction: row;
     margin-top: 60px;
     position: relative;
 }
-container-footer-social li a i{
+container-footer-social li a i {
     z-index: 500;
     position: relative;
 }
-
 
 .title-courses {
     margin-top: 150px;
@@ -112,21 +97,24 @@ container-footer-social li a i{
     color: $blue;
 }
 
+.btn-lessons-menu {
+    top: 0;
+    right: 20px;
+    position: fixed;
+    margin-top: 60px;
 
-.btn-lessons-menu{
-  top: 0;
-  right: 20px;
-  position: fixed;
-  margin-top: 60px;
+    z-index: 9002;
+    a {
+        text-decoration: none;
+        color: black;
+    }
 
-  z-index: 9002;
-  a{ text-decoration: none; color: black}
-
-
-  a:visited{text-decoration: none;}
+    a:visited {
+        text-decoration: none;
+    }
 }
 
-.lessons-menu{
+.lessons-menu {
     top: 0;
     right: 0;
     position: fixed;
@@ -137,67 +125,64 @@ container-footer-social li a i{
     overflow: auto;
     min-height: 400px;
     scrollbar-width: none; //scroll firefox
-    -ms-overflow-style: none;  /* scroll IE and Edge */
+    -ms-overflow-style: none; /* scroll IE and Edge */
 
-    p{ margin-bottom: 0px; }
+    p {
+        margin-bottom: 0px;
+    }
 }
-.lessons-menu2{
-  display: none;
+.lessons-menu2 {
+    display: none;
 }
-.lesson-menu-quizz{
+.lesson-menu-quizz {
     //top: 250px;
 }
 
-
-    .master-video-container{
-        margin-left: 9vw;
-
-    }
-
-    .btn-lessons-menu{
-        display: none;
-    }
-
-    .lessons-menu2{
-        top: 0;
-        right: 0;
-        position: fixed;
-        background-color: $gray-100;
-        display: initial;
-        margin-top: 57px;
-        overflow: auto;
-        height: 643px;
-        scrollbar-width: none; //scroll firefox
-        -ms-overflow-style: none;  /* scroll IE and Edge */
-        p{ margin-bottom: 0px; }
-    }
-    .lessons-menu2::-webkit-scrollbar{ /* Hide scrollbar for Chrome, Safari and Opera */
-        display: none;
-    }
-    .lesson-menu-quizz2{
-        top: 635px;
-        right: 0;
-    }
-
-.welcome-message {
-    height:400px;
+.master-video-container {
+    margin-left: 9vw;
 }
 
-.initial-message {
-    margin: 150px;
-    text-align: center;
+.btn-lessons-menu {
+    display: none;
 }
 
-.container-lesson-text{
-  padding: 50px;
-  //border-radius: 10px;
-  background-color: $gray-200;
+.lessons-menu2 {
+    top: 0;
+    right: 0;
+    position: fixed;
+    background-color: $gray-100;
+    display: initial;
+    margin-top: 57px;
+    overflow: auto;
+    height: 643px;
+    scrollbar-width: none; //scroll firefox
+    -ms-overflow-style: none; /* scroll IE and Edge */
+    p {
+        margin-bottom: 0px;
+    }
+}
+.lessons-menu2::-webkit-scrollbar {
+    /* Hide scrollbar for Chrome, Safari and Opera */
+    display: none;
+}
+.lesson-menu-quizz2 {
+    top: 635px;
+    right: 0;
+}
+
+.container-lesson-text {
+    padding: 50px;
+    //border-radius: 10px;
+    background-color: $gray-200;
 }
 
 .video-container {
-  padding-bottom: 56.25%; padding-top: 30px; height: 0; overflow: hidden; margin-left: 0;}
-
-
+    padding-bottom: 56.25%;
+    padding-top: 30px;
+    height: 0;
+    overflow: hidden;
+    margin-left: 0;
+}
 
 .course-name {
     text-decoration: none;
@@ -209,44 +194,50 @@ container-footer-social li a i{
     text-decoration: none;
 }
 
-.video-container iframe, .video-container object, .video-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+.video-container iframe,
+.video-container object,
+.video-container embed {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
 
 .course-rating {
     border: none;
     color: #f9c70c;
 }
 
-
 // Small devices (landscape phones, 576px and up)
 @media (min-width: 576px) {
-
 }
 
 // Medium devices (tablets, 768px and up)
 @media (min-width: 768px) {
-  .item-footer-text {
-      align-self: flex-start;
-  }
+    .item-footer-text {
+        align-self: flex-start;
+    }
 
-  .item-footer-link:hover {
-      text-decoration: none;
-  }
-  .container-footer-social {
-      display: flex;
-      flex-direction: column;
-      margin-top: initial;
-      justify-content: center;
-      align-content:center;
-      height: 100%;
-  }
-  .item-footer-social {
-      vertical-align: middle;
-  }
+    .item-footer-link:hover {
+        text-decoration: none;
+    }
+    .container-footer-social {
+        display: flex;
+        flex-direction: column;
+        margin-top: initial;
+        justify-content: center;
+        align-content: center;
+        height: 100%;
+    }
+    .item-footer-social {
+        vertical-align: middle;
+    }
 
-  .btn-lessons-menu{
-      display: none;
-  }
-  /* .lessons-menu2{
+    .btn-lessons-menu {
+        display: none;
+    }
+    /* .lessons-menu2{
       top: 0;
       right: 0;
       position: fixed;
@@ -257,11 +248,9 @@ container-footer-social li a i{
       max-height: 400px;
       scrollbar-width: none; //scroll firefox
       -ms-overflow-style: none;  /* scroll IE and Edge */
-  //}
+    //}
 
-
-
-    .lessons-menu2{
+    .lessons-menu2 {
         top: 0;
         right: 0;
         position: fixed;
@@ -271,34 +260,36 @@ container-footer-social li a i{
         overflow: auto;
         height: 643px;
         scrollbar-width: none; //scroll firefox
-        -ms-overflow-style: none;  /* scroll IE and Edge */
-        p{ margin-bottom: 0px; }
+        -ms-overflow-style: none; /* scroll IE and Edge */
+        p {
+            margin-bottom: 0px;
+        }
     }
-    .lessons-menu2::-webkit-scrollbar{ /* Hide scrollbar for Chrome, Safari and Opera */
+    .lessons-menu2::-webkit-scrollbar {
+        /* Hide scrollbar for Chrome, Safari and Opera */
         display: none;
     }
-    .lesson-menu-quizz2{
+    .lesson-menu-quizz2 {
         top: 635px;
         right: 0;
     }
 
-  .master-video-container{
-      margin-left: 9vw;
-  }
+    .master-video-container {
+        margin-left: 9vw;
+    }
 }
 
 // Large devices (desktops, 992px and up)
 @media (min-width: 992px) {
-  #navUserMenu {
-    display: none;
+    #navUserMenu {
+        display: none;
 
-    &.show {
-      display: block;
+        &.show {
+            display: block;
+        }
     }
-  }
 }
 
 // Extra large devices (large desktops, 1200px and up)
 @media (min-width: 1200px) {
 }
-
