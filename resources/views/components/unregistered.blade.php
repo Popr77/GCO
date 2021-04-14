@@ -23,7 +23,7 @@
 <!-- Cards -->
 {{-- style="display: flex; flex-direction: row; justify-content: center; padding-bottom: 50px" --}}
 <div class="d-flex flex-column flex-md-row justify-content-center align-items-center align-items-md-start pb-5">
-    <div class="card mb-3" style="width: 20rem; align-items: center; margin-right: 20px;">
+    <div class="card mb-3" style="width: 20rem; align-items: center; margin: 0 10px;">
       <img class="card-img-top" src="https://cdn.datafloq.com/cache/blog_pictures/878x531/artificial-intelligence-future-of-programming.jpg" alt="Image course 1">
       <div class="card-body">
         <h5 class="card-title text-center">Course</h5>
@@ -32,7 +32,7 @@
       <a href="#" class="btn btn-primary d-flex justify-content-center" style="margin: 10px">See full course</a>
     </div>
 
-    <div class="card mb-3" style="width: 20rem; align-items: center; margin-right: 20px">
+    <div class="card mb-3" style="width: 20rem; align-items: center; margin: 0 10px">
       <img class="card-img-top" src="https://cdn.datafloq.com/cache/blog_pictures/878x531/artificial-intelligence-future-of-programming.jpg" alt="Image course 2">
       <div class="card-body">
         <h5 class="card-title text-center">Course</h5>
@@ -41,9 +41,9 @@
       <a href="#" class="btn btn-primary d-flex justify-content-center" style="margin: 10px">See full course</a>
     </div>
 
-    <div class="card mb-3" style="width: 20rem; align-items: center; margin-right: 20px;">
+    <div class="card mb-3" style="width: 20rem; align-items: center; margin: 0 10px;">
       <img class="card-img-top" src="https://cdn.datafloq.com/cache/blog_pictures/878x531/artificial-intelligence-future-of-programming.jpg" alt="Image course 3">
-      <div div class="card-body">
+      <div class="card-body">
         <h5 class="card-title text-center">Course</h5>
         <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum error explicabo rem repellat sequi similique. Ab consequatur fuga modi officia velit! Amet nemo quibusdam veritatis? Beatae dolor mollitia nemo tenetur.</p>
       </div>
