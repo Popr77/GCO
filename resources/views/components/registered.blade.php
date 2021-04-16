@@ -32,7 +32,22 @@
     </div>
     <div class="row text-center">
         <div class="col-sm py-2 d-flex flex-column">
-            <img class="card-img-top rounded" src="https://cdn.datafloq.com/cache/blog_pictures/878x531/artificial-intelligence-future-of-programming.jpg" alt="Image course">
+            <a href="#"><img class="card-img-top rounded" src="https://cdn.datafloq.com/cache/blog_pictures/878x531/artificial-intelligence-future-of-programming.jpg" alt="Image course"></a>            <a href="#" class="mt-2 d-flex justify-content-start course-name">Course name</a>
+            <div class="d-flex flex-row justify-content-start course-rating">
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill mr-1"></i>
+                <p class="text-dark">(123)</p>
+                <div class="container-fluid pr-0">
+                    <p class="text-danger d-flex justify-content-end">12,99 €</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm py-2 d-flex flex-column">
+            <a href="#"><img class="card-img-top rounded" src="https://cdn.datafloq.com/cache/blog_pictures/878x531/artificial-intelligence-future-of-programming.jpg" alt="Image course"></a>
             <a href="#" class="mt-2 d-flex justify-content-start course-name">Course name</a>
             <div class="d-flex flex-row justify-content-start course-rating">
                 <i class="bi bi-star-fill"></i>
@@ -48,74 +63,7 @@
         </div>
 
         <div class="col-sm py-2 d-flex flex-column">
-            <img class="card-img-top rounded" src="https://cdn.datafloq.com/cache/blog_pictures/878x531/artificial-intelligence-future-of-programming.jpg" alt="Image course">
-            <a href="#" class="mt-2 d-flex justify-content-start course-name">Course name</a>
-            <div class="d-flex flex-row justify-content-start course-rating">
-                <i class="bi bi-star-fill"></i>
-                <i class="bi bi-star-fill"></i>
-                <i class="bi bi-star-fill"></i>
-                <i class="bi bi-star-fill"></i>
-                <i class="bi bi-star-fill mr-1"></i>
-                <p class="text-dark">(123)</p>
-                <div class="container-fluid pr-0">
-                    <p class="text-danger d-flex justify-content-end">12,99 €</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-sm py-2 d-flex flex-column">
-            <img class="card-img-top rounded" src="https://cdn.datafloq.com/cache/blog_pictures/878x531/artificial-intelligence-future-of-programming.jpg" alt="Image course">
-            <a href="#" class="mt-2 d-flex justify-content-start course-name">Course name</a>
-            <div class="d-flex flex-row justify-content-start course-rating">
-                <i class="bi bi-star-fill"></i>
-                <i class="bi bi-star-fill"></i>
-                <i class="bi bi-star-fill"></i>
-                <i class="bi bi-star-fill"></i>
-                <i class="bi bi-star-fill mr-1"></i>
-                <p class="text-dark">(123)</p>
-                <div class="container-fluid pr-0">
-                    <p class="text-danger d-flex justify-content-end">12,99 €</p>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="row text-center">
-        <div class="col-sm py-2 d-flex flex-column">
-            <img class="card-img-top rounded" src="https://cdn.datafloq.com/cache/blog_pictures/878x531/artificial-intelligence-future-of-programming.jpg" alt="Image course">
-            <a href="#" class="mt-2 d-flex justify-content-start course-name">Course name</a>
-            <div class="d-flex flex-row justify-content-start course-rating">
-                <i class="bi bi-star-fill"></i>
-                <i class="bi bi-star-fill"></i>
-                <i class="bi bi-star-fill"></i>
-                <i class="bi bi-star-fill"></i>
-                <i class="bi bi-star-fill mr-1"></i>
-                <p class="text-dark">(123)</p>
-                <div class="container-fluid pr-0">
-                    <p class="text-danger d-flex justify-content-end">12,99 €</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-sm py-2 d-flex flex-column">
-            <img class="card-img-top rounded" src="https://cdn.datafloq.com/cache/blog_pictures/878x531/artificial-intelligence-future-of-programming.jpg" alt="Image course">
-            <a href="#" class="mt-2 d-flex justify-content-start course-name">Course name</a>
-            <div class="d-flex flex-row justify-content-start course-rating">
-                <i class="bi bi-star-fill"></i>
-                <i class="bi bi-star-fill"></i>
-                <i class="bi bi-star-fill"></i>
-                <i class="bi bi-star-fill"></i>
-                <i class="bi bi-star-fill mr-1"></i>
-                <p class="text-dark">(123)</p>
-                <div class="container-fluid pr-0">
-                    <p class="text-danger d-flex justify-content-end">12,99 €</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-sm py-2 d-flex flex-column">
-            <img class="card-img-top rounded" src="https://cdn.datafloq.com/cache/blog_pictures/878x531/artificial-intelligence-future-of-programming.jpg" alt="Image course">
-            <a href="#" class="mt-2 d-flex justify-content-start course-name">Course name</a>
+            <a href="#"><img class="card-img-top rounded" src="https://cdn.datafloq.com/cache/blog_pictures/878x531/artificial-intelligence-future-of-programming.jpg" alt="Image course"></a>            <a href="#" class="mt-2 d-flex justify-content-start course-name">Course name</a>
             <div class="d-flex flex-row justify-content-start course-rating">
                 <i class="bi bi-star-fill"></i>
                 <i class="bi bi-star-fill"></i>
@@ -132,8 +80,7 @@
 
     <div class="row text-center">
         <div class="col-sm py-2 d-flex flex-column">
-            <img class="card-img-top rounded" src="https://cdn.datafloq.com/cache/blog_pictures/878x531/artificial-intelligence-future-of-programming.jpg" alt="Image course">
-            <a href="#" class="mt-2 d-flex justify-content-start course-name">Course name</a>
+            <a href="#"><img class="card-img-top rounded" src="https://cdn.datafloq.com/cache/blog_pictures/878x531/artificial-intelligence-future-of-programming.jpg" alt="Image course"></a>            <a href="#" class="mt-2 d-flex justify-content-start course-name">Course name</a>
             <div class="d-flex flex-row justify-content-start course-rating">
                 <i class="bi bi-star-fill"></i>
                 <i class="bi bi-star-fill"></i>
@@ -148,8 +95,54 @@
         </div>
 
         <div class="col-sm py-2 d-flex flex-column">
-            <img class="card-img-top rounded" src="https://cdn.datafloq.com/cache/blog_pictures/878x531/artificial-intelligence-future-of-programming.jpg" alt="Image course">
-            <a href="#" class="mt-2 d-flex justify-content-start course-name">Course name</a>
+            <a href="#"><img class="card-img-top rounded" src="https://cdn.datafloq.com/cache/blog_pictures/878x531/artificial-intelligence-future-of-programming.jpg" alt="Image course"></a>            <a href="#" class="mt-2 d-flex justify-content-start course-name">Course name</a>
+            <div class="d-flex flex-row justify-content-start course-rating">
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill mr-1"></i>
+                <p class="text-dark">(123)</p>
+                <div class="container-fluid pr-0">
+                    <p class="text-danger d-flex justify-content-end">12,99 €</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm py-2 d-flex flex-column">
+            <a href="#"><img class="card-img-top rounded" src="https://cdn.datafloq.com/cache/blog_pictures/878x531/artificial-intelligence-future-of-programming.jpg" alt="Image course"></a>            <a href="#" class="mt-2 d-flex justify-content-start course-name">Course name</a>
+            <div class="d-flex flex-row justify-content-start course-rating">
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill mr-1"></i>
+                <p class="text-dark">(123)</p>
+                <div class="container-fluid pr-0">
+                    <p class="text-danger d-flex justify-content-end">12,99 €</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row text-center">
+        <div class="col-sm py-2 d-flex flex-column">
+            <a href="#"><img class="card-img-top rounded" src="https://cdn.datafloq.com/cache/blog_pictures/878x531/artificial-intelligence-future-of-programming.jpg" alt="Image course"></a>            <a href="#" class="mt-2 d-flex justify-content-start course-name">Course name</a>
+            <div class="d-flex flex-row justify-content-start course-rating">
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill mr-1"></i>
+                <p class="text-dark">(123)</p>
+                <div class="container-fluid pr-0">
+                    <p class="text-danger d-flex justify-content-end">12,99 €</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm py-2 d-flex flex-column">
+            <a href="#"><img class="card-img-top rounded" src="https://cdn.datafloq.com/cache/blog_pictures/878x531/artificial-intelligence-future-of-programming.jpg" alt="Image course"></a>            <a href="#" class="mt-2 d-flex justify-content-start course-name">Course name</a>
             <div class="d-flex flex-row justify-content-start course-rating">
                 <i class="bi bi-star-fill"></i>
                 <i class="bi bi-star-fill"></i>
@@ -164,8 +157,7 @@
         </div>
 
         <div class="col-sm py-2 d-flex flex-column mb-5">
-            <img class="card-img-top rounded" src="https://cdn.datafloq.com/cache/blog_pictures/878x531/artificial-intelligence-future-of-programming.jpg" alt="Image course">
-            <a href="#" class="mt-2 d-flex justify-content-start course-name">Course name</a>
+            <a href="#"><img class="card-img-top rounded" src="https://cdn.datafloq.com/cache/blog_pictures/878x531/artificial-intelligence-future-of-programming.jpg" alt="Image course"></a>            <a href="#" class="mt-2 d-flex justify-content-start course-name">Course name</a>
             <div class="d-flex flex-row justify-content-start course-rating">
                 <i class="bi bi-star-fill"></i>
                 <i class="bi bi-star-fill"></i>

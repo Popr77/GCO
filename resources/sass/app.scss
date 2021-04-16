@@ -274,8 +274,17 @@ container-footer-social li a i {
         right: 0;
     }
 
-    .master-video-container {
-        margin-left: 9vw;
+  .master-video-container{
+      margin-left: 9vw;
+  }
+
+    .categories-select:hover {
+        background-color: $blue;
+    }
+
+    .categories-select:hover a {
+        color: white;
+
     }
 }
 
