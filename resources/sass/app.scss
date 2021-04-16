@@ -285,6 +285,14 @@ container-footer-social li a i{
   .master-video-container{
       margin-left: 9vw;
   }
+
+    .categories-select:hover {
+        background-color: $blue;
+    }
+
+    .categories-select:hover a {
+        color: white;
+    }
 }
 
 // Large devices (desktops, 992px and up)
