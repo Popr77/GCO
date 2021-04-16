@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CourseController;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,4 +41,14 @@ Route::prefix('/lesson')->group(function(){
     Route::put('{project}', 'LessonController@update');
     Route::delete('{project}', 'LessonController@destroy');
     Route::get('{project}', 'LessonController@show');
+});
+
+Route::prefix('/courses')->group(function(){
+    Route::get('', [CourseController::class, 'index']);
+    Route::post('', [CourseController::class, 'store']);
+    Route::get('create', [CourseController::class, 'create']);
+    Route::get('{course}', [CourseController::class, 'show']);
+    Route::get('{course}/edit', [CourseController::class, 'edit']);
+    Route::put('{course}', [CourseController::class, 'update']);
+    Route::delete('{course}', [CourseController::class, 'destroy']);
 });
