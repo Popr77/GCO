@@ -4,3 +4,15 @@ require('./bootstrap');
 $(document).on('click', '.navbar #navUserMenu', function (e) {
   e.stopPropagation();
 });
+
+import Vue from 'vue'
+
+//Main pages
+import HelloWorld from './views/HelloWorld.vue'
+
+
+const app = new Vue({
+    el: '#app',
+    components: { HelloWorld }
+});
+
