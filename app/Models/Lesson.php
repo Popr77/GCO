@@ -14,4 +14,16 @@ class Lesson extends Model
         'lesson_number',
         'module_id'
     ];
+
+    public function module() {
+        return $this->belongsTo(Module::class);
+    }
+
+    public function contents() {
+        return $this->hasMany(Content::class);
+    }
+
+    public function questions() {
+        return $this->hasMany(Question::class);
+    }
 }
