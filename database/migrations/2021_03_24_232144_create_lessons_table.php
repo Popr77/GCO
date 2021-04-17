@@ -17,7 +17,6 @@ class CreateLessonsTable extends Migration
             $table->id();
             $table->string('title');
             $table->integer('lesson_number');
-            $table->foreignId('module_id');
             $table->timestamps();
         });
     }

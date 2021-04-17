@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateContentTypesTable extends Migration
+class AddModuleIdToLessonsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class CreateContentTypesTable extends Migration
      */
     public function up()
     {
-        Schema::create('content_types', function (Blueprint $table) {
-            $table->id();
-            $table->string('name')->unique();
-            $table->timestamps();
+        Schema::table('lessons', function (Blueprint $table) {
+            $table->foreignId('module_id')->constrained()->onDelete('cascade');
+
+            $table->unique(['lesson_number', 'module_id']);
         });
     }
 
@@ -27,6 +27,8 @@ class CreateContentTypesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('content_types');
+        Schema::table('lessons', function (Blueprint $table) {
+            //
+        });
     }
 }
