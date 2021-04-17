@@ -15,11 +15,11 @@ class Course extends Model
       return $this->belongsTo(SubSubCategory::class);
     }
 
-    public function status() {
-      return $this->belongsTo(CourseStatus::class);
-    }
-
     public function students() {
         return $this->belongsToMany(User::class, 'enrollments');
+    }
+
+    public function modules() {
+        return $this->hasMany(Module::class);
     }
 }
