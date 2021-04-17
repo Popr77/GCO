@@ -9,7 +9,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class SubCategory extends Model
 {
     use HasFactory;
-    use SoftDeletes;
 
     public function category() {
       return $this->belongsTo(Category::class);

@@ -18,7 +18,6 @@ class CreateSubCategoriesTable extends Migration
             $table->foreignId('category_id')->constrained()->onDelete('cascade');
             $table->string('name');
             $table->timestamps();
-            $table->softDeletes();
 
             $table->unique(['category_id', 'name']);
         });
