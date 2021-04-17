@@ -15,7 +15,13 @@ class CreateLessonGradesTable extends Migration
     {
         Schema::create('lesson_grades', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('lesson_id')->constrained();
+            $table->foreignId('enrollment_id')->constrained();
+            $table->dateTime('date');
+            $table->integer('grade');
             $table->timestamps();
+
+            $table->unique(['lesson_id', 'enrollment_id']);
         });
     }
 
