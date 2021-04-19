@@ -15627,6 +15627,10 @@ container-footer-social li a i {
   height: 100%;
 }
 
+.clickable-row:hover {
+  cursor: pointer;
+}
+
 @media (min-width: 768px) {
   .item-footer-text {
     align-self: flex-start;

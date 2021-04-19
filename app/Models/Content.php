@@ -14,4 +14,8 @@ class Content extends Model
         'lesson_id',
         'content',
     ];
+
+    public function content_type(){
+        return $this->hasOne('App\ContentType');
+    }
 }

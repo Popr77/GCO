@@ -18,7 +18,19 @@ class LessonController extends Controller
      */
     public function index()
     {
-        return view('pages.lesson');
+        return view('pages.lessons');
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function showAll()
+    {
+        $lessons = Lesson::all();
+//        dd($lessons);
+        return view('pages.lessons', ['lessons' => $lessons]);
     }
 
     /**
@@ -26,7 +38,7 @@ class LessonController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Integer $num)
+    public function create()
     {
 //        $num = $request->input('name');
 
@@ -34,9 +46,35 @@ class LessonController extends Controller
 //        $lesson_id = Lesson::latest('id')->first();
 //        dd($lesson_id);
 
-        $num = $_GET['num'];
-//        dd('okay');
-        return view('pages.admin.create-lesson', ['num' => $num]);
+
+        if (isset($_GET['num']) && isset($_GET['title']) && isset($_GET['lesson_number']) && isset($_GET['module_id'])){
+
+            $quillItems  = [];
+            for ($i=0; $i<count($_GET); $i++){
+                if (isset($_GET['editor'.$i])){
+                    array_push($quillItems, $_GET['editor'.$i]); //array
+                }
+            }
+
+            $num = $_GET['num'];
+            $title = $_GET['title'];
+            $lesson_number = $_GET['lesson_number'];
+            $module_id = $_GET['module_id'];
+
+            return view('pages.admin.create-lesson', ['num' => $num,
+                'title' => $title, 'lesson_number' => $lesson_number,
+                'module_id' => $module_id, 'quillItems' => $quillItems]);
+
+        }elseif(isset($_GET['num'])){
+
+            $num = $_GET['num'];
+
+            return view('pages.admin.create-lesson', ['num' => $num]);
+
+        }else{
+            $num = 3;
+            return view('pages.admin.create-lesson', ['num' => $num]);
+        }
     }
 
     /**
@@ -47,39 +85,68 @@ class LessonController extends Controller
      */
     public function store(Request $request)
     {
-        Lesson::create([
-            'title' => $request->title,
-            'lesson_number' => $request->lesson_number,
-            'module_id' => $request->module_id
-        ]);
 
-        $lesson_id = Lesson::latest('id')->first();
+        if ($_POST['action'] == 'update') {
+//            dd('update');
 
-        $index = 0;
-        foreach ($request as $item) {
+            $num = $request->containers;
+            $title = $request->title;
+            $lesson_number = $request->lesson_number;
+            $module_id = $request->module_id;
 
-            $quillItem = $request->input(('editor'.$index));
-            if (!is_null($quillItem)){
-                $contains = Str::contains($quillItem, 'youtube.com');
-
-                if ($contains){
-                    $nameType = 'link';
-                }else{
-                    $nameType = 'text';
+            $index = 0;
+            $quillItems  = [];
+            foreach ($request as $item) {
+                $quillItem = $request->input(('editor'.$index));
+                if (!is_null($quillItem)){
+                    array_push($quillItems, $quillItem); //array
                 }
-
-                //Id from ContentType Table
-                $content_type_id = ContentType::select('id')->where('name', $nameType)->first();
-
-              Content::create([
-                  'content_type_id' => (integer)$content_type_id->id,
-                  'lesson_id' => $lesson_id->id,
-                  'content' => $quillItem
-              ]);
+                $index++;
             }
-            $index++;
+            return view('pages.admin.create-lesson', ['num' => $num,
+                'title' => $title, 'lesson_number' => $lesson_number,
+                'module_id' => $module_id, 'quillItems' => $quillItems]);
+
+        } else if ($_POST['action'] == 'create') {
+//            dd('create');
+            dd('criar novo - create');
+
+
+            Lesson::create([
+                'title' => $request->title,
+                'lesson_number' => $request->lesson_number,
+                'module_id' => $request->module_id
+            ]);
+
+            $lesson = Lesson::latest('id')->first();
+
+            $index = 0;
+            foreach ($request as $item) {
+                $quillItem = $request->input(('editor'.$index));
+                if (!is_null($quillItem)){
+                    $contains = Str::contains($quillItem, 'youtube.com');
+
+                    if ($contains){
+                        $nameType = 'link';
+                    }else{
+                        $nameType = 'text';
+                    }
+
+                    //Id from ContentType Table
+                    $content_type = ContentType::select('id')->where('name', $nameType)->first();
+
+                    Content::create([
+                        'content_type_id' => (integer)$content_type->id,
+                        'lesson_id' => $lesson->id,
+                        'content' => $quillItem
+                    ]);
+                }
+                $index++;
+
+            }
+            return redirect('lessons')->with('status', 'Lesson created successfully!');
         }
-        return redirect('lesson')->with('status', 'Lesson created successfully!');
+
     }
     /**
      * Display the specified resource.
@@ -89,7 +156,8 @@ class LessonController extends Controller
      */
     public function show(Lesson $lesson)
     {
-        //
+        return view('pages.lessons.show', ['lesson' => $lesson]);
+
     }
 
     /**
@@ -100,7 +168,35 @@ class LessonController extends Controller
      */
     public function edit(Lesson $lesson)
     {
-        //
+//        dd($lesson);
+
+        if (isset($_GET['num']) && isset($_GET['title']) && isset($_GET['lesson_number']) && isset($_GET['module_id'])){
+
+            $quillItems  = [];
+            for ($i=0; $i<count($_GET); $i++){
+                if (isset($_GET['editor'.$i])){
+                    array_push($quillItems, $_GET['editor'.$i]); //array
+                }
+            }
+
+            $num = $_GET['num'];
+            $title = $_GET['title'];
+            $lesson_number = $_GET['lesson_number'];
+            $module_id = $_GET['module_id'];
+
+            return view('pages.admin.lesson-edit', ['num' => $num,
+                'title' => $title, 'lesson_number' => $lesson_number,
+                'module_id' => $module_id, 'quillItems' => $quillItems]);
+
+        }elseif(isset($_GET['num'])){
+
+            $num = $_GET['num'];
+
+            return view('pages.admin.lesson-edit', ['num' => $num]);
+
+        }else{
+            return view('pages.admin.lesson-edit', ['lesson' => $lesson]);
+        }
     }
 
     /**
@@ -112,8 +208,102 @@ class LessonController extends Controller
      */
     public function update(Request $request, Lesson $lesson)
     {
-        //
+//        $lesson->update($request->all());
+//        return redirect('lessons')->with('status','Item edited successfully!');
+
+
+        if ($_POST['action'] == 'update') {
+
+            $num = $request->containers;
+            $title = $request->title;
+            $lesson_number = $request->lesson_number;
+            $module_id = $request->module_id;
+
+            $index = 0;
+            $quillItems = [];
+            foreach ($request as $item) {
+                $quillItem = $request->input(('editor' . $index));
+                if (!is_null($quillItem)) {
+                    array_push($quillItems, $quillItem); //array
+                }
+                $index++;
+            }
+            return view('pages.admin.lesson-edit', ['num' => $num,
+                'title' => $title, 'lesson_number' => $lesson_number,
+                'module_id' => $module_id, 'quillItems' => $quillItems]);
+
+        } else if ($_POST['action'] == 'save') {
+
+            $lesson->title = $request->title;
+            $lesson->lesson_number = $request->lesson_number;
+            $lesson->module_id = $request->module_id;
+            $lesson->save();
+
+
+            $index = 0;
+            $index2 = 0;
+            foreach ($request as $item) {
+                $quillItem = $request->input(('editor' . $index));
+//                $total_quillItems = count($quillItem);
+                if (!is_null($quillItem)) {
+
+                    $contains = Str::contains($quillItem, 'youtube.com');
+
+                    if ($contains) {
+                        $nameType = 'link';
+                    } else {
+                        $nameType = 'text';
+                    }
+
+//                  $content_type = ContentType::find($player->id);
+
+                    //Id from ContentType Table
+                    $content_type = ContentType::select('id')->where('name', $nameType)->first();
+//                    dd($lesson->id);
+
+                    //gets all the contents
+                    $content = Content::find(Content::select('id')->where('lesson_id', $lesson->id)->get());
+//                    dd($content);
+                    $total= count($content);
+//                    dd($total);
+
+                    if($request->containers > count($content)){
+                        if ($index > count($content)){
+                            dd('criar novo - update');
+                            Content::create([
+                                'content_type_id' => (integer)$content_type->id,
+                                'lesson_id' => $lesson->id,
+                                'content' => $quillItem
+                            ]);
+                        }else{
+                            $content[$index2]->content_type_id = (integer)$content_type->id;
+                            $content[$index2]->content = $quillItem;
+                            $content[$index2]->save();
+
+
+                            $index2++;
+                        }
+
+                    }else{
+//                        dd($content[$index2]->content = $quillItem);
+                        $content[$index2]->content_type_id = (integer)$content_type->id;                           $content[$index2]->content = $quillItem;
+                        $content[$index2]->content = $quillItem;
+
+                        $content[$index2]->save();
+
+
+                        $index2++;
+
+                    }
+
+                }
+                $index++;
+            }
+            return redirect('lessons')->with('status', 'Lesson created successfully!');
+
+        }
     }
+
 
     /**
      * Remove the specified resource from storage.

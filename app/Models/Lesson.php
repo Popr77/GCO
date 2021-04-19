@@ -14,4 +14,9 @@ class Lesson extends Model
         'lesson_number',
         'module_id'
     ];
+
+    public function contents(){
+//        return $this->belongsTo('App\Models\Content');
+        return $this->hasMany(Content::class);
+    }
 }

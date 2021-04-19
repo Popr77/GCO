@@ -22,21 +22,19 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/unregistered', [App\Http\Controllers\HomeController::class, 'unregistered']);
-Route::get('/lesson', [App\Http\Controllers\HomeController::class, 'lesson']);
-Route::get('/lessons', [App\Http\Controllers\HomeController::class, 'lesson']);
-
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index']);
 Route::get('/registered', [App\Http\Controllers\HomeController::class, 'registered']);
-Route::get('/lesson', [App\Http\Controllers\HomeController::class, 'lesson']);
-//Route::get('/lessons', [App\Http\Controllers\HomeController::class, 'lesson']);
+Route::get('/lesson', [App\Http\Controllers\LessonController::class,'index']);
 
-Route::prefix('/lesson')->group(function(){
-    Route::get('', [App\Http\Controllers\LessonController::class, 'index']);
+
+
+Route::prefix('/lessons')->group(function(){
+    Route::get('', [App\Http\Controllers\LessonController::class, 'showAll']);
     Route::get('create', [App\Http\Controllers\LessonController::class,'create']);
     Route::post('', [App\Http\Controllers\LessonController::class,'store']);
-    Route::get('{project}/edit', 'LessonController@edit');
-    Route::put('{project}', 'LessonController@update');
-    Route::delete('{project}', 'LessonController@destroy');
-    Route::get('{project}', 'LessonController@show');
+    Route::get('{lesson}/edit', [App\Http\Controllers\LessonController::class,'edit']);
+    Route::put('{lesson}', [App\Http\Controllers\LessonController::class,'update']);
+    Route::delete('{lesson}', [App\Http\Controllers\LessonController::class,'destroy']);
+    Route::get('{lesson}', [App\Http\Controllers\LessonController::class,'show']);
 });
