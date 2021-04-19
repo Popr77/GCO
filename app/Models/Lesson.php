@@ -30,4 +30,5 @@ class Lesson extends Model
     public function grades() {
         return $this->belongsToMany(Enrollment::class, 'lesson_grades');
     }
+
 }

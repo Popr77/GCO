@@ -22,4 +22,9 @@ class Content extends Model
     public function type() {
         return $this->belongsTo(ContentType::class);
     }
+
+    // public function content_type(){
+    //     return $this->hasOne('App\ContentType');
+
+    // }
 }
