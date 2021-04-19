@@ -26,4 +26,8 @@ class Lesson extends Model
     public function questions() {
         return $this->hasMany(Question::class);
     }
+
+    public function grades() {
+        return $this->belongsToMany(Enrollment::class, 'lesson_grades');
+    }
 }

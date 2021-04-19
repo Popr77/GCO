@@ -15,15 +15,21 @@ class ContentTypeSeeder extends Seeder
     public function run()
     {
         DB::table('content_types')->insert([
-            'name' => 'link'
+            'name' => 'link',
+            'created_at' => now(),
+            'updated_at' => now()
         ]);
 
         DB::table('content_types')->insert([
-        'name' => 'text'
+        'name' => 'text',
+        'created_at' => now(),
+        'updated_at' => now()
         ]);
 
         DB::table('content_types')->insert([
-        'name' => 'img'
+        'name' => 'img',
+        'created_at' => now(),
+        'updated_at' => now()
         ]);
     }
 }
