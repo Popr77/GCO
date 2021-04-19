@@ -5,11 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Enrollment extends Model
+class UserType extends Model
 {
     use HasFactory;
 
-    public function grades() {
-        return $this->belongsToMany(Lesson::class, 'lesson_grades');
+    public function users() {
+        return $this->hasMany(User::class);
     }
 }

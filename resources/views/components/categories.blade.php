@@ -27,10 +27,54 @@
     </a>
 </div>
 
-<div class="container courses-grid">
-    <div class="row text-center">
-        <div class="col-sm py-2 d-flex flex-column">
-            <a href="#" class="mt-2 d-flex justify-content-start course-name">Category name</a>
+<h1 class="text-center mt-lg-5">All Categories</h1>
+
+<div class="container courses-grid mt-lg-5">
+    <div class="row mb-3">
+        <div class="col-sm py-2 d-flex align-items-center justify-content-center border border-primary rounded mr-2 categories-select">
+            <a href="#" class="text-center course-name">Category name</a>
+        </div>
+        <div class="col-sm d-flex align-items-center justify-content-center border border-primary rounded mr-2 categories-select">
+            <a href="#" class="text-center course-name">Category name</a>
+        </div>
+        <div class="col-sm d-flex align-items-center justify-content-center border border-primary rounded mr-2 categories-select">
+            <a href="#" class="text-center course-name">Category name</a>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-sm py-2 d-flex align-items-center justify-content-center border border-primary rounded mr-2 categories-select">
+            <a href="#" class="text-center course-name">Category name</a>
+        </div>
+        <div class="col-sm d-flex align-items-center justify-content-center border border-primary rounded mr-2 categories-select">
+            <a href="#" class="text-center course-name">Category name</a>
+        </div>
+        <div class="col-sm d-flex align-items-center justify-content-center border border-primary rounded mr-2 categories-select">
+            <a href="#" class="text-center course-name">Category name</a>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-sm py-2 d-flex align-items-center justify-content-center border border-primary rounded mr-2 categories-select">
+            <a href="#" class="text-center course-name">Category name</a>
+        </div>
+        <div class="col-sm d-flex align-items-center justify-content-center border border-primary rounded mr-2 categories-select">
+            <a href="#" class="text-center course-name">Category name</a>
+        </div>
+        <div class="col-sm d-flex align-items-center justify-content-center border border-primary rounded mr-2 categories-select">
+            <a href="#" class="text-center course-name">Category name</a>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-sm py-2 d-flex align-items-center justify-content-center border border-primary rounded mr-2 categories-select">
+            <a href="#" class="text-center course-name">Category name</a>
+        </div>
+        <div class="col-sm d-flex align-items-center justify-content-center border border-primary rounded mr-2 categories-select">
+            <a href="#" class="text-center course-name">Category name</a>
+        </div>
+        <div class="col-sm d-flex align-items-center justify-content-center border border-primary rounded mr-2 categories-select">
+            <a href="#" class="text-center course-name">Category name</a>
         </div>
     </div>
 </div>
