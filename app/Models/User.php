@@ -44,4 +44,8 @@ class User extends Authenticatable
     public function courses() {
         return $this->belongsToMany(Course::class, 'enrollments');
     }
+
+    public function type() {
+        return $this->belongsTo(UserType::class);
+    }
 }
