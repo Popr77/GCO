@@ -8,11 +8,14 @@
     </div>
 @endif
 <div class="col-12 text-center">
-    <h1 class="my-5">Lesson List</h1>
+    <h1 class="mt-5">Lesson List</h1>
+    <div class="text-right mb-5 mr-5 mt-1">
+        <a class="btn btn-warning" href="{{ url('lessons/create')}}" role="button">Create</a>
+    </div>
     <table class="table table-hover col-6 mx-auto border">
         <thead>
         <tr>
-            <th scope="col">Lesson Nº</th>
+            <th scope="col">Lessons Nº</th>
             <th scope="col">Name</th>
             <th scope="col">Module</th>
             {{--            <th scope="col">Project</th>--}}

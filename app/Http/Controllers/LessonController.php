@@ -87,7 +87,6 @@ class LessonController extends Controller
     {
 
         if ($_POST['action'] == 'update') {
-//            dd('update');
 
             $num = $request->containers;
             $title = $request->title;
@@ -108,10 +107,7 @@ class LessonController extends Controller
                 'module_id' => $module_id, 'quillItems' => $quillItems]);
 
         } else if ($_POST['action'] == 'create') {
-//            dd('create');
-            dd('criar novo - create');
-
-
+            
             Lesson::create([
                 'title' => $request->title,
                 'lesson_number' => $request->lesson_number,
@@ -168,7 +164,6 @@ class LessonController extends Controller
      */
     public function edit(Lesson $lesson)
     {
-//        dd($lesson);
 
         if (isset($_GET['num']) && isset($_GET['title']) && isset($_GET['lesson_number']) && isset($_GET['module_id'])){
 
@@ -199,6 +194,12 @@ class LessonController extends Controller
         }
     }
 
+
+    public function updateContent($content, $content_type, $quillItem){
+        $content->content_type_id = (integer)$content_type->id;
+        $content->content = $quillItem;
+        $content->save();
+    }
     /**
      * Update the specified resource in storage.
      *
@@ -228,7 +229,7 @@ class LessonController extends Controller
                 }
                 $index++;
             }
-            return view('pages.admin.lesson-edit', ['num' => $num,
+            return view('pages.admin.lesson-edit', ['lesson' => $lesson,'num' => $num,
                 'title' => $title, 'lesson_number' => $lesson_number,
                 'module_id' => $module_id, 'quillItems' => $quillItems]);
 
@@ -262,13 +263,12 @@ class LessonController extends Controller
 //                    dd($lesson->id);
 
                     //gets all the contents
-                    $content = Content::find(Content::select('id')->where('lesson_id', $lesson->id)->get());
-//                    dd($content);
-                    $total= count($content);
-//                    dd($total);
+                    $contents = Content::find(Content::select('id')->where('lesson_id', $lesson->id)->get());
 
-                    if($request->containers > count($content)){
-                        if ($index > count($content)){
+
+                }
+                    if($request->containers > count($contents)){
+                        if ($index > count($contents)){
                             dd('criar novo - update');
                             Content::create([
                                 'content_type_id' => (integer)$content_type->id,
@@ -276,32 +276,46 @@ class LessonController extends Controller
                                 'content' => $quillItem
                             ]);
                         }else{
-                            $content[$index2]->content_type_id = (integer)$content_type->id;
-                            $content[$index2]->content = $quillItem;
-                            $content[$index2]->save();
+                            $contents[$index2]->content_type_id = (integer)$content_type->id;                           $content[$index2]->content = $quillItem;
+                            $contents[$index2]->content = $quillItem;
+                            $contents[$index2]->save();
 
+//                            $this->updateContent($contents[$index2], $content_type, $quillItem);
 
                             $index2++;
                         }
 
+                    }elseif($request->containers < count($contents)){
+                        if ($index <= count($contents)) {
+                            $contents[$index2]->content_type_id = (integer)$content_type->id;                           $content[$index2]->content = $quillItem;
+                            $contents[$index2]->content = $quillItem;
+                            $contents[$index2]->save();
+//                            $this->updateContent($contents[$index2], $content_type, $quillItem);
+                            $index2++;
+                        }
                     }else{
-//                        dd($content[$index2]->content = $quillItem);
-                        $content[$index2]->content_type_id = (integer)$content_type->id;                           $content[$index2]->content = $quillItem;
-                        $content[$index2]->content = $quillItem;
+                        $contents[$index2]->content_type_id = (integer)$content_type->id;                           $content[$index2]->content = $quillItem;
+                        $contents[$index2]->content = $quillItem;
+                        $contents[$index2]->save();
 
-                        $content[$index2]->save();
-
-
-                        $index2++;
-
+//                        $this->updateContent($contents[$index2], $content_type, $quillItem);
+                            $index2++;
                     }
-
-                }
                 $index++;
-            }
-            return redirect('lessons')->with('status', 'Lesson created successfully!');
 
-        }
+            }
+            }
+//            if($request->containers < count($contents)){
+//                while($index2 !=  count($contents)){
+//                    $contents[$index2]->delete;
+//                    dd($contents[$index2]);
+//                    $index2++;
+//                }
+//            }
+
+            return redirect('lessons')->with('status', 'Item edited successfully!!');
+
+
     }
 
 
@@ -313,6 +327,7 @@ class LessonController extends Controller
      */
     public function destroy(Lesson $lesson)
     {
-        //
+        $lesson->delete();
+        return redirect('lessons')->with('status','Item deleted successfully!');;
     }
 }

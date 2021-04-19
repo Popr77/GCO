@@ -112,8 +112,14 @@
                                     <div type="text" id="{{'editor' . $loop->index}}" name="{{'editor' . $loop->index}}" class="quill-box rounded"></div>
                 @endforeach
                 <div class="div-show text-right mt-3">
-                    <button type="submit" value="save" name="action" onclick="submitted = true;"
-                            class="mt-2 mb-5 btn btn-primary mx-auto">Save</button>
+                    <form action="{{url('lessons/' . $lesson->id)}}" method="POST">
+                    @csrf
+                        @method('DELETE')
+                        <button type="submit" value="delete" name="action" onclick="submitted = true;"
+                                class="mt-2 mb-5 btn btn-danger mx-auto">Delete Lesson</button>
+                        <button value="save" name="action" onclick="submitted = true;"
+                                class="mt-2 mb-5 btn btn-primary mx-auto">Save</button>
+                    </form>
                 </div>
             @else
                 <label for="containers" class="mt-5">Nº of Containers</label>
@@ -227,8 +233,15 @@
                                     <div type="text" id="{{'editor' . $i}}" name="{{'editor' . $i}}" class="quill-box rounded"></div>
                 @endfor
                 <div class="div-show text-right mt-3">
-                    <button type="submit" value="save" name="action" onclick="submitted = true;"
-                            class="mt-2 mb-5 btn btn-primary mx-auto">Save</button>
+                    <form action="{{url('lessons/' . $lesson->id)}}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" value="delete" name="action" onclick="submitted = true;"
+                                class="mt-2 mb-5 btn btn-danger mx-auto">Delete Lesson</button>
+                        <button value="save" name="action" onclick="submitted = true;"
+                                class="mt-2 mb-5 btn btn-primary mx-auto">Save</button>
+                    </form>
+
                 </div>
             @endif
 
