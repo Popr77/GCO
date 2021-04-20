@@ -98,7 +98,8 @@
             </span>
                 @enderror
 
-                @foreach($lesson->contents as $content)
+            <h5 class="ql-color-blue mt-5" mb-3 pl-2> - Content will appear in the same order on the page!</h5>
+            @foreach($lesson->contents as $content)
                     <label for="{{'editor' . $loop->index}}" class="mt-3">{{'Content '.($loop->index+1)}}</label>
 
                     <textarea
@@ -153,8 +154,6 @@
                             {{--                        onclick="addTolink()"--}}
                             class="mt-2 mb-5 btn btn-warning mx-auto">Update</button>
                 </div>
-
-
 
                 <label for="title" class="mt-3">Name</label>
                 <input
@@ -213,7 +212,7 @@
             </span>
                 @enderror
 
-
+                <h5 class="ql-color-blue mt-5" mb-3 pl-2> - Content will appear in the same order on the page!</h5>
                 @for($i = 0; $i < $num; $i++)
 
                 <label for="{{'editor' . $i}}" class="mt-3">{{'Content '.($i+1)}}</label>

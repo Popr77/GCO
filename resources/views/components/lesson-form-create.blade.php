@@ -102,7 +102,7 @@
             </span>
             @enderror
 
-
+            <h5 class="ql-color-blue mt-5" mb-3 pl-2> - Content will appear in the same order on the page!</h5>
             @for($i = 0; $i < $num; $i++)
                 <label for="{{'editor' . $i}}" class="mt-3">{{'Content '.($i+1)}}</label>
 

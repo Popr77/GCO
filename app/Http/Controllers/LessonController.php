@@ -18,7 +18,9 @@ class LessonController extends Controller
      */
     public function index()
     {
-        return view('pages.lessons');
+        $lessons = Lesson::all();
+//        dd($lessons);
+        return view('pages.lessons', ['lessons' => $lessons]);
     }
 
     /**
@@ -26,11 +28,10 @@ class LessonController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function showAll()
+    public function lesson()
     {
-        $lessons = Lesson::all();
-//        dd($lessons);
-        return view('pages.lessons', ['lessons' => $lessons]);
+
+        return view('pages.lesson');
     }
 
     /**
@@ -152,6 +153,11 @@ class LessonController extends Controller
      */
     public function show(Lesson $lesson)
     {
+//        dd($lesson->contents);
+//        foreach ($lesson->contents as $content){
+//            dd($content);
+//        }
+
         return view('pages.lessons.show', ['lesson' => $lesson]);
 
     }
@@ -195,11 +201,7 @@ class LessonController extends Controller
     }
 
 
-    public function updateContent($content, $content_type, $quillItem){
-        $content->content_type_id = (integer)$content_type->id;
-        $content->content = $quillItem;
-        $content->save();
-    }
+
     /**
      * Update the specified resource in storage.
      *
@@ -209,9 +211,12 @@ class LessonController extends Controller
      */
     public function update(Request $request, Lesson $lesson)
     {
-//        $lesson->update($request->all());
-//        return redirect('lessons')->with('status','Item edited successfully!');
 
+         function updateContent($content, $content_type, $quillItem){
+            $content->content_type_id = (integer)$content_type->id;
+            $content->content = $quillItem;
+            $content->save();
+        }
 
         if ($_POST['action'] == 'update') {
 
@@ -275,24 +280,19 @@ class LessonController extends Controller
                                     'content' => $quillItem
                                 ]);
                             } else {
-                                $contents[$index]->content_type_id = (integer)$content_type->id;
-                                $contents[$index]->content = $quillItem;
-                                $contents[$index]->save();
+
+                                updateContent($contents[$index], $content_type, $quillItem);
 
                             }
 
                         } elseif ($request->containers < count($contents)) {
                             if ($index <= count($contents)) {
-                                $contents[$index]->content_type_id = (integer)$content_type->id;
-                                $contents[$index]->content = $quillItem;
-                                $contents[$index]->save();
 
+                                updateContent($contents[$index], $content_type, $quillItem);
                             }
                         } else {
-                            $contents[$index]->content_type_id = (integer)$content_type->id;
-                            $contents[$index]->content = $quillItem;
-                            $contents[$index]->save();
 
+                            updateContent($contents[$index], $content_type, $quillItem);
                         }
                         $index++;
                     }

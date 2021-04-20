@@ -33,7 +33,7 @@ Route::get('/lesson', [App\Http\Controllers\LessonController::class,'lesson']);
 
 
 Route::prefix('/lessons')->group(function(){
-    Route::get('', [App\Http\Controllers\LessonController::class, 'showAll']);
+    Route::get('', [App\Http\Controllers\LessonController::class, 'index']);
     Route::get('create', [App\Http\Controllers\LessonController::class,'create']);
     Route::post('', [App\Http\Controllers\LessonController::class,'store']);
     Route::get('{lesson}/edit', [App\Http\Controllers\LessonController::class,'edit']);

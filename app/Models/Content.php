@@ -20,11 +20,11 @@ class Content extends Model
     }
 
     public function type() {
-        return $this->belongsTo(ContentType::class);
+        return $this->belongsTo(ContentType::class,'content_type_id');
     }
 
-    // public function content_type(){
-    //     return $this->hasOne('App\ContentType');
-
-    // }
+//     public function content_type(){
+//         return $this->hasOne(ContentType::class);
+//
+//     }
 }

@@ -7,15 +7,52 @@
             </button>
         </div>
     @endif
-    <h2 class="text-center">Lesson {{$lesson->lesson_number}}</h2>
-    {{--    <iframe id="ytplayer" class="mx-auto iframe-lessons" type="text/html" width="640" height="360"--}}
+    <h2 class="text-center">{{$lesson->lesson_number . '. ' . $lesson->title}}</h2>
+
+    @foreach($lesson->contents as $content)
+        @if($content->type->name == "link")
+                <div class="master-video-container col-md-7 mt-5 mb-5 rounded">
+                    <div class="video-container">
+                        <div id="ytplayer" class="mx-auto mb-3 iframe-lesson"></div>
+                    </div>
+                </div>
+                <script>
+                    // Load the IFrame Player API code asynchronously.
+                    let tag = document.createElement('script');
+                    tag.src = "https://www.youtube.com/player_api";
+                    let firstScriptTag = document.getElementsByTagName('script')[0];
+                    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+                    // Replace the 'ytplayer' element with an <iframe> and
+                    // YouTube player after the API code downloads.
+                    let player;
+                    let width =  window.innerWidth*0.5;
+                    let height =  window.innerWidth/2.5;
+                    console.log(width)
+                    console.log(height)
+
+                    let res = "{{$content->content}}".split("https://www.youtube.com/watch?v=");
+                    let res2 = res[1].split("&");
+
+                    function onYouTubePlayerAPIReady() {
+                        player = new YT.Player('ytplayer', {
+                            videoId: "H0vzoYSr3nk"
+                        });
+                    }
+                </script>
+        @elseif($content->type->name == "text")
+                <div class="container container-lesson-text w-75 ml-1 mt-5  mb-5 rounded">
+                    <p>{{$content->content}}</p>
+                </div>
+        @else
+                <div class="p-2 col-lg-5"><img class="col-12" src="asset('{{$content->content}}')" alt=""></div>
+            @endif
+    @endforeach
+
+        {{--    <iframe id="ytplayer" class="mx-auto iframe-lessons" type="text/html" width="640" height="360"--}}
     {{--            src="http://www.youtube.com/embed/M7lc1UVf-VE?autoplay=1&origin=http://example.com"--}}
     {{--            frameborder="0"/>--}}
-    <div class="master-video-container col-md-7 mt-5 rounded">
-        <div class="video-container">
-            <div id="ytplayer" class="mx-auto mb-3 iframe-lesson"></div>
-        </div>
-    </div>
+
 
     <div class="btn-lessons-menu float-right">
         <button class="btn btn-primary px-2 py-0 mt-2 mr-2" border rounded type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
@@ -137,48 +174,7 @@
     {{--    </div>--}}
 
 
-    <div class="container container-lesson-text ml-1 mt-5 mb-5 rounded">
-        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has
-            been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley
-            of type and scrambled it to make a type specimen book. It has survived not only five centuries, but
-            also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the
-            1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with
-            desktop publishing software like Aldus PageMaker
-            including versions of Lorem Ipsum.</p>
-    </div>
-    <div class="d-flex flex-row flex-wrap col-lg-10 mx-auto">
-        <div class="p-2 col-lg-7">
-            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has
-                been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley
-                of type and scrambled it to make a type specimen book. It has survived not only five centuries, but
-                also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the
-                1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with
-                desktop publishing software like Aldus PageMaker
-                including versions of Lorem Ipsum.</p>
-        </div>
-        <div class="p-2 col-lg-5"><img class="col-12" src="asset('img/avatar.jpeg')" alt=""></div>
-    </div>
 
 
 
-    <script>
-        // Load the IFrame Player API code asynchronously.
-        let tag = document.createElement('script');
-        tag.src = "https://www.youtube.com/player_api";
-        let firstScriptTag = document.getElementsByTagName('script')[0];
-        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
-        // Replace the 'ytplayer' element with an <iframe> and
-        // YouTube player after the API code downloads.
-        let player;
-        let width =  window.innerWidth*0.5;
-        let height =  window.innerWidth/2.5;
-        console.log(width)
-        console.log(height)
-        function onYouTubePlayerAPIReady() {
-            player = new YT.Player('ytplayer', {
-                videoId: 'XkagRCnJyV8'
-            });
-        }
-    </script>
 </div>
