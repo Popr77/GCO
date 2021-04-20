@@ -12,7 +12,7 @@
     <div class="text-right mb-5 mr-5 mt-1">
         <a class="btn btn-warning" href="{{ url('lessons/create')}}" role="button">Create</a>
     </div>
-    <table class="table table-hover col-6 mx-auto border">
+    <table class="table table-hover col-6 mx-auto mb-5 border">
         <thead>
         <tr>
             <th scope="col">Lessons Nº</th>

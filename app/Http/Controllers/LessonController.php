@@ -107,7 +107,7 @@ class LessonController extends Controller
                 'module_id' => $module_id, 'quillItems' => $quillItems]);
 
         } else if ($_POST['action'] == 'create') {
-            
+
             Lesson::create([
                 'title' => $request->title,
                 'lesson_number' => $request->lesson_number,
@@ -256,65 +256,62 @@ class LessonController extends Controller
                         $nameType = 'text';
                     }
 
-//                  $content_type = ContentType::find($player->id);
-
                     //Id from ContentType Table
                     $content_type = ContentType::select('id')->where('name', $nameType)->first();
-//                    dd($lesson->id);
+
 
                     //gets all the contents
                     $contents = Content::find(Content::select('id')->where('lesson_id', $lesson->id)->get());
 
 
-                }
-                    if($request->containers > count($contents)){
-                        if ($index > count($contents)){
-                            dd('criar novo - update');
-                            Content::create([
-                                'content_type_id' => (integer)$content_type->id,
-                                'lesson_id' => $lesson->id,
-                                'content' => $quillItem
-                            ]);
-                        }else{
-                            $contents[$index2]->content_type_id = (integer)$content_type->id;                           $content[$index2]->content = $quillItem;
-                            $contents[$index2]->content = $quillItem;
-                            $contents[$index2]->save();
 
-//                            $this->updateContent($contents[$index2], $content_type, $quillItem);
+                    if (isset($contents)) {
+                        if ($request->containers > count($contents)) {
+                            if ($index+1 > count($contents)) {
 
-                            $index2++;
+                                Content::create([
+                                    'content_type_id' => (integer)$content_type->id,
+                                    'lesson_id' => $lesson->id,
+                                    'content' => $quillItem
+                                ]);
+                            } else {
+                                $contents[$index]->content_type_id = (integer)$content_type->id;
+                                $contents[$index]->content = $quillItem;
+                                $contents[$index]->save();
+
+                            }
+
+                        } elseif ($request->containers < count($contents)) {
+                            if ($index <= count($contents)) {
+                                $contents[$index]->content_type_id = (integer)$content_type->id;
+                                $contents[$index]->content = $quillItem;
+                                $contents[$index]->save();
+
+                            }
+                        } else {
+                            $contents[$index]->content_type_id = (integer)$content_type->id;
+                            $contents[$index]->content = $quillItem;
+                            $contents[$index]->save();
+
                         }
-
-                    }elseif($request->containers < count($contents)){
-                        if ($index <= count($contents)) {
-                            $contents[$index2]->content_type_id = (integer)$content_type->id;                           $content[$index2]->content = $quillItem;
-                            $contents[$index2]->content = $quillItem;
-                            $contents[$index2]->save();
-//                            $this->updateContent($contents[$index2], $content_type, $quillItem);
-                            $index2++;
-                        }
-                    }else{
-                        $contents[$index2]->content_type_id = (integer)$content_type->id;                           $content[$index2]->content = $quillItem;
-                        $contents[$index2]->content = $quillItem;
-                        $contents[$index2]->save();
-
-//                        $this->updateContent($contents[$index2], $content_type, $quillItem);
-                            $index2++;
+                        $index++;
                     }
-                $index++;
-
+                }
             }
+            if($request->containers < count($contents)){
+                while($index !=  count($contents)){
+
+                    $contents[$index]->delete();
+                    $index++;
+                }
             }
-//            if($request->containers < count($contents)){
-//                while($index2 !=  count($contents)){
-//                    $contents[$index2]->delete;
-//                    dd($contents[$index2]);
-//                    $index2++;
-//                }
-//            }
+        }else if ($_POST['action'] == 'delete'){
 
-            return redirect('lessons')->with('status', 'Item edited successfully!!');
+            $lesson->delete();
+            return redirect('lessons')->with('status','Item deleted successfully!');;
 
+        }
+        return redirect('lessons')->with('status', 'Item edited successfully!!');
 
     }
 
