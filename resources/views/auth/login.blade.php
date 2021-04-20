@@ -71,9 +71,3 @@
     </div>
 </div>
 @endsection
-<script>
-    import HelloWorld from "../../js/views/HelloWorld";
-    export default {
-        components: {HelloWorld}
-    }
-</script>

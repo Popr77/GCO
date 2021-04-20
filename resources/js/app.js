@@ -5,14 +5,20 @@ $(document).on('click', '.navbar #navUserMenu', function (e) {
   e.stopPropagation();
 });
 
+
+
 import Vue from 'vue'
+import VueRouter from 'vue-router'
+
+Vue.use(VueRouter)
+import routes from './routes'
 
 //Main pages
-import HelloWorld from './views/HelloWorld.vue'
+import App from './components/App.vue'
 
 
 const app = new Vue({
     el: '#app',
-    components: { HelloWorld }
+    components: { App },
+    router: new VueRouter(routes)
 });
-
