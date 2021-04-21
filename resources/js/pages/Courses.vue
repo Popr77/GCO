@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="row d-flex justify-content-between align-items-center">
+        <div class="row d-flex justify-content-between align-items-center mb-4">
             <h1>Courses</h1>
             <search-bar></search-bar>
         </div>
