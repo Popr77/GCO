@@ -19,7 +19,6 @@ class CreateUserDataTable extends Migration
             $table->string('address');
             $table->string('postal_code');
             $table->string('city');
-            $table->string('email')->unique();
             $table->string('phone')->unique();
             $table->integer('nif')->unique();
             $table->string('photo');
