@@ -56,10 +56,6 @@ h2 {
     height: 400px;
 }
 
-.card {
-    height: 500px;
-}
-
 .container-footer-text {
     display: flex;
     flex-direction: column;
@@ -103,7 +99,7 @@ container-footer-social li a i {
     position: fixed;
     margin-top: 60px;
 
-    z-index: 9002;
+    z-index: 9999;
     a {
         text-decoration: none;
         color: black;
@@ -118,10 +114,10 @@ container-footer-social li a i {
     top: 0;
     right: 0;
     position: fixed;
-    margin-top: 20px;
+    margin-top: 4px;
     background-color: $gray-100;
 
-    z-index: 9997;
+    z-index: 9990;
     overflow: auto;
     min-height: 400px;
     scrollbar-width: none; //scroll firefox
@@ -138,28 +134,30 @@ container-footer-social li a i {
     //top: 250px;
 }
 
-.master-video-container {
-    margin-left: 9vw;
-}
+//.btn-lessons-menu {
+//    display: none;
+//}
+//.lessons-menu{
+//    display: initial;
+//}
 
-.btn-lessons-menu {
+//.lessons-menu2 {
+//    top: 0;
+//    right: 0;
+//    position: fixed;
+//    background-color: $gray-100;
+//    display: initial;
+//    margin-top: 57px;
+//    overflow: auto;
+//    height: 643px;
+//    scrollbar-width: none; //scroll firefox
+//    -ms-overflow-style: none; /* scroll IE and Edge */
+//    p {
+//        margin-bottom: 0px;
+//    }
+//}
+.lessons-menu2{
     display: none;
-}
-
-.lessons-menu2 {
-    top: 0;
-    right: 0;
-    position: fixed;
-    background-color: $gray-100;
-    display: initial;
-    margin-top: 57px;
-    overflow: auto;
-    height: 643px;
-    scrollbar-width: none; //scroll firefox
-    -ms-overflow-style: none; /* scroll IE and Edge */
-    p {
-        margin-bottom: 0px;
-    }
 }
 .lessons-menu2::-webkit-scrollbar {
     /* Hide scrollbar for Chrome, Safari and Opera */
@@ -254,6 +252,7 @@ container-footer-social li a i {
       scrollbar-width: none; //scroll firefox
       -ms-overflow-style: none;  /* scroll IE and Edge */
     //}
+
 
     .lessons-menu2 {
         top: 0;
