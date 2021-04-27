@@ -19,11 +19,11 @@ class CreateCoursesTable extends Migration
             $table->text('description');
             $table->text('goals');
             $table->text('requirements');
-            $table->boolean('status');
+            $table->boolean('status')->default(0);
             $table->integer('duration');
             $table->integer('price');
             $table->foreignId('sub_sub_category_id')->constrained();
-            $table->string('photo');
+            $table->string('photo')->default('placeholder.png');
             $table->timestamps();
             $table->softDeletes();
         });
