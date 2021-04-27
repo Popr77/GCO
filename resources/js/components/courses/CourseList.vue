@@ -30,30 +30,30 @@
             }
         },
         created() {
-            axios.get('http://127.0.0.1:8000/api/courses')
-                .then(response => {
-                    this.courses = response.data.data
-                })
-                .catch(function (error) {
-                    // handle error
-                    console.log(error);
-                })
+            axios.get('http://127.0.0.1:8000/api/courses', {
+                headers: {
+                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content').getValue
+                }
+            })
+            .then(response => {
+                this.courses = response.data.data
+            })
+            .catch(function (error) {
+                // handle error
+                console.log(error);
+            })
+
+            console.log(document.querySelector('meta[name="csrf-token"]'))
         }
     }
 </script>
 
-<style>
+<style scoped>
     .grid-container {
         display: grid;
         grid-template-columns: 1fr;
         grid-row-gap: 10px;
         grid-column-gap: 20px;
-    }
-
-    h5 {
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
     }
 
     @media (min-width: 576px) {

@@ -73,3 +73,11 @@
         }
     }
 </script>
+
+<style scoped>
+    h5 {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+</style>

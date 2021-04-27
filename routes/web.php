@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CourseController;
+use App\Http\Controllers\Dashboard\CourseController as DCourseController;
+use Illuminate\Support\Facades\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,12 +16,8 @@ use App\Http\Controllers\CourseController;
 |
 */
 
-
-
-
 Auth::routes();
 
-Route::view('/dashboard', 'pages.admin.dashboard');
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/unregistered', [App\Http\Controllers\HomeController::class, 'unregistered']);
 Route::get('/lesson', [App\Http\Controllers\HomeController::class, 'lesson']);
@@ -52,3 +50,14 @@ Route::prefix('/courses')->group(function(){
     Route::put('{course}', [CourseController::class, 'update']);
     Route::delete('{course}', [CourseController::class, 'destroy']);
 });
+
+// Admin Dashboard Routes
+Route::prefix('dashboard')->middleware(['auth', 'admin'])->group(function () {
+    Route::view('/', 'pages.admin.dashboard');
+    Route::prefix('courses')->group(function () {
+        Route::get('/', [DCourseController::class, 'index'])->name('d-course-index');
+        Route::view('/create', 'pages.admin.courses.course-create')->name('d-course-create');
+        Route::post('/', [DCourseController::class, 'store'])->name('d-course-store');
+    });
+});
+

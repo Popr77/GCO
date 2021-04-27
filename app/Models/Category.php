@@ -10,6 +10,8 @@ class Category extends Model
 {
     use HasFactory;
 
+    protected $with = ['subcategories'];
+
     public function subcategories() {
       return $this->hasMany(SubCategory::class);
     }
