@@ -14,7 +14,7 @@ class AddUserTypeIdToUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->foreignId('user_type_id')->after('password')->default(1)->constrained();
+            $table->foreignId('user_type_id')->after('password')->default(2)->constrained();
         });
     }
 
