@@ -5,20 +5,13 @@ $(document).on('click', '.navbar #navUserMenu', function (e) {
   e.stopPropagation();
 });
 
-
-
 import Vue from 'vue'
-import VueRouter from 'vue-router'
 
-Vue.use(VueRouter)
-import routes from './routes'
-
-//Main pages
-import App from './components/App.vue'
-
+import CategorySelect from './components/courses/CategorySelect.vue'
 
 const app = new Vue({
     el: '#app',
-    components: { App },
-    router: new VueRouter(routes)
+    components: {
+        CategorySelect
+    }
 });

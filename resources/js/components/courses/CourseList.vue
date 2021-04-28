@@ -1,50 +1,59 @@
 <template>
-    <div class="grid-container mt-2">
-        <div v-for="course in courses" class="card mb-3 grid-item">
-            <h3 class="card-header">Card header</h3>
-
-            <svg xmlns="http://www.w3.org/2000/svg" class="d-block user-select-none" width="100%" height="200" aria-label="Placeholder: Image cap" focusable="false" role="img" preserveAspectRatio="xMidYMid slice" viewBox="0 0 318 180" style="font-size:1.125rem;text-anchor:middle">
-                <rect width="100%" height="100%" fill="#868e96"></rect>
-                <text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text>
-            </svg>
-            <div class="card-body">
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            </div>
-            <ul class="list-group list-group-flush">
-                <li class="list-group-item">Cras justo odio</li>
-                <li class="list-group-item">Dapibus ac facilisis in</li>
-                <li class="list-group-item">Vestibulum at eros</li>
-            </ul>
-            <div class="card-body">
-                <a href="#" class="card-link">Card link</a>
-                <a href="#" class="card-link">Another link</a>
-            </div>
-            <div class="card-footer text-muted">
-                2 days ago
-            </div>
-        </div>
+    <div class="grid-container">
+        <course-item
+            v-for="course in courses"
+            class="card mb-3"
+            :id="course.id"
+            :name="course.name"
+            :category="course.subsubcategory"
+            :description="course.description"
+            :photo="course.photo"
+            :price="course.price"
+            :status="course.status"
+            :updated_at="course.updated_at"
+            :key="course.id"
+        >
+        </course-item>
     </div>
 </template>
 
 <script>
+    import CourseItem from './CourseItem.vue'
     export default {
         name: 'CourseList',
+        components: {
+            CourseItem
+        },
         data() {
             return {
-                courses: [1,2,3,4,5]
+                courses: []
             }
         },
         created() {
+            axios.get('http://127.0.0.1:8000/api/courses', {
+                headers: {
+                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content').getValue
+                }
+            })
+            .then(response => {
+                this.courses = response.data.data
+            })
+            .catch(function (error) {
+                // handle error
+                console.log(error);
+            })
 
+            console.log(document.querySelector('meta[name="csrf-token"]'))
         }
     }
 </script>
 
-<style>
+<style scoped>
     .grid-container {
         display: grid;
         grid-template-columns: 1fr;
-        grid-gap: 10px;
+        grid-row-gap: 10px;
+        grid-column-gap: 20px;
     }
 
     @media (min-width: 576px) {

@@ -11,7 +11,7 @@
 
                 <navbar></navbar>
 
-                <div class="container-fluid py-2">
+                <div class="container-fluid py-4 px-5">
                     <transition name="fade" mode="out-in">
                         <router-view></router-view>
                     </transition>

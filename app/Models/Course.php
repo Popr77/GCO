@@ -12,7 +12,7 @@ class Course extends Model
     use SoftDeletes;
 
     public function subsubcategory() {
-      return $this->belongsTo(SubSubCategory::class);
+      return $this->belongsTo(SubSubCategory::class, 'sub_sub_category_id');
     }
 
     public function students() {
