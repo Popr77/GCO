@@ -40,7 +40,7 @@ class CourseController extends Controller {
         $course->requirements = $request->requirements;
         $course->status = $request->status ?? 0;
         $course->duration = $request->duration;
-        $course->price = $request->price;
+        $course->price = (int)str_replace('.', '', $request->price);
         $course->sub_sub_category_id = $request->sub_sub_category_id;
         $course->save();
 
@@ -61,13 +61,3 @@ class CourseController extends Controller {
         return redirect('dashboard/courses')->with('status', 'Course created successfully!');
     }
 }
-
-/*$table->string('name')->unique();
-$table->text('description');
-$table->text('goals');
-$table->text('requirements');
-$table->boolean('status');
-$table->integer('duration');
-$table->integer('price');
-$table->foreignId('sub_sub_category_id')->constrained();
-$table->string('photo');*/
