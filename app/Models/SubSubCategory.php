@@ -11,6 +11,8 @@ class SubSubCategory extends Model
     use HasFactory;
     use SoftDeletes;
 
+    protected $fillable = ['sub_category_id', 'name'];
+
     public function subcategory() {
       return $this->belongsTo(SubCategory::class);
     }

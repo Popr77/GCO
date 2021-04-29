@@ -22,9 +22,4 @@ class HomeController extends Controller
         return view('pages.registered');
     }
 
-    public function categories()
-    {
-        return view('pages.categories');
-    }
-
 }
