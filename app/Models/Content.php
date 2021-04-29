@@ -14,4 +14,17 @@ class Content extends Model
         'lesson_id',
         'content',
     ];
+
+    public function lesson() {
+        return $this->belongsTo(Lesson::class);
+    }
+
+    public function type() {
+        return $this->belongsTo(ContentType::class,'content_type_id');
+    }
+
+//     public function content_type(){
+//         return $this->hasOne(ContentType::class);
+//
+//     }
 }

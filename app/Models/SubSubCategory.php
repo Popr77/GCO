@@ -9,7 +9,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class SubSubCategory extends Model
 {
     use HasFactory;
-    use SoftDeletes;
 
     protected $fillable = ['sub_category_id', 'name'];
 

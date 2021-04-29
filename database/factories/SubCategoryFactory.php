@@ -24,7 +24,9 @@ class SubCategoryFactory extends Factory
     {
         return [
             'category_id' => Category::select("id")->inRandomOrder()->first(),
-            'name' => $this->faker->name()
+            'name' => $this->faker->name(),
+            'created_at' => now(),
+            'updated_at' => now()
         ];
     }
 }

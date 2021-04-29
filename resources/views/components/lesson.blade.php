@@ -8,7 +8,7 @@
         </div>
     @endif
     <h2 class="text-center">Lesson 1</h2>
-{{--    <iframe id="ytplayer" class="mx-auto iframe-lesson" type="text/html" width="640" height="360"--}}
+{{--    <iframe id="ytplayer" class="mx-auto iframe-lessons" type="text/html" width="640" height="360"--}}
 {{--            src="http://www.youtube.com/embed/M7lc1UVf-VE?autoplay=1&origin=http://example.com"--}}
 {{--            frameborder="0"/>--}}
     <div class="master-video-container col-md-7 mt-5 rounded">
@@ -131,7 +131,7 @@
         </div>
 
     </div>
-{{--    <div class="lesson-menu-quizz container-fluid col-2 text-center--}}
+{{--    <div class="lessons-menu-quizz container-fluid col-2 text-center--}}
 {{--    position-fixed bg-light py-3">--}}
 {{--        <button class="btn btn-primary ">Take Quizz</button>--}}
 {{--    </div>--}}

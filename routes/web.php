@@ -5,6 +5,8 @@ use App\Http\Controllers\CourseController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\SubCategoryController;
 use App\Http\Controllers\SubSubCategoryController;
+use App\Http\Controllers\Dashboard\CourseController as DCourseController;
+use Illuminate\Support\Facades\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,33 +19,24 @@ use App\Http\Controllers\SubSubCategoryController;
 |
 */
 
-
-
-
 Auth::routes();
-
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/unregistered', [App\Http\Controllers\HomeController::class, 'unregistered']);
-Route::get('/lesson', [App\Http\Controllers\HomeController::class, 'lesson']);
-Route::get('/lessons', [App\Http\Controllers\HomeController::class, 'lesson']);
-
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index']);
 Route::get('/registered', [App\Http\Controllers\HomeController::class, 'registered']);
-Route::get('/lesson', [App\Http\Controllers\HomeController::class, 'lesson']);
-
 Route::get('/lessons', [App\Http\Controllers\HomeController::class, 'lesson']);
+Route::get('/lesson', [App\Http\Controllers\LessonController::class,'lesson']);
 
-
-Route::prefix('/lesson')->group(function(){
+Route::prefix('/lessons')->group(function(){
     Route::get('', [App\Http\Controllers\LessonController::class, 'index']);
     Route::get('create', [App\Http\Controllers\LessonController::class,'create']);
     Route::post('', [App\Http\Controllers\LessonController::class,'store']);
-    Route::get('{project}/edit', 'LessonController@edit');
-    Route::put('{project}', 'LessonController@update');
-    Route::delete('{project}', 'LessonController@destroy');
-    Route::get('{project}', 'LessonController@show');
+    Route::get('{lesson}/edit', [App\Http\Controllers\LessonController::class,'edit']);
+    Route::put('{lesson}', [App\Http\Controllers\LessonController::class,'update']);
+    Route::delete('{lesson}', [App\Http\Controllers\LessonController::class,'destroy']);
+    Route::get('{lesson}', [App\Http\Controllers\LessonController::class,'show']);
 });
 
 Route::prefix('/courses')->group(function(){
@@ -78,7 +71,6 @@ Route::prefix('/subcategories')->group(function(){
     Route::get('{subcategory}/subsubcategories', [SubCategoryController::class, 'subsubcategories']);
 });
 
-
 Route::prefix('/subsubcategories')->group(function(){
     Route::get('', [SubSubCategoryController::class, 'index']);
     Route::post('', [SubSubCategoryController::class, 'store']);
@@ -87,4 +79,14 @@ Route::prefix('/subsubcategories')->group(function(){
     Route::get('{subsubcategory}/edit', [SubSubCategoryController::class, 'edit']);
     Route::put('{subsubcategory}', [SubSubCategoryController::class, 'update']);
     Route::delete('{subsubcategory}', [SubSubCategoryController::class, 'destroy']);
+});
+
+// Admin Dashboard Routes
+Route::prefix('dashboard')->middleware(['auth', 'admin'])->group(function () {
+    Route::view('/', 'pages.admin.dashboard');
+    Route::prefix('courses')->group(function () {
+        Route::get('/', [DCourseController::class, 'index'])->name('d-course-index');
+        Route::view('/create', 'pages.admin.courses.course-create')->name('d-course-create');
+        Route::post('/', [DCourseController::class, 'store'])->name('d-course-store');
+    });
 });

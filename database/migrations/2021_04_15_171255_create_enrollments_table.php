@@ -15,7 +15,15 @@ class CreateEnrollmentsTable extends Migration
     {
         Schema::create('enrollments', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->foreignId('course_id')->constrained()->onDelete('cascade');
+            $table->dateTime('date');
+            $table->boolean('payment_status')->default(0);
+            $table->integer('feedback_stars')->nullable();
+            $table->text('feedback_comment')->nullable();
             $table->timestamps();
+
+            $table->unique(['user_id', 'course_id']);
         });
     }
 
