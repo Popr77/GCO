@@ -1,8 +1,8 @@
 <!-- Username welcome -->
 
-<div class="container-fluid col-lg-12 welcome">
-    <div class="row d-flex justify-content-center">
-        <div style="margin: 100px; text-align: center">
+<div class="container-fluid col-lg-12 welcome-message d-flex justify-content-center align-items-center">
+    <div class="row">
+        <div class="mt-3 text-center">
             <h1 class="welcome-user">Hello, Username</h1>
             <img src="https://i.pinimg.com/originals/7c/c7/a6/7cc7a630624d20f7797cb4c8e93c09c1.png" alt="..." class="rounded-circle" style="width: 150px">
         </div>
@@ -11,11 +11,11 @@
 
 <!-- Courses title and categories button -->
 
-<h1 class="title-courses text-center mb-5">Enjoy our Courses</h1>
+<h1 class="title-courses text-center mt-5 mb-5">Enjoy our Courses</h1>
 
 <!-- Courses grid -->
 
-<div class="container courses-grid">
+<div class="container">
     <div class="dropdown d-flex justify-content-end">
         <button class="btn btn-primary dropdown-toggle mb-3" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Categories

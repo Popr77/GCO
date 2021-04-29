@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\SubCategory;
 use App\Models\SubSubCategory;
 use Illuminate\Http\Request;
 
@@ -14,7 +15,8 @@ class SubSubCategoryController extends Controller
      */
     public function index()
     {
-        //
+        $subsubcategories = SubSubCategory::all();
+        return view('pages.subsubcategories.subsubcategories', ['subsubcategories' => $subsubcategories]);
     }
 
     /**
@@ -24,7 +26,9 @@ class SubSubCategoryController extends Controller
      */
     public function create()
     {
-        //
+        $subcategories = SubCategory::all();
+
+        return view('pages.subsubcategories.create-subsubcategory', ['subcategories' => $subcategories]);
     }
 
     /**
@@ -35,7 +39,14 @@ class SubSubCategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'sub_category_id' => 'required',
+            'name' => 'required'
+        ]);
+
+        SubSubCategory::create($request->all());
+
+        return redirect('subsubcategories')->with('status', 'Sub Sub Category created successfully!');
     }
 
     /**
@@ -46,7 +57,7 @@ class SubSubCategoryController extends Controller
      */
     public function show(SubSubCategory $subSubCategory)
     {
-        //
+       //
     }
 
     /**
@@ -55,9 +66,11 @@ class SubSubCategoryController extends Controller
      * @param  \App\Models\SubSubCategory  $subSubCategory
      * @return \Illuminate\Http\Response
      */
-    public function edit(SubSubCategory $subSubCategory)
+    public function edit(SubSubCategory $subsubcategory)
     {
-        //
+        $subcategories = SubCategory::all();
+
+        return view('pages.subsubcategories.edit-subsubcategory', ['subsubcategory' => $subsubcategory, 'subcategories' => $subcategories]);
     }
 
     /**
@@ -67,9 +80,11 @@ class SubSubCategoryController extends Controller
      * @param  \App\Models\SubSubCategory  $subSubCategory
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, SubSubCategory $subSubCategory)
+    public function update(Request $request, SubSubCategory $subsubcategory)
     {
-        //
+        $subsubcategory->update($request->all());
+
+        return redirect('subsubcategories')->with('status','Sub Sub Category edited successfully!');
     }
 
     /**
@@ -78,8 +93,10 @@ class SubSubCategoryController extends Controller
      * @param  \App\Models\SubSubCategory  $subSubCategory
      * @return \Illuminate\Http\Response
      */
-    public function destroy(SubSubCategory $subSubCategory)
+    public function destroy(SubSubCategory $subsubcategory)
     {
-        //
+        $subsubcategory->delete();
+
+        return redirect('subsubcategories')->with('status', 'Sub Sub Category deleted successfully!');
     }
 }

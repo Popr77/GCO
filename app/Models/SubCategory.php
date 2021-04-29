@@ -13,6 +13,8 @@ class SubCategory extends Model
 
     protected $with = ['subsubcategories'];
 
+    protected $fillable = ['category_id', 'name'];
+
     public function category() {
       return $this->belongsTo(Category::class);
     }
