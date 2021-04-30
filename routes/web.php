@@ -2,8 +2,12 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CourseController;
+
 use App\Http\Controllers\UserDataController;
 use App\Http\Controllers\ChangePasswordController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\SubCategoryController;
+use App\Http\Controllers\SubSubCategoryController;
 use App\Http\Controllers\Dashboard\CourseController as DCourseController;
 use Illuminate\Support\Facades\Request;
 
@@ -25,12 +29,8 @@ Route::get('/unregistered', [App\Http\Controllers\HomeController::class, 'unregi
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index']);
 Route::get('/registered', [App\Http\Controllers\HomeController::class, 'registered']);
-
-
+Route::get('/lessons', [App\Http\Controllers\HomeController::class, 'lesson']);
 Route::get('/lesson', [App\Http\Controllers\LessonController::class,'lesson']);
-
-
-
 
 Route::prefix('/lessons')->group(function(){
     Route::get('', [App\Http\Controllers\LessonController::class, 'index']);
@@ -52,6 +52,38 @@ Route::prefix('/courses')->group(function(){
     Route::delete('{course}', [CourseController::class, 'destroy']);
 });
 
+Route::prefix('/categories')->group(function(){
+    Route::get('', [CategoryController::class, 'index']);
+    Route::post('', [CategoryController::class, 'store']);
+    Route::get('create', [CategoryController::class, 'create']);
+    Route::get('{category}', [CategoryController::class, 'show']);
+    Route::get('{category}/edit', [CategoryController::class, 'edit']);
+    Route::put('{category}', [CategoryController::class, 'update']);
+    Route::delete('{category}', [CategoryController::class, 'destroy']);
+    Route::get('{category}/subcategories', [CategoryController::class, 'subcategories']);
+});
+
+Route::prefix('/subcategories')->group(function(){
+    Route::get('', [SubCategoryController::class, 'index']);
+    Route::post('', [SubCategoryController::class, 'store']);
+    Route::get('create', [SubCategoryController::class, 'create']);
+    Route::get('{subcategory}', [SubCategoryController::class, 'show']);
+    Route::get('{subcategory}/edit', [SubCategoryController::class, 'edit']);
+    Route::put('{subcategory}', [SubCategoryController::class, 'update']);
+    Route::delete('{subcategory}', [SubCategoryController::class, 'destroy']);
+    Route::get('{subcategory}/subsubcategories', [SubCategoryController::class, 'subsubcategories']);
+});
+
+Route::prefix('/subsubcategories')->group(function(){
+    Route::get('', [SubSubCategoryController::class, 'index']);
+    Route::post('', [SubSubCategoryController::class, 'store']);
+    Route::get('create', [SubSubCategoryController::class, 'create']);
+    Route::get('{subsubcategory}', [SubSubCategoryController::class, 'show']);
+    Route::get('{subsubcategory}/edit', [SubSubCategoryController::class, 'edit']);
+    Route::put('{subsubcategory}', [SubSubCategoryController::class, 'update']);
+    Route::delete('{subsubcategory}', [SubSubCategoryController::class, 'destroy']);
+});
+
 // Admin Dashboard Routes
 Route::prefix('dashboard')->middleware(['auth', 'admin'])->group(function () {
     Route::view('/', 'pages.admin.dashboard');
@@ -68,4 +100,5 @@ Route::prefix('/profile')->group(function(){
 
 Route::get('change-password', [ChangePasswordController::class, 'index']);
 Route::post('change-password', [ChangePasswordController::class, 'store'])->name('change.password');
+
 
