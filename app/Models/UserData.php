@@ -10,6 +10,7 @@ class UserData extends Model
     use HasFactory;
 
     protected $fillable = [
+        'user_id',
         'name',
         'address',
         'postal_code',
@@ -19,4 +20,7 @@ class UserData extends Model
         'photo',
     ];
 
+    public function user(){
+        return $this->hasOne(User::class, 'id', 'user_id');
+    }
 }

@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CourseController;
+use App\Http\Controllers\UserDataController;
+use App\Http\Controllers\ChangePasswordController;
 use App\Http\Controllers\Dashboard\CourseController as DCourseController;
 use Illuminate\Support\Facades\Request;
 
@@ -59,4 +61,11 @@ Route::prefix('dashboard')->middleware(['auth', 'admin'])->group(function () {
         Route::post('/', [DCourseController::class, 'store'])->name('d-course-store');
     });
 });
+
+Route::prefix('/profile')->group(function(){
+    Route::get('{userData:user_id}/edit', [UserDataController::class, 'edit']);
+});
+
+Route::get('change-password', [ChangePasswordController::class, 'index']);
+Route::post('change-password', [ChangePasswordController::class, 'store'])->name('change.password');
 

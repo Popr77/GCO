@@ -50,17 +50,23 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
+        $messages = array(
+            'phone.min'=>'Não pode ter menos de 9 dígitos',
+            'nif.min'=>'Não pode ter menos de 9 dígitos',
+            'nif.max'=>'Não pode ter mais de 9 dígitos',
+            'postal_code.regex'=>'Apenas da seguinte forma: xxxx-xxx',
+        );
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
             'address' => ['required', 'string', 'max:255'],
-            'postal_code' => ['required', 'string', 'max:255'],
+            'postal_code' => ['required', 'regex:/^\d{4}(-\d{3})?$/', 'string', 'max:255'],
             'city' => ['required', 'string', 'max:255'],
-            'phone' => ['required', 'string', 'max:255'],
-            'nif' => ['required', 'integer', 'max:999999999'],
+            'phone' => ['required', 'string', 'min:9','max:255'],
+            'nif' => ['required', 'integer', 'min:99999999','max:999999999'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'photo' => ['required','mimes:jpg,png,jpeg','max:5048']
-        ]);
+            'photo' => ['mimes:jpg,png,jpeg','max:5048']
+        ],$messages);
     }
 
     /**
@@ -71,29 +77,45 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        $newImage = time() . '-' . $data['name'] . '.'.
-            $data['photo']->extension();
+        if (isset($data['photo'])){
+            $newImage = time() . '-' . $data['name'] . '.'.
+                $data['photo']->extension();
 
-        $data['photo']->move(public_path('img'), $newImage);
+            $data['photo']->storeAs('public/img/users', $newImage);
+        }
 
         User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
-
         $user = User::latest('id')->first();
+//        dd($user);
+//        UserData::create([
+//            'user_id' => $user->id,
+//            'name' => $data['name'],
+//            'address' => $data['address'],
+//            'postal_code' => $data['postal_code'],
+//            'city' => $data['city'],
+//            'phone' => $data['phone'],
+//            'nif' => $data['nif'],
+//            'photo' => $newImage
+//        ]);
 
-        UserData::create([
-            'id' => $user->id,
-            'name' => $data['name'],
-            'address' => $data['address'],
-            'postal_code' => $data['postal_code'],
-            'city' => $data['city'],
-            'phone' => $data['phone'],
-            'nif' => $data['nif'],
-            'photo' => $newImage
-        ]);
+        $userData = new UserData();
+        $userData->user_id = $user->id;
+        $userData->name = $data['name'];
+        $userData->address = $data['address'];
+        $userData->postal_code = $data['postal_code'];
+        $userData->city = $data['city'];
+        $userData->phone = $data['phone'];
+        $userData->nif = $data['nif'];
+        isset($data['photo'])?$userData->photo = $newImage : null;
+        $userData->save();
+
+
+//        $userData = UserData::latest('id')->first();
+//        dd($userData);
 
         return $user;
     }

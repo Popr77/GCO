@@ -1,7 +1,4 @@
-@extends('layouts.app')
-
-@section('content')
-<div class="container">
+<div class="container my-5">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
@@ -15,12 +12,14 @@
                             <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
 
                             <div class="col-md-6">
-                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
-
+                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror"
+                                       name="name"
+                                       value="@if(isset($userData->name)){{$userData->name}}@else{{ old('name') }}@endif"
+                                       required autocomplete="name" autofocus>
                                 @error('name')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
                                 @enderror
                             </div>
                         </div>
@@ -29,12 +28,15 @@
                             <label for="address" class="col-md-4 col-form-label text-md-right">{{ __('Nif') }}</label>
 
                             <div class="col-md-6">
-                                <input id="nif" type="text" class="form-control @error('nif') is-invalid @enderror" name="nif" required autocomplete="nif">
+                                <input id="nif" type="text" class="form-control @error('nif') is-invalid @enderror"
+                                       name="nif"
+                                       value="@if(isset($userData->nif)){{$userData->nif}}@else{{ old('nif') }}@endif"
+                                       required autocomplete="nif">
 
                                 @error('nif')
                                 <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
+                                    <strong>{{ $message }}</strong>
+                                </span>
                                 @enderror
                             </div>
                         </div>
@@ -43,12 +45,15 @@
                             <label for="phone" class="col-md-4 col-form-label text-md-right">{{ __('Phone') }}</label>
 
                             <div class="col-md-6">
-                                <input id="phone" type="text" class="form-control @error('phone') is-invalid @enderror" name="phone" required autocomplete="phone">
+                                <input id="phone" type="text" class="form-control @error('address') is-invalid @enderror"
+                                       name="phone"
+                                       value="@if(isset($userData->phone)){{$userData->phone}}@else{{ old('phone') }}@endif"
+                                       required autocomplete="phone">
 
                                 @error('phone')
                                 <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
+                                    <strong>{{ $message }}</strong>
+                                </span>
                                 @enderror
                             </div>
                         </div>
@@ -57,48 +62,37 @@
                             <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
 
                             <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
+                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror"
+                                       name="email"
+                                       value="@if(isset($userData->user->email)){{$userData->user->email}}@else{{ old('email') }}@endif"
+                                       required autocomplete="email">
 
                                 @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
                                 @enderror
                             </div>
                         </div>
 
-                        <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
-
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
 
                         <div class="form-group row mb-5">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
-                            </div>
+                            <a href="{{url('change-password')}}" class="mx-auto text-primary">Alterar password</a>
                         </div>
 
                         <div class="form-group row">
                             <label for="address" class="col-md-4 col-form-label text-md-right">{{ __('Address') }}</label>
 
                             <div class="col-md-6">
-                                <input id="address" type="text" class="form-control @error('address') is-invalid @enderror" name="address" required autocomplete="address">
+                                <input id="address" type="text" class="form-control @error('address') is-invalid @enderror"
+                                       name="address"
+                                       value="@if(isset($userData->address)){{$userData->address}}@else{{ old('address') }}@endif"
+                                       required autocomplete="address">
 
                                 @error('address')
                                 <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
+                                    <strong>{{ $message }}</strong>
+                                </span>
                                 @enderror
                             </div>
                         </div>
@@ -106,12 +100,15 @@
                             <label for="postal_code" class="col-md-4 col-form-label text-md-right">{{ __('Postal Code') }}</label>
 
                             <div class="col-md-6">
-                                <input id="postal_code" type="text" class="form-control @error('postal_code') is-invalid @enderror" name="postal_code" required autocomplete="Postal Code">
+                                <input id="postal_code" type="text" class="form-control @error('postal_code') is-invalid @enderror"
+                                       name="postal_code"
+                                       value="@if(isset($userData->postal_code)){{$userData->postal_code}}@else{{ old('postal_code') }}@endif"
+                                       required autocomplete="Postal Code">
 
                                 @error('postal_code')
                                 <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
+                                    <strong>{{ $message }}</strong>
+                                </span>
                                 @enderror
                             </div>
                         </div>
@@ -119,12 +116,15 @@
                             <label for="city" class="col-md-4 col-form-label text-md-right">{{ __('City') }}</label>
 
                             <div class="col-md-6">
-                                <input id="city" type="text" class="form-control @error('city') is-invalid @enderror" name="city" required autocomplete="city">
+                                <input id="city" type="text" class="form-control @error('city') is-invalid @enderror"
+                                       name="city"
+                                       value="@if(isset($userData->city)){{$userData->city}}@else{{ old('city') }}@endif"
+                                       required autocomplete="city">
 
                                 @error('city')
                                 <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
+                                    <strong>{{ $message }}</strong>
+                                </span>
                                 @enderror
                             </div>
                         </div>
@@ -136,8 +136,8 @@
 
                                 @error('photo')
                                 <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
+                                    <strong>{{ $message }}</strong>
+                                </span>
                                 @enderror
                             </div>
                         </div>
@@ -145,7 +145,7 @@
                         <div class="form-group row ">
                             <div class="col-md-6 offset-md-4 text-center mx-auto">
                                 <button type="submit" class="btn btn-primary ">
-                                    {{ __('Register') }}
+                                    {{ __('Update') }}
                                 </button>
                             </div>
                         </div>
@@ -155,4 +155,4 @@
         </div>
     </div>
 </div>
-@endsection
+

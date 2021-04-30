@@ -1,8 +1,6 @@
 @extends('master.main')
 
 @section('content')
-
-    @component('components.profile', ['userData' => $userData])
+    @component('components.password-change')
     @endcomponent
-
 @endsection

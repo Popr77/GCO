@@ -35,15 +35,16 @@
                        role="button" aria-haspopup="true" aria-expanded="false">Username</a>
                     <div class="dropdown-menu dropdown-menu-right" id="navUserMenu">
                         <div id="navUserMenuInfo" class="d-flex align-items-center">
-                            <img class="rounded-circle" src="{{ asset('img/avatar.jpeg')}}" alt="">
+{{--                            <p>@php dd(auth()->user()->userData->photo)@endphp</p>--}}
+                            <img class="rounded-circle" src="{{ asset('storage/img/users/'. auth()->user()->userData->photo)}}" alt="">
                             <div class="ml-2">
-                                <h4 class="mb-0">First Last</h4>
-                                <h6>@username</h6>
+                                <h4 class="mb-0">{{auth()->user()->userData->name}}</h4>
+                                <h6>{{auth()->user()->userData->email}}</h6>
                             </div>
                         </div>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="#">Profile</a>
-                        <a class="dropdown-item" href="#">Edit Profile</a>
+                        <a class="dropdown-item" href="{{ url('profile/'.auth()->user()->id).'/edit' }}">Edit Profile</a>
                         <a class="dropdown-item" href="#">Account Settings</a>
                         <a class="dropdown-item" href="#">Purchase History</a>
                         <a class="dropdown-item" href="#">Help</a>
