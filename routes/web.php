@@ -87,9 +87,10 @@ Route::prefix('/subsubcategories')->group(function(){
 // Admin Dashboard Routes
 Route::prefix('dashboard')->middleware(['auth', 'admin'])->group(function () {
     Route::view('/', 'pages.admin.dashboard');
-    Route::prefix('courses')->group(function () {
+    Route::prefix('/courses')->group(function () {
         Route::get('/', [DCourseController::class, 'index'])->name('d-course-index');
         Route::view('/create', 'pages.admin.courses.course-create')->name('d-course-create');
+        Route::get('/{course}/edit', [DCourseController::class, 'edit']);
         Route::post('/', [DCourseController::class, 'store'])->name('d-course-store');
     });
 });

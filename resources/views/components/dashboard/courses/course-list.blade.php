@@ -18,7 +18,7 @@
         </div>
 
         <div class="card-body">
-            <a href="#" class="btn btn-primary">Edit</a>
+            <a href="{{ url('dashboard/courses/' . $course->id . '/edit')}}" class="btn btn-primary">Edit</a>
             <a href="#" class="btn btn-primary">View Course</a>
         </div>
 
