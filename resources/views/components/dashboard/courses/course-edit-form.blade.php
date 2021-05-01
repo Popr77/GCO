@@ -78,7 +78,7 @@
                class="form-control @error('price') is-invalid @enderror"
                name="price"
                id="price"
-               value="{{ $course->price }}"
+               value="{{ $course->price / 100}}"
                required>
         @error('price')
         <span class="invalid-feedback" role="alert">
