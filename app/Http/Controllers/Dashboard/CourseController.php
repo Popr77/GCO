@@ -60,4 +60,9 @@ class CourseController extends Controller {
 
         return redirect('dashboard/courses')->with('status', 'Course created successfully!');
     }
+
+    public function edit(Course $course) {
+
+        return view('pages.admin.courses.course-edit', compact('course'));
+    }
 }
