@@ -1,4 +1,4 @@
-<form class="col-12 pl-0" method="POST" action="{{ route('d-course-store') }}" enctype="multipart/form-data">
+<form class="col-12 px-lg-0" method="POST" action="{{ route('d-course-store') }}" enctype="multipart/form-data">
     @csrf
     <div class="form-group">
         <label for="name">Name</label>
