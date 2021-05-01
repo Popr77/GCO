@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Dashboard;
 use App\Http\Controllers\Controller;
 use App\Models\Course;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class CourseController extends Controller {
 
@@ -40,7 +41,7 @@ class CourseController extends Controller {
         $course->requirements = $request->requirements;
         $course->status = $request->status ?? 0;
         $course->duration = $request->duration;
-        $course->price = (int)str_replace('.', '', $request->price);
+        $course->price = $request->price * 100;
         $course->sub_sub_category_id = $request->sub_sub_category_id;
         $course->save();
 
@@ -88,7 +89,7 @@ class CourseController extends Controller {
         $course->requirements           = $request->requirements;
         $course->status                 = $request->status ?? 0;
         $course->duration               = $request->duration;
-        $course->price                  = (int)str_replace('.', '', $request->price);
+        $course->price                  = $request->price * 100;
         $course->sub_sub_category_id    = $request->sub_sub_category_id;
         $course->save();
 
@@ -96,6 +97,8 @@ class CourseController extends Controller {
             $request->validate([
                 'photo' => 'image|nullable|max:2048'
             ]);
+
+            Storage::delete('public/img/courses/' . $course->photo);
 
             $filename = $course->id;
             $extension = $request->file('photo')->getClientOriginalExtension();
@@ -105,6 +108,6 @@ class CourseController extends Controller {
             $course->save();
         }
 
-        return redirect('dashboard/courses')->with('status', 'Course edited successfully!');
+        return redirect('dashboard/courses/' . $course->id . '/edit')->with('status', 'Course edited successfully!');
     }
 }

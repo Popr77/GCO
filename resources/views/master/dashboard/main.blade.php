@@ -24,6 +24,17 @@
             @endcomponent
 
             <div class="container-fluid py-4 px-3 px-md-5">
+                <div class="row d-flex justify-content-between align-items-center mb-3">
+                    @yield('header')
+                </div>
+                @if (session('status'))
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        {{ session('status') }}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                @endif
                 @yield('content')
             </div>
         </div>
