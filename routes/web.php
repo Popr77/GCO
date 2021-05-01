@@ -93,6 +93,7 @@ Route::prefix('dashboard')->middleware(['auth', 'admin'])->group(function () {
         Route::get('/{course}/edit', [DCourseController::class, 'edit']);
         Route::post('/', [DCourseController::class, 'store'])->name('d-course-store');
         Route::put('/{course}', [DCourseController::class, 'update'])->name('d-course-update');
+        Route::delete('/{course}', [DCourseController::class, 'destroy'])->name('d-course-destroy');
     });
 });
 

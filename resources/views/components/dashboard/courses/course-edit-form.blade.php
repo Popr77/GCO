@@ -1,4 +1,4 @@
-<form class="col-12 pl-0" method="POST" action="{{ route('d-course-update', ['course' => $course->id]) }}" enctype="multipart/form-data">
+<form class="col-12 px-lg-0" method="POST" action="{{ route('d-course-update', ['course' => $course->id]) }}" enctype="multipart/form-data">
     @csrf
     @method('PUT')
     <div class="form-group">
@@ -12,9 +12,9 @@
                required>
 
         @error('name')
-        <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
-                    </span>
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
         @enderror
     </div>
     <div class="form-group">
@@ -25,9 +25,9 @@
                   rows="3"
                   required>{{ $course->description }}</textarea>
         @error('description')
-        <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
-                    </span>
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
         @enderror
     </div>
     <div class="form-group">
@@ -38,9 +38,9 @@
                   rows="3"
                   required>{{ $course->goals }}</textarea>
         @error('goals')
-        <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
-                    </span>
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
         @enderror
     </div>
     <div class="form-group">
@@ -51,9 +51,9 @@
                   rows="3"
                   required>{{ $course->requirements }}</textarea>
         @error('requirements')
-        <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
-                    </span>
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
         @enderror
     </div>
     <div class="form-group">
@@ -65,9 +65,9 @@
                value="{{ $course->duration }}"
                required>
         @error('duration')
-        <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
-                    </span>
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
         @enderror
     </div>
     <div class="form-group">
@@ -81,9 +81,9 @@
                value="{{ $course->price / 100}}"
                required>
         @error('price')
-        <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
-                    </span>
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
         @enderror
     </div>
     <category-select
@@ -93,7 +93,7 @@
 
     <div class="form-group">
         <label class="d-block" for="photo">Photo</label>
-        <img class="mb-2" src="{{ url('storage/img/courses/' . $course->photo) }}" alt="">
+        <img class="mb-2 px-0 col-12 col-sm-10 col-lg-8 col-xl-6" src="{{ url('storage/img/courses/' . $course->photo) }}" alt="">
         <input type="file" class="form-control-file" name="photo" id="photo" aria-describedby="fileHelp">
         <small id="fileHelp" class="form-text text-muted">Maximum size: 2MB</small>
     </div>

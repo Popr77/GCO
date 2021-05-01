@@ -98,7 +98,8 @@ class CourseController extends Controller {
                 'photo' => 'image|nullable|max:2048'
             ]);
 
-            Storage::delete('public/img/courses/' . $course->photo);
+            if ($course->photo != 'placeholder.png')
+                Storage::delete('public/img/courses/' . $course->photo);
 
             $filename = $course->id;
             $extension = $request->file('photo')->getClientOriginalExtension();
@@ -109,5 +110,11 @@ class CourseController extends Controller {
         }
 
         return redirect('dashboard/courses/' . $course->id . '/edit')->with('status', 'Course edited successfully!');
+    }
+
+    public function destroy(Course $course) {
+        $course->delete();
+
+        return redirect(route('d-course-index'))->with('status', 'Course archived successfully!');
     }
 }
