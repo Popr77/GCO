@@ -92,6 +92,7 @@ Route::prefix('dashboard')->middleware(['auth', 'admin'])->group(function () {
         Route::view('/create', 'pages.admin.courses.course-create')->name('d-course-create');
         Route::get('/{course}/edit', [DCourseController::class, 'edit']);
         Route::post('/', [DCourseController::class, 'store'])->name('d-course-store');
+        Route::put('/{course}', [DCourseController::class, 'update'])->name('d-course-update');
     });
 });
 

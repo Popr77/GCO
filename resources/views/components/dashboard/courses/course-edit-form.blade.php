@@ -1,5 +1,6 @@
-<form class="col-12 pl-0" method="POST" action="{{ route('d-course-store') }}" enctype="multipart/form-data">
+<form class="col-12 pl-0" method="POST" action="{{ route('d-course-update', ['course' => $course->id]) }}" enctype="multipart/form-data">
     @csrf
+    @method('PUT')
     <div class="form-group">
         <label for="name">Name</label>
         <input type="text"
@@ -86,8 +87,6 @@
         @enderror
     </div>
     <category-select
-        :cat="{{ $course->subsubcategory->subcategory->category->id }}"
-        :subcat="{{ $course->subsubcategory->subcategory->id }}"
         :subsubcat="{{ $course->subsubcategory->id }}"
         @error('sub_sub_category_id') errormsg="{{ $message }}" @enderror
     ></category-select>
