@@ -6,7 +6,7 @@
         <a href="{{ route('d-course-create') }}" class="btn btn-primary ml-4">Add Course</a>
     </div>
     <form class="form-inline my-2 my-lg-0">
-        <input name="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+        <input name="search" class="form-control mr-2" type="search" placeholder="Search" aria-label="Search">
         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
     </form>
 @endsection
