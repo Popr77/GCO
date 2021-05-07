@@ -2,7 +2,7 @@
     <div>
         <div class="form-group">
             <label for="category">Category</label>
-            <select class="custom-select" id="category" v-model="selectedCat" @change="filterSubCategories($event.target.value)" required>
+            <select @click.stop class="custom-select w-100" id="category" v-model="selectedCat" @change="filterSubCategories($event.target.value)" required>
                 <option selected></option>
                 <option v-for="(category, index) in categories"
                         :key="category.id"
@@ -11,17 +11,16 @@
         </div>
         <div class="form-group">
             <label for="subcategory">Sub Category</label>
-            <select id="subcategory" class="custom-select" v-model="selectedSubCat" @change="filterSubSubCategories($event.target.value)" required>
+            <select @click.stop id="subcategory" class="custom-select w-100" v-model="selectedSubCat" @change="filterSubSubCategories($event.target.value)" required>
                 <option selected></option>
                 <option v-for="(subcat, index) in filteredSubCategories"
                         :key="subcat.id"
                         :value="index">{{ subcat.name }}</option>
             </select>
         </div>
-
         <div class="form-group">
             <label for="subsubcategory">Sub Sub Category</label>
-            <select name="sub_sub_category_id" id="subsubcategory" v-model="selectedSubSubCat" class="custom-select" required>
+            <select @click.stop name="sub_sub_category_id" id="subsubcategory" v-model="selectedSubSubCat" class="custom-select w-100" required>
                 <option selected></option>
                 <option v-for="subsubcat in filteredSubSubCategories"
                         :key="subsubcat.id"
