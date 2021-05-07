@@ -1,12 +1,3 @@
-@if (session('status'))
-    <div class="alert alert-success alert-dismissible fade show" role="alert">
-        {{ session('status') }}
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
-    </div>
-@endif
-
 <div class="grid-container">
     @foreach($courses as $course)
     <div class="shadow-sm grid-item card">
@@ -18,7 +9,7 @@
         </div>
 
         <div class="card-body">
-            <a href="#" class="btn btn-primary">Edit</a>
+            <a href="{{ url('dashboard/courses/' . $course->id . '/edit')}}" class="btn btn-primary">Edit</a>
             <a href="#" class="btn btn-primary">View Course</a>
         </div>
 

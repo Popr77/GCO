@@ -21,5 +21,16 @@ class UserSeeder extends Seeder
             'user_type_id' => 1,
             'remember_token' => Str::random(10)
         ]);
+
+        DB::table('user_data')->insert([
+            'user_id' => 1,
+            'name' => 'admin',
+            'address' => '',
+            'postal_code' => '',
+            'city' => '',
+            'phone' => '',
+            'nif' => 0,
+            'photo' => 'logo.jpg'
+        ]);
     }
 }
