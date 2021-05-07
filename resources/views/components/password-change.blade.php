@@ -1,8 +1,16 @@
+@if (session('status'))
+    <div class="alert alert-success alert-dismissible fade container show text-center mt-4 mb-0" role="alert">
+        {{ session('status') }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+@endif
 <div class="container my-5">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Laravel - Change Password with Current Password Validation Example - ItSolutionStuff.com</div>
+                <div class="card-header">Password Change</div>
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('change.password') }}">

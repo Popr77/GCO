@@ -8,6 +8,7 @@ use App\Http\Controllers\ChangePasswordController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\SubCategoryController;
 use App\Http\Controllers\SubSubCategoryController;
+use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\Dashboard\CourseController as DCourseController;
 use Illuminate\Support\Facades\Request;
 
@@ -95,10 +96,13 @@ Route::prefix('dashboard')->middleware(['auth', 'admin'])->group(function () {
 });
 
 Route::prefix('/profile')->group(function(){
-    Route::get('{userData:user_id}/edit', [UserDataController::class, 'edit']);
+    Route::get('{userData}/edit', [UserDataController::class, 'edit']);
+    Route::put('{userData}', [UserDataController::class, 'update']);
 });
 
 Route::get('change-password', [ChangePasswordController::class, 'index']);
 Route::post('change-password', [ChangePasswordController::class, 'store'])->name('change.password');
 
+Route::get('quiz/{lesson}', [QuestionController::class, 'index']);
+Route::post('quiz/{lesson}', [QuestionController::class, 'store']);
 

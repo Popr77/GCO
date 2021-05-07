@@ -20,6 +20,9 @@ class UserData extends Model
         'photo',
     ];
 
+    protected $primaryKey = 'user_id';
+
+
     public function user(){
         return $this->hasOne(User::class, 'id', 'user_id');
     }

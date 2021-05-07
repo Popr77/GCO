@@ -70,7 +70,28 @@ class UserDataController extends Controller
      */
     public function update(Request $request, UserData $userData)
     {
-        //
+        if (isset($request->photo)){
+            $newImage = time() . '-' . $request->name . '.'.
+                $request->photo->extension();
+
+            $request->photo->storeAs('public/img/users', $newImage);
+        }
+
+        $userData = UserData::find($userData->user_id);
+
+        $userData->name = $request->name;
+        $userData->nif = $request->nif;
+        $userData->phone = $request->phone;
+        $userData->user->email = $request->email;
+        $userData->address = $request->address;
+        $userData->postal_code = $request->postal_code;
+        $userData->city = $request->city;
+        isset($request->photo)?$userData->photo = $newImage : null;
+
+        $userData->save();
+        $userData->user->save();
+
+        return redirect('profile/'.$userData->user_id.'/edit')->with('status', 'Profile edited successfully!!');
     }
 
     /**

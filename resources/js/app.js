@@ -8,10 +8,12 @@ $(document).on('click', '.navbar #navUserMenu', function (e) {
 import Vue from 'vue'
 
 import CategorySelect from './components/courses/CategorySelect.vue'
+import QuestionsContainer from './components/quiz/QuestionsContainer.vue'
 
 const app = new Vue({
     el: '#app',
     components: {
-        CategorySelect
+        CategorySelect,
+        QuestionsContainer
     }
 });
