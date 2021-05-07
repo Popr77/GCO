@@ -6,14 +6,15 @@
         <a href="{{ route('d-course-create') }}" class="btn btn-primary ml-4">Add Course</a>
     </div>
     <div class="d-flex">
-        <form action="">
+        <form method="GET" action="{{ route('d-course-index') }}">
             <div class="dropdown show mr-3">
                 <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Filter By Category
                 </a>
 
                 <div class="dropdown-menu px-3" style="width: 300px;" aria-labelledby="dropdownMenuLink">
-                    <category-select></category-select>
+                    <category-select :fieldsrequired="false"></category-select>
+                    <button type="submit" class="btn btn-primary" id="btn-filter">Filter</button>
                 </div>
             </div>
         </form>
@@ -75,6 +76,10 @@
 @endsection
 
 @section('scripts')
-
+    <script>
+        document.getElementById('btn-filter').addEventListener('click', (e) => {
+            e.stopPropagation();
+        })
+    </script>
 @endsection
 
