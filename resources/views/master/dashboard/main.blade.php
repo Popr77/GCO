@@ -12,6 +12,7 @@
     <!-- Styles -->
     <link href="{{ asset('css/admin.css') }}" rel="stylesheet">
     @yield('styles')
+
 </head>
 <body>
 <div id="app">
@@ -24,9 +25,7 @@
             @endcomponent
 
             <div class="container-fluid py-4 px-3 px-md-5">
-                <div class="row d-flex justify-content-between align-items-center mb-3">
-                    @yield('header')
-                </div>
+                @yield('header')
                 @if (session('status'))
                     <div class="alert alert-success alert-dismissible fade show" role="alert">
                         {{ session('status') }}
@@ -50,5 +49,6 @@
     });
 </script>
 @yield('scripts')
+
 </body>
 </html>

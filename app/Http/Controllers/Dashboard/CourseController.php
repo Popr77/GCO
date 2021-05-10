@@ -13,7 +13,10 @@ class CourseController extends Controller {
 
         $search = $request->query('search');
 
-        $courses = Course::where('name', 'LIKE', "%{$search}%")->orderBy('created_at', 'desc')->paginate(12);
+        $courses = Course::where('name', 'LIKE', "%{$search}%")
+            ->with('students', 'subsubcategory')
+            ->orderBy('created_at', 'desc')
+            ->paginate(12);
 
         return view('pages.admin.courses.course-index', compact('courses'));
     }
