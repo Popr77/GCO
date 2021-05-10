@@ -61,21 +61,27 @@ export default {
     },
     computed: {
         filteredSubCategories() {
-            return this.categories[this.selectedCat - 1] === undefined ? [] : this.categories[this.selectedCat - 1].subcategories
+            return this.categories[this.selectedCat - 1] === undefined ? []
+                : this.categories[this.selectedCat - 1].subcategories
         },
         filteredSubSubCategories() {
-            return this.filteredSubCategories[this.selectedSubCat - 1] === undefined ? [] : this.filteredSubCategories[this.selectedSubCat - 1].subsubcategories
+            let index = this.findIndexById(this.filteredSubCategories, this.selectedSubCat)
+            return this.filteredSubCategories[index] === undefined ? []
+                : this.filteredSubCategories[index].subsubcategories
         }
     },
     methods: {
-        filterSubCategories(index) {
+        filterSubCategories(id) {
             this.selectedSubCat = ''
             this.selectedSubSubCat = ''
-            this.selectedCat = index
+            this.selectedCat = id
         },
         filterSubSubCategories(index) {
             this.selectedSubSubCat = ''
             this.selectedSubCat = index
+        },
+        findIndexById(arr, value) {
+            return arr.findIndex((x) => x.id == value)
         }
     },
     async created() {
@@ -90,9 +96,9 @@ export default {
         if(this.subsubcat) {
             this.categories.forEach((cat, catindex) => {
                 cat.subcategories.forEach((subcat, subcatindex) => {
-                    if (subcat.subsubcategories.findIndex((x) => x.id === this.subsubcat) >= 0) {
-                        this.selectedCat = catindex
-                        this.selectedSubCat = subcatindex
+                    if (this.findIndexById(subcat.subsubcategories, this.subsubcat) >= 0) {
+                        this.selectedCat = cat.id
+                        this.selectedSubCat = subcat.id
                         this.selectedSubSubCat = this.subsubcat
                     }
                 })
