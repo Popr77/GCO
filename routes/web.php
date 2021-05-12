@@ -26,11 +26,9 @@ use Illuminate\Support\Facades\Request;
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/unregistered', [App\Http\Controllers\HomeController::class, 'unregistered']);
-
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'registered'])->name('home');
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index']);
-Route::get('/registered', [App\Http\Controllers\HomeController::class, 'registered']);
+
 Route::get('/lessons', [App\Http\Controllers\HomeController::class, 'lesson']);
 Route::get('/lesson', [App\Http\Controllers\LessonController::class,'lesson']);
 
