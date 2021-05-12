@@ -105,6 +105,9 @@ Route::prefix('/profile')->group(function(){
 Route::get('change-password', [ChangePasswordController::class, 'index']);
 Route::post('change-password', [ChangePasswordController::class, 'store'])->name('change.password');
 
-Route::get('quiz/{lesson}', [QuestionController::class, 'index']);
-Route::post('quiz/{lesson}', [QuestionController::class, 'store']);
 
+Route::prefix('/quiz')->group(function() {
+    Route::get('{lesson}', [QuestionController::class, 'quiz']);
+    Route::post('{lesson}', [QuestionController::class, 'save']);
+    Route::post('{lesson}', [QuestionController::class, 'create']);
+});

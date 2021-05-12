@@ -38,20 +38,6 @@ class EnrollmentSeeder extends Seeder
             'feedback_comment' => "valeu!"
         ]);DB::table('enrollments')->insert([
             'user_id' => 2,
-            'course_id' => 3,
-            'date' => now()->toDateTimeString(),
-            'payment_status' => 1,
-            'feedback_stars' => 4,
-            'feedback_comment' => "valeu!"
-        ]);DB::table('enrollments')->insert([
-            'user_id' => 2,
-            'course_id' => 4,
-            'date' => now()->toDateTimeString(),
-            'payment_status' => 1,
-            'feedback_stars' => 4,
-            'feedback_comment' => "valeu!"
-        ]);DB::table('enrollments')->insert([
-            'user_id' => 2,
             'course_id' => 4,
             'date' => now()->toDateTimeString(),
             'payment_status' => 1,

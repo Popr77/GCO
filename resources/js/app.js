@@ -17,6 +17,7 @@ const app = new Vue({
     components: {
         CategorySelect,
         QuestionsContainer,
+        CreateQuestions,
         Courses,
         DashboardHeader
     }
