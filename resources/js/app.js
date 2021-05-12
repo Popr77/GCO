@@ -11,6 +11,7 @@ import Courses from "./components/courses/Courses.vue";
 import CategorySelect from './components/courses/CategorySelect.vue'
 import QuestionsContainer from './components/quiz/QuestionsContainer.vue'
 import DashboardHeader from "./components/DashboardHeader";
+import StarRating from 'vue-star-rating'
 
 const app = new Vue({
     el: '#app',
@@ -19,6 +20,7 @@ const app = new Vue({
         QuestionsContainer,
         CreateQuestions,
         Courses,
-        DashboardHeader
+        DashboardHeader,
+        StarRating
     }
 });
