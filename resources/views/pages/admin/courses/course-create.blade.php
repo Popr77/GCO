@@ -1,7 +1,7 @@
 @extends('master.dashboard.main')
 
 @section('header')
-    <h1>Create Course</h1>
+    <dashboard-header title="Create Course"></dashboard-header>
 @endsection
 
 @section('content')

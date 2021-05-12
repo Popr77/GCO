@@ -1,12 +1,14 @@
 @extends('master.dashboard.main')
 
 @section('header')
-    <h1>Edit Course</h1>
-    <form action="{{ route('d-course-destroy', ['course' => $course]) }}" method="POST">
-        @csrf
-        @method('DELETE')
-        <button type="submit" class="btn btn-secondary">Archive Course</button>
-    </form>
+    <dashboard-header title="Edit Course">
+        <form slot="right" action="{{ route('d-course-destroy', ['course' => $course]) }}" method="POST">
+            @csrf
+            @method('DELETE')
+            <button type="submit" class="btn btn-secondary">Archive Course</button>
+        </form>
+    </dashboard-header>
+
 @endsection
 
 @section('content')

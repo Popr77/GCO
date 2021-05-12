@@ -2,26 +2,25 @@
     <div>
         <div class="form-group">
             <label for="category">Category</label>
-            <select class="custom-select" id="category" v-model="selectedCat" @change="filterSubCategories($event.target.value)" required>
+            <select @click.stop class="custom-select w-100" id="category" name="category_id" v-model="selectedCat" @change="filterSubCategories($event.target.value)" :required="fieldsrequired">
                 <option selected></option>
                 <option v-for="(category, index) in categories"
                         :key="category.id"
-                        :value="index">{{ category.name }}</option>
+                        :value="category.id">{{ category.name }}</option>
             </select>
         </div>
         <div class="form-group">
             <label for="subcategory">Sub Category</label>
-            <select id="subcategory" class="custom-select" v-model="selectedSubCat" @change="filterSubSubCategories($event.target.value)" required>
+            <select @click.stop id="subcategory" name="sub_category_id" class="custom-select w-100" v-model="selectedSubCat" @change="filterSubSubCategories($event.target.value)" :required="fieldsrequired">
                 <option selected></option>
                 <option v-for="(subcat, index) in filteredSubCategories"
                         :key="subcat.id"
-                        :value="index">{{ subcat.name }}</option>
+                        :value="subcat.id">{{ subcat.name }}</option>
             </select>
         </div>
-
         <div class="form-group">
             <label for="subsubcategory">Sub Sub Category</label>
-            <select name="sub_sub_category_id" id="subsubcategory" v-model="selectedSubSubCat" class="custom-select" required>
+            <select @click.stop name="sub_sub_category_id" id="subsubcategory" v-model="selectedSubSubCat" class="custom-select w-100" :required="fieldsrequired">
                 <option selected></option>
                 <option v-for="subsubcat in filteredSubSubCategories"
                         :key="subsubcat.id"
@@ -45,6 +44,11 @@ export default {
         subsubcat : {
             required: false,
             type: Number
+        },
+        fieldsrequired : {
+            required: false,
+            type: Boolean,
+            default: true
         }
     },
     data() {
@@ -57,21 +61,27 @@ export default {
     },
     computed: {
         filteredSubCategories() {
-            return this.categories[this.selectedCat] === undefined ? [] : this.categories[this.selectedCat].subcategories
+            return this.categories[this.selectedCat - 1] === undefined ? []
+                : this.categories[this.selectedCat - 1].subcategories
         },
         filteredSubSubCategories() {
-            return this.filteredSubCategories[this.selectedSubCat] === undefined ? [] : this.filteredSubCategories[this.selectedSubCat].subsubcategories
+            let index = this.findIndexById(this.filteredSubCategories, this.selectedSubCat)
+            return this.filteredSubCategories[index] === undefined ? []
+                : this.filteredSubCategories[index].subsubcategories
         }
     },
     methods: {
-        filterSubCategories(index) {
+        filterSubCategories(id) {
             this.selectedSubCat = ''
             this.selectedSubSubCat = ''
-            this.selectedCat = index
+            this.selectedCat = id
         },
         filterSubSubCategories(index) {
             this.selectedSubSubCat = ''
             this.selectedSubCat = index
+        },
+        findIndexById(arr, value) {
+            return arr.findIndex((x) => x.id == value)
         }
     },
     async created() {
@@ -86,9 +96,9 @@ export default {
         if(this.subsubcat) {
             this.categories.forEach((cat, catindex) => {
                 cat.subcategories.forEach((subcat, subcatindex) => {
-                    if (subcat.subsubcategories.findIndex((x) => x.id === this.subsubcat) >= 0) {
-                        this.selectedCat = catindex
-                        this.selectedSubCat = subcatindex
+                    if (this.findIndexById(subcat.subsubcategories, this.subsubcat) >= 0) {
+                        this.selectedCat = cat.id
+                        this.selectedSubCat = subcat.id
                         this.selectedSubSubCat = this.subsubcat
                     }
                 })

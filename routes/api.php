@@ -6,7 +6,6 @@ use App\Http\Resources\CourseResource;
 use App\Http\Resources\CategoryResource;
 use App\Models\Course;
 use App\Models\Category;
-use App\Http\Controllers\Api\Auth\LoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,10 +22,15 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::middleware('auth:api')->get('/courses', function() {
-    return CourseResource::collection(Course::with('subsubcategory')->get());
+Route::get('/courses', function (Request $request) {
+    $search = $request->query('search');
+
+    return CourseResource::collection(Course::where('name', 'LIKE', "%{$search}%")
+        ->with('subsubcategory')
+        ->orderBy('created_at', 'desc')
+        ->paginate(12));
 });
 
-Route::get('/categories', function() {
+Route::get('/categories', function () {
     return CategoryResource::collection(Category::all());
 });
