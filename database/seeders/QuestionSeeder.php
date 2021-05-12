@@ -39,6 +39,18 @@ class QuestionSeeder extends Seeder
             'question' => 'Question 6',
             'lesson_id' => 2
         ]);
+        DB::table('questions')->insert([
+            'question' => 'Question 7',
+            'lesson_id' => 2
+        ]);
+        DB::table('questions')->insert([
+            'question' => 'Question 8',
+            'lesson_id' => 2
+        ]);
+        DB::table('questions')->insert([
+            'question' => 'Question 9',
+            'lesson_id' => 2
+        ]);
 
         DB::table('questions')->insert([
             'question' => 'Question 1',
