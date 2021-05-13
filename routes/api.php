@@ -23,12 +23,15 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::get('/courses', function (Request $request) {
+
     $search = $request->query('search');
 
-    return CourseResource::collection(Course::where('name', 'LIKE', "%{$search}%")
-        ->with('subsubcategory')
-        ->orderBy('created_at', 'desc')
-        ->paginate(12));
+    return CourseResource::collection(Course::with('subsubcategory')
+        ->join('sub_sub_categories', 'courses.sub_sub_category_id', '=', 'sub_sub_categories.id')
+        ->where('sub_sub_categories.name', 'LIKE', "%{$search}%")
+        ->orWhere('courses.name', 'LIKE', "%{$search}%")
+        ->orderBy('courses.created_at', 'desc')
+        ->paginate(12, 'courses.*'));
 });
 
 Route::get('/categories', function () {
