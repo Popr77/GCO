@@ -11,13 +11,14 @@
                         </a>
 
                         <div class="dropdown-menu px-3" style="width: 300px;" aria-labelledby="dropdownMenuLink">
-                            <category-select :fieldsrequired="false"></category-select>
+                            <category-select @categorychanged="search" :fieldsrequired="false"
+                                             :is-filter="true"></category-select>
                             <button type="submit" class="btn btn-primary" id="btn-filter">Filter</button>
                         </div>
                     </div>
                 </form>
 
-                <search-bar @searchValueChanged="cenas"></search-bar>
+                <search-bar @searchValueChanged="search"></search-bar>
             </div>
         </dashboard-header>
         <course-list></course-list>
@@ -40,7 +41,7 @@ export default {
         CategorySelect
     },
     methods: {
-        cenas(search) {
+        search(search) {
             this.$emit('searchValueChanged', search)
         }
     },

@@ -2,29 +2,37 @@
     <div>
         <div class="form-group">
             <label for="category">Category</label>
-            <select @click.stop class="custom-select w-100" id="category" name="category_id" v-model="selectedCat" @change="filterSubCategories($event.target.value)" :required="fieldsrequired">
+            <select @click.stop class="custom-select w-100" id="category" name="category_id" v-model="selectedCat"
+                    @change="selectCategory($event.target.value)" :required="fieldsrequired">
                 <option selected></option>
                 <option v-for="(category, index) in categories"
                         :key="category.id"
-                        :value="category.id">{{ category.name }}</option>
+                        :value="category.id">{{ category.name }}
+                </option>
             </select>
         </div>
         <div class="form-group">
             <label for="subcategory">Sub Category</label>
-            <select @click.stop id="subcategory" name="sub_category_id" class="custom-select w-100" v-model="selectedSubCat" @change="filterSubSubCategories($event.target.value)" :required="fieldsrequired">
+            <select @click.stop id="subcategory" name="sub_category_id" class="custom-select w-100"
+                    v-model="selectedSubCat" @change="selectSubCategory($event.target.value)"
+                    :required="fieldsrequired">
                 <option selected></option>
                 <option v-for="(subcat, index) in filteredSubCategories"
                         :key="subcat.id"
-                        :value="subcat.id">{{ subcat.name }}</option>
+                        :value="subcat.id">{{ subcat.name }}
+                </option>
             </select>
         </div>
         <div class="form-group">
             <label for="subsubcategory">Sub Sub Category</label>
-            <select @click.stop name="sub_sub_category_id" id="subsubcategory" v-model="selectedSubSubCat" class="custom-select w-100" :required="fieldsrequired">
+            <select @click.stop name="sub_sub_category_id" id="subsubcategory" v-model="selectedSubSubCat"
+                    class="custom-select w-100" @change="selectSubSubCategory($event.target.value)"
+                    :required="fieldsrequired">
                 <option selected></option>
                 <option v-for="subsubcat in filteredSubSubCategories"
                         :key="subsubcat.id"
-                        :value="subsubcat.id">{{ subsubcat.name }}</option>
+                        :value="subsubcat.id">{{ subsubcat.name }}
+                </option>
             </select>
         </div>
         <span v-if="errormsg" class="invalid-feedback d-block" role="alert">
@@ -37,18 +45,23 @@
 export default {
     name: 'CategorySelect',
     props: {
-        errormsg : {
+        errormsg: {
             required: false,
             type: String
         },
-        subsubcat : {
+        subsubcat: {
             required: false,
             type: Number
         },
-        fieldsrequired : {
+        fieldsrequired: {
             required: false,
             type: Boolean,
             default: true
+        },
+        isFilter: {
+            required: false,
+            type: Boolean,
+            default: false
         }
     },
     data() {
@@ -71,14 +84,29 @@ export default {
         }
     },
     methods: {
-        filterSubCategories(id) {
+        selectCategory(id) {
             this.selectedSubCat = ''
             this.selectedSubSubCat = ''
             this.selectedCat = id
+
+            if (this.isFilter) {
+                this.$emit('categorychanged', this.categories[id - 1].name)
+            }
         },
-        filterSubSubCategories(index) {
+        selectSubCategory(id) {
             this.selectedSubSubCat = ''
-            this.selectedSubCat = index
+            this.selectedSubCat = id
+            if (this.isFilter) {
+                let index = this.findIndexById(this.filteredSubCategories, id)
+                this.$emit('categorychanged', this.filteredSubCategories[index].name)
+            }
+        },
+        selectSubSubCategory(id) {
+            this.selectedSubSubCat = id
+            if (this.isFilter) {
+                let index = this.findIndexById(this.filteredSubSubCategories, id)
+                this.$emit('categorychanged', this.filteredSubSubCategories[index].name)
+            }
         },
         findIndexById(arr, value) {
             return arr.findIndex((x) => x.id == value)
@@ -93,7 +121,7 @@ export default {
                 console.log(error);
             })
 
-        if(this.subsubcat) {
+        if (this.subsubcat) {
             this.categories.forEach((cat, catindex) => {
                 cat.subcategories.forEach((subcat, subcatindex) => {
                     if (this.findIndexById(subcat.subsubcategories, this.subsubcat) >= 0) {
