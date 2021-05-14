@@ -42,10 +42,15 @@ class User extends Authenticatable
     ];
 
     public function courses() {
-        return $this->belongsToMany(Course::class, 'enrollments');
+        return $this->belongsToMany(Course::class, 'enrollments')
+            ->withPivot(['date', 'payment_status', 'feedback_stars', 'feedback_comment']);
     }
 
     public function type() {
         return $this->belongsTo(UserType::class, 'user_type_id');
+    }
+
+    public function userData(){
+        return $this->hasOne(UserData::class, 'user_id');
     }
 }

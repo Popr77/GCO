@@ -92,6 +92,31 @@ container-footer-social li a i {
     color: $blue;
 }
 
+.course-goals {
+    background-color: $blue;
+    height: 50px;
+    font-size: large;
+    color: white;
+}
+
+.course-feed {
+    background-color: $blue;
+}
+
+.course-description {
+    background-color: #ededed;
+}
+
+.module-name {
+    color: $blue;
+    font-size: 20px;
+}
+
+.lesson-name {
+    font-size: 15px;
+    text-decoration: none;
+}
+
 .btn-lessons-menu {
     top: 0;
     right: 20px;
