@@ -26,11 +26,10 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="address" class="col-md-4 col-form-label text-md-right">{{ __('Nif') }}</label>
+                            <label for="nif" class="col-md-4 col-form-label text-md-right">{{ __('Nif') }}</label>
 
                             <div class="col-md-6">
-                                <input id="address" type="text" class="form-control @error('nif') is-invalid @enderror" name="nif" value="{{ old('nif') }}" required autocomplete="nif">
-
+                                <input id="nif" type="text" class="form-control @error('nif') is-invalid @enderror" name="nif" value="{{ old('nif') }}" required autocomplete="nif">
                                 @error('nif')
                                 <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -43,7 +42,7 @@
                             <label for="phone" class="col-md-4 col-form-label text-md-right">{{ __('Phone') }}</label>
 
                             <div class="col-md-6">
-                                <input id="phone" type="text" class="form-control @error('address') is-invalid @enderror" name="phone" value="{{ old('phone') }}" required autocomplete="phone">
+                                <input id="phone" type="text" class="form-control @error('phone') is-invalid @enderror" name="phone" value="{{ old('phone') }}" required autocomplete="phone">
 
                                 @error('phone')
                                 <span class="invalid-feedback" role="alert">
@@ -132,7 +131,7 @@
                             <label for="photo" class="col-md-4 col-form-label text-md-right">{{ __('User Photo') }}</label>
 
                             <div class="col-md-8 ">
-                                <input id="photo" type="file" class="form-control  border-0 @error('photo') is-invalid @enderror" name="photo" required autocomplete="photo">
+                                <input id="photo" type="file" class="form-control  border-0 @error('photo') is-invalid @enderror" name="photo" autocomplete="photo">
 
                                 @error('photo')
                                 <span class="invalid-feedback" role="alert">

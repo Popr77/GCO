@@ -1,10 +1,15 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CourseController;
+
+use App\Http\Controllers\UserDataController;
+use App\Http\Controllers\ChangePasswordController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\SubCategoryController;
 use App\Http\Controllers\SubSubCategoryController;
+use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\Dashboard\CourseController as DCourseController;
 use Illuminate\Support\Facades\Request;
 
@@ -21,11 +26,9 @@ use Illuminate\Support\Facades\Request;
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/unregistered', [App\Http\Controllers\HomeController::class, 'unregistered']);
-
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'registered'])->name('home');
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index']);
-Route::get('/registered', [App\Http\Controllers\HomeController::class, 'registered']);
+
 Route::get('/lessons', [App\Http\Controllers\HomeController::class, 'lesson']);
 Route::get('/lesson', [App\Http\Controllers\LessonController::class,'lesson']);
 
@@ -84,9 +87,27 @@ Route::prefix('/subsubcategories')->group(function(){
 // Admin Dashboard Routes
 Route::prefix('dashboard')->middleware(['auth', 'admin'])->group(function () {
     Route::view('/', 'pages.admin.dashboard');
-    Route::prefix('courses')->group(function () {
+    Route::prefix('/courses')->group(function () {
         Route::get('/', [DCourseController::class, 'index'])->name('d-course-index');
         Route::view('/create', 'pages.admin.courses.course-create')->name('d-course-create');
+        Route::get('/{course}/edit', [DCourseController::class, 'edit']);
         Route::post('/', [DCourseController::class, 'store'])->name('d-course-store');
+        Route::put('/{course}', [DCourseController::class, 'update'])->name('d-course-update');
+        Route::delete('/{course}', [DCourseController::class, 'destroy'])->name('d-course-destroy');
     });
+});
+
+Route::prefix('/profile')->group(function(){
+    Route::get('{userData}/edit', [UserDataController::class, 'edit']);
+    Route::put('{userData}', [UserDataController::class, 'update']);
+});
+
+Route::get('change-password', [ChangePasswordController::class, 'index']);
+Route::post('change-password', [ChangePasswordController::class, 'store'])->name('change.password');
+
+
+Route::prefix('/quiz')->group(function() {
+    Route::get('{lesson}', [QuestionController::class, 'quiz']);
+    Route::post('{lesson}', [QuestionController::class, 'save']);
+    Route::post('{lesson}', [QuestionController::class, 'create']);
 });

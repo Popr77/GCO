@@ -168,7 +168,7 @@
         </div>
 
     </div>
-    {{--    <div class="lessons-menu-quizz container-fluid col-2 text-center--}}
+    {{--    <div class="lessons-menu-quiz container-fluid col-2 text-center--}}
     {{--    position-fixed bg-light py-3">--}}
     {{--        <button class="btn btn-primary ">Take Quizz</button>--}}
     {{--    </div>--}}

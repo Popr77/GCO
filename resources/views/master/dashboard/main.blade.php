@@ -12,6 +12,7 @@
     <!-- Styles -->
     <link href="{{ asset('css/admin.css') }}" rel="stylesheet">
     @yield('styles')
+
 </head>
 <body>
 <div id="app">
@@ -24,6 +25,15 @@
             @endcomponent
 
             <div class="container-fluid py-4 px-3 px-md-5">
+                @yield('header')
+                @if (session('status'))
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        {{ session('status') }}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                @endif
                 @yield('content')
             </div>
         </div>
@@ -39,5 +49,6 @@
     });
 </script>
 @yield('scripts')
+
 </body>
 </html>

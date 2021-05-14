@@ -14,17 +14,17 @@ class CreateUserDataTable extends Migration
     public function up()
     {
         Schema::create('user_data', function (Blueprint $table) {
-            $table->id();
+            $table->foreignId('user_id')->primary()->constrained();
             $table->string('name');
             $table->string('address');
             $table->string('postal_code');
             $table->string('city');
             $table->string('phone')->unique();
             $table->integer('nif')->unique();
-            $table->string('photo');
+            $table->string('photo')->default('logo.jpg');
             $table->timestamps();
 
-            $table->foreign('id')->references('id')->on('users');
+//            $table->foreign('id')->references('id')->on('users');
         });
     }
 

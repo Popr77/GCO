@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Models\Enrollment;
 use App\Models\SubSubCategory;
 use Illuminate\Http\Resources\Json\JsonResource;
 use App\Http\Resources\SubSubCategoryResource;
@@ -22,11 +23,15 @@ class CourseResource extends JsonResource
             'description' => $this->description,
             'goals' => $this->goals,
             'requirements' => $this->requirements,
-            'status' => $this->status,
+            'status' => intval($this->status),
             'duration' => $this->duration,
             'price' => $this->price,
             'subsubcategory' => new SubSubCategoryResource($this->subsubcategory),
-            'students' => UserResource::collection($this->students)->count(),
+            'students' => [
+                'count' => $this->students()->where('payment_status', 1)->count(),
+                'feedback_avg' => (float)number_format($this->students()->where('feedback_stars', '<>', null)->avg('feedback_stars'), 1),
+                'feedback_count' => $this->students()->where('feedback_stars', '<>', null)->count()
+            ],
             'photo' => $this->photo,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at
