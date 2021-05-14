@@ -9,16 +9,9 @@ use Illuminate\Support\Facades\Storage;
 
 class CourseController extends Controller {
 
-    public function index(Request $request) {
+    public function index() {
 
-        $search = $request->query('search');
-
-        $courses = Course::where('name', 'LIKE', "%{$search}%")
-            ->with('students', 'subsubcategory')
-            ->orderBy('created_at', 'desc')
-            ->paginate(12);
-
-        return view('pages.admin.courses.course-index', compact('courses'));
+        return view('pages.admin.courses.course-index');
     }
 
     public function store(Request $request) {

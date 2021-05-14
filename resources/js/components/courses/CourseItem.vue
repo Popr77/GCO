@@ -24,15 +24,17 @@
         </div>
 
         <ul class="list-group list-group-flush">
-            <li class="list-group-item d-flex justify-content-between">
+            <li class="list-group-item d-flex justify-content-between align-items-center">
                 Rating:
                 <span>
                     <star-rating
-                        v-model="students.feedback_avg"
-                        :increment="0.1"
-                        :read-only="true"
-                        :star-size="20"/>
-                    {{ `(${students.feedback_count})` }}</span>
+                    v-model="students.feedback_avg"
+                    :increment="0.1"
+                    :read-only="true"
+                    :star-size="20"
+                    :inline="true"/>{{ `(${students.feedback_count})` }}
+                </span>
+
             </li>
             <li class="list-group-item d-flex justify-content-between">
                 # of Sales:
