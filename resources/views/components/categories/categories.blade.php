@@ -1,7 +1,7 @@
 <h1 class="text-center mt-5 mb-5">What do you want to learn?</h1>
 
 @if (session('status'))
-    <div class="alert alert-success alert-dismissible fade show container" role="alert">
+    <div class="alert alert-success alert-dismissible fade show container text-center" role="alert">
         {{ session('status') }}
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
