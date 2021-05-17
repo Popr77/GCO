@@ -2,10 +2,10 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Resources\CourseResource;
 use App\Http\Resources\CategoryResource;
-use App\Models\Course;
 use App\Models\Category;
+use App\Http\Controllers\Api\CourseController;
+use App\Http\Controllers\Api\CategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,22 +22,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/courses', function (Request $request) {
+Route::get('/courses', [CourseController::class, 'index']);
 
-    $search = $request->query('search');
-
-    return CourseResource::collection(Course::with('subsubcategory')
-        ->join('sub_sub_categories', 'courses.sub_sub_category_id', '=', 'sub_sub_categories.id')
-        ->join('sub_categories', 'sub_sub_categories.sub_category_id', '=', 'sub_categories.id')
-        ->join('categories', 'sub_categories.category_id', '=', 'categories.id')
-        ->where('sub_sub_categories.name', 'ILIKE', "%{$search}%")
-        ->orWhere('sub_categories.name', 'ILIKE', "%{$search}%")
-        ->orWhere('categories.name', 'ILIKE', "%{$search}%")
-        ->orWhere('courses.name', 'ILIKE', "%{$search}%")
-        ->orderBy('courses.created_at', 'desc')
-        ->paginate(12, 'courses.*'));
-});
-
-Route::get('/categories', function () {
-    return CategoryResource::collection(Category::all());
-});
+Route::get('/categories', [CategoryController::class, 'index']);
