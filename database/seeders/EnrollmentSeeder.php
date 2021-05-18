@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
+
 class EnrollmentSeeder extends Seeder
 {
     /**
@@ -43,6 +44,7 @@ class EnrollmentSeeder extends Seeder
             'payment_status' => 1,
             'feedback_stars' => 4,
             'feedback_comment' => "valeu!"
+            
         ]);DB::table('enrollments')->insert([
             'user_id' => 1,
             'course_id' => 5,

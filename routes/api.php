@@ -2,10 +2,10 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Resources\CourseResource;
 use App\Http\Resources\CategoryResource;
-use App\Models\Course;
 use App\Models\Category;
+use App\Http\Controllers\Api\CourseController;
+use App\Http\Controllers\Api\CategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,15 +22,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/courses', function (Request $request) {
-    $search = $request->query('search');
+Route::get('/courses', [CourseController::class, 'index']);
+Route::get('/courses/recommended', [CourseController::class, 'recommended']);
 
-    return CourseResource::collection(Course::where('name', 'LIKE', "%{$search}%")
-        ->with('subsubcategory')
-        ->orderBy('created_at', 'desc')
-        ->paginate(12));
-});
-
-Route::get('/categories', function () {
-    return CategoryResource::collection(Category::all());
-});
+Route::get('/categories', [CategoryController::class, 'index']);
