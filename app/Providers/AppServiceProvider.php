@@ -5,6 +5,7 @@ namespace App\Providers;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Blade;
+use App\Models\Course;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -30,6 +31,14 @@ class AppServiceProvider extends ServiceProvider
 
         Blade::if('admin', function() {
             return auth()->check() && auth()->user()->type->id == 1;
+        });
+
+        Blade::if('hasCourse', function(Course $course) {
+            if(auth()->check()) {
+                $a = auth()->user()->courses()->where('course_id', $course->id)->where('payment_status', 1)->count();
+                return $a === 1;
+            }
+            return false;
         });
     }
 }
