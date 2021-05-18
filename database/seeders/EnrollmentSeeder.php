@@ -15,7 +15,7 @@ class EnrollmentSeeder extends Seeder
     public function run()
     {
         DB::table('enrollments')->insert([
-            'user_id' => 2,
+            'user_id' => 1,
             'course_id' => 1,
             'date' => now()->toDateTimeString(),
             'payment_status' => 1,
@@ -23,7 +23,7 @@ class EnrollmentSeeder extends Seeder
             'feedback_comment' => "valeu!"
         ]);
         DB::table('enrollments')->insert([
-            'user_id' => 2,
+            'user_id' => 1,
             'course_id' => 2,
             'date' => now()->toDateTimeString(),
             'payment_status' => 1,

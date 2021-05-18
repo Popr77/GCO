@@ -12,6 +12,7 @@ import CategorySelect from './components/courses/CategorySelect.vue'
 import QuestionsContainer from './components/quiz/QuestionsContainer.vue'
 import DashboardHeader from "./components/DashboardHeader";
 import StarRating from 'vue-star-rating'
+import CreateQuestions from "./components/quiz/CreateQuestions";
 
 const app = new Vue({
     el: '#app',
