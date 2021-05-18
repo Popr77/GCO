@@ -101,7 +101,7 @@
 
             <div class="lesson-menu-quizz bg-light mt-0 container-fluid text-center
     position-fixed py-3  my-auto">
-                <button class="btn btn-primary">Take Quizz</button>
+                <button class="btn btn-primary"><a href="{{url('quiz/take/'.$lesson->id)}}">Take Quizz</a></button>
             </div>
         </div>
 
@@ -164,7 +164,7 @@
 
         <div class="lesson-menu-quizz2 mt-0 container-fluid col-2 text-center
     position-fixed bg-light py-3">
-            <button class="btn btn-primary ">Take Quizz</button>
+            <button class="btn btn-primary "><a href="{{url('quiz/take/'.$lesson->id)}}">Take Quizz</a></button>
         </div>
 
     </div>

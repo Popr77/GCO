@@ -12,8 +12,7 @@
 
         <questions-container class="mb-5"
                              :questions="{{$questions}}"
-                             link="{{url('quiz/'.$questions[0]->lesson->id)}}">
-            @csrf
+                             link="{{url('quiz/take/'.$questions[0]->lesson->id)}}">
         </questions-container>
 </div>
 

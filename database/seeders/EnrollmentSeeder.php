@@ -16,84 +16,77 @@ class EnrollmentSeeder extends Seeder
     public function run()
     {
         DB::table('enrollments')->insert([
-            'user_id'          => 2,
-            'course_id'        => 1,
-            'date'             => now()->toDateTimeString(),
-            'payment_status'   => 1,
-            'feedback_stars'   => 2,
+            'user_id' => 1,
+            'course_id' => 1,
+            'date' => now()->toDateTimeString(),
+            'payment_status' => 1,
+            'feedback_stars' => 4,
             'feedback_comment' => "valeu!"
         ]);
         DB::table('enrollments')->insert([
-            'user_id'          => 2,
-            'course_id'        => 2,
-            'date'             => now()->toDateTimeString(),
-            'payment_status'   => 1,
-            'feedback_stars'   => 5,
+            'user_id' => 1,
+            'course_id' => 2,
+            'date' => now()->toDateTimeString(),
+            'payment_status' => 1,
+            'feedback_stars' => 4,
             'feedback_comment' => "valeu!"
-        ]);
-        DB::table('enrollments')->insert([
-            'user_id'          => 2,
-            'course_id'        => 3,
-            'date'             => now()->toDateTimeString(),
-            'payment_status'   => 1,
-            'feedback_stars'   => 3,
+        ]);DB::table('enrollments')->insert([
+            'user_id' => 1,
+            'course_id' => 3,
+            'date' => now()->toDateTimeString(),
+            'payment_status' => 1,
+            'feedback_stars' => 4,
             'feedback_comment' => "valeu!"
-        ]);
-        DB::table('enrollments')->insert([
-            'user_id'          => 2,
-            'course_id'        => 4,
-            'date'             => now()->toDateTimeString(),
-            'payment_status'   => 1,
-            'feedback_stars'   => 1,
+        ]);DB::table('enrollments')->insert([
+            'user_id' => 1,
+            'course_id' => 4,
+            'date' => now()->toDateTimeString(),
+            'payment_status' => 1,
+            'feedback_stars' => 4,
             'feedback_comment' => "valeu!"
-        ]);
-        DB::table('enrollments')->insert([
-            'user_id'          => 2,
-            'course_id'        => 5,
-            'date'             => now()->toDateTimeString(),
-            'payment_status'   => 1,
-            'feedback_stars'   => null,
-            'feedback_comment' => null
-        ]);
-        DB::table('enrollments')->insert([
-            'user_id'          => 2,
-            'course_id'        => 6,
-            'date'             => now()->toDateTimeString(),
-            'payment_status'   => 1,
-            'feedback_stars'   => null,
-            'feedback_comment' => null
-        ]);
-        DB::table('enrollments')->insert([
-            'user_id'          => 2,
-            'course_id'        => 7,
-            'date'             => now()->toDateTimeString(),
-            'payment_status'   => 1,
-            'feedback_stars'   => 3,
+            
+        ]);DB::table('enrollments')->insert([
+            'user_id' => 1,
+            'course_id' => 5,
+            'date' => now()->toDateTimeString(),
+            'payment_status' => 1,
+            'feedback_stars' => 4,
             'feedback_comment' => "valeu!"
-        ]);
-        DB::table('enrollments')->insert([
-            'user_id'          => 2,
-            'course_id'        => 8,
-            'date'             => now()->toDateTimeString(),
-            'payment_status'   => 1,
-            'feedback_stars'   => 5,
+        ]);DB::table('enrollments')->insert([
+            'user_id' => 1,
+            'course_id' => 6,
+            'date' => now()->toDateTimeString(),
+            'payment_status' => 1,
+            'feedback_stars' => 4,
             'feedback_comment' => "valeu!"
-        ]);
-        DB::table('enrollments')->insert([
-            'user_id'          => 2,
-            'course_id'        => 9,
-            'date'             => now()->toDateTimeString(),
-            'payment_status'   => 1,
-            'feedback_stars'   => null,
-            'feedback_comment' => null
-        ]);
-        DB::table('enrollments')->insert([
-            'user_id'          => 2,
-            'course_id'        => 10,
-            'date'             => now()->toDateTimeString(),
-            'payment_status'   => 1,
-            'feedback_stars'   => null,
-            'feedback_comment' => null
+        ]);DB::table('enrollments')->insert([
+            'user_id' => 1,
+            'course_id' => 7,
+            'date' => now()->toDateTimeString(),
+            'payment_status' => 1,
+            'feedback_stars' => 4,
+            'feedback_comment' => "valeu!"
+        ]);DB::table('enrollments')->insert([
+            'user_id' => 1,
+            'course_id' => 8,
+            'date' => now()->toDateTimeString(),
+            'payment_status' => 1,
+            'feedback_stars' => 4,
+            'feedback_comment' => "valeu!"
+        ]);DB::table('enrollments')->insert([
+            'user_id' => 1,
+            'course_id' => 9,
+            'date' => now()->toDateTimeString(),
+            'payment_status' => 1,
+            'feedback_stars' => 4,
+            'feedback_comment' => "valeu!"
+        ]);DB::table('enrollments')->insert([
+            'user_id' => 1,
+            'course_id' => 10,
+            'date' => now()->toDateTimeString(),
+            'payment_status' => 1,
+            'feedback_stars' => 4,
+            'feedback_comment' => "valeu!"
         ]);
     }
 }

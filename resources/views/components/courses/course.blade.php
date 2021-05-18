@@ -67,23 +67,27 @@
 
 <div class="container px-0">
     <div id="accordion">
-        @foreach($course->modules as $index => $module)
-            <div class="card">
-                <div class="card-header" id="heading">
-                    <h5 class="mb-0">
-                        <button class="btn module-name" data-toggle="collapse" data-parent="#accordion" href="#collapse-{{ $index }}">{{ $module->name }}</button>
-                    </h5>
-                </div>
+            @foreach($course->modules as $index => $module)
+                <div class="card">
+                    <div class="card-header" id="heading">
+                        <h5 class="mb-0">
+                            <button class="btn module-name" data-toggle="collapse" data-parent="#accordion" href="#collapse-{{ $index }}">{{ $module->name }}</button>
+                        </h5>
+                    </div>
 
-                <div id="collapse-{{$index}}" class="collapse" aria-labelledby="heading" data-parent="#accordion">
-                    @foreach($module->lessons as $lesson)
-                        <div class="card-body">
-                            <a class="lesson-name text-decoration-none" href="{{url('lessons/' . $lesson->id)}}">{{$lesson->title}}</a>
-                        </div>
-                    @endforeach
+                    <div id="collapse-{{$index}}" class="collapse" aria-labelledby="heading" data-parent="#accordion">
+                        @foreach($module->lessons as $lesson)
+                            <div class="card-body">
+                                @hasCourse($course)
+                                <a class="lesson-name text-decoration-none" href="{{url('lessons/' . $lesson->id)}}">{{$lesson->title}} </a>
+                                @else
+                                    <i class="bi bi-lock-fill text-dark"></i> <a class="lesson-name text-decoration-none">{{$lesson->title}} </a>
+                                @endhasCourse
+                            </div>
+                        @endforeach
+                    </div>
                 </div>
-            </div>
-        @endforeach
+            @endforeach
     </div>
 </div>
 
