@@ -98,7 +98,10 @@
 </div>
 
 <!-- Related Courses -->
+@hasCourse($course)
+    @hasGrade($course)
+        <p>cenas</p>
+    @endhasGrade
+@endhasCourse
 
 <h2 class="container-fluid d-flex justify-content-center align-items-center mt-4">Related Courses</h2>
-
-

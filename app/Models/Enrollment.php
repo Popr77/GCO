@@ -12,4 +12,8 @@ class Enrollment extends Model
     public function grades() {
         return $this->belongsToMany(Lesson::class, 'lesson_grades');
     }
+
+    public function examGrade() {
+        return $this->hasOne(ExamGrade::class);
+    }
 }
