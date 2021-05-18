@@ -6,7 +6,6 @@ use App\Models\Course;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Blade;
-use App\Models\Course;
 
 class AppServiceProvider extends ServiceProvider
 {
