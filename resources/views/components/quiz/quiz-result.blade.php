@@ -30,7 +30,7 @@
     </div>
     @if($lessonGrade->grade < 50)
         <div class="container">
-            <a href="{{url('quiz/'. $lessonGrade->lesson_id)}}"><button type="button" class="btn btn-primary float-right mr-4">Repeat Quiz</button></a>
+            <a href="{{url('quiz/take/'. $lessonGrade->lesson_id)}}"><button type="button" class="btn btn-primary float-right mr-4">Repeat Quiz</button></a>
         </div>
     @endif
 

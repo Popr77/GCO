@@ -64,7 +64,7 @@
 
             <div class="lesson-menu-quizz bg-light mt-0 container-fluid text-center
     position-fixed py-3  my-auto">
-                <button class="btn btn-primary">Take Quizz</button>
+                <button class="btn btn-primary "><a href="{{url('quiz/take/1')}}">Take Quizz</a></button>
             </div>
         </div>
 
@@ -127,7 +127,7 @@
 
         <div class="lesson-menu-quizz2 mt-0 container-fluid col-2 text-center
     position-fixed bg-light py-3">
-            <button class="btn btn-primary ">Take Quizz</button>
+            <button class="btn btn-primary "><a style="text-decoration: none; color: white" href="{{url('quiz/take/1')}}">Take Quizz</a></button>
         </div>
 
     </div>
@@ -146,7 +146,7 @@
             desktop publishing software like Aldus PageMaker
             including versions of Lorem Ipsum.</p>
     </div>
-    <div class="d-flex flex-row flex-wrap col-lg-10 mx-auto">
+    <div class="d-flex flex-row flex-wrap col-lg-10 mx-auto mb-5">
         <div class="p-2 col-lg-7">
             <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has
                 been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley
@@ -158,8 +158,6 @@
         </div>
         <div class="p-2 col-lg-5"><img class="col-12" src="asset('img/avatar.jpeg')" alt=""></div>
     </div>
-
-
 
     <script>
         // Load the IFrame Player API code asynchronously.

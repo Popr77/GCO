@@ -262,5 +262,89 @@ class AnswerSeeder extends Seeder
             'is_correct' => '1'
         ]);
 
+        DB::table('answers')->insert([
+            'answer' => 'Answer 3.A',
+            'question_id' => 12,
+            'is_correct' => '0'
+        ]);
+        DB::table('answers')->insert([
+            'answer' => 'Answer 3.B',
+            'question_id' => 12,
+            'is_correct' => '0'
+        ]);
+        DB::table('answers')->insert([
+            'answer' => 'Answer 3.C',
+            'question_id' => 12,
+            'is_correct' => '0'
+        ]);
+        DB::table('answers')->insert([
+            'answer' => 'Answer 3.D',
+            'question_id' => 12,
+            'is_correct' => '1'
+        ]);
+
+        DB::table('answers')->insert([
+            'answer' => 'Answer 4.A',
+            'question_id' => 13,
+            'is_correct' => '0'
+        ]);
+        DB::table('answers')->insert([
+            'answer' => 'Answer 4.B',
+            'question_id' => 13,
+            'is_correct' => '0'
+        ]);
+        DB::table('answers')->insert([
+            'answer' => 'Answer 4.C',
+            'question_id' => 13,
+            'is_correct' => '0'
+        ]);
+        DB::table('answers')->insert([
+            'answer' => 'Answer 4.D',
+            'question_id' => 13,
+            'is_correct' => '1'
+        ]);
+
+        DB::table('answers')->insert([
+            'answer' => 'Answer 5.A',
+            'question_id' => 14,
+            'is_correct' => '0'
+        ]);
+        DB::table('answers')->insert([
+            'answer' => 'Answer 5.B',
+            'question_id' => 14,
+            'is_correct' => '0'
+        ]);
+        DB::table('answers')->insert([
+            'answer' => 'Answer 5.C',
+            'question_id' => 14,
+            'is_correct' => '0'
+        ]);
+        DB::table('answers')->insert([
+            'answer' => 'Answer 5.D',
+            'question_id' => 14,
+            'is_correct' => '1'
+        ]);
+
+        DB::table('answers')->insert([
+            'answer' => 'Answer 6.A',
+            'question_id' => 15,
+            'is_correct' => '0'
+        ]);
+        DB::table('answers')->insert([
+            'answer' => 'Answer 6.B',
+            'question_id' => 15,
+            'is_correct' => '0'
+        ]);
+        DB::table('answers')->insert([
+            'answer' => 'Answer 6.C',
+            'question_id' => 15,
+            'is_correct' => '0'
+        ]);
+        DB::table('answers')->insert([
+            'answer' => 'Answer 6.D',
+            'question_id' => 15,
+            'is_correct' => '1'
+        ]);
+
     }
 }

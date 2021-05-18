@@ -8,6 +8,10 @@
     </div>
 @endif
 
-<create-questions></create-questions>
+<create-questions status="{{$status}}"
+        :lesson-id="{{intval($lesson->id)}}"
+         link="{{url('quiz/')}}">
+
+</create-questions>
 
 

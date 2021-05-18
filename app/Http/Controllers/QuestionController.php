@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Answer;
 use App\Models\Lesson;
 use App\Models\LessonGrade;
 use App\Models\Question;
@@ -39,13 +40,11 @@ class QuestionController extends Controller
      */
     public function quiz(Lesson $lesson)
     {
-        $questions = Question::with("answers")
+        $questionsAll = Question::with("answers")
             ->where('lesson_id',$lesson->id)
             ->get();
 
-//        dd($questionsAll);
-//        $questions = $questionsAll->random(5);
-//        dd($questions);
+        $questions = $questionsAll->random(5);
 
         return view("pages.quiz.quiz", ['questions' => $questions]);
     }
@@ -57,7 +56,8 @@ class QuestionController extends Controller
      */
     public function create()
     {
-        //
+        $lesson = Lesson::find(1);
+        return view("pages.quiz.quiz-form-create",  ['status' => 'alright', 'lesson' => $lesson] );
     }
 
     /**
@@ -68,8 +68,7 @@ class QuestionController extends Controller
      */
     public function save(Request $request)
     {
-//        dd($request);
-//        try{
+        try{
             $questionsID = explode(",", $request->questionInput);
             $answersQuiz = explode(",", $request->anwserInput);
 
@@ -100,17 +99,14 @@ class QuestionController extends Controller
                 ->where('course_id', $course_id)
                 ->get();
 
-
-           $lessonGrade = DB::table('lesson_grades')
+            $lessonGrade = DB::table('lesson_grades')
                 ->where('lesson_id', $questions[0]->lesson_id)
                 ->where('enrollment_id',$enrollment_id[0]->id)
                 ->get();
 
-//            dd($questions[0]->lesson_id);
 
+            if (isset($lessonGrade) && !$lessonGrade->isEmpty()){
 
-        if (isset($lessonGrade)){
-                dd("update");
                 $lessonGrade = LessonGrade::find($lessonGrade[0]->id);
                 $lessonGrade->lesson_id = $questions[0]->lesson_id;
                 $lessonGrade->grade = $grade;
@@ -120,7 +116,6 @@ class QuestionController extends Controller
                 $lessonGrade->save();
 
             }else{
-            dd("create");
 
                 $lessonGrade = new  LessonGrade();
                 $lessonGrade->lesson_id = $questions[0]->lesson_id;
@@ -131,13 +126,13 @@ class QuestionController extends Controller
                 $lessonGrade->save();
 
             }
+            return view('pages.quiz.quiz-result', ['lessonGrade'=> $lessonGrade]);
 
-//        }catch (\Exception  $e){
 
-//            abort(403);
-//        }
+        }catch (\Exception  $e){
 
-        return view('pages.quiz.quiz-result', ['lessonGrade'=> $lessonGrade]);
+            abort(403);
+        }
 
     }
 
@@ -149,77 +144,34 @@ class QuestionController extends Controller
      */
     public function store(Request $request)
     {
-//        dd($request);
-//        try{
-            $questionsID = explode(",", $request->questionInput);
-            $answersQuiz = explode(",", $request->anwserInput);
+        $nQuestions = (count($request->all())-2)/6;
 
-            $questions = [];
-            foreach ($questionsID as $questionID){
-                array_push($questions, Question::find($questionID));
+        for ($i = 1; $i <= $nQuestions; $i++){
+
+            $correct = $request->input('correct'.$i);
+
+            $question = new  Question();
+            $question->lesson_id = $request->input('lessonID');
+            $question->question = $request->input('question'.$i);
+            $question->save();
+
+//            dd($question->id);
+            for ($i2 = 1; $i2 <= 4; $i2++) {
+
+                $answer = new  Answer();
+                $answer->question_id = $question->id;
+                $answer->answer = $request->input('answer'.$i.'_'.$i2);
+
+                if ($correct == $i2)
+                    $answer->is_correct = 1;
+                else
+                    $answer->is_correct = 0;
+
+                $answer->save();
             }
+        }
 
-            $total=0;
-            foreach ($questions as $question){
-                foreach ($question->answers as $answer){
-                    if($answer->is_correct == 1){
-                        if(in_array($answer->id, $answersQuiz))
-                            $total++;
-                    }
-                }
-            }
-
-            $grade = $total*100/count($questionsID);
-            $dateTime = now()->toDateTimeString();
-
-            $lesson = Lesson::find($questions[0]->lesson_id);
-            $course_id = $lesson->module->course_id;
-            $user_id = auth()->user()->id;
-
-            $enrollment_id = DB::table('enrollments')
-                ->where('user_id', $user_id)
-                ->where('course_id', $course_id)
-                ->get();
-
-
-           $lessonGrade = DB::table('lesson_grades')
-                ->where('lesson_id', $questions[0]->lesson_id)
-                ->where('enrollment_id',$enrollment_id[0]->id)
-                ->get();
-
-//            dd($questions[0]->lesson_id);
-
-
-        if (isset($lessonGrade)){
-                dd("update");
-                $lessonGrade = LessonGrade::find($lessonGrade[0]->id);
-                $lessonGrade->lesson_id = $questions[0]->lesson_id;
-                $lessonGrade->grade = $grade;
-                $lessonGrade->date = $dateTime;
-                $lessonGrade->created_at = $dateTime;
-                $lessonGrade->enrollment_id = $enrollment_id[0]->id;
-                $lessonGrade->save();
-
-            }else{
-            dd("create");
-
-                $lessonGrade = new  LessonGrade();
-                $lessonGrade->lesson_id = $questions[0]->lesson_id;
-                $lessonGrade->grade = $grade;
-                $lessonGrade->date = $dateTime;
-                $lessonGrade->created_at = $dateTime;
-                $lessonGrade->enrollment_id = $enrollment_id[0]->id;
-                $lessonGrade->save();
-
-            }
-
-//        }catch (\Exception  $e){
-
-//            abort(403);
-//        }
-
-        return view('pages.quiz.quiz-result', ['lessonGrade'=> $lessonGrade]);
-
+        return redirect('lessons')->with('status', 'Lesson created successfully!');
     }
 
     /**

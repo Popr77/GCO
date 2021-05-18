@@ -10,6 +10,7 @@ import Vue from 'vue'
 import Courses from "./components/courses/Courses.vue";
 import CategorySelect from './components/courses/CategorySelect.vue'
 import QuestionsContainer from './components/quiz/QuestionsContainer.vue'
+import CreateQuestions from './components/quiz/CreateQuestions.vue'
 import DashboardHeader from "./components/DashboardHeader";
 import StarRating from 'vue-star-rating'
 

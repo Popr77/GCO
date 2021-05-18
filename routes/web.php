@@ -107,7 +107,11 @@ Route::post('change-password', [ChangePasswordController::class, 'store'])->name
 
 
 Route::prefix('/quiz')->group(function() {
-    Route::get('{lesson}', [QuestionController::class, 'quiz']);
-    Route::post('{lesson}', [QuestionController::class, 'save']);
-    Route::post('{lesson}', [QuestionController::class, 'create']);
+    Route::get('/take/{lesson}', [QuestionController::class, 'quiz']);
+    Route::post('/take/{lesson}', [QuestionController::class, 'save']);
+
+//    //talvez apagar
+    Route::get('/create', [QuestionController::class, 'create']);
+    Route::post('/', [QuestionController::class, 'store']);
+
 });

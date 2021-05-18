@@ -19,7 +19,7 @@ class CreateQuestionsTable extends Migration
             $table->foreignId('lesson_id')->constrained()->onDelete('cascade');
             $table->timestamps();
 
-            $table->unique(['question', 'lesson_id']);
+            $table->unique(['lesson_id', 'question']);
         });
     }
 

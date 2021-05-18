@@ -25,11 +25,11 @@ class UserSeeder extends Seeder
         DB::table('user_data')->insert([
             'user_id' => 1,
             'name' => 'admin',
-            'address' => '',
-            'postal_code' => '',
-            'city' => '',
-            'phone' => '',
-            'nif' => 0,
+            'address' => 'Rua das Belas',
+            'postal_code' => '2350-232',
+            'city' => 'Porto',
+            'phone' => '254362854',
+            'nif' => 105204132,
             'photo' => 'logo.jpg'
         ]);
 

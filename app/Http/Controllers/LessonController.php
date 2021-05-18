@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Content;
 use App\Models\ContentType;
 use App\Models\Lesson;
+use App\Models\Module;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use phpDocumentor\Reflection\Types\Integer;
@@ -30,7 +31,6 @@ class LessonController extends Controller
      */
     public function lesson()
     {
-
         return view('pages.lesson');
     }
 
@@ -47,6 +47,8 @@ class LessonController extends Controller
 //        $lesson_id = Lesson::latest('id')->first();
 //        dd($lesson_id);
 
+        $modules = Module::all();
+
 
         if (isset($_GET['num']) && isset($_GET['title']) && isset($_GET['lesson_number']) && isset($_GET['module_id'])){
 
@@ -62,7 +64,7 @@ class LessonController extends Controller
             $lesson_number = $_GET['lesson_number'];
             $module_id = $_GET['module_id'];
 
-            return view('pages.admin.create-lesson', ['num' => $num,
+            return view('pages.admin.lessons.lesson-create', ['num' => $num, 'modules' => $modules,
                 'title' => $title, 'lesson_number' => $lesson_number,
                 'module_id' => $module_id, 'quillItems' => $quillItems]);
 
@@ -70,11 +72,11 @@ class LessonController extends Controller
 
             $num = $_GET['num'];
 
-            return view('pages.admin.create-lesson', ['num' => $num]);
+            return view('pages.admin.lessons.lesson-create', ['num' => $num, 'modules' => $modules]);
 
         }else{
             $num = 3;
-            return view('pages.admin.create-lesson', ['num' => $num]);
+            return view('pages.admin.lessons.lesson-create', ['num' => $num, 'modules' => $modules]);
         }
     }
 
@@ -88,6 +90,8 @@ class LessonController extends Controller
     {
 
         if ($_POST['action'] == 'update') {
+
+            $modules = Module::all();
 
             $num = $request->containers;
             $title = $request->title;
@@ -103,7 +107,7 @@ class LessonController extends Controller
                 }
                 $index++;
             }
-            return view('pages.admin.create-lesson', ['num' => $num,
+            return view('pages.admin.lessons.lesson-create', ['num' => $num, 'modules' => $modules,
                 'title' => $title, 'lesson_number' => $lesson_number,
                 'module_id' => $module_id, 'quillItems' => $quillItems]);
 
@@ -141,7 +145,9 @@ class LessonController extends Controller
                 $index++;
 
             }
-            return redirect('lessons')->with('status', 'Lesson created successfully!');
+            return view("pages.quiz.quiz-form-create", ['status' => 'Lesson created successfully!', 'lesson' => $lesson]);
+
+//            return redirect('quiz/create')->with('status', 'Lesson created successfully!');
         }
 
     }
@@ -158,7 +164,9 @@ class LessonController extends Controller
 //            dd($content);
 //        }
 
+//        temp
         return view('pages.lessons.show', ['lesson' => $lesson]);
+//        return view('pages.lesson');
 
     }
 
@@ -170,7 +178,6 @@ class LessonController extends Controller
      */
     public function edit(Lesson $lesson)
     {
-
         if (isset($_GET['num']) && isset($_GET['title']) && isset($_GET['lesson_number']) && isset($_GET['module_id'])){
 
             $quillItems  = [];
@@ -185,7 +192,7 @@ class LessonController extends Controller
             $lesson_number = $_GET['lesson_number'];
             $module_id = $_GET['module_id'];
 
-            return view('pages.admin.lesson-edit', ['num' => $num,
+            return view('pages.admin.lessons.lesson-edit', ['num' => $num,
                 'title' => $title, 'lesson_number' => $lesson_number,
                 'module_id' => $module_id, 'quillItems' => $quillItems]);
 
@@ -193,10 +200,10 @@ class LessonController extends Controller
 
             $num = $_GET['num'];
 
-            return view('pages.admin.lesson-edit', ['num' => $num]);
+            return view('pages.admin.lessons.lesson-edit', ['num' => $num]);
 
         }else{
-            return view('pages.admin.lesson-edit', ['lesson' => $lesson]);
+            return view('pages.admin.lessons.lesson-edit', ['lesson' => $lesson]);
         }
     }
 
@@ -234,7 +241,7 @@ class LessonController extends Controller
                 }
                 $index++;
             }
-            return view('pages.admin.lesson-edit', ['lesson' => $lesson,'num' => $num,
+            return view('pages.admin.lessons.lesson-edit', ['lesson' => $lesson,'num' => $num,
                 'title' => $title, 'lesson_number' => $lesson_number,
                 'module_id' => $module_id, 'quillItems' => $quillItems]);
 

@@ -18,16 +18,11 @@
                     required
                     class="browser-default custom-select form-control
             @error('containers') is-invalid @enderror">
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                    <option value="6">6</option>
-                    <option value="7">7</option>
-                    <option value="8">8</option>
-                    <option value="9">9</option>
-                    <option value="10">10</option>
+                    @for($i=1; $i<=10; $i++)
+                        <option
+                            @if(count($lesson->contents) == $i) selected="" @endif
+                        value="{{$i}}">{{$i}}</option>
+                    @endfor
                 </select>
                 @error('containers')
                 <span class="invalid-feedback" role="alert">
@@ -132,16 +127,11 @@
                     required
                     class="browser-default custom-select form-control
             @error('containers') is-invalid @enderror">
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                    <option value="6">6</option>
-                    <option value="7">7</option>
-                    <option value="8">8</option>
-                    <option value="9">9</option>
-                    <option value="10">10</option>
+                    @for($i=1; $i<=10; $i++)
+                        <option
+                            @if($num == $i) selected="" @endif
+                        value="{{$i}}">{{$i}}</option>
+                    @endfor
                 </select>
                 @error('containers')
                 <span class="invalid-feedback" role="alert">
@@ -249,7 +239,9 @@
 
 </div>
 
+
 <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+<link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
 <script>
     let submitted = false;
     @if(!isset($num) && isset($lesson))

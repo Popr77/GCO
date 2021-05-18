@@ -3,6 +3,8 @@
         <div>
             <answers-list>
                 <form method="post" ref="myform" :action="link" >
+                    <input type="hidden" name="_token" :value="csrf">
+
                     <slot></slot>
                     <h3>{{currentQuestion.question}}</h3>
                     <div class="input-group-prepend d-flex flex-column col-6 mx-auto mb-5 mt-4">
@@ -39,7 +41,8 @@ export default {
             currentQuestion : this.questions[0],
             index: 0,
             optionSelected: [],
-            idQuestions: []
+            idQuestions: [],
+            csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content')
         }
     },
     props: {
