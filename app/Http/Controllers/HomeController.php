@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Course;
 use App\Models\UserData;
 use http\Client\Curl\User;
 use Illuminate\Http\Request;
@@ -26,7 +27,12 @@ class HomeController extends Controller
 
     public function registered()
     {
-        return view('pages.registered');
+        $courses = Course::withCount('students')
+            ->orderBy('students_count', 'desc')
+            ->limit(9)
+            ->get();
+
+        return view('pages.registered', ['courses' => $courses]);
     }
 
 }

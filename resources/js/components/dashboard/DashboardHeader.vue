@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import SearchBar from './SearchBar.vue';
+import SearchBar from '../SearchBar.vue';
 import CategorySelect from './courses/CategorySelect.vue';
 
 export default {
