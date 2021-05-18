@@ -33,6 +33,7 @@ class CourseResource extends JsonResource
                 'feedback_count' => $this->students()->where('feedback_stars', '<>', null)->count()
             ],
             'photo' => $this->photo,
+            'url' => url('courses/' . $this->id),
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at
         ];

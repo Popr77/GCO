@@ -28,7 +28,7 @@
 
 <script>
 import DashboardHeader from "../DashboardHeader";
-import SearchBar from "../SearchBar";
+import SearchBar from "../../SearchBar";
 import CategorySelect from "./CategorySelect";
 import CourseList from "./CourseList";
 

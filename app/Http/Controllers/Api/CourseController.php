@@ -24,4 +24,11 @@ class CourseController extends Controller {
             ->orderBy('courses.created_at', 'desc')
             ->paginate(12, 'courses.*'));
     }
+
+    public function recommended() {
+
+        return CourseResource::collection(Course::withCount(['students' => function ($query) {
+            $query->where('payment_status', 1);
+        }])->orderBy('students_count', 'desc')->take(9)->get());
+    }
 }
