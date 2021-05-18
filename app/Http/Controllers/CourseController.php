@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Course;
+use App\Models\Enrollment;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class CourseController extends Controller
 {
@@ -46,6 +49,8 @@ class CourseController extends Controller
      */
     public function show(Course $course)
     {
+        $course = Course::where('id', $course->id)->with('subsubcategory.subcategory.category', 'students')->get()->first();
+
         return view('pages.courses.course-show', compact('course'));
     }
 

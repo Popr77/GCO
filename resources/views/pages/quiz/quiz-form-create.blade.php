@@ -1,6 +1,8 @@
 @extends('master.main')
 
 @section('content')
-    @component('components.courses.course', ['course' => $course])
+    @component('components.quiz.quiz-create')
     @endcomponent
 @endsection
+
+

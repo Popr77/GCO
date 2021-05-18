@@ -36,7 +36,7 @@
       <img class="card-img-top" src="https://cdn.datafloq.com/cache/blog_pictures/878x531/artificial-intelligence-future-of-programming.jpg" alt="Image course 2">
       <div class="card-body">
         <h5 class="card-title text-center">Course</h5>
-        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam beatae corporis debitis incidunt ipsa laboriosam molestiae quaerat reprehenderit sapiente vero! Aliquam commodi, consequuntur eum laborum maiores nulla perspiciatis reprehenderit sapiente!</p>
+        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam beatae corporis nwedbef rnjebrfjsf wehbnrfusdtf ejhrtfdsfg hrfdsfnssb erfhsduf corporis nwedbef rnjebrfjsf wehbnrfusdtf ejhrtfdsfg hrfdsfnssb erfhsdufe!</p>
       </div>
       <a href="#" class="btn btn-primary d-flex justify-content-center" style="margin: 10px">See full course</a>
     </div>
