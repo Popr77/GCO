@@ -12,7 +12,7 @@
                 <input type="text" class="border-0" placeholder="Search">
             </div>
         </form>
-        <ul class="navbar-nav d-lg-flex flex-lg-row">
+        <ul class="navbar-nav d-lg-flex flex-lg-row align-items-lg-center">
             @guest
                 <li class="nav-item mx-sm-1 flex-fill">
                     <a href="{{ route('login') }}" class="btn btn-primary my-1 my-lg-0 w-100">Log In</a>
@@ -22,17 +22,17 @@
                 </li>
             @else
                 @admin
-                <li class="nav-item mx-sm-1 flex-fill">
+                <li class="nav-item mx-sm-1 flex-fill order-1">
                     <a href="{{ url('dashboard') }}" class="btn btn-primary my-1 my-lg-0 w-100">Admin Dashboard</a>
                 </li>
                 @endadmin
 
-                <li class="nav-item mx-sm-1 flex-fill">
+                <li class="nav-item mx-sm-1 flex-fill order-1">
                     <a href="#" class="btn btn-primary my-1 my-lg-0 w-100">My Courses</a>
                 </li>
-                <li class="nav-item mx-sm-1 flex-fill dropdown">
+                <li class="nav-item mx-sm-1 flex-fill dropdown order-1">
                     <a class="nav-link dropdown-toggle w-100 d-none d-lg-block" data-toggle="dropdown" href="#"
-                       role="button" aria-haspopup="true" aria-expanded="false">Username</a>
+                       role="button" aria-haspopup="true" aria-expanded="false">{{ auth()->user()->userData->name }}</a>
                     <div class="dropdown-menu dropdown-menu-right" id="navUserMenu">
                         <div id="navUserMenuInfo" class="d-flex align-items-center">
 {{--                            <p>@php dd(auth()->user()->userData->photo)@endphp</p>--}}
@@ -59,4 +59,5 @@
             @endguest
         </ul>
     </div>
+    <cart></cart>
 </nav>

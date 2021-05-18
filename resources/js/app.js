@@ -6,13 +6,24 @@ $(document).on('click', '.navbar #navUserMenu', function (e) {
 });
 
 import Vue from 'vue'
+import Vuex from 'vuex'
 
-import Courses from "./components/courses/Courses.vue";
-import CategorySelect from './components/courses/CategorySelect.vue'
+Vue.use(Vuex)
+import storeData from './store/index'
+const store = new Vuex.Store(
+    storeData
+)
+
+//Dashboard
+import Courses from "./components/dashboard/courses/Courses.vue";
+import CategorySelect from './components/dashboard/courses/CategorySelect.vue'
+import DashboardHeader from "./components/dashboard/DashboardHeader";
+
 import QuestionsContainer from './components/quiz/QuestionsContainer.vue'
-import DashboardHeader from "./components/DashboardHeader";
 import StarRating from 'vue-star-rating'
 import CreateQuestions from "./components/quiz/CreateQuestions";
+import Cart from "./components/courses/Cart"
+import CourseList from './components/courses/CourseList'
 
 const app = new Vue({
     el: '#app',
@@ -22,6 +33,9 @@ const app = new Vue({
         CreateQuestions,
         Courses,
         DashboardHeader,
-        StarRating
-    }
+        StarRating,
+        Cart,
+        CourseList
+    },
+    store
 });
