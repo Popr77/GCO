@@ -16,14 +16,14 @@
 
 <!-- Courses grid -->
 
-<div class="container">
+<div class="container mb-5">
     <div class="dropdown d-flex justify-content-end">
         <button class="btn btn-primary dropdown-toggle mb-3" type="button" id="dropdownMenuButton"
                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Categories
         </button>
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <a class="dropdown-item" href="/categories">See All</a>
+            <a class="dropdown-item" href="{{ url('categories') }}">See All</a>
             <a class="dropdown-item" href="#">Programming</a>
             <a class="dropdown-item" href="#">Music</a>
             <a class="dropdown-item" href="#">Networking</a>

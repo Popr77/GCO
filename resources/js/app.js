@@ -18,6 +18,7 @@ const store = new Vuex.Store(
 import Courses from "./components/dashboard/courses/Courses.vue";
 import CategorySelect from './components/dashboard/courses/CategorySelect.vue'
 import DashboardHeader from "./components/dashboard/DashboardHeader";
+
 import QuestionsContainer from './components/quiz/QuestionsContainer.vue'
 import CreateQuestions from './components/quiz/CreateQuestions.vue'
 import StarRating from 'vue-star-rating'
