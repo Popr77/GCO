@@ -26,6 +26,7 @@ export default {
         },
         clearCart(state) {
             state.cart = []
+            this.commit('saveCart')
         }
     }
 }
