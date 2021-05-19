@@ -4,7 +4,7 @@
             <i class="bi bi-cart-fill"></i>
             <span class="number-items shadow-sm">{{ $store.state.cart.length }}</span>
         </div>
-        <form class="dropdown-menu p-4 shadow" action="/courses/purchase">
+        <form class="dropdown-menu p-4 shadow" action="/purchased" ref="cartform">
             <div class="form-group"
                  v-for="item in $store.state.cart"
                  :key="item.id">
@@ -17,7 +17,7 @@
             </div>
             <div class="d-flex justify-content-between align-items-center">
                 <p>Total: <span class="text-danger font-weight-bold">{{ totalPrice }}€</span></p>
-                <button type="submit" class="btn btn-primary" @click="checkout">Checkout</button>
+                <button type="submit" class="btn btn-primary" @click.prevent="checkout">Checkout</button>
             </div>
         </form>
 
@@ -49,6 +49,7 @@ export default {
         },
         checkout() {
             this.$store.commit('clearCart')
+            this.$refs.cartform.submit()
         }
     }
 }
