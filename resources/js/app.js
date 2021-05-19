@@ -18,11 +18,8 @@ const store = new Vuex.Store(
 import Courses from "./components/dashboard/courses/Courses.vue";
 import CategorySelect from './components/dashboard/courses/CategorySelect.vue'
 import DashboardHeader from "./components/dashboard/DashboardHeader";
-import CreateQuestions from "./components/quiz/CreateQuestions";
-
 import QuestionsContainer from './components/quiz/QuestionsContainer.vue'
 import CreateQuestions from './components/quiz/CreateQuestions.vue'
-import DashboardHeader from "./components/DashboardHeader";
 import StarRating from 'vue-star-rating'
 import Cart from "./components/courses/Cart"
 import CourseList from './components/courses/CourseList'
