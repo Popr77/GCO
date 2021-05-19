@@ -8,6 +8,13 @@
     </div>
 @endif
 <div class="col-12 text-center mt-5 py-5 mb-5">
+    <div class="text-left ml-5 px-5 mt-1">
+        <a class="btn btn-primary" href="{{ url('lessons')}}" role="button">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left-short" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M12 8a.5.5 0 0 1-.5.5H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5a.5.5 0 0 1 .5.5z"></path>
+            </svg>
+        </a>
+    </div>
     <div class="pt-3">
         @if($lessonGrade->grade >= 50)
             <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="green" class="bi bi-check-circle-fill mt-2 mb-2" viewBox="0 0 16 16">
