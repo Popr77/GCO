@@ -34,5 +34,5 @@
     </div>
 
 
-    <course-list></course-list>
+    <course-list :num-courses="9" :user-id="{{ auth()->user()->id }}"></course-list>
 </div>

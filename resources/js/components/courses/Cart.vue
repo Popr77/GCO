@@ -11,7 +11,7 @@
                 <div class="d-flex row">
                     <p class="col-8">{{ item.name }}</p>
                     <p class="text-danger col-3">{{ (item.price / 100).toFixed(2) }}€</p>
-                    <button class="del-button rounded-circle">X</button>
+                    <button class="del-button rounded-circle" @click.stop="removeFromCart(item)">X</button>
                 </div>
                 <hr>
             </div>
@@ -40,6 +40,12 @@ export default {
             }
 
             return total.toFixed(2)
+        }
+    },
+    methods: {
+        removeFromCart(item) {
+            this.$emit('removed')
+            this.$store.commit('removeFromCart', item)
         }
     }
 }
