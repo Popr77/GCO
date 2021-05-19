@@ -28,7 +28,17 @@
                 @endadmin
 
                 <li class="nav-item mx-sm-1 flex-fill order-1">
-                    <a href="#" class="btn btn-primary my-1 my-lg-0 w-100">My Courses</a>
+                    <a href="#" class="btn btn-primary my-1 my-lg-0 w-100" data-toggle="dropdown">My Courses</a>
+                    <div class="dropdown-menu p-4 shadow my-courses-dropdown">
+                        <div class="form-group">
+                            @foreach(auth()->user()->courses as $course)
+                            <div class="row px-3">
+                                <a href="{{ url('courses/' . $course->id) }}">{{ $course->name }}</a>
+                            </div>
+                            <hr>
+                            @endforeach
+                        </div>
+                    </div>
                 </li>
                 <li class="nav-item mx-sm-1 flex-fill dropdown order-1">
                     <a class="nav-link dropdown-toggle w-100 d-none d-lg-block" data-toggle="dropdown" href="#"

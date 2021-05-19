@@ -25,11 +25,14 @@
                 <p>{{$course->duration}} days</p>
             </div>
 
+            @hasCourse($course)
+            @else
             <div class="d-flex align-items-center">
                 <button class="btn btn-primary mr-2">Buy Now</button>
                 <button class="btn btn-primary"><i class="bi bi-cart"></i></button>
                 <p class="text-danger font-weight-bold ml-2 mb-0">{{$course->price/100}} €</p>
             </div>
+            @endhasCourse
         </div>
 
         <div class="col-md-6 d-flex justify-content-end">
@@ -65,7 +68,7 @@
 
 <div class="course-goals container d-flex align-items-center mt-4 rounded">Content</div>
 
-<div class="container px-0">
+<div class="container px-0 mb-5">
     <div id="accordion">
             @foreach($course->modules as $index => $module)
                 <div class="card">
@@ -93,19 +96,14 @@
 
 <!-- Feedback -->
 
-<div class="course-goals container-fluid d-flex justify-content-center align-items-center mt-4">Feedback</div>
+{{--<div class="course-goals container-fluid d-flex justify-content-center align-items-center mt-4">Feedback</div>--}}
 
-<div class="course-feed">
-    <div class="container">
+{{--<div class="course-feed">--}}
+{{--    <div class="container">--}}
 
-    </div>
-</div>
+{{--    </div>--}}
+{{--</div>--}}
 
 <!-- Related Courses -->
-@hasCourse($course)
-    @hasGrade($course)
-        <p>cenas</p>
-    @endhasGrade
-@endhasCourse
 
-<h2 class="container-fluid d-flex justify-content-center align-items-center mt-4">Related Courses</h2>
+{{--<h2 class="container-fluid d-flex justify-content-center align-items-center mt-4">Related Courses</h2>--}}

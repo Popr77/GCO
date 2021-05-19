@@ -35,7 +35,7 @@ export default {
     },
     methods: {
         getResults() {
-            axios.get('/api/courses/recommended?num=' + this.numCourses + '&userid=' + this.userId)
+            axios.get('/api/courses/recommended?num=' + this.numCourses)
                 .then(response => {
                     this.courses = response.data.data;
                     console.log(this.courses)
