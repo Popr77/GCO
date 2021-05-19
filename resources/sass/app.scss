@@ -51,6 +51,14 @@ h2 {
     }
 }
 
+.my-courses-dropdown {
+    position: fixed;
+    top: 60px;
+    left: 50%;
+    margin-left: -45vw;
+    width: 90vw;
+}
+
 .cart {
     position: fixed;
     top: 12px;
@@ -263,6 +271,12 @@ container-footer-social li a i {
 // Medium devices (tablets, 768px and up)
 @media (min-width: 768px) {
 
+    .my-courses-dropdown {
+        width: 70vw;
+        left: auto;
+        right: 20px;
+    }
+
     .item-footer-text {
         align-self: flex-start;
     }
@@ -339,6 +353,11 @@ container-footer-social li a i {
 
 // Large devices (desktops, 992px and up)
 @media (min-width: 992px) {
+
+    .my-courses-dropdown {
+        width: 50vw;
+    }
+
     .cart {
         position: static;
     }
@@ -354,4 +373,15 @@ container-footer-social li a i {
 
 // Extra large devices (large desktops, 1200px and up)
 @media (min-width: 1200px) {
+    .my-courses-dropdown {
+        width: 35vw;
+    }
+
+}
+
+@media (min-width: 1600px) {
+    .my-courses-dropdown {
+        width: 25vw;
+    }
+
 }
