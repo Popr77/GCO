@@ -26,7 +26,7 @@ export default {
             required: true
         },
         userId: {
-            type: Number,
+            type: String,
             required: false
         }
     },
@@ -35,7 +35,12 @@ export default {
     },
     methods: {
         getResults() {
-            axios.get('/api/courses/recommended?num=' + this.numCourses)
+            axios.get('/api/courses/recommended', {
+                params: {
+                    num: this.numCourses,
+                    userid: this.userId ?? null
+                }
+            })
                 .then(response => {
                     this.courses = response.data.data;
                     console.log(this.courses)
