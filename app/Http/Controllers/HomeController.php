@@ -27,12 +27,7 @@ class HomeController extends Controller
 
     public function registered()
     {
-        $courses = Course::withCount('students')
-            ->orderBy('students_count', 'desc')
-            ->limit(9)
-            ->get();
-
-        return view('pages.registered', ['courses' => $courses]);
+        return view('pages.registered');
     }
 
 }

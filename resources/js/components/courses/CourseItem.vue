@@ -6,7 +6,7 @@
             </div>
         </a>
         <button class="btn btn-primary shadow-sm" @click.stop="toggle">
-            <i class="bi" :class="[ added ? 'bi-cart-check-fill' : 'bi-cart-plus' ]"></i>
+            <i class="bi" :class="[ isAdded ? 'bi-cart-check-fill' : 'bi-cart-plus' ]"></i>
         </button>
         <a :href="course.url" class="mt-2 d-flex justify-content-start course-name"><p class="font-weight-bold">{{ course.name }}</p></a>
         <div class="d-flex justify-content-between align-items-center">
@@ -37,26 +37,6 @@ export default {
         StarRating
     },
     props: {
-        // name: {
-        //     type: String,
-        //     required: true
-        // },
-        // price: {
-        //     type: Number,
-        //     required: true
-        // },
-        // photo: {
-        //     type: String,
-        //     required: true
-        // },
-        // students: {
-        //     type: Object,
-        //     required: true
-        // },
-        // url: {
-        //     type: String,
-        //     required: true
-        // }
         course: {
             type: Object,
             required: true
@@ -65,12 +45,11 @@ export default {
     data() {
         return {
             assets: '/storage/img/courses/',
-            added: ''
         }
     },
     methods: {
         toggle() {
-            if (this.added) {
+            if (this.isAdded) {
                 this.$emit('removed')
                 this.$store.commit('removeFromCart', this.course)
             } else {
@@ -78,7 +57,13 @@ export default {
                 this.$store.commit('addToCart', this.course)
 
             }
-            this.added = !this.added
+        }
+    },
+    computed: {
+        isAdded() {
+            let index = this.$store.state.cart.findIndex(x => x.id === this.course.id)
+
+            return index > -1
         }
     },
     created() {
