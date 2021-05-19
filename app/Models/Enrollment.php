@@ -14,6 +14,6 @@ class Enrollment extends Model
     }
 
     public function examGrade() {
-        return $this->hasOne(ExamGrade::class);
+        return $this->hasMany(ExamGrade::class);
     }
 }
