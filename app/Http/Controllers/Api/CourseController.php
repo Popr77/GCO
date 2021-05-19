@@ -29,16 +29,6 @@ class CourseController extends Controller {
     public function recommended(Request $request) {
 
         $num = $request->query('num');
-        $userId = $request->query('userid');
-
-        if ($userId) {
-            return CourseResource::collection(Course::withCount(['students' => function ($query) {
-                $query->where('payment_status', 1);
-            }])->whereDoesntHave('students', function (Builder $query) use ($userId) {
-                $query->where('user_id', 'LIKE', $userId);
-            })
-                ->orderBy('students_count', 'desc')->take($num)->get('courses.*'));
-        }
 
         return CourseResource::collection(Course::withCount(['students' => function ($query) {
             $query->where('payment_status', 1);
