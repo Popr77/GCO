@@ -249,6 +249,13 @@ container-footer-social li a i {
     cursor: pointer;
 }
 
+.table-lessons td, table-lessons th{
+    vertical-align: middle;
+}
+.table-lessons button a{
+     text-decoration: none; color: white;
+}
+
 // Small devices (landscape phones, 576px and up)
 @media (min-width: 576px) {
 }

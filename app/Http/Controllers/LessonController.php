@@ -21,7 +21,7 @@ class LessonController extends Controller
     {
         $lessons = Lesson::all();
 //        dd($lessons);
-        return view('pages.lessons', ['lessons' => $lessons]);
+        return view('pages.admin.lessons.lessons', ['lessons' => $lessons]);
     }
 
     /**
@@ -31,7 +31,7 @@ class LessonController extends Controller
      */
     public function lesson()
     {
-        return view('pages.lesson');
+        return view('pages.admin.lessons.lesson');
     }
 
     /**
@@ -69,10 +69,11 @@ class LessonController extends Controller
                 'module_id' => $module_id, 'quillItems' => $quillItems]);
 
         }elseif(isset($_GET['num'])){
+            $module_id = $_GET['module_id'];
 
             $num = $_GET['num'];
 
-            return view('pages.admin.lessons.lesson-create', ['num' => $num, 'modules' => $modules]);
+            return view('pages.admin.lessons.lesson-create', ['num' => $num, 'module_id' => $module_id, 'modules' => $modules]);
 
         }else{
             $num = 3;
@@ -107,7 +108,7 @@ class LessonController extends Controller
                 }
                 $index++;
             }
-            return view('pages.admin.lessons.lesson-create', ['num' => $num, 'modules' => $modules,
+            return view('pages.admin.lessons.lessons.lesson-create', ['num' => $num, 'modules' => $modules,
                 'title' => $title, 'lesson_number' => $lesson_number,
                 'module_id' => $module_id, 'quillItems' => $quillItems]);
 
@@ -133,7 +134,6 @@ class LessonController extends Controller
                         $nameType = 'text';
                     }
 
-                    //Id from ContentType Table
                     $content_type = ContentType::select('id')->where('name', $nameType)->first();
 
                     Content::create([
@@ -147,7 +147,6 @@ class LessonController extends Controller
             }
             return view("pages.quiz.quiz-form-create", ['status' => 'Lesson created successfully!', 'lesson' => $lesson]);
 
-//            return redirect('quiz/create')->with('status', 'Lesson created successfully!');
         }
 
     }
@@ -159,14 +158,7 @@ class LessonController extends Controller
      */
     public function show(Lesson $lesson)
     {
-//        dd($lesson->contents);
-//        foreach ($lesson->contents as $content){
-//            dd($content);
-//        }
-
-//        temp
-        return view('pages.lessons.show', ['lesson' => $lesson]);
-//        return view('pages.lesson');
+        return view('pages.admin.lessons.lesson-show', ['lesson' => $lesson]);
 
     }
 
@@ -206,8 +198,6 @@ class LessonController extends Controller
             return view('pages.admin.lessons.lesson-edit', ['lesson' => $lesson]);
         }
     }
-
-
 
     /**
      * Update the specified resource in storage.
@@ -268,11 +258,9 @@ class LessonController extends Controller
                         $nameType = 'text';
                     }
 
-                    //Id from ContentType Table
+
                     $content_type = ContentType::select('id')->where('name', $nameType)->first();
 
-
-                    //gets all the contents
                     $contents = Content::find(Content::select('id')->where('lesson_id', $lesson->id)->get());
 
 
