@@ -115,9 +115,6 @@
                         class="mt-2 mb-5 btn btn-primary mx-auto">Create</button>
             </div>
         </div>
-
     </form>
-
-
 </div>
 
