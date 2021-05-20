@@ -8,6 +8,13 @@
     </div>
 @endif
 <div class="col-12 text-center mt-5 py-5 mb-5">
+    <div class="text-left ml-5 px-5 mt-1">
+        <a class="btn btn-primary" href="{{ url('lessons')}}" role="button">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left-short" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M12 8a.5.5 0 0 1-.5.5H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5a.5.5 0 0 1 .5.5z"></path>
+            </svg>
+        </a>
+    </div>
     <div class="pt-3">
         @if($lessonGrade->grade >= 50)
             <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="green" class="bi bi-check-circle-fill mt-2 mb-2" viewBox="0 0 16 16">
@@ -19,7 +26,7 @@
             <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="red" class="bi bi-check-circle-fill mt-2 mb-2" viewBox="0 0 16 16">
                 <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z"/>
             </svg>
-            <h1 class="my-5 ">Sorry, you didn't passed!!</h1>
+            <h1 class="my-5 ">Sorry, you didn't pass!!</h1>
         @endif
     </div>
     <div class="py-3">

@@ -4,6 +4,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Resources\CourseResource;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Course;
@@ -25,10 +26,26 @@ class CourseController extends Controller {
             ->paginate(12, 'courses.*'));
     }
 
-    public function recommended() {
+    public function recommended(Request $request) {
+
+        $num = $request->query('num');
+        $userid = $request->query('userid');
+
+        if($userid) {
+            return CourseResource::collection(Course::
+                withCount(['students' => function ($query) {
+                    $query->where('payment_status', 1);
+                }])
+                ->whereNotIn('id', function($query) use ($userid) {
+                    $query->select('course_id')->from('enrollments')->where('user_id', $userid);
+                })
+                ->orderBy('students_count', 'desc')
+                ->take($num)
+                ->get());
+        }
 
         return CourseResource::collection(Course::withCount(['students' => function ($query) {
             $query->where('payment_status', 1);
-        }])->orderBy('students_count', 'desc')->take(9)->get());
+        }])->orderBy('students_count', 'desc')->take($num)->get('courses.*'));
     }
 }

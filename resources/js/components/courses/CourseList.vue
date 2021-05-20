@@ -20,12 +20,27 @@ export default {
             courses: {}
         }
     },
+    props: {
+        numCourses: {
+            type: Number,
+            required: true
+        },
+        userId: {
+            type: String,
+            required: false
+        }
+    },
     async created() {
         await this.getResults()
     },
     methods: {
         getResults() {
-            axios.get('/api/courses/recommended')
+            axios.get('/api/courses/recommended', {
+                params: {
+                    num: this.numCourses,
+                    userid: this.userId ?? null
+                }
+            })
                 .then(response => {
                     this.courses = response.data.data;
                     console.log(this.courses)

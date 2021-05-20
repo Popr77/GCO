@@ -1,6 +1,6 @@
 <div class="container col-lg-12 mx-auto mt-5" >
     <h2 class="text-center">Create Lesson</h2>
-    <div class="text-left mb-2 ml-5 mt-1">
+    <div class="text-left mb-2 px-5 ml-5 mt-1">
         <a class="btn btn-primary" href="{{ url('lessons')}}" role="button">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left-short" viewBox="0 0 16 16">
                 <path fill-rule="evenodd" d="M12 8a.5.5 0 0 1-.5.5H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5a.5.5 0 0 1 .5.5z"></path>
@@ -115,43 +115,6 @@
                         class="mt-2 mb-5 btn btn-primary mx-auto">Create</button>
             </div>
         </div>
-
     </form>
-
-
 </div>
 
-<script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
-<link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
-<script>
-    let submitted = false;
-
-    @for($i = 0; $i < $num; $i++)
-        let {{'quill'. $i}} = new Quill('{{'#editor'. $i}}', {
-            theme: 'snow'
-        });
-
-        var $a = document.querySelector('{{'#editor'. $i}}').innerHTML="@if(isset($quillItems[$i])){{$quillItems[$i]}}@else{{old('editor'.$i)}}@endif"
-    @endfor
-
-    function btnUpdateClick(){
-        document.querySelector('#title').required=false
-        document.querySelector('#lesson_number').required=false
-        document.querySelector('#module_id').required=false
-    }
-
-    window.onbeforeunload = function() {
-            if (!submitted)
-                return "Are you sure you want to leave?";
-    }
-
-    const formEl = document.querySelector('form');
-
-    formEl.addEventListener('submit', (e)=>{
-
-        e.preventDefault()
-        submitted = true;
-    });
-
-
-</script>

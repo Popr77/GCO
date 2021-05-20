@@ -23,6 +23,10 @@ export default {
         },
         saveCart(state) {
             window.localStorage.setItem('cart', JSON.stringify(state.cart))
+        },
+        clearCart(state) {
+            state.cart = []
+            this.commit('saveCart')
         }
     }
 }

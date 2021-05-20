@@ -14,7 +14,7 @@
 
 <h1 class="title-courses text-center mt-5 mb-5">Enjoy our Courses</h1>
 
-<div class="container">
+<div class="container mb-5">
     <div class="dropdown d-flex justify-content-end">
         <button class="btn btn-primary dropdown-toggle mb-3" type="button" id="dropdownMenuButton"
                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -30,5 +30,5 @@
 
 <!-- Course List -->
 
-    <course-list></course-list>
+    <course-list :num-courses="9" :user-id="{{ auth()->user()->id }}"></course-list>
 </div>

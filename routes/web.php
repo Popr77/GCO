@@ -113,5 +113,6 @@ Route::prefix('/quiz')->group(function() {
 //    //talvez apagar
     Route::get('/create', [QuestionController::class, 'create']);
     Route::post('/', [QuestionController::class, 'store']);
-
 });
+
+Route::view('/purchased', 'pages.bought');
