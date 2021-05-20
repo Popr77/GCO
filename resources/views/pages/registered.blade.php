@@ -2,7 +2,8 @@
 
 @section('content')
 
-@component('components.registered')
+@component('components.registered', ['categories' => $categories])
+
 @endcomponent
 
 @endsection
