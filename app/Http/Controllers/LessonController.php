@@ -108,7 +108,7 @@ class LessonController extends Controller
                 }
                 $index++;
             }
-            return view('pages.admin.lessons.lessons.lesson-create', ['num' => $num, 'modules' => $modules,
+            return view('pages.admin.lessons.lesson-create', ['num' => $num, 'modules' => $modules,
                 'title' => $title, 'lesson_number' => $lesson_number,
                 'module_id' => $module_id, 'quillItems' => $quillItems]);
 
