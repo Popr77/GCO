@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Course;
 use App\Models\UserData;
 use http\Client\Curl\User;
@@ -32,7 +33,9 @@ class HomeController extends Controller
             ->limit(9)
             ->get();
 
-        return view('pages.registered', ['courses' => $courses]);
+        $categories = Category::all();
+
+        return view('pages.registered', ['courses' => $courses, 'categories' => $categories]);
     }
 
 }
