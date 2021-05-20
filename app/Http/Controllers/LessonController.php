@@ -50,7 +50,7 @@ class LessonController extends Controller
         $modules = Module::all();
 
 
-        if (isset($_GET['num']) && isset($_GET['title']) && isset($_GET['lesson_number']) && isset($_GET['module_id'])){
+        if (isset($_GET['num']) && isset($_GET['title'])  && isset($_GET['module_id'])){
 
             $quillItems  = [];
             for ($i=0; $i<count($_GET); $i++){
@@ -61,16 +61,13 @@ class LessonController extends Controller
 
             $num = $_GET['num'];
             $title = $_GET['title'];
-            $lesson_number = $_GET['lesson_number'];
             $module_id = $_GET['module_id'];
 
             return view('pages.admin.lessons.lesson-create', ['num' => $num, 'modules' => $modules,
-                'title' => $title, 'lesson_number' => $lesson_number,
-                'module_id' => $module_id, 'quillItems' => $quillItems]);
+                'title' => $title, 'module_id' => $module_id, 'quillItems' => $quillItems]);
 
         }elseif(isset($_GET['num'])){
             $module_id = $_GET['module_id'];
-
             $num = $_GET['num'];
 
             return view('pages.admin.lessons.lesson-create', ['num' => $num, 'module_id' => $module_id, 'modules' => $modules]);
@@ -96,8 +93,8 @@ class LessonController extends Controller
 
             $num = $request->containers;
             $title = $request->title;
-            $lesson_number = $request->lesson_number;
             $module_id = $request->module_id;
+
 
             $index = 0;
             $quillItems  = [];
@@ -108,15 +105,19 @@ class LessonController extends Controller
                 }
                 $index++;
             }
-            return view('pages.admin.lessons.lessons.lesson-create', ['num' => $num, 'modules' => $modules,
-                'title' => $title, 'lesson_number' => $lesson_number,
-                'module_id' => $module_id, 'quillItems' => $quillItems]);
+            return view('pages.admin.lessons.lesson-create', ['num' => $num, 'modules' => $modules,
+                'title' => $title, 'module_id' => $module_id, 'quillItems' => $quillItems]);
 
         } else if ($_POST['action'] == 'create') {
 
+            $lesson_number = Lesson::Select('id')
+                ->where('module_id', $request->module_id)
+                ->count();
+            $lesson_number++;
+
             Lesson::create([
                 'title' => $request->title,
-                'lesson_number' => $request->lesson_number,
+                'lesson_number' => $lesson_number,
                 'module_id' => $request->module_id
             ]);
 
@@ -170,7 +171,7 @@ class LessonController extends Controller
      */
     public function edit(Lesson $lesson)
     {
-        if (isset($_GET['num']) && isset($_GET['title']) && isset($_GET['lesson_number']) && isset($_GET['module_id'])){
+        if (isset($_GET['num']) && isset($_GET['title']) && isset($_GET['module_id'])){
 
             $quillItems  = [];
             for ($i=0; $i<count($_GET); $i++){

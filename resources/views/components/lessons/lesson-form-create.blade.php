@@ -30,7 +30,7 @@
             @enderror
 
             <div class="div-show text-right mt-2">
-                <button type="submit" value="update" name="action" onclick="submitted = true; btnUpdateClick()"
+                <button type="submit" value="update" name="action" onclick="submitted = true;"
                         class="mt-2 mb-5 btn btn-warning mx-auto">Update</button>
             </div>
 
@@ -48,25 +48,6 @@
                 required
                 aria-describedby="nameHelp">
             @error('title')
-            <span class="invalid-feedback" role="alert">
-                <strong>{{ $message }}</strong>
-            </span>
-            @enderror
-
-            <label for="lesson_number" class="mt-3">Number of the Lesson</label>
-            <input
-                type="number"
-                id="lesson_number"
-                name="lesson_number"
-                autocomplete="Lesson Number"
-                placeholder="Lesson Number"
-
-                class="form-control
-            @error('lesson_number') is-invalid @enderror"
-                value="@if(isset($lesson_number)){{$lesson_number}}@else{{old('lesson_number')}}@endif"
-                required
-                aria-describedby="nameHelp">
-            @error('lesson_number')
             <span class="invalid-feedback" role="alert">
                 <strong>{{ $message }}</strong>
             </span>
@@ -101,8 +82,7 @@
                     name="{{'editor' . $i}}"
                     class="form-control
             @error('editor' . $i) is-invalid @enderror"
-                    aria-describedby="nameHelp">
-                    @if(isset($quillItems[$i])){{$quillItems[$i]}}@else{{old('editor'.$i)}}@endif</textarea>
+                    aria-describedby="nameHelp">@if(isset($quillItems[$i])){{$quillItems[$i]}}@else{{old('editor'.$i)}}@endif</textarea>
                 @error('editor' . $i)
                 <span class="invalid-feedback" role="alert">
             <strong>{{ $message }}</strong>
@@ -117,4 +97,6 @@
         </div>
     </form>
 </div>
+
+
 
