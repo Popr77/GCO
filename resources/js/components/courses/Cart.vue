@@ -4,11 +4,13 @@
             <i class="bi bi-cart-fill"></i>
             <span class="number-items shadow-sm">{{ $store.state.cart.length }}</span>
         </div>
-        <form class="dropdown-menu p-4 shadow" action="/purchased" ref="cartform">
+        <form class="dropdown-menu p-4 shadow" method="POST" action="/purchased" ref="cartform">
+            <input type="hidden" name="_token" v-model="this.csrf">
             <div class="form-group"
                  v-for="item in $store.state.cart"
                  :key="item.id">
                 <div class="d-flex row">
+                    <input type="hidden" name="courses[]" :value="item.id">
                     <p class="col-8">{{ item.name }}</p>
                     <p class="text-danger col-3">{{ (item.price / 100).toFixed(2) }}€</p>
                     <button class="del-button rounded-circle" @click.stop="removeFromCart(item)">X</button>
@@ -29,7 +31,7 @@ export default {
     name: 'Cart',
     data() {
         return {
-
+            csrf: ''
         }
     },
     computed: {
@@ -48,9 +50,12 @@ export default {
             this.$store.commit('removeFromCart', item)
         },
         checkout() {
-            this.$store.commit('clearCart')
             this.$refs.cartform.submit()
+            this.$store.commit('clearCart')
         }
+    },
+    created() {
+        this.csrf = document.querySelector('meta[name="csrf-token"]').content
     }
 }
 </script>
