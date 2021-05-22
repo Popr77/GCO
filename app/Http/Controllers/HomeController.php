@@ -21,8 +21,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-//        DB::table('user_data')->where('user_id', Auth::user()->id)->get();
-//        dd(auth()->user()->userData->photo);
+        if (auth()->check())
+            return view('pages.registered');
+
         return view('pages.unregistered');
     }
 

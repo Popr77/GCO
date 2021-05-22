@@ -23,28 +23,9 @@ class QuestionController extends Controller
     {
         $questions = Question::with("answers")
             ->where('lesson_id',$lesson->id)
+            ->inRandomOrder()
+            ->take(5)
             ->get();
-
-//        dd($questionsAll);
-//        $questions = $questionsAll->random(5);
-//        dd($questions);
-
-        return view("pages.quiz.quiz", ['questions' => $questions]);
-    }
-
-    /**
-     * Display a listing of the resource.
-     *
-     * @param  Lesson  $questions
-     * @return \Illuminate\Http\Response
-     */
-    public function quiz(Lesson $lesson)
-    {
-        $questionsAll = Question::with("answers")
-            ->where('lesson_id',$lesson->id)
-            ->get();
-
-        $questions = $questionsAll->random(5);
 
         return view("pages.quiz.quiz", ['questions' => $questions]);
     }
@@ -66,7 +47,7 @@ class QuestionController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function save(Request $request)
+    public function save(Lesson $lesson, Request $request)
     {
         try{
             $questionsID = explode(",", $request->questionInput);

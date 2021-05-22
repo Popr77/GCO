@@ -10,7 +10,7 @@
 
 <create-questions status="{{$status}}"
         :lesson-id="{{intval($lesson->id)}}"
-         link="{{url('quiz/')}}">
+         link="{{route('quiz-save')}}">
 
 </create-questions>
 

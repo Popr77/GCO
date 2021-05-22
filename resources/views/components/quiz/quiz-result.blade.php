@@ -7,7 +7,7 @@
         </button>
     </div>
 @endif
-<div class="col-12 text-center mt-5 py-5 mb-5">
+<div class="col-12 text-center mt-5 py-5 ">
     <div class="text-left ml-5 px-5 mt-1">
         <a class="btn btn-primary" href="{{ url('lessons')}}" role="button">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left-short" viewBox="0 0 16 16">

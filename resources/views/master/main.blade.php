@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'GCO') }}</title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -24,12 +24,14 @@
 
     @yield('styles')
 </head>
+
 <body class="min-vh-100">
 <div id="app" class="d-flex flex-column min-vh-100">
+
     @component('master.header')
     @endcomponent
 
-    <main>
+    <main class="main-section">
         @yield('content')
     </main>
 
