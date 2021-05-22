@@ -22,7 +22,7 @@ class HomeController extends Controller
     public function index()
     {
         if (auth()->check())
-            return view('pages.registered');
+            return redirect(route('home'));
 
         return view('pages.unregistered');
     }
