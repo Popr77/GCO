@@ -23,7 +23,7 @@
     <script>
 
         let submitted = false;
-        // let a
+        let a
 
         let options = {
             debug: 'info',

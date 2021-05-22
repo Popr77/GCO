@@ -23,11 +23,11 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
-<div id="app">
+<div id="app" class="min-vh-100">
     @component('master.header')
     @endcomponent
 
-    <main>
+    <main class="main-section">
         @yield('content')
     </main>
 

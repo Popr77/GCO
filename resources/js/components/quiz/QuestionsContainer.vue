@@ -7,7 +7,7 @@
 
                     <slot></slot>
                     <h3>{{currentQuestion.question}}</h3>
-                    <div class="input-group-prepend d-flex flex-column col-6 mx-auto mb-5 mt-4">
+                    <div class="input-group-prepend d-flex flex-column col-6 mx-auto mb-5 mt-5">
                         <div class="input-group-text my-2" v-for="answer in currentQuestion.answers" :key="answer.id">
                             <input type="radio" name="options" ref="tempInput"
                                    class="answerCheckbox" :checked="optionSelected.indexOf(answer.id) > -1 "
@@ -18,7 +18,7 @@
                         <input name="questionInput" ref="questionInput" type="hidden" value="">
                         <input name="anwserInput" ref="anwserInput" type="hidden" value="">
 
-                        <div class="d-initial container mt-2 mb-3 p-0">
+                        <div class="d-initial container mt-4 mb-3 p-0">
                             <button v-if="index>0" class="btn btn-primary float-left" @click.prevent="previous">Previous</button>
                             <button v-if="index<questions.length-1 "class="btn btn-primary float-right" @click.prevent="next">Next</button>
                             <button v-if="index==questions.length-1" type="submit"

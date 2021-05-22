@@ -26,20 +26,23 @@ use Illuminate\Support\Facades\Request;
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'registered'])->name('home');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'registered'])
+    ->middleware('auth')
+    ->name('home');
+
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index']);
 
-Route::get('/lessons', [App\Http\Controllers\HomeController::class, 'lesson']);
 Route::get('/lesson', [App\Http\Controllers\LessonController::class,'lesson']);
 
-Route::prefix('/lessons')->group(function(){
+Route::prefix('/lessons')->middleware(['auth'])->group(function(){
     Route::get('', [App\Http\Controllers\LessonController::class, 'index']);
     Route::get('create', [App\Http\Controllers\LessonController::class,'create']);
     Route::post('', [App\Http\Controllers\LessonController::class,'store']);
     Route::get('{lesson}/edit', [App\Http\Controllers\LessonController::class,'edit']);
     Route::put('{lesson}', [App\Http\Controllers\LessonController::class,'update']);
     Route::delete('{lesson}', [App\Http\Controllers\LessonController::class,'destroy']);
-    Route::get('{lesson}', [App\Http\Controllers\LessonController::class,'show']);
+    Route::get('{lesson}', [App\Http\Controllers\LessonController::class,'show'])
+        ->middleware('checkCourse');
 });
 
 Route::prefix('/courses')->group(function(){
@@ -95,9 +98,10 @@ Route::prefix('dashboard')->middleware(['auth', 'admin'])->group(function () {
         Route::put('/{course}', [DCourseController::class, 'update'])->name('d-course-update');
         Route::delete('/{course}', [DCourseController::class, 'destroy'])->name('d-course-destroy');
     });
+    Route::post('/quiz/', [QuestionController::class, 'store'])->name('quiz-save');
 });
 
-Route::prefix('/profile')->group(function(){
+Route::prefix('/profile')->middleware('auth', 'checkProfile')->group(function(){
     Route::get('{userData}/edit', [UserDataController::class, 'edit']);
     Route::put('{userData}', [UserDataController::class, 'update']);
 });
@@ -106,13 +110,9 @@ Route::get('change-password', [ChangePasswordController::class, 'index']);
 Route::post('change-password', [ChangePasswordController::class, 'store'])->name('change.password');
 
 
-Route::prefix('/quiz')->group(function() {
-    Route::get('/take/{lesson}', [QuestionController::class, 'quiz']);
-    Route::post('/take/{lesson}', [QuestionController::class, 'save']);
-
-//    //talvez apagar
-    Route::get('/create', [QuestionController::class, 'create']);
-    Route::post('/', [QuestionController::class, 'store']);
+Route::prefix('/quiz')->middleware(['auth', 'checkCourse'])->group(function() {
+    Route::get('/take/{lesson}', [QuestionController::class, 'index'])->middleware('checkHasDoneQuiz');
+    Route::post('/take/{lesson}', [QuestionController::class, 'save'])->name('quiz');
 });
 
 Route::view('/purchased', 'pages.bought');

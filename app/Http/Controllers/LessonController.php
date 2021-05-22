@@ -9,6 +9,7 @@ use App\Models\Module;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use phpDocumentor\Reflection\Types\Integer;
+use PhpParser\Node\Expr\AssignOp\Mod;
 
 class LessonController extends Controller
 {
@@ -159,7 +160,11 @@ class LessonController extends Controller
      */
     public function show(Lesson $lesson)
     {
-        return view('pages.admin.lessons.lesson-show', ['lesson' => $lesson]);
+        $modules = Module::with('lessons')
+            ->where('course_id', $lesson->module->course->id)->get();
+
+        return view('pages.admin.lessons.lesson-show',
+            ['lesson' => $lesson, 'modules'=> $modules]);
 
     }
 
@@ -243,9 +248,7 @@ class LessonController extends Controller
             $lesson->module_id = $request->module_id;
             $lesson->save();
 
-
             $index = 0;
-            $index2 = 0;
             foreach ($request as $item) {
                 $quillItem = $request->input(('editor' . $index));
 //                $total_quillItems = count($quillItem);

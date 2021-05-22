@@ -36,7 +36,7 @@ class UserSeeder extends Seeder
         DB::table('users')->insert([
             'email' => 'joao@atec.pt',
             'email_verified_at' => now(),
-            'password' => '$2y$10$P/eDZMvAYMiasK86Od8pg.iZL7jHZ3qCKD3QH/d.GLo3QUhXUjOvm', // password
+            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
             'user_type_id' => 1,
             'remember_token' => Str::random(10)
         ]);
@@ -46,9 +46,9 @@ class UserSeeder extends Seeder
             'name' => 'Joao',
             'address' => 'Rua cantos',
             'postal_code' => '4250-000',
-            'city' => 'gaoa',
-            'phone' => '123456789',
-            'nif' => 123456789,
+            'city' => 'gaia',
+            'phone' => '121363545',
+            'nif' => 254635236,
             'photo' => 'logo.jpg'
         ]);
 

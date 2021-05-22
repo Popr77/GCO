@@ -19,6 +19,7 @@ class Lesson extends Model
         return $this->belongsTo(Module::class);
     }
 
+
     public function contents() {
         return $this->hasMany(Content::class);
     }
@@ -28,7 +29,8 @@ class Lesson extends Model
     }
 
     public function grades() {
-        return $this->belongsToMany(Enrollment::class, 'lesson_grades');
+        return $this->belongsToMany(Enrollment::class, 'lesson_grades')
+            ->withPivot(['date','grade']);
     }
 
 }

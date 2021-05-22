@@ -24,8 +24,7 @@ class ModuleFactory extends Factory
     public function definition()
     {
         return [
-            'name' => $this->faker->name(),
-            'course_id' => Course::select('id')->inRandomOrder()->first()
+            'name' => \Faker\Factory::create()->firstName,
         ];
     }
 }
