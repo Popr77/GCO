@@ -30,7 +30,6 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'registered'])->name('home');
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index']);
 
-Route::get('/lessons', [App\Http\Controllers\HomeController::class, 'lesson']);
 Route::get('/lesson', [App\Http\Controllers\LessonController::class,'lesson']);
 
 Route::prefix('/lessons')->group(function(){
@@ -116,4 +115,8 @@ Route::prefix('/quiz')->group(function() {
     Route::post('/', [QuestionController::class, 'store']);
 });
 
-Route::post('/purchased', [EnrollmentController::class, 'store']);
+Route::prefix('checkout')->middleware('auth')->group(function () {
+    Route::get('', [EnrollmentController::class, 'create']);
+    Route::post('/submit', [EnrollmentController::class, 'store']);
+    Route::view('/confirmation', 'pages.checkout.confirmation')->name('checkout-confirmation');
+});

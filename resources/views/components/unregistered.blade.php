@@ -23,7 +23,7 @@
 <!-- Cards -->
 {{-- style="display: flex; flex-direction: row; justify-content: center; padding-bottom: 50px" --}}
 <div class="container pb-5">
-    <course-list :num-courses="3" user-id="{{ auth()->check() ? stringValue(auth()->user()->id) : null }}"/>
+    <course-list :num-courses="3" user-id="{{ auth()->check() ? auth()->user()->id : null }}"/>
 </div>
 
 
