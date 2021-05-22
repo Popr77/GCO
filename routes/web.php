@@ -116,4 +116,8 @@ Route::prefix('/quiz')->middleware(['auth', 'checkCourse'])->group(function() {
     Route::post('/take/{lesson}', [QuestionController::class, 'save'])->name('quiz');
 });
 
-Route::post('/purchased', [EnrollmentController::class, 'store']);
+Route::prefix('checkout')->middleware('auth')->group(function () {
+    Route::get('', [EnrollmentController::class, 'create']);
+    Route::post('/submit', [EnrollmentController::class, 'store']);
+    Route::view('/confirmation', 'pages.checkout.confirmation')->name('checkout-confirmation');
+});

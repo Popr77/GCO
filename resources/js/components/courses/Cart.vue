@@ -4,34 +4,27 @@
             <i class="bi bi-cart-fill"></i>
             <span class="number-items shadow-sm">{{ $store.state.cart.length }}</span>
         </div>
-        <form class="dropdown-menu p-4 shadow" method="POST" action="/purchased" ref="cartform">
-            <input type="hidden" name="_token" v-model="this.csrf">
-            <div class="form-group"
-                 v-for="item in $store.state.cart"
-                 :key="item.id">
-                <div class="d-flex row">
-                    <input type="hidden" name="courses[]" :value="item.id">
-                    <p class="col-8">{{ item.name }}</p>
-                    <p class="text-danger col-3">{{ (item.price / 100).toFixed(2) }}€</p>
-                    <button class="del-button rounded-circle" @click.stop="removeFromCart(item)">X</button>
-                </div>
-                <hr>
-            </div>
+        <div class="dropdown-menu p-4 shadow">
+            <cart-course-list />
             <div class="d-flex justify-content-between align-items-center">
                 <p>Total: <span class="text-danger font-weight-bold">{{ totalPrice }}€</span></p>
-                <button type="submit" class="btn btn-primary" @click.prevent="checkout">Checkout</button>
+                <a href="/checkout" class="btn btn-primary">Checkout</a>
             </div>
-        </form>
-
+        </div>
     </div>
 </template>
 
 <script>
+import CartCourseList from './CartCourseList'
+
 export default {
     name: 'Cart',
+    components: {
+      CartCourseList
+    },
     data() {
         return {
-            csrf: ''
+
         }
     },
     computed: {
@@ -44,19 +37,7 @@ export default {
             return total.toFixed(2)
         }
     },
-    methods: {
-        removeFromCart(item) {
-            this.$emit('removed')
-            this.$store.commit('removeFromCart', item)
-        },
-        checkout() {
-            this.$refs.cartform.submit()
-            this.$store.commit('clearCart')
-        }
-    },
-    created() {
-        this.csrf = document.querySelector('meta[name="csrf-token"]').content
-    }
+
 }
 </script>
 
@@ -71,24 +52,6 @@ div {
 
 div i {
     font-size: 1.5rem;
-}
-
-p {
-    margin-bottom: 0;
-}
-
-.del-button {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border: none;
-    width: 25px;
-    height: 25px;
-}
-
-.del-button:hover {
-    background-color: #212121;
-    color: #eee;
 }
 
 .number-items {

@@ -23,6 +23,7 @@ import CreateQuestions from './components/quiz/CreateQuestions.vue'
 import StarRating from 'vue-star-rating'
 import Cart from "./components/courses/Cart"
 import CourseList from './components/courses/CourseList'
+import Checkout from './components/courses/Checkout'
 
 const app = new Vue({
     el: '#app',
@@ -34,7 +35,8 @@ const app = new Vue({
         DashboardHeader,
         StarRating,
         Cart,
-        CourseList
+        CourseList,
+        Checkout
     },
     store
 });
