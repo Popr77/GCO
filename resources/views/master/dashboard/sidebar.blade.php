@@ -3,7 +3,7 @@
     <div class="list-group list-group-flush" id="sidebar-menu">
         <a href="#" class="list-group-item list-group-item-action bg-light nav-link">Dashboard</a>
         <a href="{{ route('d-course-index') }}" class="list-group-item list-group-item-action bg-light nav-link">Courses</a>
-        <a href="{{ url('lessons') }}" class="list-group-item list-group-item-action bg-light nav-link">Lessons</a>
+        <a href="{{ route('d-lessons') }}" class="list-group-item list-group-item-action bg-light nav-link">Lessons</a>
         <a href="{{ route('home') }}" class="list-group-item list-group-item-action bg-light nav-link" id="back-to-site-btn">Go Back to Website</a>
     </div>
 </div>

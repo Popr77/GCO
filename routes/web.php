@@ -36,12 +36,6 @@ Route::get('/', [App\Http\Controllers\HomeController::class, 'index']);
 Route::get('/lesson', [App\Http\Controllers\LessonController::class,'lesson']);
 
 Route::prefix('/lessons')->middleware(['auth'])->group(function(){
-    Route::get('', [App\Http\Controllers\LessonController::class, 'index']);
-    Route::get('create', [App\Http\Controllers\LessonController::class,'create']);
-    Route::post('', [App\Http\Controllers\LessonController::class,'store']);
-    Route::get('{lesson}/edit', [App\Http\Controllers\LessonController::class,'edit']);
-    Route::put('{lesson}', [App\Http\Controllers\LessonController::class,'update']);
-    Route::delete('{lesson}', [App\Http\Controllers\LessonController::class,'destroy']);
     Route::get('{lesson}', [App\Http\Controllers\LessonController::class,'show'])
         ->middleware('checkCourse');
 });
@@ -98,6 +92,14 @@ Route::prefix('dashboard')->middleware(['auth', 'admin'])->group(function () {
         Route::post('/', [DCourseController::class, 'store'])->name('d-course-store');
         Route::put('/{course}', [DCourseController::class, 'update'])->name('d-course-update');
         Route::delete('/{course}', [DCourseController::class, 'destroy'])->name('d-course-destroy');
+    });
+    Route::prefix('/lessons')->middleware(['auth'])->group(function(){
+        Route::get('', [App\Http\Controllers\LessonController::class, 'index'])->name('d-lessons');
+        Route::get('create', [App\Http\Controllers\LessonController::class,'create']);
+        Route::post('', [App\Http\Controllers\LessonController::class,'store']);
+        Route::get('{lesson}/edit', [App\Http\Controllers\LessonController::class,'edit']);
+        Route::put('{lesson}', [App\Http\Controllers\LessonController::class,'update']);
+        Route::delete('{lesson}', [App\Http\Controllers\LessonController::class,'destroy']);
     });
     Route::post('/quiz/', [QuestionController::class, 'store'])->name('quiz-save');
 });

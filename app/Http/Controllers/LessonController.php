@@ -308,10 +308,10 @@ class LessonController extends Controller
         }else if ($_POST['action'] == 'delete'){
 
             $lesson->delete();
-            return redirect('lessons')->with('status','Item deleted successfully!');;
+            return redirect('dashboard/lessons')->with('status','Item deleted successfully!');;
 
         }
-        return redirect('lessons')->with('status', 'Item edited successfully!!');
+        return redirect('dashboard/lessons')->with('status', 'Item edited successfully!!');
 
     }
 
