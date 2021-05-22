@@ -17,7 +17,7 @@ class Course extends Model
 
     public function students() {
         return $this->belongsToMany(User::class, 'enrollments')
-            ->withPivot(['date', 'payment_status', 'feedback_stars', 'feedback_comment']);
+            ->withPivot(['payment_status', 'feedback_stars', 'feedback_comment']);
     }
 
     public function modules() {

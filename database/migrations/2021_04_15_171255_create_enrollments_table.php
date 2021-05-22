@@ -17,7 +17,7 @@ class CreateEnrollmentsTable extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->foreignId('course_id')->constrained()->onDelete('cascade');
-            $table->dateTime('date');
+//            $table->dateTime('date')->default(now());
             $table->boolean('payment_status')->default(0);
             $table->integer('feedback_stars')->nullable();
             $table->text('feedback_comment')->nullable();

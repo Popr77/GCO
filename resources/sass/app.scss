@@ -85,6 +85,10 @@ h2 {
     justify-content: space-around;
 }
 
+footer {
+    margin-top: auto;
+}
+
 .item-footer-text {
     align-self: auto;
 }
@@ -100,7 +104,7 @@ h2 {
     margin-top: 60px;
     position: relative;
 }
-container-footer-social li a i {
+.container-footer-social li a i {
     z-index: 500;
     position: relative;
 }
