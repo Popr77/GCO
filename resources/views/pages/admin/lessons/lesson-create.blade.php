@@ -2,7 +2,7 @@
 
 @section('content')
 
-    @if (isset($title) && isset($lesson_number) && isset($module_id) && isset($quillItems)){
+    @if (isset($title) && isset($lesson_number) && isset($module_id) && isset($quillItems))
         @component('components.lessons.lesson-form-create', ['num' => $num, 'modules' => $modules,
     'title' => $title,
     'module_id' => $module_id, 'quillItems' => $quillItems])

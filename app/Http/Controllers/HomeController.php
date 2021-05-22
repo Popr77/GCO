@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Course;
 use App\Models\UserData;
 use http\Client\Curl\User;
@@ -28,7 +29,9 @@ class HomeController extends Controller
 
     public function registered()
     {
-        return view('pages.registered');
+        $categories = Category::all();
+
+        return view('pages.registered', ['categories' => $categories]);
     }
 
 }

@@ -10,6 +10,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\SubCategoryController;
 use App\Http\Controllers\SubSubCategoryController;
 use App\Http\Controllers\QuestionController;
+use App\Http\Controllers\EnrollmentController;
 use App\Http\Controllers\Dashboard\CourseController as DCourseController;
 use Illuminate\Support\Facades\Request;
 
@@ -115,4 +116,4 @@ Route::prefix('/quiz')->middleware(['auth', 'checkCourse'])->group(function() {
     Route::post('/take/{lesson}', [QuestionController::class, 'save'])->name('quiz');
 });
 
-Route::view('/purchased', 'pages.bought');
+Route::post('/purchased', [EnrollmentController::class, 'store']);

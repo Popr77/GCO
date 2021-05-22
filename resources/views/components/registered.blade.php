@@ -14,8 +14,6 @@
 
 <h1 class="title-courses text-center mt-5 mb-5">Enjoy our Courses</h1>
 
-<!-- Courses grid -->
-
 <div class="container mb-5">
     <div class="dropdown d-flex justify-content-end">
         <button class="btn btn-primary dropdown-toggle mb-3" type="button" id="dropdownMenuButton"
@@ -23,16 +21,14 @@
             Categories
         </button>
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <a class="dropdown-item" href="{{ url('categories') }}">See All</a>
-            <a class="dropdown-item" href="#">Programming</a>
-            <a class="dropdown-item" href="#">Music</a>
-            <a class="dropdown-item" href="#">Networking</a>
-            <a class="dropdown-item" href="#">Sports</a>
-            <a class="dropdown-item" href="#">Marketing</a>
-            <a class="dropdown-item" href="#">Finances</a>
+            <a class="dropdown-item" href="/categories">See All</a>
+            @foreach($categories as $category)
+                <a href="{{url('categories/' . $category->id . '/subcategories')}}" class="dropdown-item">{{$category->name}}</a>
+            @endforeach
         </div>
     </div>
 
+<!-- Course List -->
 
     <course-list :num-courses="9" :user-id="{{ auth()->user()->id }}"></course-list>
 </div>

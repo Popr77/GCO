@@ -107,6 +107,7 @@ class LessonController extends Controller
                 $index++;
             }
             return view('pages.admin.lessons.lesson-create', ['num' => $num, 'modules' => $modules,
+
                 'title' => $title, 'module_id' => $module_id, 'quillItems' => $quillItems]);
 
         } else if ($_POST['action'] == 'create') {
