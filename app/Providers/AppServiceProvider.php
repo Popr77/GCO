@@ -36,7 +36,11 @@ class AppServiceProvider extends ServiceProvider
 
         Blade::if('hasCourse', function(Course $course) {
             if(auth()->check()) {
-                $a = auth()->user()->courses()->where('course_id', $course->id)->where('payment_status', 1)->count();
+                $a = auth()->user()->courses()->where('course_id', $course->id)
+                    ->where('enrollments.created_at', '>=', now()->subDays($course->duration))
+                    ->where('payment_status', 1)
+                    ->count();
+
                 return $a === 1;
             }
             return false;

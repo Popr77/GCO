@@ -52,5 +52,24 @@ class UserSeeder extends Seeder
             'photo' => 'logo.jpg'
         ]);
 
+        DB::table('users')->insert([
+            'email' => 'rui@rui.com',
+            'email_verified_at' => now(),
+            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+            'user_type_id' => 2,
+            'remember_token' => Str::random(10)
+        ]);
+
+        DB::table('user_data')->insert([
+            'user_id' => 3,
+            'name' => 'Rui',
+            'address' => 'Rua cantos',
+            'postal_code' => '4250-000',
+            'city' => 'gaia',
+            'phone' => '121333545',
+            'nif' => 253635236,
+            'photo' => 'logo.jpg'
+        ]);
+
     }
 }
