@@ -4,8 +4,8 @@
     <div class="row">
         <div class="mt-3 text-center">
             <h1 class="welcome-user">Hello, {{ auth()->user()->userData->name }}</h1>
-            <img src="https://i.pinimg.com/originals/7c/c7/a6/7cc7a630624d20f7797cb4c8e93c09c1.png" alt="..."
-                 class="rounded-circle" style="width: 150px">
+            <img src="{{ asset('storage/img/users/' . auth()->user()->userData->photo) }}" alt="user photo"
+                 class="rounded-circle" style="width: 150px; height: 150px;">
         </div>
     </div>
 </div>
@@ -30,5 +30,5 @@
 
 <!-- Course List -->
 
-    <course-list :num-courses="9" :user-id="{{ auth()->user()->id }}"></course-list>
+    <course-list :num-courses="9" user-id="{{ auth()->check() ? auth()->user()->id : null }}"></course-list>
 </div>
