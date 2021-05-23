@@ -1,6 +1,6 @@
 <template>
     <div class="col-sm-6 col-md-6 col-lg-4 py-2 d-flex flex-column position-relative">
-        <a :href="course.url">
+        <a :href="course.url" class="shadow-sm">
             <div class="card-img-top rounded course-image"
                  :style="{ backgroundImage: 'url(' + assets + course.photo + ')' }">
             </div>
