@@ -22,7 +22,7 @@
                 <p class="text-dark mb-0">({{ course.students.feedback_count }})</p>
             </div>
             <div class="container-fluid pr-0">
-                <p class="text-danger d-flex justify-content-end mb-0 font-weight-bold">{{ course.price / 100 }} €</p>
+                <p class="text-danger d-flex justify-content-end mb-0 font-weight-bold">{{ (course.price / 100).toFixed(2) }} €</p>
             </div>
         </div>
     </div>

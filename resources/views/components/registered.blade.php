@@ -31,4 +31,7 @@
 <!-- Course List -->
 
     <course-list :num-courses="9" user-id="{{ auth()->check() ? auth()->user()->id : null }}"></course-list>
+    <div class="d-flex justify-content-center mt-3">
+        <a href="#" class="btn btn-primary px-5 py-2">More Courses</a>
+    </div>
 </div>

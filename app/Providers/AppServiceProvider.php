@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Models\Course;
 use App\Models\Enrollment;
+use Illuminate\Contracts\View\View;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Blade;
@@ -69,6 +70,20 @@ class AppServiceProvider extends ServiceProvider
 
             return !!$enrollment->feedback_stars;
 
+        });
+
+        view()->composer('master.dashboard.sidebar', 'App\Http\Composers\MasterComposer');
+        view()->composer('master.header', function(View $view) {
+            if (auth()->check()) {
+                $myCourses = Enrollment::where('user_id', auth()->user()->id)
+                                    ->join('courses', 'courses.id', '=', 'enrollments.course_id')
+                                    ->where('payment_status', 1)
+                                    ->whereRaw("enrollments.created_at >= now() - (courses.duration || ' DAY')::INTERVAL")
+                                    ->distinct('enrollments.user_id', 'enrollments.course_id')
+                                    ->get('courses.*');
+
+                $view->with('myCourses', $myCourses);
+            }
         });
     }
 }

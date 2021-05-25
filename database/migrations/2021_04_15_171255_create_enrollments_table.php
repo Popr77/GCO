@@ -22,7 +22,6 @@ class CreateEnrollmentsTable extends Migration
             $table->text('feedback_comment')->nullable();
             $table->timestamps();
 
-            $table->unique(['user_id', 'course_id']);
         });
     }
 
