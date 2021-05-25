@@ -1,5 +1,5 @@
 <template>
-    <div class="">
+    <div>
         <div v-if="" class="alert alert-success alert-dismissible fade container show text-center mt-4 mb-0" role="alert">
             <label class="my-0">{{ status }}</label>
             <button ref="buttonAlert" type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -24,7 +24,7 @@
                     <input type="text" class="form-control" required :id="'question' + question" :name="'question' + question" aria-describedby="Question" :placeholder="'Question'" :value="'aa'+ question">
                 </div>
                 <div v-for="index in 4" :key="index" class="form-group mb-0 ml-3 ">
-                    <label :for="'answer'+ question + '.' + index">Answer {{question + '.' + index}}</label>
+                    <label :for="'answer'+ question + '.' + index">Answer {{question + '.' + index+1}}</label>
                     <input type="text" class="form-control" required :id="'answer'+ question + '.' + index" :name="'answer'+ question + '.' + index" :placeholder="'Answer'" :value="'ss' + index">
                     <div class="text-right mt-2 mr-2">
                         <input type="radio" :id="'answer'+ question + index" :checked="index==1" :name="'correct'+ question" :value="index">
@@ -77,9 +77,6 @@ export default {
             this.questions.push(this.index)
 
             this.flag = false
-            console.log(this.index)
-
-            // this.$refs.formQA.scroll(200)
             this.$refs.buttonAdd.scrollIntoView()
 
             if (this.$refs.buttonAlert){
@@ -98,22 +95,12 @@ export default {
             if (this.$refs.buttonAlert){
                 this.$refs.buttonAlert.click()
             }
-            console.log(this.index)
-
         }
     }
 }
 </script>
 
 <style>
-.form-QA{
-    /*max-height: 50vw;*/
-    /*overflow: scroll;*/
-    /*overflow-x: hidden;*/
-}
-/*.form-QA::-webkit-scrollbar {*/
-/*    width: 12px;               !* width of the entire scrollbar *!*/
-/*}*/
 
 .btn-add{
     background-color: gray;

@@ -263,12 +263,8 @@ class LessonController extends Controller
                         $nameType = 'text';
                     }
 
-
                     $content_type = ContentType::select('id')->where('name', $nameType)->first();
-
                     $contents = Content::find(Content::select('id')->where('lesson_id', $lesson->id)->get());
-
-
 
                     if (isset($contents)) {
                         if ($request->containers > count($contents)) {

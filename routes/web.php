@@ -101,7 +101,12 @@ Route::prefix('dashboard')->middleware(['auth', 'admin'])->group(function () {
         Route::put('{lesson}', [App\Http\Controllers\LessonController::class,'update']);
         Route::delete('{lesson}', [App\Http\Controllers\LessonController::class,'destroy']);
     });
-    Route::post('/quiz/', [QuestionController::class, 'store'])->name('quiz-save');
+    Route::prefix('/quiz')->middleware(['auth'])->group(function() {
+        Route::post('/', [QuestionController::class, 'store'])->name('quiz-save');
+        Route::get('/{lesson}/edit', [QuestionController::class, 'edit'])->name('quiz-edit');
+        Route::put('/{lesson}', [QuestionController::class, 'update'])->name('quiz-update');
+
+    });
 });
 
 Route::prefix('/profile')->middleware('auth', 'checkProfile')->group(function(){

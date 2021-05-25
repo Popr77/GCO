@@ -51,9 +51,9 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         $messages = array(
-            'phone.min'=>'Não pode ter menos de 9 dígitos',
-            'nif.min'=>'Não pode ter menos de 9 dígitos',
-            'nif.max'=>'Não pode ter mais de 9 dígitos',
+            'phone.min'=>'Cannot be less than 9 digits',
+            'nif.min'=>'Cannot be less than 9 digits',
+            'nif.max'=>'Cannot be less than 9 digits',
             'postal_code.regex'=>'Apenas da seguinte forma: xxxx-xxx',
         );
         return Validator::make($data, [
@@ -111,10 +111,6 @@ class RegisterController extends Controller
         $userData->nif = $data['nif'];
         isset($data['photo'])?$userData->photo = $newImage : null;
         $userData->save();
-
-
-//        $userData = UserData::latest('id')->first();
-//        dd($userData);
 
         return $user;
     }

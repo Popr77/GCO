@@ -152,7 +152,7 @@ class QuestionController extends Controller
             }
         }
 
-        return redirect('lessons')->with('status', 'Lesson created successfully!');
+        return redirect(route('d-lessons'))->with('status', 'Lesson created successfully!');
     }
 
     /**
@@ -169,24 +169,87 @@ class QuestionController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  Lesson  $lesson_id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($lesson_id)
     {
-        //
+        $questions = Question::where('lesson_id',$lesson_id)->get();
+//        dd($questions->toArray());
+
+        return view('pages.quiz.quiz-form-edit', ['lesson_id' => $lesson_id,'questions' => $questions]);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  int  $lesson_id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $lesson_id)
     {
-        //
+        $nQuestions = (count($request->all())-3)/6;
+            $questions = Question::where('lesson_id', $lesson_id)->get();
+
+        $i = 0;
+        while($request->input('question'.$i) != null){
+
+            if ($i+1 > count($questions)){
+                $question = new  Question();
+                $question->lesson_id = $request->input('lessonID');
+                $question->question = $request->input('question'.$i);
+            }else{
+                $question = $questions[$i];
+                $question->lesson_id = $request->input('lessonID');
+                $question->question = $request->input('question'.$i);
+            }
+            $question->save();
+
+            $answers = Answer::where("question_id",$question->id)
+                ->get();
+            $correct = $request->input('correct'.$i);
+
+
+            if ($nQuestions >= count($questions)){
+                if (count($answers)>0){
+                    $i2 = 0;
+                    foreach ($answers as $answer) {
+                        $answer->question_id = $question->id;
+                        $answer->answer = $request->input('answer' . $i . '_' . $i2);
+                        if ($correct == $i2)
+                            $answer->is_correct = 1;
+                        else
+                            $answer->is_correct = 0;
+                        $answer->save();
+                        $i2++;
+                    }
+                }else{
+                    for ($i3=0; $i3<4; $i3++){
+                        $answer = new  Answer();
+                        $answer->question_id = $question->id;
+                        $answer->answer = $request->input('answer' . $i . '_' . $i3);
+                        if ($correct == $i3)
+                            $answer->is_correct = 1;
+                        else
+                            $answer->is_correct = 0;
+                        $answer->save();
+                    }
+                }
+            }
+            $i++;
+        }
+        if ($nQuestions < count($questions)){
+            while(isset($questions[$i])){
+                $answers = Answer::where('question_id',$questions[$i]->id)->get();
+                foreach ($answers as $answer)
+                    $answer->delete();
+                $questions[$i]->delete();
+                $i++;
+            }
+        }
+
+        return redirect('dashboard/lessons')->with('status','Quiz edited successfully!');;
     }
 
     /**
