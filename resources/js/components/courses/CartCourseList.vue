@@ -20,11 +20,45 @@ export default {
             csrf: ''
         }
     },
+    props: {
+        userId: {
+            type: String,
+            required: false
+        }
+    },
+    computed: {
+    },
     methods: {
         removeFromCart(item) {
             this.$emit('removed')
             this.$store.commit('removeFromCart', item)
         },
+        getUserCourses() {
+            axios.get('/api/courses/user-courses', {
+                params: {
+                    userid: this.userId ?? null
+                }
+            })
+                .then(response => {
+                    response.data.data.forEach((c) => {
+                        let index = this.$store.state.cart.findIndex((x) => x.id === c.id)
+
+                        if(index > -1) {
+                            this.$store.state.cart.splice(index, 1)
+                        }
+                    })
+
+                    this.$store.commit('saveCart')
+                })
+                .catch(e => {
+                    console.log(e)
+                });
+        }
+    },
+    created() {
+        if(this.userId) {
+            this.getUserCourses()
+        }
     }
 }
 </script>

@@ -78,6 +78,7 @@ class AppServiceProvider extends ServiceProvider
                 $myCourses = Enrollment::where('user_id', auth()->user()->id)
                                     ->join('courses', 'courses.id', '=', 'enrollments.course_id')
                                     ->where('payment_status', 1)
+                                    ->where('courses.status', 1)
                                     ->whereRaw("enrollments.created_at >= now() - (courses.duration || ' DAY')::INTERVAL")
                                     ->distinct('enrollments.user_id', 'enrollments.course_id')
                                     ->get('courses.*');

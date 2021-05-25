@@ -26,27 +26,12 @@ class LessonController extends Controller
     }
 
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function lesson()
-    {
-        return view('pages.admin.lessons.lesson');
-    }
-
-    /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function create()
     {
-//        $num = $request->input('name');
-
-//        $num  = ContentType::select('id')->where('name','text')->first();
-//        $lesson_id = Lesson::latest('id')->first();
-//        dd($lesson_id);
 
         $modules = Module::all();
 
@@ -68,6 +53,7 @@ class LessonController extends Controller
                 'title' => $title, 'module_id' => $module_id, 'quillItems' => $quillItems]);
 
         }elseif(isset($_GET['num'])){
+
             $module_id = $_GET['module_id'];
             $num = $_GET['num'];
 
