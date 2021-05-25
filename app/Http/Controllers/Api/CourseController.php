@@ -45,15 +45,19 @@ class CourseController extends Controller {
                         ->from('enrollments')
                         ->join('courses', 'courses.id', '=', 'enrollments.course_id')
                         ->whereRaw("user_id = ? AND enrollments.created_at >= now() - (courses.duration || ' DAY')::INTERVAL", [$userid]);
-
                 })
+                ->where('status', 1)
                 ->orderBy('students_count', 'desc')
                 ->take($num)
-                ->get());
+                ->get('courses.*'));
         }
 
         return CourseResource::collection(Course::withCount(['students' => function ($query) {
             $query->where('payment_status', 1);
-        }])->orderBy('students_count', 'desc')->take($num)->get('courses.*'));
+        }])
+            ->where('status', 1)
+            ->orderBy('students_count', 'desc')
+            ->take($num)
+            ->get('courses.*'));
     }
 }
