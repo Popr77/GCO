@@ -17,7 +17,7 @@ class CategoryController extends Controller
     {
         $search = $request->query('search');
 
-        $categories = Category::where('name', 'LIKE', '%'.$search.'%')->get();
+        $categories = Category::where('name', 'ILIKE', '%'.$search.'%')->get();
 
         return view('pages.categories.categories', ['categories' => $categories]);
     }
@@ -29,7 +29,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return view('pages.categories.create-category');
+        return view('pages.admin.categories.create-category');
     }
 
     /**
@@ -46,7 +46,7 @@ class CategoryController extends Controller
 
         Category::create($request->all());
 
-        return redirect('categories')->with('status', 'Category created successfully!');
+        return redirect('dashboard')->with('status', 'Category created successfully!');
     }
 
     /**
@@ -68,7 +68,7 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        return view('pages.categories.edit-category', ['category' => $category]);
+        return view('pages.admin.categories.edit-category', ['category' => $category]);
     }
 
     /**
@@ -80,8 +80,11 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $category)
     {
-        $category->update($request->all());
-        return redirect('categories')->with('status','Category edited successfully!');
+        $category->name = $request->name;
+
+        $category->save();
+
+        return redirect('dashboard')->with('status','Category edited successfully!');
     }
 
     /**
@@ -94,7 +97,7 @@ class CategoryController extends Controller
     {
         $category->delete();
 
-        return redirect('categories')->with('status', 'Category deleted successfully!');
+        return redirect('dashboard')->with('status', 'Category deleted successfully!');
     }
 
     public function subcategories(Category $category) {
