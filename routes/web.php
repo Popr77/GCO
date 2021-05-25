@@ -100,7 +100,6 @@ Route::prefix('dashboard')->middleware(['auth', 'admin'])->group(function () {
         Route::post('/', [QuestionController::class, 'store'])->name('quiz-save');
         Route::get('/{lesson}/edit', [QuestionController::class, 'edit'])->name('quiz-edit');
         Route::put('/{lesson}', [QuestionController::class, 'update'])->name('quiz-update');
-
     });
 });
 
