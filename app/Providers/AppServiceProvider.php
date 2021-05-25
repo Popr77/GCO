@@ -73,6 +73,7 @@ class AppServiceProvider extends ServiceProvider
         });
 
         view()->composer('master.dashboard.sidebar', 'App\Http\Composers\MasterComposer');
+      
         view()->composer('master.header', function(View $view) {
             if (auth()->check()) {
                 $myCourses = Enrollment::where('user_id', auth()->user()->id)

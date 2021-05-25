@@ -2,8 +2,8 @@
 
 <div class="container px-0">
     <ul class="d-flex text-decoration-none list-unstyled mt-5">
-        <li><a href="{{url('categories/' . $course->subsubcategory->subcategory->category->id)}}">{{$course->subsubcategory->subcategory->category->name}}</a> > </li>
-        <li><a href="{{url('subcategories/' . $course->subsubcategory->subcategory->id)}}">{{$course->subsubcategory->subcategory->name}}</a> > </li>
+        <li><a href="{{url('categories/' . $course->subsubcategory->subcategory->category->id . '/subcategories')}}">{{$course->subsubcategory->subcategory->category->name}}</a> > </li>
+        <li><a href="{{url('subcategories/' . $course->subsubcategory->subcategory->id . '/subsubcategories')}}">{{$course->subsubcategory->subcategory->name}}</a> > </li>
         <li><a href="{{url('subsubcategories/' . $course->subsubcategory->id)}}">{{$course->subsubcategory->name}}</a></li>
     </ul>
 </div>

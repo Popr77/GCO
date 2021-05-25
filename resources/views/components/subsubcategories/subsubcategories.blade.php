@@ -11,6 +11,6 @@
     </div>
 
     <div class="d-flex justify-content-center">
-        <a href="{{url('subcategories')}}" class="mt-2 mb-5 mr-2 btn btn-outline-success">Go back to subcategories</a>
+        <a href="{{url('categories/' . $subsubcategories[0]->subcategory->category->id . '/subcategories')}}" class="mt-2 mb-5 mr-2 btn btn-outline-success">Go back to subcategories</a>
     </div>
 </div>

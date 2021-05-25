@@ -17,7 +17,7 @@ class SubCategoryController extends Controller
     public function index()
     {
         $subcategories = SubCategory::all();
-        return view('pages.subcategories.subcategories', ['subcategories' => $subcategories]);
+        return view('pages.admin.subcategories.subcategories', ['subcategories' => $subcategories]);
     }
 
     /**
@@ -28,7 +28,7 @@ class SubCategoryController extends Controller
     public function create()
     {
         $categories = Category::all();
-        return view('pages.subcategories.create-subcategory', ['categories' => $categories]);
+        return view('pages.admin.subcategories.create-subcategory', ['categories' => $categories]);
     }
 
     /**
@@ -46,7 +46,7 @@ class SubCategoryController extends Controller
 
         SubCategory::create($request->all());
 
-        return redirect('subcategories')->with('status', 'Sub Category created successfully!');
+        return redirect('dashboard')->with('status', 'Sub Category created successfully!');
     }
 
     /**
@@ -71,7 +71,7 @@ class SubCategoryController extends Controller
 
         $categories = Category::all();
 
-        return view('pages.subcategories.edit-subcategory', ['subcategory' => $subcategory, 'categories' => $categories]);
+        return view('pages.admin.subcategories.edit-subcategory', ['subcategory' => $subcategory, 'categories' => $categories]);
     }
 
     /**
@@ -86,7 +86,7 @@ class SubCategoryController extends Controller
 
         $subcategory->update($request->all());
 
-        return redirect('subcategories')->with('status','Sub Category edited successfully!');
+        return redirect('dashboard')->with('status','Sub Category edited successfully!');
     }
 
     /**
@@ -99,10 +99,11 @@ class SubCategoryController extends Controller
     {
         $subcategory->delete();
 
-        return redirect('subcategories')->with('status', 'Sub Category deleted successfully!');
+        return redirect('dashboard')->with('status', 'Sub Category deleted successfully!');
     }
 
     public function subsubcategories(SubCategory $subcategory) {
+
 
         $subsubcategories = SubSubCategory::where('sub_category_id', '=', $subcategory->id)->get();
 
