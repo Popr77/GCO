@@ -19,7 +19,9 @@ class Question extends Model
     ];
 
     public function answers() {
-        return $this->hasMany(Answer::class)->orderBy('id');
+
+        return $this->hasMany(Answer::class)->orderBy('id', 'ASC');
+
     }
 
     public function lesson() {

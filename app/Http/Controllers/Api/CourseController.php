@@ -60,4 +60,14 @@ class CourseController extends Controller {
             ->take($num)
             ->get('courses.*'));
     }
+
+    public function userCourses(Request $request) {
+
+        $userid = $request->query('userid');
+
+        return CourseResource::collection(Course::join('enrollments', 'enrollments.course_id', '=', 'courses.id' )
+            ->where('user_id', $userid)
+            ->whereRaw("enrollments.created_at >= now() - (courses.duration || ' DAY')::INTERVAL")
+            ->get('courses.*'));
+    }
 }

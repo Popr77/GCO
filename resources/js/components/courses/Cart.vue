@@ -5,7 +5,7 @@
             <span class="number-items shadow-sm">{{ $store.state.cart.length }}</span>
         </div>
         <div class="dropdown-menu p-4 shadow">
-            <cart-course-list />
+            <cart-course-list :user-id="userId" />
             <div class="d-flex justify-content-between align-items-center">
                 <p>Total: <span class="text-danger font-weight-bold">{{ totalPrice }}€</span></p>
                 <a href="/checkout" class="btn btn-primary">Checkout</a>
@@ -25,6 +25,12 @@ export default {
     data() {
         return {
 
+        }
+    },
+    props: {
+        userId: {
+            type: String,
+            required: false
         }
     },
     computed: {

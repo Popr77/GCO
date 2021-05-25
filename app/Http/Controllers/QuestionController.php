@@ -175,8 +175,6 @@ class QuestionController extends Controller
     {
         $questions = Question::where('lesson_id',$lesson_id)
             ->orderBy('id', 'ASC')->get();
-//        dd($questions->toArray());
-
 
         return view('pages.quiz.quiz-form-edit', ['lesson_id' => $lesson_id,'questions' => $questions]);
     }
@@ -207,7 +205,8 @@ class QuestionController extends Controller
             }
             $question->save();
 
-            $answers = Answer::where("question_id",$question->id)->OrderBy('id')
+            $answers = Answer::where("question_id",$question->id)
+                ->orderBy('id', 'ASC')
                 ->get();
             $correct = $request->input('correct'.$i);
 

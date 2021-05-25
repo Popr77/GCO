@@ -69,5 +69,5 @@
             @endguest
         </ul>
     </div>
-    <cart></cart>
+    <cart user-id="{{ auth()->check() ? auth()->user()->id : null }}"></cart>
 </nav>

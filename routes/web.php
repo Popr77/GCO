@@ -35,12 +35,12 @@ Route::get('/', [App\Http\Controllers\HomeController::class, 'index']);
 
 Route::prefix('/lessons')->middleware(['auth'])->group(function(){
     Route::get('{lesson}', [App\Http\Controllers\LessonController::class,'show'])
-        ->middleware('checkCourse');
+        ->middleware(['checkCourse', 'IsCourseActive']);
 });
 
 Route::prefix('/courses')->group(function(){
     Route::get('', [CourseController::class, 'index']);
-    Route::get('{course}', [CourseController::class, 'show'])->middleware('isCourseActive');
+    Route::get('{course}', [CourseController::class, 'show'])->middleware('IsCourseActive');
 });
 
 Route::prefix('/categories')->group(function(){
@@ -94,6 +94,7 @@ Route::prefix('dashboard')->middleware(['auth', 'admin'])->group(function () {
         Route::put('{lesson}', [App\Http\Controllers\LessonController::class,'update']);
         Route::delete('{lesson}', [App\Http\Controllers\LessonController::class,'destroy']);
     });
+
     Route::prefix('/modules')->group(function(){
         Route::get('{course}/all', [App\Http\Controllers\ModuleController::class, 'index'])->name('d-module');
          Route::get('create', [App\Http\Controllers\ModuleController::class,'create']);
@@ -103,6 +104,7 @@ Route::prefix('dashboard')->middleware(['auth', 'admin'])->group(function () {
         Route::put('{module}', [App\Http\Controllers\ModuleController::class,'update']);
         Route::delete('{module}', [App\Http\Controllers\ModuleController::class,'destroy']);
     });
+
     Route::prefix('/quiz')->group(function() {
         Route::post('/', [QuestionController::class, 'store'])->name('quiz-save');
         Route::get('/{lesson}/edit', [QuestionController::class, 'edit'])->name('quiz-edit');
@@ -119,7 +121,7 @@ Route::get('change-password', [ChangePasswordController::class, 'index']);
 Route::post('change-password', [ChangePasswordController::class, 'store'])->name('change.password');
 
 
-Route::prefix('/quiz')->middleware(['auth', 'checkCourse'])->group(function() {
+Route::prefix('/quiz')->middleware(['auth', 'checkCourse', 'IsCourseActive'])->group(function() {
     Route::get('/take/{lesson}', [QuestionController::class, 'index'])->middleware('checkHasDoneQuiz');
     Route::post('/take/{lesson}', [QuestionController::class, 'save'])->name('quiz');
 });

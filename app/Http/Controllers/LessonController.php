@@ -53,6 +53,7 @@ class LessonController extends Controller
                 'title' => $title, 'module_id' => $module_id, 'quillItems' => $quillItems]);
 
         }elseif(isset($_GET['num'])){
+
             $module_id = $_GET['module_id'];
             $num = $_GET['num'];
 

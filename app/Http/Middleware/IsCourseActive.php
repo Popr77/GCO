@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 
-class isCourseActive
+class IsCourseActive
 {
     /**
      * Handle an incoming request.
@@ -16,7 +16,9 @@ class isCourseActive
      */
     public function handle(Request $request, Closure $next)
     {
-        $course = request()->route('course');
+
+        $course = request()->route('course') ? request()->route('course')
+                                    : request()->route('lesson')->module->course;
 
         if ($course->status) {
             return $next($request);
