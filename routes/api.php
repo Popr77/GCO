@@ -24,5 +24,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::get('/courses', [CourseController::class, 'index']);
 Route::get('/courses/recommended', [CourseController::class, 'recommended']);
+Route::get('/courses/user-courses', [CourseController::class, 'userCourses']);
 
 Route::get('/categories', [CategoryController::class, 'index']);
