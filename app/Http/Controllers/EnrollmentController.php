@@ -16,7 +16,14 @@ class EnrollmentController extends Controller
     public function store(Request $request) {
 
             $user = auth()->user();
-            $user->courses()->syncWithoutDetaching($request->courses, ['user_id' => $user->id]);
+//            $user->courses()->syncWithoutDetaching($request->courses, ['user_id' => $user->id]);
+
+            foreach($request->courses as $courseId) {
+                $enrollment = new Enrollment();
+                $enrollment->user_id = $user->id;
+                $enrollment->course_id = $courseId;
+                $enrollment->save();
+            }
 
             return redirect(route('checkout-confirmation'))->with('status', true);
     }
