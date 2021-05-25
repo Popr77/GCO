@@ -16,7 +16,7 @@ class SubSubCategoryController extends Controller
     public function index()
     {
         $subsubcategories = SubSubCategory::all();
-        return view('pages.subsubcategories.subsubcategories', ['subsubcategories' => $subsubcategories]);
+        return view('pages.admin.subsubcategories.subsubcategories', ['subsubcategories' => $subsubcategories]);
     }
 
     /**
@@ -28,7 +28,7 @@ class SubSubCategoryController extends Controller
     {
         $subcategories = SubCategory::all();
 
-        return view('pages.subsubcategories.create-subsubcategory', ['subcategories' => $subcategories]);
+        return view('pages.admin.subsubcategories.create-subsubcategory', ['subcategories' => $subcategories]);
     }
 
     /**
@@ -46,7 +46,7 @@ class SubSubCategoryController extends Controller
 
         SubSubCategory::create($request->all());
 
-        return redirect('subsubcategories')->with('status', 'Sub Sub Category created successfully!');
+        return redirect('dashboard')->with('status', 'Sub Sub Category created successfully!');
     }
 
     /**
@@ -70,7 +70,7 @@ class SubSubCategoryController extends Controller
     {
         $subcategories = SubCategory::all();
 
-        return view('pages.subsubcategories.edit-subsubcategory', ['subsubcategory' => $subsubcategory, 'subcategories' => $subcategories]);
+        return view('pages.admin.subsubcategories.edit-subsubcategory', ['subsubcategory' => $subsubcategory, 'subcategories' => $subcategories]);
     }
 
     /**
@@ -84,7 +84,7 @@ class SubSubCategoryController extends Controller
     {
         $subsubcategory->update($request->all());
 
-        return redirect('subsubcategories')->with('status','Sub Sub Category edited successfully!');
+        return redirect('dashboard')->with('status','Sub Sub Category edited successfully!');
     }
 
     /**
@@ -97,6 +97,6 @@ class SubSubCategoryController extends Controller
     {
         $subsubcategory->delete();
 
-        return redirect('subsubcategories')->with('status', 'Sub Sub Category deleted successfully!');
+        return redirect('dashboard')->with('status', 'Sub Sub Category deleted successfully!');
     }
 }

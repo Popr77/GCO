@@ -3,7 +3,7 @@
 <div class="container mt-5">
     <div class="row d-flex justify-content-center">
         <div class="col-6">
-                    <form method="POST" action="{{ url('categories') }}">
+                    <form method="POST" action="{{ url('dashboard/categories') }}">
                     @csrf
 
                         <div class="form-group">
@@ -26,7 +26,7 @@
                         </div>
                         <div class="d-flex justify-content-center">
                             <button type="submit" class="mt-2 mb-5 mr-2 btn btn-outline-primary">Create</button>
-                            <a href="{{url('categories')}}" class="mt-2 mb-5 btn btn-outline-success">Go back</a>
+                            <a href="{{url('dashboard')}}" class="mt-2 mb-5 btn btn-outline-success">Go back</a>
                         </div>
                     </form>
         </div>

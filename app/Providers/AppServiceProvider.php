@@ -66,5 +66,7 @@ class AppServiceProvider extends ServiceProvider
             return !!$enrollment->feedback_stars;
 
         });
+
+        view()->composer('master.dashboard.sidebar', 'App\Http\Composers\MasterComposer');
     }
 }
