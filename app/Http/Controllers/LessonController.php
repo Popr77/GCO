@@ -9,6 +9,7 @@ use App\Models\Module;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use phpDocumentor\Reflection\Types\Integer;
+use PhpParser\Node\Expr\AssignOp\Mod;
 
 class LessonController extends Controller
 {
@@ -25,32 +26,17 @@ class LessonController extends Controller
     }
 
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function lesson()
-    {
-        return view('pages.admin.lessons.lesson');
-    }
-
-    /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function create()
     {
-//        $num = $request->input('name');
-
-//        $num  = ContentType::select('id')->where('name','text')->first();
-//        $lesson_id = Lesson::latest('id')->first();
-//        dd($lesson_id);
 
         $modules = Module::all();
 
 
-        if (isset($_GET['num']) && isset($_GET['title']) && isset($_GET['lesson_number']) && isset($_GET['module_id'])){
+        if (isset($_GET['num']) && isset($_GET['title'])  && isset($_GET['module_id'])){
 
             $quillItems  = [];
             for ($i=0; $i<count($_GET); $i++){
@@ -61,16 +47,14 @@ class LessonController extends Controller
 
             $num = $_GET['num'];
             $title = $_GET['title'];
-            $lesson_number = $_GET['lesson_number'];
             $module_id = $_GET['module_id'];
 
             return view('pages.admin.lessons.lesson-create', ['num' => $num, 'modules' => $modules,
-                'title' => $title, 'lesson_number' => $lesson_number,
-                'module_id' => $module_id, 'quillItems' => $quillItems]);
+                'title' => $title, 'module_id' => $module_id, 'quillItems' => $quillItems]);
 
         }elseif(isset($_GET['num'])){
-            $module_id = $_GET['module_id'];
 
+            $module_id = $_GET['module_id'];
             $num = $_GET['num'];
 
             return view('pages.admin.lessons.lesson-create', ['num' => $num, 'module_id' => $module_id, 'modules' => $modules]);
@@ -96,8 +80,8 @@ class LessonController extends Controller
 
             $num = $request->containers;
             $title = $request->title;
-            $lesson_number = $request->lesson_number;
             $module_id = $request->module_id;
+
 
             $index = 0;
             $quillItems  = [];
@@ -109,14 +93,19 @@ class LessonController extends Controller
                 $index++;
             }
             return view('pages.admin.lessons.lesson-create', ['num' => $num, 'modules' => $modules,
-                'title' => $title, 'lesson_number' => $lesson_number,
-                'module_id' => $module_id, 'quillItems' => $quillItems]);
+
+                'title' => $title, 'module_id' => $module_id, 'quillItems' => $quillItems]);
 
         } else if ($_POST['action'] == 'create') {
 
+            $lesson_number = Lesson::Select('id')
+                ->where('module_id', $request->module_id)
+                ->count();
+            $lesson_number++;
+
             Lesson::create([
                 'title' => $request->title,
-                'lesson_number' => $request->lesson_number,
+                'lesson_number' => $lesson_number,
                 'module_id' => $request->module_id
             ]);
 
@@ -158,7 +147,11 @@ class LessonController extends Controller
      */
     public function show(Lesson $lesson)
     {
-        return view('pages.admin.lessons.lesson-show', ['lesson' => $lesson]);
+        $modules = Module::with('lessons')
+            ->where('course_id', $lesson->module->course->id)->get();
+
+        return view('pages.admin.lessons.lesson-show',
+            ['lesson' => $lesson, 'modules'=> $modules]);
 
     }
 
@@ -170,7 +163,7 @@ class LessonController extends Controller
      */
     public function edit(Lesson $lesson)
     {
-        if (isset($_GET['num']) && isset($_GET['title']) && isset($_GET['lesson_number']) && isset($_GET['module_id'])){
+        if (isset($_GET['num']) && isset($_GET['title']) && isset($_GET['module_id'])){
 
             $quillItems  = [];
             for ($i=0; $i<count($_GET); $i++){
@@ -242,9 +235,7 @@ class LessonController extends Controller
             $lesson->module_id = $request->module_id;
             $lesson->save();
 
-
             $index = 0;
-            $index2 = 0;
             foreach ($request as $item) {
                 $quillItem = $request->input(('editor' . $index));
 //                $total_quillItems = count($quillItem);
@@ -258,12 +249,8 @@ class LessonController extends Controller
                         $nameType = 'text';
                     }
 
-
                     $content_type = ContentType::select('id')->where('name', $nameType)->first();
-
                     $contents = Content::find(Content::select('id')->where('lesson_id', $lesson->id)->get());
-
-
 
                     if (isset($contents)) {
                         if ($request->containers > count($contents)) {
@@ -303,10 +290,10 @@ class LessonController extends Controller
         }else if ($_POST['action'] == 'delete'){
 
             $lesson->delete();
-            return redirect('lessons')->with('status','Item deleted successfully!');;
+            return redirect('dashboard/lessons')->with('status','Item deleted successfully!');;
 
         }
-        return redirect('lessons')->with('status', 'Item edited successfully!!');
+        return redirect('dashboard/lessons')->with('status', 'Item edited successfully!!');
 
     }
 
@@ -320,6 +307,6 @@ class LessonController extends Controller
     public function destroy(Lesson $lesson)
     {
         $lesson->delete();
-        return redirect('lessons')->with('status','Item deleted successfully!');;
+        return redirect('lessons')->with('status','Lesson deleted successfully!');;
     }
 }

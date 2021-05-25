@@ -10,7 +10,7 @@ class MasterComposer {
     public function compose(View $view) {
 
         $categories = Category::all();
-
+      
         $view->with('categories', $categories);
     }
 }
