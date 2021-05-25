@@ -11,7 +11,8 @@ use App\Models\Course;
 
 class CourseController extends Controller {
 
-    public function index(Request $request) {
+    public function index(Request $request)
+    {
         $search = $request->query('search');
 
         return CourseResource::collection(Course::with('subsubcategory')
@@ -26,26 +27,37 @@ class CourseController extends Controller {
             ->paginate(12, 'courses.*'));
     }
 
-    public function recommended(Request $request) {
+    public function recommended(Request $request)
+    {
 
         $num = $request->query('num');
         $userid = $request->query('userid');
 
-        if($userid) {
+        if ($userid)
+        {
             return CourseResource::collection(Course::
-                withCount(['students' => function ($query) {
-                    $query->where('payment_status', 1);
-                }])
-                ->whereNotIn('id', function($query) use ($userid) {
-                    $query->select('course_id')->from('enrollments')->where('user_id', $userid);
+            withCount(['students' => function ($query) {
+                $query->where('payment_status', 1);
+            }])
+                ->whereNotIn('id', function ($query) use ($userid) {
+
+                    $query->select('course_id')
+                        ->from('enrollments')
+                        ->join('courses', 'courses.id', '=', 'enrollments.course_id')
+                        ->whereRaw("user_id = ? AND enrollments.created_at >= now() - (courses.duration || ' DAY')::INTERVAL", [$userid]);
                 })
+                ->where('status', 1)
                 ->orderBy('students_count', 'desc')
                 ->take($num)
-                ->get());
+                ->get('courses.*'));
         }
 
         return CourseResource::collection(Course::withCount(['students' => function ($query) {
             $query->where('payment_status', 1);
-        }])->orderBy('students_count', 'desc')->take($num)->get('courses.*'));
+        }])
+            ->where('status', 1)
+            ->orderBy('students_count', 'desc')
+            ->take($num)
+            ->get('courses.*'));
     }
 }

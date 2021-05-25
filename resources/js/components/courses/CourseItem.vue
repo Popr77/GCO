@@ -1,6 +1,6 @@
 <template>
     <div class="col-sm-6 col-md-6 col-lg-4 py-2 d-flex flex-column position-relative">
-        <a :href="course.url">
+        <a :href="course.url" class="shadow-sm">
             <div class="card-img-top rounded course-image"
                  :style="{ backgroundImage: 'url(' + assets + course.photo + ')' }">
             </div>
@@ -22,7 +22,7 @@
                 <p class="text-dark mb-0">({{ course.students.feedback_count }})</p>
             </div>
             <div class="container-fluid pr-0">
-                <p class="text-danger d-flex justify-content-end mb-0 font-weight-bold">{{ course.price / 100 }} €</p>
+                <p class="text-danger d-flex justify-content-end mb-0 font-weight-bold">{{ (course.price / 100).toFixed(2) }} €</p>
             </div>
         </div>
     </div>

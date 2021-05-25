@@ -42,12 +42,7 @@ Route::prefix('/lessons')->middleware(['auth'])->group(function(){
 
 Route::prefix('/courses')->group(function(){
     Route::get('', [CourseController::class, 'index']);
-    Route::post('', [CourseController::class, 'store']);
-    Route::get('create', [CourseController::class, 'create']);
-    Route::get('{course}', [CourseController::class, 'show']);
-    Route::get('{course}/edit', [CourseController::class, 'edit']);
-    Route::put('{course}', [CourseController::class, 'update']);
-    Route::delete('{course}', [CourseController::class, 'destroy']);
+    Route::get('{course}', [CourseController::class, 'show'])->middleware('isCourseActive');
 });
 
 Route::prefix('/categories')->group(function(){
