@@ -33,8 +33,6 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'registered'])
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index']);
 
-Route::get('/lesson', [App\Http\Controllers\LessonController::class,'lesson']);
-
 Route::prefix('/lessons')->middleware(['auth'])->group(function(){
     Route::get('{lesson}', [App\Http\Controllers\LessonController::class,'show'])
         ->middleware('checkCourse');
@@ -88,7 +86,7 @@ Route::prefix('dashboard')->middleware(['auth', 'admin'])->group(function () {
         Route::put('/{course}', [DCourseController::class, 'update'])->name('d-course-update');
         Route::delete('/{course}', [DCourseController::class, 'destroy'])->name('d-course-destroy');
     });
-    Route::prefix('/lessons')->middleware(['auth'])->group(function(){
+    Route::prefix('/lessons')->group(function(){
         Route::get('', [App\Http\Controllers\LessonController::class, 'index'])->name('d-lessons');
         Route::get('create', [App\Http\Controllers\LessonController::class,'create']);
         Route::post('', [App\Http\Controllers\LessonController::class,'store']);
@@ -96,7 +94,16 @@ Route::prefix('dashboard')->middleware(['auth', 'admin'])->group(function () {
         Route::put('{lesson}', [App\Http\Controllers\LessonController::class,'update']);
         Route::delete('{lesson}', [App\Http\Controllers\LessonController::class,'destroy']);
     });
-    Route::prefix('/quiz')->middleware(['auth'])->group(function() {
+    Route::prefix('/modules')->group(function(){
+        Route::get('{course}/all', [App\Http\Controllers\ModuleController::class, 'index'])->name('d-module');
+         Route::get('create', [App\Http\Controllers\ModuleController::class,'create']);
+        Route::get('{module}', [App\Http\Controllers\ModuleController::class, 'show']);
+        Route::post('', [App\Http\Controllers\ModuleController::class,'store']);
+        Route::get('{module}/edit', [App\Http\Controllers\ModuleController::class,'edit']);
+        Route::put('{module}', [App\Http\Controllers\ModuleController::class,'update']);
+        Route::delete('{module}', [App\Http\Controllers\ModuleController::class,'destroy']);
+    });
+    Route::prefix('/quiz')->group(function() {
         Route::post('/', [QuestionController::class, 'store'])->name('quiz-save');
         Route::get('/{lesson}/edit', [QuestionController::class, 'edit'])->name('quiz-edit');
         Route::put('/{lesson}', [QuestionController::class, 'update'])->name('quiz-update');

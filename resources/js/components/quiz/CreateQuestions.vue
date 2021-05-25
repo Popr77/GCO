@@ -21,11 +21,11 @@
             <div v-for="question in questions" class="mb-5">
                 <div class="form-group mt-5">
                     <label for="question">Question {{question}}</label>
-                    <input type="text" class="form-control" required :id="'question' + question" :name="'question' + question" aria-describedby="Question" :placeholder="'Question'" :value="'aa'+ question">
+                    <input type="text" class="form-control" required :id="'question' + question" :name="'question' + question" aria-describedby="Question" :placeholder="'Question'" value="">
                 </div>
                 <div v-for="index in 4" :key="index" class="form-group mb-0 ml-3 ">
                     <label :for="'answer'+ question + '.' + index">Answer {{question + '.' + index+1}}</label>
-                    <input type="text" class="form-control" required :id="'answer'+ question + '.' + index" :name="'answer'+ question + '.' + index" :placeholder="'Answer'" :value="'ss' + index">
+                    <input type="text" class="form-control" required :id="'answer'+ question + '.' + index" :name="'answer'+ question + '.' + index" :placeholder="'Answer'" value="">
                     <div class="text-right mt-2 mr-2">
                         <input type="radio" :id="'answer'+ question + index" :checked="index==1" :name="'correct'+ question" :value="index">
                         <label :for="'answer'+ question + index"> Correct One</label>

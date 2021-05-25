@@ -66,56 +66,28 @@
             <i class="bi bi-list-check"></i>
         </button>
     </div>
-
-
-    <div class="collapse" id="collapseExample">
-        <div class="card card-body lessons-menu rounded col-lg-2 py-3 px-4" id="lesson-menu">
-            <h4 class="text-primary text-center">Lessons</h4>
-            <div class=" d-flex flex-row container-fluid">
-                @foreach($modules as $module)
-                <div>
-                    <h5 class="ml-2 mt-3">{{$module->name}}</h5>
-                    @foreach($module->lessons as $lesson)
-                        <p class="ml-4">{{$lesson->lesson_number}}. {{$lesson->title}}</p>
+        <div class="collapse" id="collapseExample">
+            <div class="card card-body lessons-menu rounded col-lg-2 py-3 px-4" id="lesson-menu">
+                <h4 class="text-primary text-center">Lessons</h4>
+                <div class=" d-flex flex-row container-fluid mt-5">
+                    @foreach($modules as $module)
+                    <div>
+                        <h5 class="ml-2 mt-3">{{$module->name}}</h5>
+                        @foreach($module->lessons as $lesson)
+                            <p class="ml-4">{{$lesson->lesson_number}}. {{$lesson->title}}</p>
+                        @endforeach
+                    </div>
                     @endforeach
                 </div>
-                @endforeach
-{{--                <div>--}}
-{{--                    <h5 class="ml-2 mt-3">Module 2</h5>--}}
-{{--                    <p class="ml-4">Lesson 3</p>--}}
-{{--                    <p class="ml-4">Lesson 4</p>--}}
-{{--                    <p class="ml-4">Lesson 5</p>--}}
-{{--                    <p class="ml-4">- Quizz</p>--}}
-{{--                </div>--}}
-{{--                <div>--}}
-{{--                    <h5 class="ml-2 mt-3">Module 3</h5>--}}
-{{--                    <p class="ml-4">Lesson 6</p>--}}
-{{--                    <p class="ml-4">Lesson 7</p>--}}
-{{--                    <p class="ml-4">- Quizz</p>--}}
-{{--                </div>--}}
-{{--                <div>--}}
 
-{{--                    <h5 class="ml-2 mt-3">Module 4</h5>--}}
-{{--                    <p class="ml-4">Lesson 8</p>--}}
-{{--                    <p class="ml-4">- Quizz</p>--}}
-{{--                </div>--}}
-{{--                <div>--}}
-{{--                    <h5 class="ml-2 mt-3">Module 5</h5>--}}
-{{--                    <p class="ml-4">Lesson 9</p>--}}
-{{--                    <p class="ml-4">Lesson 10</p>--}}
-{{--                    <p class="ml-4">Lesson 11</p>--}}
-{{--                    <p class="ml-4">- Quizz</p>--}}
-{{--                </div>--}}
-            </div>
-
-            <div class="lesson-menu-quizz bg-light mt-0 container-fluid text-center
+                <div class="lesson-menu-quizz bg-light mt-0 container-fluid text-center
     position-fixed py-3  my-auto">
-                <button class="btn btn-primary"><a href="{{route('quiz', $lesson->id)}}">Take Quizz</a></button>
+                    <button class="btn btn-primary "><a href="{{url('quiz/take/1')}}">Take Quizz</a></button>
+                </div>
             </div>
+
+
         </div>
-
-
-    </div>
 
     <div class="lessons-menu2 rounded col-2 py-3 px-4" >
             @foreach($modules as $module)

@@ -136,7 +136,6 @@ class QuestionController extends Controller
             $question->question = $request->input('question'.$i);
             $question->save();
 
-//            dd($question->id);
             for ($i2 = 1; $i2 <= 4; $i2++) {
 
                 $answer = new  Answer();
@@ -174,8 +173,10 @@ class QuestionController extends Controller
      */
     public function edit($lesson_id)
     {
-        $questions = Question::where('lesson_id',$lesson_id)->get();
+        $questions = Question::where('lesson_id',$lesson_id)
+            ->orderBy('id', 'ASC')->get();
 //        dd($questions->toArray());
+
 
         return view('pages.quiz.quiz-form-edit', ['lesson_id' => $lesson_id,'questions' => $questions]);
     }
@@ -190,7 +191,7 @@ class QuestionController extends Controller
     public function update(Request $request, $lesson_id)
     {
         $nQuestions = (count($request->all())-3)/6;
-            $questions = Question::where('lesson_id', $lesson_id)->get();
+        $questions = Question::where('lesson_id', $lesson_id)->get();
 
         $i = 0;
         while($request->input('question'.$i) != null){
@@ -206,10 +207,9 @@ class QuestionController extends Controller
             }
             $question->save();
 
-            $answers = Answer::where("question_id",$question->id)
+            $answers = Answer::where("question_id",$question->id)->OrderBy('id')
                 ->get();
             $correct = $request->input('correct'.$i);
-
 
             if ($nQuestions >= count($questions)){
                 if (count($answers)>0){
