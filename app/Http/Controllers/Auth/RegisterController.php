@@ -54,7 +54,7 @@ class RegisterController extends Controller
             'phone.min'=>'Cannot be less than 9 digits',
             'nif.min'=>'Cannot be less than 9 digits',
             'nif.max'=>'Cannot be less than 9 digits',
-            'postal_code.regex'=>'Apenas da seguinte forma: xxxx-xxx',
+            'postal_code.regex'=>'Wrong format (example: xxxx-xxx)',
         );
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
@@ -89,17 +89,6 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
         ]);
         $user = User::latest('id')->first();
-//        dd($user);
-//        UserData::create([
-//            'user_id' => $user->id,
-//            'name' => $data['name'],
-//            'address' => $data['address'],
-//            'postal_code' => $data['postal_code'],
-//            'city' => $data['city'],
-//            'phone' => $data['phone'],
-//            'nif' => $data['nif'],
-//            'photo' => $newImage
-//        ]);
 
         $userData = new UserData();
         $userData->user_id = $user->id;
