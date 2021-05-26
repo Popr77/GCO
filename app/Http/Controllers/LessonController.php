@@ -4,9 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Models\Content;
 use App\Models\ContentType;
+use App\Models\Enrollment;
 use App\Models\Lesson;
+use App\Models\LessonGrade;
 use App\Models\Module;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use phpDocumentor\Reflection\Types\Integer;
 use PhpParser\Node\Expr\AssignOp\Mod;
@@ -20,8 +23,8 @@ class LessonController extends Controller
      */
     public function index()
     {
-        $lessons = Lesson::all();
-//        dd($lessons);
+        $lessons = Lesson::paginate(15);
+
         return view('pages.admin.lessons.lessons', ['lessons' => $lessons]);
     }
 
@@ -150,8 +153,25 @@ class LessonController extends Controller
         $modules = Module::with('lessons')
             ->where('course_id', $lesson->module->course->id)->get();
 
+        $enrollment = Enrollment::where('user_id', Auth::user()->id)
+            ->where('course_id', $lesson->module->course->id)
+            ->OrderBy('created_at', 'DESC')
+            ->first();
+
+        $lessonGrade = LessonGrade::where('lesson_id',$lesson->id)
+            ->where('enrollment_id',$enrollment->id)->get();
+
+        $flag = false;
+        if (isset($lessonGrade) && !$lessonGrade->isEmpty()){
+            foreach ($lessonGrade as $grade){
+                if ($grade->grade >= 50 ){
+                    $flag = true;
+                }
+            }
+        }
+
         return view('pages.admin.lessons.lesson-show',
-            ['lesson' => $lesson, 'modules'=> $modules]);
+            ['lesson' => $lesson, 'modules'=> $modules, 'flag' => $flag]);
 
     }
 
@@ -288,12 +308,11 @@ class LessonController extends Controller
                 }
             }
         }else if ($_POST['action'] == 'delete'){
-
             $lesson->delete();
-            return redirect('dashboard/lessons')->with('status','Item deleted successfully!');;
+            return redirect('dashboard/lessons')->with('status','Lesson deleted successfully!');;
 
         }
-        return redirect('dashboard/lessons')->with('status', 'Item edited successfully!!');
+        return redirect('dashboard/lessons')->with('status', 'Lesson edited successfully!!');
 
     }
 

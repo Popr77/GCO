@@ -6,7 +6,7 @@
 
 @section('content')
     <div class="row">
-        @component('components.dashboard.modules.module-form-create', ['courses' => $courses])
+        @component('components.dashboard.modules.module-lessons-list', ['modules' => $modules])
         @endcomponent
     </div>
 @endsection

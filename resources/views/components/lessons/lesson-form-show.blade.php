@@ -9,7 +9,7 @@
     @endif
     <h2 class="text-center">{{$lesson->lesson_number . '. ' . $lesson->title}}</h2>
     <div class="text-left mb-2 ml-5 mt-1">
-        <a class="btn btn-primary" href="{{ url('courses/'.$lesson->module->course->id)}}" role="button">
+        <a class="btn btn-primary" href="javascript:history.back()" role="button">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left-short" viewBox="0 0 16 16">
                 <path fill-rule="evenodd" d="M12 8a.5.5 0 0 1-.5.5H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5a.5.5 0 0 1 .5.5z"></path>
             </svg>
@@ -73,8 +73,8 @@
                     @foreach($modules as $module)
                     <div>
                         <h5 class="ml-2 mt-3">{{$module->name}}</h5>
-                        @foreach($module->lessons as $lesson)
-                            <p class="ml-4">{{$lesson->lesson_number}}. {{$lesson->title}}</p>
+                        @foreach($module->lessons as $lesson2)
+                            <p class="ml-4">{{$lesson2->lesson_number}}. {{$lesson2->title}}</p>
                         @endforeach
                     </div>
                     @endforeach
@@ -82,7 +82,9 @@
 
                 <div class="lesson-menu-quizz bg-light mt-0 container-fluid text-center
     position-fixed py-3  my-auto">
-                    <button class="btn btn-primary "><a href="{{url('quiz/take/1')}}">Take Quizz</a></button>
+                    <button class="btn btn-primary {{$flag ? 'disabled' : null}}" >
+                        <a class="{{$flag ? 'disabled' : null}}" style="text-decoration: none; color: white" href="{{route('quiz', ['lesson' => $lesson->id])}}">Take Quizz</a>
+                    </button>
                 </div>
             </div>
 
@@ -93,8 +95,8 @@
             @foreach($modules as $module)
                 <div class="text-left">
                     <h5 class="ml-2 mt-3">{{$module->name}}</h5>
-                    @foreach($module->lessons as $lesson)
-                        <p class="ml-4">{{$lesson->lesson_number}}. {{$lesson->title}}</p>
+                    @foreach($module->lessons as $lesson2)
+                        <p class="ml-4">{{$lesson2->lesson_number}}. {{$lesson2->title}}</p>
                     @endforeach
                 </div>
             @endforeach
@@ -153,17 +155,10 @@
 
         <div class="lesson-menu-quizz2 mt-0 container-fluid col-2 text-center
     position-fixed bg-light py-3">
-            <button class="btn btn-primary "><a style="text-decoration: none; color: white" href="{{route('quiz', ['lesson' => $lesson->id])}}">Take Quizz</a></button>
+            <button class="btn btn-primary {{$flag ? 'disabled' : null}}" >
+                <a class="{{$flag ? 'disabled' : null}}" style="text-decoration: none; color: white" href="{{route('quiz', ['lesson' => $lesson->id])}}">Take Quizz</a>
+            </button>
         </div>
 
     </div>
-    {{--    <div class="lessons-menu-quiz container-fluid col-2 text-center--}}
-    {{--    position-fixed bg-light py-3">--}}
-    {{--        <button class="btn btn-primary ">Take Quizz</button>--}}
-    {{--    </div>--}}
-
-
-
-
-
 </div>

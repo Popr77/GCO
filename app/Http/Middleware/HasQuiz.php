@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use App\Models\Enrollment;
+use App\Models\Lesson;
 use App\Models\LessonGrade;
 use App\Models\Question;
 use Closure;
@@ -21,22 +22,27 @@ class HasQuiz
     public function handle(Request $request, Closure $next)
     {
         $lesson = $request->route('lesson');
+        $enrollment = Enrollment::where('user_id', Auth::user()->id)
+            ->where('course_id', $lesson->module->course->id)
+            ->OrderBy('created_at', 'DESC')
+            ->first();
 
-        $quiz = Question::where('lesson_id',$lesson->id)->exists();
+        $lessonGrade = LessonGrade::where('lesson_id',$lesson->id)
+            ->where('enrollment_id',$enrollment->id)->get();
 
-        if ($quiz){
-            $flag = false;
-            if (isset($lesson->grades) && !$lesson->grades->isEmpty()){
-                foreach ($lesson->grades as $grade){
-                    if ($grade->pivot->grade >= 50 ){
-                        $flag = true;
-                    }
+        $flag = false;
+        if (isset($lessonGrade) && !$lessonGrade->isEmpty()){
+            foreach ($lessonGrade as $grade){
+                if ($grade->grade >= 50 ){
+                    $flag = true;
                 }
             }
+        }else{
+            return $next($request);
+        }
 
-            if (!$flag || Auth::user()->type->id == 1){
-                return $next($request);
-            }
+        if (!$flag || Auth::user()->type->id == 1){
+            return $next($request);
         }
 
         return redirect('/');

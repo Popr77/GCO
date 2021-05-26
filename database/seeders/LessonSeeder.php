@@ -28,7 +28,9 @@ class LessonSeeder extends Seeder
                 DB::table('lessons')->insert([
                     'title' => \Faker\Factory::create()->firstName,
                     'lesson_number' => $lesson_number,
-                    'module_id' => $i
+                    'module_id' => $i,
+                    'created_at' => now(),
+                    'updated_at' => now()
                 ]);
 
                 $lesson_number++;

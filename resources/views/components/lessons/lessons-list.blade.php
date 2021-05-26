@@ -43,11 +43,11 @@
         @endforeach
         </tbody>
     </table>
-{{--    <nav>--}}
-{{--        <ul class="pagination justify-content-center">--}}
-{{--            {{ $lesson->links() }}--}}
-{{--        </ul>--}}
-{{--    </nav>--}}
+    <nav>
+        <ul class="pagination justify-content-center">
+            {{ $lessons->links() }}
+        </ul>
+    </nav>
 
 </div>
 
