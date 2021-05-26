@@ -85,13 +85,14 @@ Route::prefix('dashboard')->middleware(['auth', 'admin'])->group(function () {
         Route::put('{subcategory}', [SubCategoryController::class, 'update']);
         Route::delete('{subcategory}', [SubCategoryController::class, 'destroy']);
     });
-    Route::prefix('/subsubcategories')->group(function(){
+    Route::prefix('/subsubcategories')->group(function() {
         Route::post('', [SubSubCategoryController::class, 'store']);
         Route::get('create', [SubSubCategoryController::class, 'create']);
         Route::get('{subsubcategory}', [SubSubCategoryController::class, 'show']);
         Route::get('{subsubcategory}/edit', [SubSubCategoryController::class, 'edit']);
         Route::put('{subsubcategory}', [SubSubCategoryController::class, 'update']);
         Route::delete('{subsubcategory}', [SubSubCategoryController::class, 'destroy']);
+    });
 
     Route::prefix('/lessons')->group(function(){
         Route::get('', [App\Http\Controllers\LessonController::class, 'index'])->name('d-lessons');

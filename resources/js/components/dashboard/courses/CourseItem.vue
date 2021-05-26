@@ -1,6 +1,6 @@
 <template>
-    <div class="shadow-sm grid-item card">
-        <a :href="/courses/ + id">
+    <div class="shadow-sm grid-item card" :class="{ 'disabled' : !status }">
+        <a :href="/courses/ + id" :class="{ 'disabled' : !status }">
             <h5 class="card-header">{{ name }}</h5>
         </a>
 
@@ -117,4 +117,9 @@ h5 {
     overflow: hidden;
     text-overflow: ellipsis;
 }
+
+.disabled {
+    opacity: 0.4;
+}
+
 </style>
