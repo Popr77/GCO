@@ -2,8 +2,8 @@
 
     <div class="col-10 mx-auto ">
         <div class="text-right mb-4  mt-1">
-            <a class="btn btn-primary" href="{{ route('d-module-create')}}" role="button">Create Module</a>
-            <a class="btn btn-warning" href="{{ url('dashboard/lessons/create')}}" role="button">Create Lesson</a>
+            <a class="btn btn-primary" href="{{ route('d-module-create')}}" role="button">Add Module</a>
+            <a class="btn btn-warning" href="{{ url('dashboard/lessons/create')}}" role="button">Add Lesson</a>
         </div>
     </div>
     <table class="table table-hover table-bordered col-10 rounded mx-auto">
@@ -20,7 +20,16 @@
             <tr>
                 <th scope="row" class="text-center align-middle">{{$module->id}}</th>
                 <td class="text-center align-middle">
-                    <a class="text-decoration-none text-dark" href="{{url('dashboard/modules/'.$module->id)}}">{{$module->name}}</a>
+                    <div class="d-flex justify-content-around ">
+                        <div class="pt-2">
+                            <a class="text-decoration-none text-dark" href="{{url('dashboard/modules/'.$module->id)}}">
+                                {{$module->name}}</a>
+                        </div>
+                        <div>
+                            <a href="{{url('dashboard/modules/' . $module->id) . '/edit'}}">
+                                <button class="btn btn-secondary">Edit</button></a>
+                        </div>
+                    </div>
                 </td>
                 <td class="px-4 py-4">
                     @foreach($module->lessons as $lesson)

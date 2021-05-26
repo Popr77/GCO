@@ -5,7 +5,7 @@
         </div>
 
         <div class="text-center">
-            <h2 class="my-5">Quiz Edit</h2>
+            <h2 class="mb-5 mt-3">Quiz Edit</h2>
         </div>
         <form :action="link" method="post"  ref="formQA" class="col-6 mx-auto form-QA">
             <input type="hidden" name="_token" :value="csrf">
