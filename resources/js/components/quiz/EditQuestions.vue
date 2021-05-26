@@ -3,10 +3,6 @@
         <div v-show="flag" ref="errorAlert" class="alert alert-danger alert-dismissible fade container show text-center mt-4 mb-0" role="alert">
             <label class="my-0">There is a minimum of 5 questions.</label>
         </div>
-
-        <div class="text-center">
-            <h2 class="mb-5 mt-3">Quiz Edit</h2>
-        </div>
         <form :action="link" method="post"  ref="formQA" class="col-6 mx-auto form-QA">
             <input type="hidden" name="_token" :value="csrf">
             <input type="hidden" name="lessonID" :value="lessonId">

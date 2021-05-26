@@ -99,12 +99,17 @@ class ModuleController extends Controller
      */
     public function update(Request $request, Module $module)
     {
-        $module->name = $request->input('name');
-        $module->course_id = $request->input('course_id');
-        $module->save();
+        if ($_POST['action'] == 'update'){
+            $module->name = $request->input('name');
+            $module->course_id = $request->input('course_id');
+            $module->save();
 
-        return redirect('dashboard/modules')->with('status', 'Module edited successfully!!');
+            return redirect('dashboard/modules')->with('status', 'Module edited successfully!!');
 
+        }
+        $module->delete();
+
+        return redirect('dashboard/modules')->with('status', 'Module deleted successfully!!');
     }
 
     /**

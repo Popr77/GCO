@@ -50,7 +50,9 @@
             @enderror
 
             <div class="div-show text-right mt-3">
-                <button type="submit" value="create" name="action" onclick="submitted = true;"
+                <button type="submit" value="delete" name="action"
+                        class="mt-2 mb-5 btn btn-danger mx-auto">Delete Module</button>
+                <button type="submit" value="update" name="action"
                         class="mt-2 mb-5 btn btn-primary mx-auto">Save</button>
             </div>
         </div>
