@@ -11,14 +11,27 @@ class ModuleController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @param  \App\Models\Course  $course_id
      * @return \Illuminate\Http\Response
      */
-    public function index(Course $course_id)
+    public function index()
     {
-        $modules = Module::where('course_id',3)->get();
+        $modules = Module::with('lessons')->paginate(10);
+
+        return view('pages.admin.modules.module-lessons', ['modules' => $modules]);
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @param  \App\Models\int  $course_id
+     * @return \Illuminate\Http\Response
+     */
+    public function indexOne($course_id)
+    {
+        $modules = Module::where('course_id', $course_id)->get();
 
         return view('pages.admin.modules.modules', ['modules' => $modules]);
+
     }
 
     /**
@@ -28,11 +41,9 @@ class ModuleController extends Controller
      */
     public function create()
     {
-
         $courses = Course::all();
 
         return view('pages.admin.modules.module-create', ['courses' => $courses]);
-
     }
 
     /**
@@ -59,7 +70,6 @@ class ModuleController extends Controller
     public function show(Module $module)
     {
         return view('pages.admin.modules.module-show', ['module' => $module]);
-
     }
 
     /**

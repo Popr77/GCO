@@ -73,8 +73,8 @@
                     @foreach($modules as $module)
                     <div>
                         <h5 class="ml-2 mt-3">{{$module->name}}</h5>
-                        @foreach($module->lessons as $lesson)
-                            <p class="ml-4">{{$lesson->lesson_number}}. {{$lesson->title}}</p>
+                        @foreach($module->lessons as $lesson2)
+                            <p class="ml-4">{{$lesson2->lesson_number}}. {{$lesson2->title}}</p>
                         @endforeach
                     </div>
                     @endforeach
@@ -82,7 +82,7 @@
 
                 <div class="lesson-menu-quizz bg-light mt-0 container-fluid text-center
     position-fixed py-3  my-auto">
-                    <button class="btn btn-primary "><a href="{{url('quiz/take/1')}}">Take Quizz</a></button>
+                    <button class="btn btn-primary "><a href="{{route('quiz', ['lesson' => $lesson->id])}}">Take Quizz</a></button>
                 </div>
             </div>
 
@@ -93,8 +93,8 @@
             @foreach($modules as $module)
                 <div class="text-left">
                     <h5 class="ml-2 mt-3">{{$module->name}}</h5>
-                    @foreach($module->lessons as $lesson)
-                        <p class="ml-4">{{$lesson->lesson_number}}. {{$lesson->title}}</p>
+                    @foreach($module->lessons as $lesson2)
+                        <p class="ml-4">{{$lesson2->lesson_number}}. {{$lesson2->title}}</p>
                     @endforeach
                 </div>
             @endforeach
@@ -157,13 +157,4 @@
         </div>
 
     </div>
-    {{--    <div class="lessons-menu-quiz container-fluid col-2 text-center--}}
-    {{--    position-fixed bg-light py-3">--}}
-    {{--        <button class="btn btn-primary ">Take Quizz</button>--}}
-    {{--    </div>--}}
-
-
-
-
-
 </div>

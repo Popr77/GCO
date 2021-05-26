@@ -20,8 +20,8 @@ class LessonController extends Controller
      */
     public function index()
     {
-        $lessons = Lesson::all();
-//        dd($lessons);
+        $lessons = Lesson::paginate(15);
+
         return view('pages.admin.lessons.lessons', ['lessons' => $lessons]);
     }
 

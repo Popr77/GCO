@@ -1,7 +1,7 @@
 @extends('master.dashboard.main')
 
 @section('header')
-    <dashboard-header title="Module Show"></dashboard-header>
+    <dashboard-header title="Overview"></dashboard-header>
 @endsection
 
 @section('content')

@@ -5,7 +5,7 @@
         <form slot="right" action="{{ route('d-course-destroy', ['course' => $course]) }}" method="POST">
             @csrf
             @method('DELETE')
-            <a href="{{route('d-module',$course->id)}}"><button type="button" class="btn btn-primary">Modules</button>
+            <a href="{{route('d-module-one',$course->id)}}"><button type="button" class="btn btn-primary">Modules</button>
             </a>
             <button type="submit" class="btn btn-secondary">Archive Course</button>
         </form>
