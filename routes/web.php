@@ -13,6 +13,7 @@ use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\EnrollmentController;
 use App\Http\Controllers\Dashboard\CourseController as DCourseController;
 use Illuminate\Support\Facades\Request;
+use App\Http\Controllers\UserProgressController;
 
 /*
 |--------------------------------------------------------------------------
@@ -139,6 +140,10 @@ Route::prefix('checkout')->middleware('auth')->group(function () {
     Route::get('', [EnrollmentController::class, 'create']);
     Route::post('/submit', [EnrollmentController::class, 'store']);
     Route::view('/confirmation', 'pages.checkout.confirmation')->name('checkout-confirmation');
+});
+
+Route::prefix('')->middleware('auth')->group(function () {
+    Route::get('progress', [UserProgressController::class, 'index']);
 });
 
 
