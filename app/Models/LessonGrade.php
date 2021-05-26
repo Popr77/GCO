@@ -16,4 +16,12 @@ class LessonGrade extends Model
         'grade',
         'created_at'
     ];
+
+    public function lesson() {
+        return $this->belongsTo(Lesson::class);
+    }
+
+    public function enrollment() {
+        return $this->belongsTo(Enrollment::class);
+    }
 }

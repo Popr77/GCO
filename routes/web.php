@@ -85,7 +85,7 @@ Route::prefix('dashboard')->middleware(['auth', 'admin'])->group(function () {
         Route::put('{subcategory}', [SubCategoryController::class, 'update']);
         Route::delete('{subcategory}', [SubCategoryController::class, 'destroy']);
     });
-    Route::prefix('/subsubcategories')->group(function () {
+    Route::prefix('/subsubcategories')->group(function() {
         Route::post('', [SubSubCategoryController::class, 'store']);
         Route::get('create', [SubSubCategoryController::class, 'create']);
         Route::get('{subsubcategory}', [SubSubCategoryController::class, 'show']);
@@ -93,51 +93,52 @@ Route::prefix('dashboard')->middleware(['auth', 'admin'])->group(function () {
         Route::put('{subsubcategory}', [SubSubCategoryController::class, 'update']);
         Route::delete('{subsubcategory}', [SubSubCategoryController::class, 'destroy']);
     });
-        Route::prefix('/lessons')->group(function () {
-            Route::get('', [App\Http\Controllers\LessonController::class, 'index'])->name('d-lessons');
-            Route::get('/create', [App\Http\Controllers\LessonController::class, 'create'])->name('d-lesson-create');
-            Route::post('', [App\Http\Controllers\LessonController::class, 'store']);
-            Route::get('{lesson}/edit', [App\Http\Controllers\LessonController::class, 'edit']);
-            Route::put('{lesson}', [App\Http\Controllers\LessonController::class, 'update']);
-            Route::delete('{lesson}', [App\Http\Controllers\LessonController::class, 'destroy']);
-        });
 
-        Route::prefix('/modules')->group(function () {
-            Route::get('', [App\Http\Controllers\ModuleController::class, 'index'])->name('d-module');
-            Route::get('{course}/one', [App\Http\Controllers\ModuleController::class, 'indexOne'])->name('d-module-one');
-            Route::get('create', [App\Http\Controllers\ModuleController::class, 'create'])->name('d-module-create');
-            Route::get('{module}', [App\Http\Controllers\ModuleController::class, 'show']);
-            Route::post('', [App\Http\Controllers\ModuleController::class, 'store']);
-            Route::get('{module}/edit', [App\Http\Controllers\ModuleController::class, 'edit']);
-            Route::put('{module}', [App\Http\Controllers\ModuleController::class, 'update']);
-            Route::delete('{module}', [App\Http\Controllers\ModuleController::class, 'destroy']);
-        });
-
-        Route::prefix('/quiz')->group(function () {
-            Route::post('/', [QuestionController::class, 'store'])->name('quiz-save');
-            Route::get('/{lesson}/edit', [QuestionController::class, 'edit'])->name('quiz-edit');
-            Route::put('/{lesson}', [QuestionController::class, 'update'])->name('quiz-update');
-        });
+    Route::prefix('/lessons')->group(function () {
+        Route::get('', [App\Http\Controllers\LessonController::class, 'index'])->name('d-lessons');
+        Route::get('/create', [App\Http\Controllers\LessonController::class, 'create'])->name('d-lesson-create');
+        Route::post('', [App\Http\Controllers\LessonController::class, 'store']);
+        Route::get('{lesson}/edit', [App\Http\Controllers\LessonController::class, 'edit']);
+        Route::put('{lesson}', [App\Http\Controllers\LessonController::class, 'update']);
+        Route::delete('{lesson}', [App\Http\Controllers\LessonController::class, 'destroy']);
     });
 
-    Route::prefix('/profile')->middleware(['auth', 'checkProfile'])->group(function () {
-        Route::get('{userData}/edit', [UserDataController::class, 'edit']);
-        Route::put('{userData}', [UserDataController::class, 'update']);
+    Route::prefix('/modules')->group(function () {
+        Route::get('', [App\Http\Controllers\ModuleController::class, 'index'])->name('d-module');
+        Route::get('{course}/one', [App\Http\Controllers\ModuleController::class, 'indexOne'])->name('d-module-one');
+        Route::get('create', [App\Http\Controllers\ModuleController::class, 'create'])->name('d-module-create');
+        Route::get('{module}', [App\Http\Controllers\ModuleController::class, 'show']);
+        Route::post('', [App\Http\Controllers\ModuleController::class, 'store']);
+        Route::get('{module}/edit', [App\Http\Controllers\ModuleController::class, 'edit']);
+        Route::put('{module}', [App\Http\Controllers\ModuleController::class, 'update']);
+        Route::delete('{module}', [App\Http\Controllers\ModuleController::class, 'destroy']);
     });
 
-    Route::get('change-password', [ChangePasswordController::class, 'index']);
-    Route::post('change-password', [ChangePasswordController::class, 'store'])->name('change.password');
-
-
-    Route::prefix('/quiz')->middleware(['auth', 'checkCourse', 'IsCourseActive'])->group(function () {
-        Route::get('/take/{lesson}', [QuestionController::class, 'index'])->middleware('checkHasDoneQuiz')->name('quiz');
-        Route::post('/take/{lesson}', [QuestionController::class, 'save']);
+    Route::prefix('/quiz')->group(function () {
+        Route::post('/', [QuestionController::class, 'store'])->name('quiz-save');
+        Route::get('/{lesson}/edit', [QuestionController::class, 'edit'])->name('quiz-edit');
+        Route::put('/{lesson}', [QuestionController::class, 'update'])->name('quiz-update');
     });
+});
 
-    Route::prefix('checkout')->middleware('auth')->group(function () {
-        Route::get('', [EnrollmentController::class, 'create']);
-        Route::post('/submit', [EnrollmentController::class, 'store']);
-        Route::view('/confirmation', 'pages.checkout.confirmation')->name('checkout-confirmation');
-    });
+Route::prefix('/profile')->middleware(['auth', 'checkProfile'])->group(function () {
+    Route::get('{userData}/edit', [UserDataController::class, 'edit']);
+    Route::put('{userData}', [UserDataController::class, 'update']);
+});
+
+Route::get('change-password', [ChangePasswordController::class, 'index']);
+Route::post('change-password', [ChangePasswordController::class, 'store'])->name('change.password');
+
+
+Route::prefix('/quiz')->middleware(['auth', 'checkCourse', 'IsCourseActive'])->group(function () {
+    Route::get('/take/{lesson}', [QuestionController::class, 'index'])->middleware('checkHasDoneQuiz')->name('quiz');
+    Route::post('/take/{lesson}', [QuestionController::class, 'save']);
+});
+
+Route::prefix('checkout')->middleware('auth')->group(function () {
+    Route::get('', [EnrollmentController::class, 'create']);
+    Route::post('/submit', [EnrollmentController::class, 'store']);
+    Route::view('/confirmation', 'pages.checkout.confirmation')->name('checkout-confirmation');
+});
 
 
