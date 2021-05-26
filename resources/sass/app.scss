@@ -19,6 +19,10 @@
     min-height: 70vh;
 }
 
+a.disabled {
+    pointer-events: none;
+}
+
 h1,
 h2 {
     color: $blue;

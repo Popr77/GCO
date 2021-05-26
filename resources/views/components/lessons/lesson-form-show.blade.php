@@ -82,7 +82,9 @@
 
                 <div class="lesson-menu-quizz bg-light mt-0 container-fluid text-center
     position-fixed py-3  my-auto">
-                    <button class="btn btn-primary "><a href="{{route('quiz', ['lesson' => $lesson->id])}}">Take Quizz</a></button>
+                    <button class="btn btn-primary {{$flag ? 'disabled' : null}}" >
+                        <a class="{{$flag ? 'disabled' : null}}" style="text-decoration: none; color: white" href="{{route('quiz', ['lesson' => $lesson->id])}}">Take Quizz</a>
+                    </button>
                 </div>
             </div>
 
@@ -153,7 +155,9 @@
 
         <div class="lesson-menu-quizz2 mt-0 container-fluid col-2 text-center
     position-fixed bg-light py-3">
-            <button class="btn btn-primary "><a style="text-decoration: none; color: white" href="{{route('quiz', ['lesson' => $lesson->id])}}">Take Quizz</a></button>
+            <button class="btn btn-primary {{$flag ? 'disabled' : null}}" >
+                <a class="{{$flag ? 'disabled' : null}}" style="text-decoration: none; color: white" href="{{route('quiz', ['lesson' => $lesson->id])}}">Take Quizz</a>
+            </button>
         </div>
 
     </div>

@@ -10,8 +10,7 @@
                 <a type="button" href="{{url('dashboard/categories/create')}}" class="btn btn-primary btn-sm mt-2 ml-2 mr-2">Add Category</a>
 
                     @foreach($categories as $category)
-                        <a href="{{url('dashboard/categories/' . $category->id . '/edit')}}" class="ml-5 mt-2">{{$category->name}}</a>
-                    @endforeach
+                    <a class="text-decoration-none ml-5 mt-2" href="{{url('dashboard/categories/' . $category->id . '/edit')}}" >{{$category->name}}</a>                    @endforeach
             </div>
 
         <a href="{{ route('home') }}" class="py-4 px-5 list-group-item list-group-item-action bg-light nav-link" id="back-to-site-btn">Go Back to Website</a>
