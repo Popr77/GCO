@@ -1,5 +1,5 @@
 <div class="container col-lg-12 mx-auto mt-5" >
-    <h2 class="text-center">Lesson Overview</h2>
+    <h2 class="text-center">Lesson Edit</h2>
     <div class="d-flex justify-content-between mb-2 px-3 ml-4 mt-1">
         <a class="btn btn-primary" href="{{ route('d-module')}}" role="button">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" class="bi bi-arrow-left-short" viewBox="0 0 16 16">
