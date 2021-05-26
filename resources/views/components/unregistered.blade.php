@@ -34,7 +34,7 @@
         <div style="margin: 50px; text-align: center">
             <h1>Join Us</h1>
             <h5 style="text-align: center; margin-top: 30px">Learning keeps you ahead. Acquire new skills that will impress everyone.</h5>
-            <a href="#" class="btn btn-primary" style="margin-top: 50px">Get Started</a>
+            <a href="{{ route('register') }}" class="btn btn-primary" style="margin-top: 50px">Get Started</a>
         </div>
     </div>
 </div>

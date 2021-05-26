@@ -29,7 +29,9 @@ class AnswerSeeder extends Seeder
                 DB::table('answers')->insert([
                     'answer' => 'Answer ' . ($i-$t) . '.' . $i2,
                     'question_id' => $i,
-                    'is_correct' => $is_correct
+                    'is_correct' => $is_correct,
+                    'created_at' => now(),
+                    'updated_at' => now()
                 ]);
             }
         }

@@ -50,8 +50,25 @@ h1 {
 #wrapper.toggled #sidebar-wrapper {
     margin-left: 0;
 }
+a.disabled {
+    pointer-events: none;
+}
+.course-image {
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 230px;
+}
+
 
 @media (min-width: 768px) {
+    .a-back-button:hover{
+        opacity: 0.5;
+    }
+
+    .clickable-row:hover{
+        cursor: pointer;
+    }
+
     #sidebar-wrapper {
         margin-left: 0;
     }

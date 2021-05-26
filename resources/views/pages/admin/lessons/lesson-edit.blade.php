@@ -1,5 +1,8 @@
-@extends('master.main')
+@extends('master.dashboard.main')
 
+@section('header')
+    <dashboard-header class="ml-2 mt-2" title="Module - Lessons"></dashboard-header>
+@endsection
 @section('content')
 
     @if (isset($title) && isset($lesson_number) && isset($module_id) && isset($quillItems))

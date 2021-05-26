@@ -19,6 +19,10 @@
     min-height: 70vh;
 }
 
+a.disabled {
+    pointer-events: none;
+}
+
 h1,
 h2 {
     color: $blue;
@@ -270,6 +274,9 @@ footer {
 }
 .table-lessons button a{
      text-decoration: none; color: white;
+}
+.a-lessons:hover p{
+    opacity: 0.5;
 }
 
 // Small devices (landscape phones, 576px and up)

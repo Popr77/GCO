@@ -4,9 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Models\Content;
 use App\Models\ContentType;
+use App\Models\Course;
+use App\Models\Enrollment;
 use App\Models\Lesson;
+use App\Models\LessonGrade;
 use App\Models\Module;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use phpDocumentor\Reflection\Types\Integer;
 use PhpParser\Node\Expr\AssignOp\Mod;
@@ -20,8 +24,8 @@ class LessonController extends Controller
      */
     public function index()
     {
-        $lessons = Lesson::all();
-//        dd($lessons);
+        $lessons = Lesson::paginate(15);
+
         return view('pages.admin.lessons.lessons', ['lessons' => $lessons]);
     }
 
@@ -32,9 +36,8 @@ class LessonController extends Controller
      */
     public function create()
     {
-
-        $modules = Module::all();
-
+        $courses = Course::with('modules')->get();
+//        $modules = Module::where('course_id', $course_id)->get();
 
         if (isset($_GET['num']) && isset($_GET['title'])  && isset($_GET['module_id'])){
 
@@ -47,26 +50,30 @@ class LessonController extends Controller
 
             $num = $_GET['num'];
             $title = $_GET['title'];
+            $course_id = $_GET['course_id'];
             $module_id = $_GET['module_id'];
 
-            return view('pages.admin.lessons.lesson-create', ['num' => $num, 'modules' => $modules,
-                'title' => $title, 'module_id' => $module_id, 'quillItems' => $quillItems]);
+            return view('pages.admin.lessons.lesson-create', ['num' => $num, 'courses' => $courses,
+                'title' => $title, 'course_id' => $course_id, 'module_id' => $module_id, 'quillItems' => $quillItems]);
 
         }elseif(isset($_GET['num'])){
 
+            $course_id = $_GET['course_id'];
             $module_id = $_GET['module_id'];
             $num = $_GET['num'];
 
-            return view('pages.admin.lessons.lesson-create', ['num' => $num, 'module_id' => $module_id, 'modules' => $modules]);
+            return view('pages.admin.lessons.lesson-create', ['num' => $num, 'module_id' => $module_id,
+                'course_id' => $course_id, 'courses' => $courses]);
 
         }else{
             $num = 3;
-            return view('pages.admin.lessons.lesson-create', ['num' => $num, 'modules' => $modules]);
+            return view('pages.admin.lessons.lesson-create', ['num' => $num, 'courses' => $courses]);
         }
     }
 
     /**
      * Store a newly created resource in storage.
+     *
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -150,8 +157,25 @@ class LessonController extends Controller
         $modules = Module::with('lessons')
             ->where('course_id', $lesson->module->course->id)->get();
 
+        $enrollment = Enrollment::where('user_id', Auth::user()->id)
+            ->where('course_id', $lesson->module->course->id)
+            ->OrderBy('created_at', 'DESC')
+            ->first();
+
+        $lessonGrade = LessonGrade::where('lesson_id',$lesson->id)
+            ->where('enrollment_id',$enrollment->id)->get();
+
+        $flag = false;
+        if (isset($lessonGrade) && !$lessonGrade->isEmpty()){
+            foreach ($lessonGrade as $grade){
+                if ($grade->grade >= 50 ){
+                    $flag = true;
+                }
+            }
+        }
+
         return view('pages.admin.lessons.lesson-show',
-            ['lesson' => $lesson, 'modules'=> $modules]);
+            ['lesson' => $lesson, 'modules'=> $modules, 'flag' => $flag]);
 
     }
 
@@ -163,6 +187,9 @@ class LessonController extends Controller
      */
     public function edit(Lesson $lesson)
     {
+        $modules = Module::with('lessons')
+            ->where('course_id', $lesson->module->course->id)->get();
+
         if (isset($_GET['num']) && isset($_GET['title']) && isset($_GET['module_id'])){
 
             $quillItems  = [];
@@ -288,12 +315,11 @@ class LessonController extends Controller
                 }
             }
         }else if ($_POST['action'] == 'delete'){
-
             $lesson->delete();
-            return redirect('dashboard/lessons')->with('status','Item deleted successfully!');;
+            return redirect('dashboard/lessons')->with('status','Lesson deleted successfully!');;
 
         }
-        return redirect('dashboard/lessons')->with('status', 'Item edited successfully!!');
+        return redirect('dashboard/lessons')->with('status', 'Lesson edited successfully!!');
 
     }
 

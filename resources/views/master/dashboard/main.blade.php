@@ -41,6 +41,7 @@
 </div>
 
 <!-- Scripts -->
+
 <script src="{{ asset('js/app.js') }}"></script>
 <script>
     $("#menu-toggle").click(function(e) {
@@ -48,6 +49,7 @@
         $("#wrapper").toggleClass("toggled");
     });
 </script>
+
 @yield('scripts')
 
 </body>

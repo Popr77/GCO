@@ -60,17 +60,18 @@ Route::prefix('/courses')->group(function(){
 
 // Admin Dashboard Routes
 Route::prefix('dashboard')->middleware(['auth', 'admin'])->group(function () {
-    Route::view('/', 'pages.admin.dashboard');
+    Route::view('/', 'pages.admin.dashboard')->name('d-index');
     Route::prefix('/courses')->group(function () {
         Route::get('/', [DCourseController::class, 'index'])->name('d-course-index');
         Route::view('/create', 'pages.admin.courses.course-create')->name('d-course-create');
         Route::get('/{course}/edit', [DCourseController::class, 'edit']);
+        Route::get('/{course}/restore', [DCourseController::class, 'restore']);
         Route::post('/', [DCourseController::class, 'store'])->name('d-course-store');
         Route::put('/{course}', [DCourseController::class, 'update'])->name('d-course-update');
         Route::delete('/{course}', [DCourseController::class, 'destroy'])->name('d-course-destroy');
     });
 
-    Route::prefix('/categories')->group(function(){
+    Route::prefix('/categories')->group(function () {
         Route::post('', [CategoryController::class, 'store']);
         Route::get('create', [CategoryController::class, 'create']);
         Route::get('{category}', [CategoryController::class, 'show']);
@@ -78,7 +79,7 @@ Route::prefix('dashboard')->middleware(['auth', 'admin'])->group(function () {
         Route::put('{category}', [CategoryController::class, 'update']);
         Route::delete('{category}', [CategoryController::class, 'destroy']);
     });
-    Route::prefix('/subcategories')->group(function(){
+    Route::prefix('/subcategories')->group(function () {
         Route::post('', [SubCategoryController::class, 'store']);
         Route::get('create', [SubCategoryController::class, 'create']);
         Route::get('{subcategory}', [SubCategoryController::class, 'show']);
@@ -86,7 +87,7 @@ Route::prefix('dashboard')->middleware(['auth', 'admin'])->group(function () {
         Route::put('{subcategory}', [SubCategoryController::class, 'update']);
         Route::delete('{subcategory}', [SubCategoryController::class, 'destroy']);
     });
-    Route::prefix('/subsubcategories')->group(function(){
+    Route::prefix('/subsubcategories')->group(function() {
         Route::post('', [SubSubCategoryController::class, 'store']);
         Route::get('create', [SubSubCategoryController::class, 'create']);
         Route::get('{subsubcategory}', [SubSubCategoryController::class, 'show']);
@@ -95,33 +96,33 @@ Route::prefix('dashboard')->middleware(['auth', 'admin'])->group(function () {
         Route::delete('{subsubcategory}', [SubSubCategoryController::class, 'destroy']);
     });
 
-    Route::prefix('/lessons')->group(function(){
+    Route::prefix('/lessons')->group(function () {
         Route::get('', [App\Http\Controllers\LessonController::class, 'index'])->name('d-lessons');
-        Route::get('create', [App\Http\Controllers\LessonController::class,'create']);
-        Route::post('', [App\Http\Controllers\LessonController::class,'store']);
-        Route::get('{lesson}/edit', [App\Http\Controllers\LessonController::class,'edit']);
-        Route::put('{lesson}', [App\Http\Controllers\LessonController::class,'update']);
-        Route::delete('{lesson}', [App\Http\Controllers\LessonController::class,'destroy']);
+        Route::get('/create', [App\Http\Controllers\LessonController::class, 'create'])->name('d-lesson-create');
+        Route::post('', [App\Http\Controllers\LessonController::class, 'store']);
+        Route::get('{lesson}/edit', [App\Http\Controllers\LessonController::class, 'edit']);
+        Route::put('{lesson}', [App\Http\Controllers\LessonController::class, 'update']);
+        Route::delete('{lesson}', [App\Http\Controllers\LessonController::class, 'destroy']);
     });
-
-    Route::prefix('/modules')->group(function(){
-        Route::get('{course}/all', [App\Http\Controllers\ModuleController::class, 'index'])->name('d-module');
-         Route::get('create', [App\Http\Controllers\ModuleController::class,'create']);
+    Route::prefix('/modules')->group(function () {
+        Route::get('', [App\Http\Controllers\ModuleController::class, 'index'])->name('d-module');
+        Route::get('{course}/one', [App\Http\Controllers\ModuleController::class, 'indexOne'])->name('d-module-one');
+        Route::get('create', [App\Http\Controllers\ModuleController::class, 'create'])->name('d-module-create');
         Route::get('{module}', [App\Http\Controllers\ModuleController::class, 'show']);
-        Route::post('', [App\Http\Controllers\ModuleController::class,'store']);
-        Route::get('{module}/edit', [App\Http\Controllers\ModuleController::class,'edit']);
-        Route::put('{module}', [App\Http\Controllers\ModuleController::class,'update']);
-        Route::delete('{module}', [App\Http\Controllers\ModuleController::class,'destroy']);
+        Route::post('', [App\Http\Controllers\ModuleController::class, 'store']);
+        Route::get('{module}/edit', [App\Http\Controllers\ModuleController::class, 'edit']);
+        Route::put('{module}', [App\Http\Controllers\ModuleController::class, 'update']);
+        Route::delete('{module}', [App\Http\Controllers\ModuleController::class, 'destroy']);
     });
 
-    Route::prefix('/quiz')->group(function() {
+    Route::prefix('/quiz')->group(function () {
         Route::post('/', [QuestionController::class, 'store'])->name('quiz-save');
         Route::get('/{lesson}/edit', [QuestionController::class, 'edit'])->name('quiz-edit');
         Route::put('/{lesson}', [QuestionController::class, 'update'])->name('quiz-update');
     });
 });
 
-Route::prefix('/profile')->middleware(['auth', 'checkProfile'])->group(function(){
+Route::prefix('/profile')->middleware(['auth', 'checkProfile'])->group(function () {
     Route::get('{userData}/edit', [UserDataController::class, 'edit']);
     Route::put('{userData}', [UserDataController::class, 'update']);
 });
@@ -130,9 +131,9 @@ Route::get('change-password', [ChangePasswordController::class, 'index']);
 Route::post('change-password', [ChangePasswordController::class, 'store'])->name('change.password');
 
 
-Route::prefix('/quiz')->middleware(['auth', 'checkCourse', 'IsCourseActive'])->group(function() {
-    Route::get('/take/{lesson}', [QuestionController::class, 'index'])->middleware('checkHasDoneQuiz');
-    Route::post('/take/{lesson}', [QuestionController::class, 'save'])->name('quiz');
+Route::prefix('/quiz')->middleware(['auth', 'checkCourse', 'IsCourseActive'])->group(function () {
+    Route::get('/take/{lesson}', [QuestionController::class, 'index'])->middleware('checkHasDoneQuiz')->name('quiz');
+    Route::post('/take/{lesson}', [QuestionController::class, 'save']);
 });
 
 Route::prefix('checkout')->middleware('auth')->group(function () {
@@ -141,8 +142,8 @@ Route::prefix('checkout')->middleware('auth')->group(function () {
     Route::view('/confirmation', 'pages.checkout.confirmation')->name('checkout-confirmation');
 });
 
-// User-Progress
 Route::prefix('')->middleware('auth')->group(function () {
     Route::get('progress', [UserProgressController::class, 'index']);
 });
+
 

@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\SubCategory;
+use App\Models\Category;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -15,6 +15,16 @@ class SubCategorySeeder extends Seeder
      */
     public function run()
     {
-        SubCategory::factory(20)->create();
+        $categories = Category::all();
+        foreach ($categories as $category){
+            for ($i=0; $i<2; $i++) {
+                DB::table('sub_categories')->insert([
+                    'category_id' => $category->id,
+                    'name' => \Faker\Factory::create()->name(),
+                    'created_at' => now(),
+                    'updated_at' => now()
+                ]);
+            }
+        }
     }
 }

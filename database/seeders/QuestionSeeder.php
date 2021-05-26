@@ -23,7 +23,9 @@ class QuestionSeeder extends Seeder
 
                 DB::table('questions')->insert([
                     'question' => 'Question ' . $i2,
-                    'lesson_id' => $i
+                    'lesson_id' => $i,
+                    'created_at' => now(),
+                    'updated_at' => now()
                 ]);
             }
         }

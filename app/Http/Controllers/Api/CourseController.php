@@ -15,7 +15,8 @@ class CourseController extends Controller {
     {
         $search = $request->query('search');
 
-        return CourseResource::collection(Course::with('subsubcategory')
+        return CourseResource::collection(Course::withTrashed()
+            ->with('subsubcategory')
             ->join('sub_sub_categories', 'courses.sub_sub_category_id', '=', 'sub_sub_categories.id')
             ->join('sub_categories', 'sub_sub_categories.sub_category_id', '=', 'sub_categories.id')
             ->join('categories', 'sub_categories.category_id', '=', 'categories.id')
