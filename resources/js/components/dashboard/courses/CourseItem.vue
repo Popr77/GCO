@@ -1,6 +1,6 @@
 <template>
     <div class="shadow-sm grid-item card" :class="{ 'disabled-course' : !status }">
-        <a :href="/courses/ + id" :class="{ 'disabled' : !status }">
+        <a :href="/courses/ + id">
             <h5 class="card-header">{{ name }}</h5>
         </a>
 
@@ -8,7 +8,9 @@
             <div v-if="deleted_at" class="archived-text">
                 <h2>Archived</h2>
             </div>
-            <img class="w-100" :src="assets + photo" alt="">
+            <div class="course-image"
+                 :style="{ backgroundImage: 'url(' + assets + photo + ')' }">
+            </div>
 
             <form :action="'/dashboard/courses/' + id + '/restore'"></form>
             <a v-if="deleted_at" :href="'/dashboard/courses/' + id + '/restore'"
