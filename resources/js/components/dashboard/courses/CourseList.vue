@@ -1,6 +1,7 @@
 <template>
     <div>
-        <div class="grid-container">
+        <p v-if="filteredCourses.length === 0" class="text-center mt-5">No courses to show...</p>
+        <div v-else class="grid-container">
             <course-item
                 v-for="course in filteredCourses"
                 class="card mb-3"
