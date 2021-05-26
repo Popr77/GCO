@@ -95,16 +95,14 @@ Route::prefix('dashboard')->middleware(['auth', 'admin'])->group(function () {
         Route::delete('{subsubcategory}', [SubSubCategoryController::class, 'destroy']);
     });
 
-    Route::prefix('/lessons')->group(function(){
+    Route::prefix('/lessons')->group(function () {
         Route::get('', [App\Http\Controllers\LessonController::class, 'index'])->name('d-lessons');
-        Route::get('create', [App\Http\Controllers\LessonController::class,'create']);
-        Route::post('', [App\Http\Controllers\LessonController::class,'store']);
-        Route::get('{lesson}/edit', [App\Http\Controllers\LessonController::class,'edit']);
-        Route::put('{lesson}', [App\Http\Controllers\LessonController::class,'update']);
-        Route::delete('{lesson}', [App\Http\Controllers\LessonController::class,'destroy']);
+        Route::get('/create', [App\Http\Controllers\LessonController::class, 'create'])->name('d-lesson-create');
+        Route::post('', [App\Http\Controllers\LessonController::class, 'store']);
+        Route::get('{lesson}/edit', [App\Http\Controllers\LessonController::class, 'edit']);
+        Route::put('{lesson}', [App\Http\Controllers\LessonController::class, 'update']);
+        Route::delete('{lesson}', [App\Http\Controllers\LessonController::class, 'destroy']);
     });
-
-
     Route::prefix('/modules')->group(function () {
         Route::get('', [App\Http\Controllers\ModuleController::class, 'index'])->name('d-module');
         Route::get('{course}/one', [App\Http\Controllers\ModuleController::class, 'indexOne'])->name('d-module-one');

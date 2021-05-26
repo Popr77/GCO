@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Content;
 use App\Models\ContentType;
+use App\Models\Course;
 use App\Models\Enrollment;
 use App\Models\Lesson;
 use App\Models\LessonGrade;
@@ -35,9 +36,8 @@ class LessonController extends Controller
      */
     public function create()
     {
-
-        $modules = Module::all();
-
+        $courses = Course::with('modules')->get();
+//        $modules = Module::where('course_id', $course_id)->get();
 
         if (isset($_GET['num']) && isset($_GET['title'])  && isset($_GET['module_id'])){
 
@@ -50,26 +50,30 @@ class LessonController extends Controller
 
             $num = $_GET['num'];
             $title = $_GET['title'];
+            $course_id = $_GET['course_id'];
             $module_id = $_GET['module_id'];
 
-            return view('pages.admin.lessons.lesson-create', ['num' => $num, 'modules' => $modules,
-                'title' => $title, 'module_id' => $module_id, 'quillItems' => $quillItems]);
+            return view('pages.admin.lessons.lesson-create', ['num' => $num, 'courses' => $courses,
+                'title' => $title, 'course_id' => $course_id, 'module_id' => $module_id, 'quillItems' => $quillItems]);
 
         }elseif(isset($_GET['num'])){
 
+            $course_id = $_GET['course_id'];
             $module_id = $_GET['module_id'];
             $num = $_GET['num'];
 
-            return view('pages.admin.lessons.lesson-create', ['num' => $num, 'module_id' => $module_id, 'modules' => $modules]);
+            return view('pages.admin.lessons.lesson-create', ['num' => $num, 'module_id' => $module_id,
+                'course_id' => $course_id, 'courses' => $courses]);
 
         }else{
             $num = 3;
-            return view('pages.admin.lessons.lesson-create', ['num' => $num, 'modules' => $modules]);
+            return view('pages.admin.lessons.lesson-create', ['num' => $num, 'courses' => $courses]);
         }
     }
 
     /**
      * Store a newly created resource in storage.
+     *
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -183,6 +187,9 @@ class LessonController extends Controller
      */
     public function edit(Lesson $lesson)
     {
+        $modules = Module::with('lessons')
+            ->where('course_id', $lesson->module->course->id)->get();
+
         if (isset($_GET['num']) && isset($_GET['title']) && isset($_GET['module_id'])){
 
             $quillItems  = [];

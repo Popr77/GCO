@@ -54,8 +54,15 @@ a.disabled {
     pointer-events: none;
 }
 
-
 @media (min-width: 768px) {
+    .a-back-button:hover{
+        opacity: 0.5;
+    }
+
+    .clickable-row:hover{
+        cursor: pointer;
+    }
+
     #sidebar-wrapper {
         margin-left: 0;
     }

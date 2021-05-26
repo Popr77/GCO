@@ -34,7 +34,6 @@
 
                 <div class="div-show text-right mt-2">
                     <button type="submit" value="update" name="action" onclick="submitted = true;"
-                            {{--                        onclick="addTolink()"--}}
                             class="mt-2 mb-5 btn btn-warning mx-auto">Update</button>
                 </div>
 

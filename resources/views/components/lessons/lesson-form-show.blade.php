@@ -96,62 +96,11 @@
                 <div class="text-left">
                     <h5 class="ml-2 mt-3">{{$module->name}}</h5>
                     @foreach($module->lessons as $lesson2)
-                        <p class="ml-4">{{$lesson2->lesson_number}}. {{$lesson2->title}}</p>
+                        <a class="a-lessons text-decoration-none text-dark" href="{{url('/lessons/'.$lesson2->id)}}"><p class="ml-4">{{$lesson2->lesson_number}}. {{$lesson2->title}}</p></a>
                     @endforeach
                 </div>
             @endforeach
 
-{{--        <h4 class="text-primary text-center">Lessons</h4>--}}
-{{--        <h5 class="ml-2 mt-3">Module 1</h5>--}}
-{{--        <p class="ml-4">Lesson 1</p>--}}
-{{--        <p class="ml-4">Lesson 2</p>--}}
-{{--        <p class="ml-4">- Quizz</p>--}}
-
-{{--        <h5 class="ml-2 mt-3">Module 2</h5>--}}
-{{--        <p class="ml-4">Lesson 3</p>--}}
-{{--        <p class="ml-4">Lesson 4</p>--}}
-{{--        <p class="ml-4">Lesson 5</p>--}}
-{{--        <p class="ml-4">- Quizz</p>--}}
-
-{{--        <h5 class="ml-2 mt-3">Module 3</h5>--}}
-{{--        <p class="ml-4">Lesson 6</p>--}}
-{{--        <p class="ml-4">Lesson 7</p>--}}
-{{--        <p class="ml-4">- Quizz</p>--}}
-
-{{--        <h5 class="ml-2 mt-3">Module 4</h5>--}}
-{{--        <p class="ml-4">Lesson 8</p>--}}
-{{--        <p class="ml-4">- Quizz</p>--}}
-
-{{--        <h5 class="ml-2 mt-3">Module 5</h5>--}}
-{{--        <p class="ml-4">Lesson 9</p>--}}
-{{--        <p class="ml-4">Lesson 10</p>--}}
-{{--        <p class="ml-4">Lesson 11</p>--}}
-{{--        <p class="ml-4">- Quizz</p>--}}
-{{--        <h5 class="ml-2 mt-3">Module 5</h5>--}}
-{{--        <p class="ml-4">Lesson 9</p>--}}
-{{--        <p class="ml-4">Lesson 10</p>--}}
-{{--        <p class="ml-4">Lesson 11</p>--}}
-{{--        <p class="ml-4">- Quizz</p>--}}
-{{--        <h5 class="ml-2 mt-3">Module 5</h5>--}}
-{{--        <p class="ml-4">Lesson 9</p>--}}
-{{--        <p class="ml-4">Lesson 10</p>--}}
-{{--        <p class="ml-4">Lesson 11</p>--}}
-{{--        <p class="ml-4">- Quizz</p>--}}
-{{--        <h5 class="ml-2 mt-3">Module 5</h5>--}}
-{{--        <p class="ml-4">Lesson 9</p>--}}
-{{--        <p class="ml-4">Lesson 10</p>--}}
-{{--        <p class="ml-4">Lesson 11</p>--}}
-{{--        <p class="ml-4">- Quizz</p>--}}
-{{--        <h5 class="ml-2 mt-3">Module 5</h5>--}}
-{{--        <p class="ml-4">Lesson 9</p>--}}
-{{--        <p class="ml-4">Lesson 10</p>--}}
-{{--        <p class="ml-4">Lesson 11</p>--}}
-{{--        <p class="ml-4">- Quizz</p>--}}
-{{--        <h5 class="ml-2 mt-3">Module 5</h5>--}}
-{{--        <p class="ml-4">Lesson 9</p>--}}
-{{--        <p class="ml-4">Lesson 10</p>--}}
-{{--        <p class="ml-4">Lesson 11</p>--}}
-{{--        <p class="ml-4">- Quizz</p>--}}
 
         <div class="lesson-menu-quizz2 mt-0 container-fluid col-2 text-center
     position-fixed bg-light py-3">
