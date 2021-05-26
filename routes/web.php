@@ -13,6 +13,7 @@ use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\EnrollmentController;
 use App\Http\Controllers\Dashboard\CourseController as DCourseController;
 use Illuminate\Support\Facades\Request;
+use App\Http\Controllers\UserProgressController;
 
 /*
 |--------------------------------------------------------------------------
@@ -92,6 +93,7 @@ Route::prefix('dashboard')->middleware(['auth', 'admin'])->group(function () {
         Route::get('{subsubcategory}/edit', [SubSubCategoryController::class, 'edit']);
         Route::put('{subsubcategory}', [SubSubCategoryController::class, 'update']);
         Route::delete('{subsubcategory}', [SubSubCategoryController::class, 'destroy']);
+    });
 
     Route::prefix('/lessons')->group(function(){
         Route::get('', [App\Http\Controllers\LessonController::class, 'index'])->name('d-lessons');
@@ -138,3 +140,9 @@ Route::prefix('checkout')->middleware('auth')->group(function () {
     Route::post('/submit', [EnrollmentController::class, 'store']);
     Route::view('/confirmation', 'pages.checkout.confirmation')->name('checkout-confirmation');
 });
+
+// User-Progress
+Route::prefix('')->middleware('auth')->group(function () {
+    Route::get('progress', [UserProgressController::class, 'index']);
+});
+
