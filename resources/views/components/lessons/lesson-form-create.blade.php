@@ -53,6 +53,26 @@
             </span>
             @enderror
 
+            <label for="course_id" class="mt-3">Course</label>
+            <select
+                id="course_id"
+                name="course_id"
+                required
+                onchange="updateModules()"
+                class="browser-default custom-select form-control
+            @error('course_id') is-invalid @enderror">
+                @foreach($courses as $course)
+                    <option
+                        @if(isset($course_id)) @if($course->id == $course_id  ) selected="" @endif @endif
+                    value="{{$course->id}}">{{$course->name}}</option>
+                @endforeach
+            </select>
+            @error('course_id')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+            @enderror
+
             <label for="module_id" class="mt-3">Module</label>
             <select
                 id="module_id"
@@ -60,7 +80,7 @@
                 required
                 class="browser-default custom-select form-control
             @error('module_id') is-invalid @enderror">
-                @foreach($modules as $module)
+                @foreach($courses[0]->modules as $module)
                     <option
                         @if(isset($module_id)) @if($module->id == $module_id  ) selected="" @endif @endif
                         value="{{$module->id}}">{{$module->name}}</option>
@@ -97,6 +117,7 @@
         </div>
     </form>
 </div>
+
 
 
 

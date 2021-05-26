@@ -5,7 +5,10 @@
         </div>
         <h3  class="mb-3 mr-5" style="white-space: nowrap;"><span class=" text-black-50 mr-2">Module: </span>{{$module->name}}</h3>
     </div>
-    <table class="table table-hover table-bordered col-6 mt-4 mr-5 rounded">
+    <div class="col-12 mt-5 text-left pl-0">
+        <a class="btn btn-primary" href="{{ route('d-lesson-create')}}" role="button">Add Lesson</a>
+    </div>
+    <table class="table table-hover table-bordered col-4 mt-4 mr-5 rounded">
         <thead>
         <tr>
             <th scope="col" class="text-center">#</th>
@@ -14,13 +17,11 @@
         </thead>
         <tbody>
             @foreach($module->lessons as $lesson)
-                <tr>
+                <tr class='clickable-row' data-href='{{url('/lessons/' . $lesson->id)}}'>
                     <th scope="row" class="text-center">
                         {{$loop->index+1}}
                     </th>
-                    <td class="px-4">
-                        <a class="text-decoration-none text-dark" href="{{url('/lessons/' . $lesson->id)}}">
-                            {{$lesson->title}}</a></td>
+                    <td class="px-4">{{$lesson->title}}</td>
                 </tr>
             @endforeach
         </tbody>

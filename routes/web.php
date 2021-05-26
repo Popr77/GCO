@@ -95,7 +95,7 @@ Route::prefix('dashboard')->middleware(['auth', 'admin'])->group(function () {
     });
         Route::prefix('/lessons')->group(function () {
             Route::get('', [App\Http\Controllers\LessonController::class, 'index'])->name('d-lessons');
-            Route::get('create', [App\Http\Controllers\LessonController::class, 'create']);
+            Route::get('/create', [App\Http\Controllers\LessonController::class, 'create'])->name('d-lesson-create');
             Route::post('', [App\Http\Controllers\LessonController::class, 'store']);
             Route::get('{lesson}/edit', [App\Http\Controllers\LessonController::class, 'edit']);
             Route::put('{lesson}', [App\Http\Controllers\LessonController::class, 'update']);

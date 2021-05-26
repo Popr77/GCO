@@ -3,7 +3,6 @@
     <div class="col-10 mx-auto ">
         <div class="text-right mb-4  mt-1">
             <a class="btn btn-primary" href="{{ route('d-module-create')}}" role="button">Add Module</a>
-            <a class="btn btn-warning" href="{{ url('dashboard/lessons/create')}}" role="button">Add Lesson</a>
         </div>
     </div>
     <table class="table table-hover table-bordered col-10 rounded mx-auto">
@@ -15,7 +14,6 @@
         </tr>
         </thead>
         <tbody>
-
         @foreach($modules as $module)
             <tr>
                 <th scope="row" class="text-center align-middle">{{$module->id}}</th>
