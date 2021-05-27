@@ -22,7 +22,7 @@ class CourseSeeder extends Seeder
          * Creates 5 modules for each course
          */
 
-        Course::factory(10)->create()->each(function ($course) {
+        Course::factory(50)->create()->each(function ($course) {
             $course->modules()->saveMany(Module::factory(5)->make());
         });
     }

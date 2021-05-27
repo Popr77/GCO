@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CourseController;
 
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserDataController;
 use App\Http\Controllers\ChangePasswordController;
 use App\Http\Controllers\CategoryController;
@@ -27,11 +28,11 @@ use Illuminate\Support\Facades\Request;
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'registered'])
+Route::get('/home', [HomeController::class, 'registered'])
     ->middleware('auth')
     ->name('home');
 
-Route::get('/', [App\Http\Controllers\HomeController::class, 'index']);
+Route::get('/', [HomeController::class, 'index']);
 
 Route::prefix('/categories')->group(function(){
     Route::get('', [CategoryController::class, 'index']);
@@ -59,7 +60,7 @@ Route::prefix('/courses')->group(function(){
 
 // Admin Dashboard Routes
 Route::prefix('dashboard')->middleware(['auth', 'admin'])->group(function () {
-    Route::view('/', 'pages.admin.dashboard')->name('d-index');
+    Route::get('/', [HomeController::class, 'dashboard'])->name('d-index');
     Route::prefix('/courses')->group(function () {
         Route::get('/', [DCourseController::class, 'index'])->name('d-course-index');
         Route::view('/create', 'pages.admin.courses.course-create')->name('d-course-create');
