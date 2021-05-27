@@ -1,20 +1,20 @@
 <!-- Course Categories, Sub and SubSub -->
 
-<div class="container px-0">
-    <ul class="d-flex text-decoration-none list-unstyled mt-5">
-        <li><a href="{{url('categories/' . $course->subsubcategory->subcategory->category->id . '/subcategories')}}">{{$course->subsubcategory->subcategory->category->name}}</a> > </li>
-        <li><a href="{{url('subcategories/' . $course->subsubcategory->subcategory->id . '/subsubcategories')}}">{{$course->subsubcategory->subcategory->name}}</a> > </li>
-        <li><a href="{{url('subsubcategories/' . $course->subsubcategory->id)}}">{{$course->subsubcategory->name}}</a></li>
-    </ul>
-</div>
+<div class="container">
+    <div>
+        <ul class="d-flex text-decoration-none list-unstyled mt-5">
+            <li><a href="{{url('categories/' . $course->subsubcategory->subcategory->category->id . '/subcategories')}}">{{$course->subsubcategory->subcategory->category->name}}</a> > </li>
+            <li><a href="{{url('subcategories/' . $course->subsubcategory->subcategory->id . '/subsubcategories')}}">{{$course->subsubcategory->subcategory->name}}</a> > </li>
+            <li><a href="{{url('subsubcategories/' . $course->subsubcategory->id)}}">{{$course->subsubcategory->name}}</a></li>
+        </ul>
+    </div>
 
-<!-- Course Info -->
+    <!-- Course Info -->
 
-<div class="container d-flex flex-column px-0">
-    <div class="row">
+    <div class="row d-md-flex justify-content-md-between">
         <div class="col-md-6">
             <h1 class="mt-4 mb-4">{{ $course->name }}</h1>
-            <p  class="w-50">{{$course->description}}</p>
+            <p>{{$course->description}}</p>
 
             <div class="d-flex">
                 <p class="font-weight-bold mr-1">Rating:</p>
@@ -27,49 +27,43 @@
 
             @hasCourse($course)
             @else
-            <div class="d-flex align-items-center">
-                <button class="btn btn-primary mr-2">Buy Now</button>
-                <button class="btn btn-primary"><i class="bi bi-cart"></i></button>
-                <p class="text-danger font-weight-bold ml-2 mb-0">{{$course->price/100}} €</p>
-            </div>
-            @endhasCourse
+                <div class="d-flex align-items-center">
+                    <button class="btn btn-primary mr-2">Buy Now</button>
+                    <button class="btn btn-primary"><i class="bi bi-cart"></i></button>
+                    <p class="text-danger font-weight-bold ml-2 mb-0">{{$course->price/100}} €</p>
+                </div>
+                @endhasCourse
         </div>
-
-        <div class="col-md-6 d-flex justify-content-end">
-            <img class="w-75 mt-5 rounded" src="https://miro.medium.com/max/12032/0*lPCw4WxmuDmUwf5O">
+        <div class="col-md-6 col-lg-5 col-xl-4 mt-4">
+            <div class="col-12 course-image rounded " style="background-image: url({{  asset('storage/img/courses/' . $course->photo) }})"></div>
         </div>
     </div>
-</div>
 
-<!-- Goals -->
+    <!-- Goals -->
+    <div class="course-goals d-flex align-items-center mt-4 rounded px-3">Goals</div>
+    <div class="px-2 px-md-4">
+        <p class="mt-2">{{$course->goals}}</p>
+    </div>
 
-<div class="course-goals container d-flex align-items-center mt-4 rounded">Goals</div>
+    <!-- Requirements -->
+    <div class="course-goals d-flex align-items-center mt-4 rounded px-3">Requirements</div>
+    <div class="px-2 px-md-4">
+        <p class="mt-2">{{$course->requirements}}</p>
+    </div>
 
-<div class="container">
-    <p class="mt-2">{{$course->goals}}</p>
-</div>
+    <!-- Description -->
+    <div class="course-description rounded py-3 px-4 px-md-5">
+        <h2 class="text-center">Course Description</h2>
+        <hr class="col-4">
+{{--        <p class="mt-4">{{$course->description}}</p>--}}
+        <p class="mt-4"><span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A aliquam autem dicta dolorem, earum eius incidunt magnam maiores nam natus optio pariatur reiciendis rem repellendus reprehenderit, tempore totam unde, velit?</span><span>Delectus eum officia qui? Amet aperiam aspernatur at dicta distinctio dolores error et excepturi laborum laudantium magni odio officiis, quia sed sit suscipit voluptas voluptatum? Asperiores hic iure officiis qui!</span><span>Amet aperiam deleniti, dolorem exercitationem expedita in itaque, libero minus neque odit perspiciatis placeat quae qui quia ratione, sapiente soluta ut velit vitae voluptates! Asperiores cum minus necessitatibus odit repellendus?</span><span>Dolorem eaque expedita laudantium nihil ratione sed! Consequuntur dicta, dignissimos dolor ducimus est harum, ipsa ipsam itaque odit omnis quasi quia quidem ratione repellendus sint sit suscipit ut vel voluptate.</span><span>A debitis dignissimos doloremque iste necessitatibus nulla quae quia totam? Explicabo facilis fugiat necessitatibus nulla reprehenderit vero voluptatibus! Aliquid atque beatae earum maxime molestiae odit possimus quidem reiciendis suscipit voluptas.</span><span>Asperiores doloribus iure voluptatum. Architecto commodi ex fugit ipsa nulla porro quae. Accusantium, consequuntur corporis cupiditate dolor eius, error exercitationem ipsum magnam maiores, pariatur quasi quibusdam rerum totam unde voluptatum?</span><span>Aliquid aperiam architecto asperiores at aut culpa, cum deserunt distinctio dolorum eius error fugit illo iste nam natus praesentium quibusdam quos sapiente similique suscipit tempore ullam unde vitae voluptatem voluptates?</span><span>Accusamus deserunt earum exercitationem illum iure, laboriosam natus, perferendis ratione rem reprehenderit saepe sequi sit vero? A adipisci amet consectetur cum eaque, necessitatibus numquam odio recusandae, repellendus, sequi ullam unde.</span><span>Ad deserunt est facilis illo ipsam magni nobis odit praesentium qui quos ratione, rem sint sit, voluptas voluptates. Accusantium perspiciatis quam quibusdam tempora voluptatibus. Fugiat ipsam placeat sequi sint temporibus?</span><span>Adipisci alias animi assumenda at blanditiis corporis cum enim expedita explicabo facere facilis ipsam ipsum maxime minus necessitatibus nesciunt nobis non, nostrum nulla obcaecati quod recusandae reiciendis repellendus soluta tempora?</span></p>
+    </div>
 
-<!-- Requirements -->
+    <!-- Content -->
+    <div class="course-goals d-flex align-items-center mt-4 rounded px-3">Content</div>
 
-<div class="course-goals container d-flex align-items-center mt-4 rounded">Requirements</div>
-
-<div class="container">
-    <p class="mt-2">{{$course->requirements}}</p>
-</div>
-
-<!-- Description -->
-
-<div class="course-description container rounded py-3 px-3">
-    <h2 class="text-center">Course Description</h2>
-    <p class="mt-4">{{$course->description}}</p>
-</div>
-
-<!-- Content -->
-
-<div class="course-goals container d-flex align-items-center mt-4 rounded">Content</div>
-
-<div class="container px-0 mb-5">
-    <div id="accordion">
+    <div class="mb-5">
+        <div id="accordion">
             @foreach($course->modules as $index => $module)
                 <div class="card">
                     <div class="card-header" id="heading">
@@ -85,14 +79,30 @@
                                 <a class="lesson-name text-decoration-none" href="{{url('lessons/' . $lesson->id)}}">{{$lesson->title}} </a>
                                 @else
                                     <i class="bi bi-lock-fill text-dark"></i> <a class="lesson-name text-decoration-none">{{$lesson->title}} </a>
-                                @endhasCourse
+                                    @endhasCourse
                             </div>
                         @endforeach
                     </div>
                 </div>
             @endforeach
+        </div>
     </div>
-</div>
+
+</div> <!-- End of container -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 <!-- Feedback -->
 
