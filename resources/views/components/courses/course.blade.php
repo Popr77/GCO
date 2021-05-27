@@ -28,8 +28,8 @@
             @hasCourse($course)
             @else
                 <div class="d-flex align-items-center">
-                    <button class="btn btn-primary mr-2">Buy Now</button>
-                    <button class="btn btn-primary"><i class="bi bi-cart"></i></button>
+                    <buy-course-btn :course="{{ $course }}" :buy-now="true" class="mr-1"></buy-course-btn>
+                    <buy-course-btn :course="{{ $course }}"></buy-course-btn>
                     <p class="text-danger font-weight-bold ml-2 mb-0">{{$course->price/100}} €</p>
                 </div>
                 @endhasCourse

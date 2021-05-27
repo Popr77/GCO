@@ -5,9 +5,9 @@
                  :style="{ backgroundImage: 'url(' + assets + course.photo + ')' }">
             </div>
         </a>
-        <button class="btn btn-primary shadow-sm" @click.stop="toggle">
-            <i class="bi" :class="[ isAdded ? 'bi-cart-check-fill' : 'bi-cart-plus' ]"></i>
-        </button>
+
+        <buy-course-btn :course="course"></buy-course-btn>
+
         <a :href="course.url" class="mt-2 d-flex justify-content-start course-name"><p class="font-weight-bold">{{ course.name }}</p></a>
         <div class="d-flex justify-content-between align-items-center">
             <div class="d-flex justify-content-start align-items-center">
@@ -30,11 +30,13 @@
 
 <script>
 import StarRating from 'vue-star-rating'
+import BuyCourseBtn from "./BuyCourseBtn";
 
 export default {
     name: 'CourseItem',
     components: {
-        StarRating
+        StarRating,
+        BuyCourseBtn
     },
     props: {
         course: {
@@ -77,16 +79,8 @@ export default {
 
 <style scoped>
 button {
-
     position: absolute;
     bottom: 75px;
     right: 25px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-button i {
-    font-size: 1.2rem;
 }
 </style>

@@ -27,6 +27,7 @@ import QuestionsContainer from './components/quiz/QuestionsContainer.vue'
 import CreateQuestions from './components/quiz/CreateQuestions.vue'
 import StarRating from 'vue-star-rating'
 import Cart from "./components/courses/Cart"
+import BuyCourseBtn from "./components/courses/BuyCourseBtn";
 import CourseList from './components/courses/CourseList'
 import Checkout from './components/courses/Checkout'
 import EditQuestions from "./components/quiz/EditQuestions";
@@ -44,6 +45,7 @@ const app = new Vue({
         DashboardHeader,
         StarRating,
         Cart,
+        BuyCourseBtn,
         CourseList,
         Checkout,
         SearchBar,
