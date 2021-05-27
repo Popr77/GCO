@@ -6,7 +6,7 @@
         <h3  class="mb-3 mr-5" style="white-space: nowrap;"><span class=" text-black-50 mr-2">Module: </span>{{$module->name}}</h3>
     </div>
     <div class="col-12 mt-5 text-left pl-0">
-        <a class="btn btn-primary" href="{{ route('d-lesson-create')}}" role="button">Add Lesson</a>
+        <a class="btn btn-warning" href="{{ route('d-lesson-create')}}" role="button">Add Lesson</a>
     </div>
     <table class="table table-hover table-bordered col-4 mt-4 mr-5 rounded">
         <thead>
@@ -21,7 +21,15 @@
                     <th scope="row" class="text-center">
                         {{$loop->index+1}}
                     </th>
-                    <td class="px-4">{{$lesson->title}}</td>
+                    <td class="px-4">
+                        <div class="d-flex justify-content-between">
+                            <div>{{$lesson->title}}</div>
+                            <div>
+                                <a href="{{url('dashboard/lessons/' . $lesson->id) . '/edit'}}">
+                                    <button class="btn btn-primary">Edit</button>
+                                </a>
+                            </div>
+                        </div></td>
                 </tr>
             @endforeach
         </tbody>

@@ -37,7 +37,6 @@ class LessonController extends Controller
     public function create()
     {
         $courses = Course::with('modules')->get();
-//        $modules = Module::where('course_id', $course_id)->get();
 
         if (isset($_GET['num']) && isset($_GET['title'])  && isset($_GET['module_id'])){
 
@@ -80,13 +79,13 @@ class LessonController extends Controller
      */
     public function store(Request $request)
     {
-
         if ($_POST['action'] == 'update') {
 
-            $modules = Module::all();
+            $courses = Course::with('modules')->get();
 
             $num = $request->containers;
             $title = $request->title;
+            $course_id = $request->course_id;
             $module_id = $request->module_id;
 
 
@@ -99,9 +98,8 @@ class LessonController extends Controller
                 }
                 $index++;
             }
-            return view('pages.admin.lessons.lesson-create', ['num' => $num, 'modules' => $modules,
-
-                'title' => $title, 'module_id' => $module_id, 'quillItems' => $quillItems]);
+            return view('pages.admin.lessons.lesson-create', ['num' => $num, 'courses' => $courses,
+                'title' => $title, 'course_id' => $course_id,'module_id' => $module_id, 'quillItems' => $quillItems]);
 
         } else if ($_POST['action'] == 'create') {
 
@@ -187,8 +185,10 @@ class LessonController extends Controller
      */
     public function edit(Lesson $lesson)
     {
-        $modules = Module::with('lessons')
-            ->where('course_id', $lesson->module->course->id)->get();
+        $course_id = $lesson->module->course->id;
+        $modules = Module::where('course_id', $course_id)
+            ->with('lessons')->get();
+//        dd($modules);
 
         if (isset($_GET['num']) && isset($_GET['title']) && isset($_GET['module_id'])){
 

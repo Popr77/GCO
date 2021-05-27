@@ -9,11 +9,11 @@
 
     @if (isset($title) && isset($lesson_number) && isset($module_id) && isset($quillItems))
         @component('components.lessons.lesson-form-create', ['num' => $num, 'courses' => $courses,
-    'title' => $title,
+    'title' => $title, 'course_id' => $course_id,
     'module_id' => $module_id, 'quillItems' => $quillItems])
         @endcomponent
-    @elseif(isset($module_id))
-        @component('components.lessons.lesson-form-create', ['num' => $num, 'module_id' => $module_id, 'courses' => $courses])
+    @elseif(isset($module_id) && isset($course_id))
+        @component('components.lessons.lesson-form-create', ['num' => $num, 'course_id' => $course_id, 'module_id' => $module_id, 'courses' => $courses])
         @endcomponent
     @else
         @component('components.lessons.lesson-form-create', ['num' => $num, 'courses' => $courses])
@@ -48,8 +48,6 @@
             $a = document.querySelector('{{'#editor'. $i}}').innerHTML="@if(isset($quillItems[$i])){{$quillItems[$i]}}@else{{old('editor'.$i)}}@endif"
         @endfor
 
-
-
         window.onbeforeunload = function() {
             if (!submitted)
                 return "Are you sure you want to leave?";
@@ -59,7 +57,8 @@
 
         formEl.addEventListener('submit', (e)=>{
 
-            e.preventDefault()
+            // e.preventDefault()
+
             submitted = true;
         });
 
