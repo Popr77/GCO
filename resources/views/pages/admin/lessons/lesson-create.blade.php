@@ -9,11 +9,11 @@
 
     @if (isset($title) && isset($lesson_number) && isset($module_id) && isset($quillItems))
         @component('components.lessons.lesson-form-create', ['num' => $num, 'courses' => $courses,
-    'title' => $title,
+    'title' => $title, 'course_id' => $course_id,
     'module_id' => $module_id, 'quillItems' => $quillItems])
         @endcomponent
-    @elseif(isset($module_id))
-        @component('components.lessons.lesson-form-create', ['num' => $num, 'module_id' => $module_id, 'courses' => $courses])
+    @elseif(isset($module_id) && isset($course_id))
+        @component('components.lessons.lesson-form-create', ['num' => $num, 'course_id' => $course_id, 'module_id' => $module_id, 'courses' => $courses])
         @endcomponent
     @else
         @component('components.lessons.lesson-form-create', ['num' => $num, 'courses' => $courses])
@@ -23,8 +23,15 @@
 
 
 @section('scripts')
-    <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
-    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+{{--    <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>--}}
+{{--    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">--}}
+
+
+    <!-- Theme included stylesheets -->
+    <link href="//cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+    <link href="//cdn.quilljs.com/1.3.6/quill.bubble.css" rel="stylesheet">
+
+
     <script>
 
         let submitted = false;
@@ -39,16 +46,22 @@
             readOnly: true,
             theme: 'snow'
         };
+{{--        @for($i = 0; $i < $num; $i++)--}}
+{{--            let {{'quill'. $i}} = new Quill('{{'#editor'. $i}}', {--}}
+{{--                theme: 'snow'--}}
+{{--            });--}}
 
-        @for($i = 0; $i < $num; $i++)
-            let {{'quill'. $i}} = new Quill('{{'#editor'. $i}}', {
-                theme: 'snow'
-            });
-
-            $a = document.querySelector('{{'#editor'. $i}}').innerHTML="@if(isset($quillItems[$i])){{$quillItems[$i]}}@else{{old('editor'.$i)}}@endif"
-        @endfor
-
-
+{{--            $a = document.querySelector('{{'#editor'. $i}}').innerHTML="@if(isset($quillItems[$i])){{$quillItems[$i]}}@else{{old('editor'.$i)}}@endif"--}}
+{{--        @endfor--}}
+        var quill = new Quill('#quill0', {
+            modules: {
+                'history': {          // Enable with custom configurations
+                    'delay': 2500,
+                    'userOnly': true
+                },
+                'syntax': true        // Enable with default configuration
+            }
+        });
 
         window.onbeforeunload = function() {
             if (!submitted)
@@ -59,7 +72,8 @@
 
         formEl.addEventListener('submit', (e)=>{
 
-            e.preventDefault()
+            // e.preventDefault()
+
             submitted = true;
         });
 

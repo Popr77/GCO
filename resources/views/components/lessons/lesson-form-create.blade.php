@@ -9,7 +9,6 @@
     <form method="post"  action="{{ url('/dashboard/lessons')}}">
         @csrf
         <div class="form-group col-6 form-show mx-auto">
-
             <label for="containers" class="mt-5">Nº of Containers</label>
             <select
                 id="containers"
@@ -80,11 +79,23 @@
                 required
                 class="browser-default custom-select form-control
             @error('module_id') is-invalid @enderror">
-                @foreach($courses[0]->modules as $module)
-                    <option
-                        @if(isset($module_id)) @if($module->id == $module_id  ) selected="" @endif @endif
-                        value="{{$module->id}}">{{$module->name}}</option>
-                @endforeach
+                @if(isset($course_id))
+                    @foreach($courses as $course)
+                        @if($course->id == $course_id)
+                            @foreach($course->modules as $module)
+                                <option
+                                    @if(isset($module_id)) @if($module->id == $module_id  ) selected="" @endif @endif
+                                value="{{$module->id}}">{{$module->name}}</option>
+                            @endforeach
+                        @endif
+                    @endforeach
+                @else
+                    @foreach($courses[0]->modules as $module)
+                        <option
+                            @if($loop->first) selected="" @endif
+                            value="{{$module->id}}">{{$module->name}}</option>
+                    @endforeach
+                @endif
             </select>
             @error('module_id')
             <span class="invalid-feedback" role="alert">

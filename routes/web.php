@@ -14,6 +14,7 @@ use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\EnrollmentController;
 use App\Http\Controllers\Dashboard\CourseController as DCourseController;
 use Illuminate\Support\Facades\Request;
+use App\Http\Controllers\UserProgressController;
 
 /*
 |--------------------------------------------------------------------------
@@ -102,12 +103,13 @@ Route::prefix('dashboard')->middleware(['auth', 'admin'])->group(function () {
         Route::post('', [App\Http\Controllers\LessonController::class, 'store']);
         Route::get('{lesson}/edit', [App\Http\Controllers\LessonController::class, 'edit']);
         Route::put('{lesson}', [App\Http\Controllers\LessonController::class, 'update']);
-        Route::delete('{lesson}', [App\Http\Controllers\LessonController::class, 'destroy']);
+        Route::delete('{lesson}', [App\Http\Controllers\LessonController::class, 'destroy'])->name('d-lesson-destroy');
     });
     Route::prefix('/modules')->group(function () {
         Route::get('', [App\Http\Controllers\ModuleController::class, 'index'])->name('d-module');
         Route::get('{course}/one', [App\Http\Controllers\ModuleController::class, 'indexOne'])->name('d-module-one');
         Route::get('create', [App\Http\Controllers\ModuleController::class, 'create'])->name('d-module-create');
+        Route::get('{course}/create', [App\Http\Controllers\ModuleController::class, 'create']);
         Route::get('{module}', [App\Http\Controllers\ModuleController::class, 'show']);
         Route::post('', [App\Http\Controllers\ModuleController::class, 'store']);
         Route::get('{module}/edit', [App\Http\Controllers\ModuleController::class, 'edit']);
@@ -141,5 +143,12 @@ Route::prefix('checkout')->middleware('auth')->group(function () {
     Route::post('/submit', [EnrollmentController::class, 'store']);
     Route::view('/confirmation', 'pages.checkout.confirmation')->name('checkout-confirmation');
 });
+
+Route::prefix('')->middleware('auth')->group(function () {
+    Route::get('progress', [UserProgressController::class, 'index']);
+});
+
+Route::view('quill', 'pages.quill');
+
 
 

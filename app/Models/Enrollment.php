@@ -16,4 +16,8 @@ class Enrollment extends Model
     public function examGrade() {
         return $this->hasMany(ExamGrade::class);
     }
+
+    public function course(){
+        return $this->belongsTo(Course::class);
+    }
 }

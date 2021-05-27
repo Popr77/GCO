@@ -39,6 +39,9 @@
                             <hr>
                             @endforeach
                         </div>
+                        <div class="d-flex justify-content-center">
+                            <a href="{{ url('progress') }}" class="btn btn-primary ">My Progress</a>
+                        </div>
                     </div>
                 </li>
                 <li class="nav-item mx-sm-1 flex-fill dropdown order-1">
@@ -55,7 +58,6 @@
                         </div>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="{{ url('profile/'.auth()->user()->id).'/edit' }}">Edit Profile</a>
-                        <a class="dropdown-item" href="#">Account Settings</a>
                         <a class="dropdown-item" href="#">Purchase History</a>
                         <a class="dropdown-item" href="#">Help</a>
                         <a class="dropdown-item" href="{{ route('logout') }}"
