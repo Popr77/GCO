@@ -7,7 +7,9 @@ $(document).on('click', '.navbar #navUserMenu', function (e) {
 
 import Vue from 'vue'
 import Vuex from 'vuex'
+import VueQuillEditor from 'vue-quill-editor'
 
+Vue.use(VueQuillEditor)
 Vue.use(Vuex)
 import storeData from './store/index'
 const store = new Vuex.Store(
@@ -25,6 +27,7 @@ import Cart from "./components/courses/Cart"
 import CourseList from './components/courses/CourseList'
 import Checkout from './components/courses/Checkout'
 import EditQuestions from "./components/quiz/EditQuestions";
+import QuillItem from "./components/lessons/QuillItem";
 
 const app = new Vue({
     el: '#app',
@@ -38,7 +41,8 @@ const app = new Vue({
         StarRating,
         Cart,
         CourseList,
-        Checkout
+        Checkout,
+        QuillItem
     },
     store
 });

@@ -63,7 +63,7 @@ class ModuleController extends Controller
         $module->course_id = $request->input('course_id');
         $module->save();
 
-        return redirect(route('d-module', $module->course_id));
+        return redirect(route('d-module', $module->course_id)->with('status', 'Module created successfully!!'));
     }
     /**
      * Display the specified resource.
@@ -121,6 +121,6 @@ class ModuleController extends Controller
     public function destroy(Module $module)
     {
         $module->delete();
-        return redirect('modules')->with('status','Module deleted successfully!');;
+        return redirect('dashboard/modules')->with('status','Module deleted successfully!');;
     }
 }

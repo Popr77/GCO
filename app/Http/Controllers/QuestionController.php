@@ -85,9 +85,7 @@ class QuestionController extends Controller
                 ->where('enrollment_id',$enrollment_id[0]->id)
                 ->get();
 
-
             if (isset($lessonGrade) && !$lessonGrade->isEmpty()){
-
                 $lessonGrade = LessonGrade::find($lessonGrade[0]->id);
                 $lessonGrade->lesson_id = $questions[0]->lesson_id;
                 $lessonGrade->grade = $grade;
@@ -95,9 +93,7 @@ class QuestionController extends Controller
                 $lessonGrade->created_at = $dateTime;
                 $lessonGrade->enrollment_id = $enrollment_id[0]->id;
                 $lessonGrade->save();
-
             }else{
-
                 $lessonGrade = new  LessonGrade();
                 $lessonGrade->lesson_id = $questions[0]->lesson_id;
                 $lessonGrade->grade = $grade;
@@ -114,7 +110,6 @@ class QuestionController extends Controller
 
             abort(403);
         }
-
     }
 
     /**
@@ -151,7 +146,7 @@ class QuestionController extends Controller
             }
         }
 
-        return redirect(route('d-lessons'))->with('status', 'Lesson created successfully!');
+        return redirect(route('d-module'))->with('status', 'Lesson and Quiz created successfully!');
     }
 
     /**
@@ -248,7 +243,7 @@ class QuestionController extends Controller
             }
         }
 
-        return redirect('dashboard/lessons')->with('status','Quiz edited successfully!');;
+        return redirect(route('d-module'))->with('status','Quiz edited successfully!');;
     }
 
     /**
