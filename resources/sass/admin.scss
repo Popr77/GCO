@@ -53,6 +53,12 @@ h1 {
 a.disabled {
     pointer-events: none;
 }
+.course-image {
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 230px;
+}
+
 
 @media (min-width: 768px) {
     .a-back-button:hover{

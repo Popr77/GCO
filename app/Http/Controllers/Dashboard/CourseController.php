@@ -114,4 +114,11 @@ class CourseController extends Controller {
 
         return redirect(route('d-course-index'))->with('status', 'Course archived successfully!');
     }
+
+    public function restore($id) {
+
+        Course::onlyTrashed()->findOrFail($id)->restore();
+
+        return redirect(route('d-course-index'))->with('status', 'Course restored successfully!');
+    }
 }

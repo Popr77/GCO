@@ -13,6 +13,7 @@ use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\EnrollmentController;
 use App\Http\Controllers\Dashboard\CourseController as DCourseController;
 use Illuminate\Support\Facades\Request;
+use App\Http\Controllers\UserProgressController;
 
 /*
 |--------------------------------------------------------------------------
@@ -59,11 +60,12 @@ Route::prefix('/courses')->group(function(){
 
 // Admin Dashboard Routes
 Route::prefix('dashboard')->middleware(['auth', 'admin'])->group(function () {
-    Route::view('/', 'pages.admin.dashboard');
+    Route::view('/', 'pages.admin.dashboard')->name('d-index');
     Route::prefix('/courses')->group(function () {
         Route::get('/', [DCourseController::class, 'index'])->name('d-course-index');
         Route::view('/create', 'pages.admin.courses.course-create')->name('d-course-create');
         Route::get('/{course}/edit', [DCourseController::class, 'edit']);
+        Route::get('/{course}/restore', [DCourseController::class, 'restore']);
         Route::post('/', [DCourseController::class, 'store'])->name('d-course-store');
         Route::put('/{course}', [DCourseController::class, 'update'])->name('d-course-update');
         Route::delete('/{course}', [DCourseController::class, 'destroy'])->name('d-course-destroy');
@@ -102,7 +104,6 @@ Route::prefix('dashboard')->middleware(['auth', 'admin'])->group(function () {
         Route::put('{lesson}', [App\Http\Controllers\LessonController::class, 'update']);
         Route::delete('{lesson}', [App\Http\Controllers\LessonController::class, 'destroy']);
     });
-
     Route::prefix('/modules')->group(function () {
         Route::get('', [App\Http\Controllers\ModuleController::class, 'index'])->name('d-module');
         Route::get('{course}/one', [App\Http\Controllers\ModuleController::class, 'indexOne'])->name('d-module-one');
@@ -139,6 +140,10 @@ Route::prefix('checkout')->middleware('auth')->group(function () {
     Route::get('', [EnrollmentController::class, 'create']);
     Route::post('/submit', [EnrollmentController::class, 'store']);
     Route::view('/confirmation', 'pages.checkout.confirmation')->name('checkout-confirmation');
+});
+
+Route::prefix('')->middleware('auth')->group(function () {
+    Route::get('progress', [UserProgressController::class, 'index']);
 });
 
 

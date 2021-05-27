@@ -20,7 +20,7 @@ class IsCourseActive
         $course = request()->route('course') ? request()->route('course')
                                     : request()->route('lesson')->module->course;
 
-        if ($course->status) {
+        if ($course->status || auth()->user()->type->id == 1) {
             return $next($request);
         }
 

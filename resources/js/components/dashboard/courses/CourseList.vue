@@ -1,8 +1,9 @@
 <template>
     <div>
-        <div class="grid-container">
+        <p v-if="filteredCourses.length === 0" class="text-center mt-5">No courses to show...</p>
+        <div v-else class="grid-container">
             <course-item
-                v-for="course in courses.data"
+                v-for="course in filteredCourses"
                 class="card mb-3"
                 :id="course.id"
                 :name="course.name"
@@ -12,6 +13,7 @@
                 :price="course.price"
                 :status="course.status"
                 :updated_at="course.updated_at"
+                :deleted_at="course.deleted_at"
                 :students="course.students"
                 :key="course.id"
             ></course-item>
@@ -34,21 +36,31 @@ export default {
     data() {
         return {
             search: '',
-            courses: {}
+            isLoading: true,
+            courses: {},
+            showDeleted: false
         }
     },
     computed: {
         filteredCourses() {
-            return this.courses.data.filter(course => {
-                return course.name.toLowerCase().includes(this.search.toLowerCase())
-            })
-        },
+
+            if(this.isLoading) {
+                return null
+            }
+
+            return this.showDeleted ? this.courses.data.filter(x => x.deleted_at != undefined)
+                : this.courses.data.filter(x => x.deleted_at == undefined)
+        }
     },
     async created() {
         await this.getResults()
         this.$parent.$on('searchValueChanged', (search) => {
             this.search = search
             this.getResults()
+        })
+
+        this.$parent.$on('toggleArchived', () => {
+            this.showDeleted = !this.showDeleted
         })
     },
     methods: {
@@ -62,6 +74,7 @@ export default {
                 .then(response => {
                     this.courses = response.data;
                     console.log(this.courses)
+                    this.isLoading = false
                 })
                 .catch(e => {
                     console.log(e)

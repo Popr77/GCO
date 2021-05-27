@@ -1,14 +1,26 @@
 <template>
-    <div class="shadow-sm grid-item card" :class="{ 'disabled' : !status }">
-        <a :href="/courses/ + id" :class="{ 'disabled' : !status }">
+    <div class="shadow-sm grid-item card" :class="{ 'disabled-course' : !status }">
+        <a :href="/courses/ + id">
             <h5 class="card-header">{{ name }}</h5>
         </a>
 
         <div class="position-relative">
-            <img class="w-100" :src="assets + photo" alt="">
-            <a :href="`/dashboard/courses/${id}/edit`"
+            <div v-if="deleted_at" class="archived-text">
+                <h2>Archived</h2>
+            </div>
+            <div class="course-image"
+                 :style="{ backgroundImage: 'url(' + assets + photo + ')' }">
+            </div>
+
+            <form :action="'/dashboard/courses/' + id + '/restore'"></form>
+            <a v-if="deleted_at" :href="'/dashboard/courses/' + id + '/restore'"
+               class="btn btn-secondary  mr-2 mb-2 position-absolute shadow-sm"
+               id="restore-btn">
+                Restore
+            </a>
+            <a v-else :href="`/dashboard/courses/${id}/edit`"
                class="btn btn-secondary mr-2 mb-2 position-absolute shadow-sm"
-               style="bottom: 0; right: 0;">
+                id="edit-btn">
                 <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor"
                      class="bi bi-pencil-square"
                      viewBox="0 0 16 16">
@@ -28,11 +40,11 @@
                 Rating:
                 <span>
                     <star-rating
-                    v-model="students.feedback_avg"
-                    :increment="0.1"
-                    :read-only="true"
-                    :star-size="20"
-                    :inline="true"/>{{ `(${students.feedback_count})` }}
+                        v-model="students.feedback_avg"
+                        :increment="0.1"
+                        :read-only="true"
+                        :star-size="20"
+                        :inline="true"/>{{ `(${students.feedback_count})` }}
                 </span>
 
             </li>
@@ -100,10 +112,15 @@ export default {
             type: String,
             required: true
         },
+        deleted_at: {
+            type: String,
+            required: false
+        },
         students: {
             type: Object,
             required: true
-        }
+        },
+
     },
     created() {
 
@@ -118,8 +135,34 @@ h5 {
     text-overflow: ellipsis;
 }
 
-.disabled {
+.disabled-course {
     opacity: 0.4;
+}
+
+.archived-text {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0.865;
+}
+
+.archived-text h2 {
+    color: #d9534f;
+    font-weight: bold;
+    text-shadow: 2px 2px 8px #212121;
+    width: 100%;
+    background-color: #495057;
+    text-align: center;
+    padding: 10px 0;
+}
+
+#edit-btn,
+#restore-btn {
+    bottom: 0;
+    right: 0;
 }
 
 </style>
