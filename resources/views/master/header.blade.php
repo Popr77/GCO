@@ -6,12 +6,13 @@
     </button>
 
     <div class="collapse navbar-collapse d-lg-flex justify-content-between" id="navbarColor03">
-        <form class="my-2 my-lg-0 mx-lg-auto">
-            <div class="form-control mr-sm-2 rounded-pill w-100 w-md-50" id="search-input">
-                <i class="bi bi-search"></i>
-                <input type="text" class="border-0" placeholder="Search">
-            </div>
-        </form>
+{{--        <form class="my-2 my-lg-0 mx-lg-auto">--}}
+{{--            <div class="form-control mr-sm-2 rounded-pill w-100 w-md-50" id="search-input">--}}
+{{--                <i class="bi bi-search"></i>--}}
+{{--                <input type="text" class="border-0" placeholder="Search">--}}
+{{--            </div>--}}
+{{--        </form>--}}
+        <search-bar></search-bar>
         <ul class="navbar-nav d-lg-flex flex-lg-row align-items-lg-center">
             @guest
                 <li class="nav-item mx-sm-1 flex-fill">

@@ -1,54 +1,91 @@
 <template>
     <div class="row text-center">
-        <course-item v-for="course in courses"
-                     :key="course.id"
+        <course-item v-for="(course, index) in courses" data-aos="fade-up"
+                     :key="index"
             :course="course"
         ></course-item>
+
+        <mugen-scroll :handler="fetchData" :should-handle="!loading && !noMore" :threshold="1"></mugen-scroll>
     </div>
 </template>
 
 <script>
 import CourseItem from './CourseItem'
+import MugenScroll from 'vue-mugen-scroll'
+import AOS from 'aos'
+import 'aos/dist/aos.css'
 
 export default {
     name: 'CourseList',
     components: {
-        CourseItem
+        CourseItem,
+        MugenScroll
     },
     data() {
         return {
-            courses: {}
+            courses: [],
+            search: '',
+            loading: false,
+            page: 1,
+            noMore: false
         }
     },
     props: {
         numCourses: {
             type: Number,
-            required: true
+            required: false
         },
         userId: {
             type: String,
             required: false
         }
     },
-    async created() {
-        await this.getResults()
+    created() {
+        AOS.init()
+
+        window.Event.$on('searchValueChanged', (value) => {
+            console.log(value)
+            this.search = value
+            this.courses = []
+            this.page = 1
+            this.fetchData()
+        })
+    },
+    mounted() {
+
+    },
+    computed: {
+        url() {
+            return `http://127.0.0.1:8000/api/courses/recommended?page=${this.page}`
+        }
     },
     methods: {
-        getResults() {
-            axios.get('/api/courses/recommended', {
+        fetchData() {
+            this.loading = true
+            axios.get('http://127.0.0.1:8000/api/courses/recommended', {
                 params: {
-                    num: this.numCourses,
-                    userid: this.userId ?? null
+                    num: this.numCourses ?? null,
+                    userid: this.userId ?? null,
+                    search: this.search,
+                    page: this.page
                 }
             })
-                .then(response => {
-                    this.courses = response.data.data;
-                    console.log(this.courses)
+                .then((response) => {
+                    if(response.data.data.length > 0) {
+                        this.courses.push(...response.data.data)
+                        this.loading = false
+                        this.page++
+                        this.noMore = false
+                    } else {
+                        this.noMore = true
+                    }
+
                 })
                 .catch(e => {
                     console.log(e)
                 });
-        }
+
+        },
     }
 }
 </script>
