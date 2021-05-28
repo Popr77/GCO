@@ -62,8 +62,11 @@ a.disabled {
     background-repeat: no-repeat;
     height: 230px;
 }
-.quill-editor{
+.quill-editor {
     height: 300px !important;
+}
+.ql-editor::-webkit-scrollbar {
+    display: none;
 }
 
 @media (min-width: 768px) {

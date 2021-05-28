@@ -27,7 +27,7 @@
     <script>
 
         let submitted = false;
-        var toolbarOptions = [
+        let toolbarOptions = [
             ['bold', 'italic', 'underline', 'strike'],
             ['blockquote', 'code-block'],
             [{ 'header': 1 }, { 'header': 2 }],

@@ -125,10 +125,11 @@ footer {
 }
 
 .btn-lessons-menu {
-    top: 0;
-    right: 20px;
-    position: fixed;
-    margin-top: 60px;
+    margin-top: 20px;
+    margin-right: 20px;
+    //position: fixed;
+    //right: 20px;
+    position: relative;
 
     z-index: 9999;
     a {
@@ -140,17 +141,42 @@ footer {
         text-decoration: none;
     }
 }
+.btn-lessons-menu button{
+    position: absolute;
+    left: 10;
+    top: 10;
+    height: 34px;
+    width: 34px;
+}
+.btn-lessons-menu button i{
+    width: 100%;
+    height: 100%;
+}
 
+.div-backButton-lesson{
+    margin-top: 20px;
+    margin-left: 20px;
+
+}
+.div-backButton-lesson a{
+    width: 34px;
+    height: 34px;
+    padding: 0;
+}
+.div-backButton-lesson a svg{
+    width: 80%;
+    height: 80%;
+
+}
 .lessons-menu {
     top: 0;
     right: 0;
     position: fixed;
-    margin-top: 4px;
     background-color: $gray-100;
 
     z-index: 9990;
     overflow: auto;
-    min-height: 400px;
+    min-height: 730px;
     scrollbar-width: none; //scroll firefox
     -ms-overflow-style: none; /* scroll IE and Edge */
 
@@ -158,12 +184,13 @@ footer {
         margin-bottom: 0px;
     }
 }
+.lesson-menu-quiz {
+    top: 56px;
+}
 .lessons-menu2 {
     display: none;
 }
-.lesson-menu-quizz {
-    //top: 250px;
-}
+
 
 //.btn-lessons-menu {
 //    display: none;
@@ -201,8 +228,8 @@ footer {
 
 .container-lesson-text {
     padding: 50px;
-    //border-radius: 10px;
     background-color: $gray-200;
+    width: 92vw;
 }
 
 .video-container {
@@ -260,12 +287,23 @@ footer {
     opacity: 0.5;
 }
 
+
+
 // Small devices (landscape phones, 576px and up)
 @media (min-width: 576px) {
+
 }
 
 // Medium devices (tablets, 768px and up)
 @media (min-width: 768px) {
+    .div-backButton-lesson{
+        margin-top: 50px;
+        margin-left: 50px;
+    }
+    .container-lesson-text {
+        width: 67vw;
+        margin-left: 2vw !important;
+    }
 
     .my-courses-dropdown {
         width: 70vw;
@@ -318,6 +356,7 @@ footer {
         margin-top: 57px;
         overflow: auto;
         height: 643px;
+        max-width: 188px !important;
         scrollbar-width: none; //scroll firefox
         -ms-overflow-style: none; /* scroll IE and Edge */
         p {
@@ -330,6 +369,7 @@ footer {
     }
     .lesson-menu-quizz2 {
         top: 635px;
+        max-width: 188px !important;
         right: 0;
     }
 
@@ -353,6 +393,14 @@ footer {
     .my-courses-dropdown {
         width: 50vw;
     }
+    .container-lesson-text {
+        width: 74vw;
+        margin-left: 3vw !important;
+    }
+    .master-video-container{
+        margin-left: 10vw !important;
+        width: 77vw;
+    }
 
     .cart {
         position: static;
@@ -372,12 +420,39 @@ footer {
     .my-courses-dropdown {
         width: 35vw;
     }
-
-}
-
-@media (min-width: 1600px) {
-    .my-courses-dropdown {
-        width: 25vw;
+    .container-lesson-text {
+        max-width: 2000px;
+    }
+    .master-video-container{
+        max-width: 1000px !important;
+        width: 70vw;
     }
 
 }
+
+@media (min-width: 1500px) {
+    .my-courses-dropdown {
+        width: 25vw;
+    }
+    .container-lesson-text {
+        width: 77vw !important;
+        margin-left: 5vw !important;
+    }
+    .master-video-container {
+        margin-left: 15vw !important;
+
+    }
+
+}
+@media (min-width: 1800px) {
+    .container-lesson-text {
+        width: 80vw !important;
+        margin-left: 4vw !important;
+    }
+    .master-video-container {
+        margin-left: 20vw !important;
+
+    }
+
+}
+
