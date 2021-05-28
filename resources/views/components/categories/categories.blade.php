@@ -1,5 +1,3 @@
-<h1 class="text-center mt-5 mb-5">What do you want to learn?</h1>
-
 @if (session('status'))
     <div class="alert alert-success alert-dismissible fade show container text-center" role="alert">
         {{ session('status') }}
@@ -9,48 +7,34 @@
     </div>
 @endif
 
-<div id="carouselExampleIndicators" class="carousel slide container" data-ride="carousel">
-    <ol class="carousel-indicators">
-        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-    </ol>
-    <div class="carousel-inner">
-        <div class="carousel-item active">
-            <img class="d-block w-100" src="https://cdn2.hubspot.net/hubfs/202339/canvas/images/parallax/Website-Design-Background.png" alt="First slide">
-        </div>
-        <div class="carousel-item">
-            <img class="d-block w-100" src="https://cdn2.hubspot.net/hubfs/202339/canvas/images/parallax/Website-Design-Background.png" alt="Second slide">
-        </div>
-        <div class="carousel-item">
-            <img class="d-block w-100" src="https://cdn2.hubspot.net/hubfs/202339/canvas/images/parallax/Website-Design-Background.png" alt="Third slide">
-        </div>
-    </div>
-    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="sr-only">Previous</span>
-    </a>
-    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="sr-only">Next</span>
+<h1 class="text-center mt-5">Categories</h1>
+
+<div class="d-flex justify-content-between mb-2 px-3 ml-5 mt-3">
+    <a class="btn btn-primary" href="{{url('/home')}}" role="button">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" class="bi bi-arrow-left-short" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M12 8a.5.5 0 0 1-.5.5H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5a.5.5 0 0 1 .5.5z"></path>
+        </svg>
     </a>
 </div>
 
-<h1 class="text-center mt-5">Categories</h1>
+{{--<img src="img/category.png" alt="" class="rounded-circle w-50 h-25 p-0 mx-auto d-block mb-5 img-fluid">--}}
 
 <form class="my-2 my-lg-0 mx-lg-auto d-flex justify-content-center">
     <div class="form-control mr-sm-2 rounded-pill w-25 mt-2" id="search-input">
         <i class="bi bi-search"></i>
-        <input type="text" class="border-0" placeholder="Search" name="search">
+        <input type="text" class="border-0" placeholder="Search" name="search" id="search-category">
     </div>
 </form>
 
-<div class="container-fluid mt-5">
-    <div class="row mb-3 d-flex justify-content-center">
+<div class="container mt-5 mb-5 d-flex justify-content-center">
+    <div class="row mr-0">
         @foreach($categories as $category)
-        <div class="col-sm-3 py-2 d-flex align-items-center justify-content-center border border-primary rounded mx-1 mb-2 categories-select">
-            <a href="{{url('categories/' . $category->id . '/subcategories')}}" class="text-center course-name">{{$category->name}}</a>
-        </div>
+            <div class="card ml-5 my-2" style="width: 20rem;">
+                <img class="card-img-top" src="{{asset('img/category.png')}}" alt="Category Image">
+                <div class="card-body categories-select text-center">
+                    <a href="{{url('categories/' . $category->id . '/subcategories')}}" class="course-name">{{$category->name}}</a>
+                </div>
+            </div>
         @endforeach
     </div>
 </div>
