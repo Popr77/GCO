@@ -283,8 +283,16 @@ footer {
 .table-lessons button a{
      text-decoration: none; color: white;
 }
-.a-lessons:hover p{
+.a-lessons:hover p {
     opacity: 0.5;
+}
+.a-hover:hover {
+    opacity: 0.35;
+    text-decoration: none;
+    color: black;
+}
+.a-hover{
+    color: gray;
 }
 
 
