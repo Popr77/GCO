@@ -41,7 +41,7 @@ class HomeController extends Controller
         $coursesBought = Enrollment::where('payment_status', 1)->where('created_at', '>=', now()->subDays(7))->count();
         $registeredUsers = User::where('user_type_id', '<>', 1)->count();
         $avgFeedback = (float)number_format(Enrollment::where('feedback_stars', '<>', null)->avg('feedback_stars'), 1);
-        $avgExamGrades = ExamGrade::avg('grade');
+        $avgExamGrades = (float)number_format(ExamGrade::avg('grade'), 1);
 
         $stats = [
             [
