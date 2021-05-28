@@ -18,7 +18,7 @@
                 :key="course.id"
             ></course-item>
         </div>
-        <pagination :align="'right'" :limit="3" :data="courses" @pagination-change-page="getResults"></pagination>
+        <pagination v-if="filteredCourses.length > 0" :align="'right'" :limit="3" :data="courses" @pagination-change-page="getResults"></pagination>
 
     </div>
 </template>
@@ -54,7 +54,7 @@ export default {
     },
     async created() {
         await this.getResults()
-        this.$parent.$on('searchValueChanged', (search) => {
+        window.Event.$on('searchValueChanged', (search) => {
             this.search = search
             this.getResults()
         })

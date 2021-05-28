@@ -1,18 +1,22 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
-    <a class="navbar-brand" href="/">GCO</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
+<nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm justify-content-between">
+    <a class="navbar-brand text-primary font-weight-bold" href="/">GCO</a>
 
-        <span class="navbar-toggler-icon"></span>
-    </button>
+    <div class="d-flex align-items-center order-md-2" id="navToggleBtnAndCart">
+        <cart id="cart" class="mr-4 order-lg-2" user-id="{{ auth()->check() ? auth()->user()->id : null }}"></cart>
+        <button class="navbar-toggler order-lg-1" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    </div>
 
-    <div class="collapse navbar-collapse d-lg-flex justify-content-between" id="navbarColor03">
+    <search-bar class="search-div order-md-1 mx-auto"></search-bar>
+
+    <div class="collapse navbar-collapse d-lg-flex justify-content-between order-md-2 flex-lg-grow-0" id="navbarCollapse">
 {{--        <form class="my-2 my-lg-0 mx-lg-auto">--}}
 {{--            <div class="form-control mr-sm-2 rounded-pill w-100 w-md-50" id="search-input">--}}
 {{--                <i class="bi bi-search"></i>--}}
 {{--                <input type="text" class="border-0" placeholder="Search">--}}
 {{--            </div>--}}
 {{--        </form>--}}
-        <search-bar></search-bar>
         <ul class="navbar-nav d-lg-flex flex-lg-row align-items-lg-center">
             @guest
                 <li class="nav-item mx-sm-1 flex-fill">
@@ -23,12 +27,12 @@
                 </li>
             @else
                 @admin
-                <li class="nav-item mx-sm-1 flex-fill order-1">
+                <li class="nav-item mx-sm-1 flex-fill">
                     <a href="{{ url('dashboard') }}" class="btn btn-primary my-1 my-lg-0 w-100">Admin Dashboard</a>
                 </li>
                 @endadmin
 
-                <li class="nav-item mx-sm-1 flex-fill order-1">
+                <li class="nav-item mx-sm-1 flex-fill">
                     <a href="#" class="btn btn-primary my-1 my-lg-0 w-100" data-toggle="dropdown">My Courses</a>
                     <div class="dropdown-menu p-4 shadow my-courses-dropdown">
                         <div class="form-group">
@@ -44,7 +48,7 @@
                         </div>
                     </div>
                 </li>
-                <li class="nav-item mx-sm-1 flex-fill dropdown order-1">
+                <li class="nav-item mx-sm-1 flex-fill dropdown">
                     <a class="nav-link dropdown-toggle w-100 d-none d-lg-block" data-toggle="dropdown" href="#"
                        role="button" aria-haspopup="true" aria-expanded="false">{{ auth()->user()->userData->name }}</a>
                     <div class="dropdown-menu dropdown-menu-right" id="navUserMenu">
@@ -72,5 +76,4 @@
             @endguest
         </ul>
     </div>
-    <cart user-id="{{ auth()->check() ? auth()->user()->id : null }}"></cart>
 </nav>

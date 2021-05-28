@@ -51,13 +51,13 @@ class AppServiceProvider extends ServiceProvider
 
             $enrollment = Enrollment::where('course_id', $course->id)
                 ->where('user_id', auth()->user()->id)
+                ->where('created_at', '>=', now()->subDays($course->duration))
                 ->get()
                 ->first();
 
-            if ($enrollment->examGrade) {
-                return true;
+            if ($enrollment) {
+                return $enrollment->examGrades()->where('grade', '>=', 50)->count() > 0;
             }
-
             return false;
         });
 
@@ -73,7 +73,7 @@ class AppServiceProvider extends ServiceProvider
         });
 
         view()->composer('master.dashboard.sidebar', 'App\Http\Composers\MasterComposer');
-      
+
         view()->composer('master.header', function(View $view) {
             if (auth()->check()) {
                 $myCourses = Enrollment::where('user_id', auth()->user()->id)

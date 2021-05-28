@@ -28,6 +28,10 @@ h2 {
     color: $blue;
 }
 
+.search-div {
+    width: 100%;
+}
+
 #navUserMenu {
     display: block;
 
@@ -46,12 +50,6 @@ h2 {
     left: 50%;
     margin-left: -45vw;
     width: 90vw;
-}
-
-.cart {
-    position: fixed;
-    top: 12px;
-    right: 90px;
 }
 
 .welcome-message {
@@ -260,6 +258,7 @@ footer {
 .course-image {
     background-size: cover;
     background-repeat: no-repeat;
+    background-position: center center;
     height: 230px;
 }
 
@@ -311,6 +310,10 @@ footer {
     .container-lesson-text {
         width: 67vw;
         margin-left: 2vw !important;
+    }
+
+    .search-div {
+        width: 40%;
     }
 
     .my-courses-dropdown {
@@ -398,6 +401,11 @@ footer {
 // Large devices (desktops, 992px and up)
 @media (min-width: 992px) {
 
+
+    .search-div {
+        width: 30%;
+    }
+
     .my-courses-dropdown {
         width: 50vw;
     }
@@ -425,6 +433,22 @@ footer {
 
 // Extra large devices (large desktops, 1200px and up)
 @media (min-width: 1200px) {
+
+
+    .navbar-brand {
+        position: absolute!important;
+        left: 15px;
+    }
+
+    #navbarCollapse {
+        position: absolute!important;
+        right: 0;
+    }
+
+    .search-div {
+        width: 25%;
+    }
+
     .my-courses-dropdown {
         width: 35vw;
     }
@@ -450,8 +474,19 @@ footer {
         margin-left: 15vw !important;
 
     }
-
 }
+
+@media (min-width: 1600px) {
+
+    .search-div {
+        width: 20%;
+    }
+
+    .my-courses-dropdown {
+        width: 25vw;
+    }
+}
+
 @media (min-width: 1800px) {
     .container-lesson-text {
         width: 80vw !important;

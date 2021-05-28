@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Course;
 use App\Models\Enrollment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
@@ -26,5 +27,16 @@ class EnrollmentController extends Controller
             }
 
             return redirect(route('checkout-confirmation'))->with('status', true);
+    }
+
+    public function giveFeedback(Course $course, Request $request) {
+        $enrollment = Enrollment::find($request->enrollment->id);
+
+        $enrollment->feedback_stars = $request->feedback_stars;
+        $enrollment->feedback_comment = $request->feedback_comment;
+
+        $enrollment->save();
+
+        return back();
     }
 }

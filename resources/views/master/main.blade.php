@@ -10,10 +10,10 @@
     <title>{{ config('app.name', 'GCO') }}</title>
 
     <!-- Scripts -->
+    @yield('scripts')
     <script src="{{ asset('js/app.js') }}" defer></script>
     <!-- JQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -40,6 +40,25 @@
 
 
 </div>
-@yield('scripts')
+<script>
+
+    const mediaQuery = window.matchMedia("(min-width: 992px)")
+
+    function handleLgMediaQuery(e) {
+        const cart = document.getElementById('cart')
+
+        if(e.matches) {
+            cart.remove()
+            document.getElementById('navbarCollapse').append(cart)
+        } else {
+            cart.remove()
+            document.getElementById('navToggleBtnAndCart').prepend(cart)
+        }
+    }
+
+    mediaQuery.addEventListener("change", handleLgMediaQuery)
+
+    handleLgMediaQuery(mediaQuery)
+</script>
 </body>
 </html>
