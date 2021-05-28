@@ -80,7 +80,6 @@ class RegisterController extends Controller
         if (isset($data['photo'])){
             $newImage = time() . '-' . $data['name'] . '.'.
                 $data['photo']->extension();
-
             $data['photo']->storeAs('public/img/users', $newImage);
         }
 

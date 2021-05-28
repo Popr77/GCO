@@ -12,8 +12,12 @@ use App\Models\Module;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
+use Intervention\Image\Facades\Image;
 use phpDocumentor\Reflection\Types\Integer;
 use PhpParser\Node\Expr\AssignOp\Mod;
+use Symfony\Component\DomCrawler\Crawler;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Http\File;
 
 class LessonController extends Controller
 {
@@ -98,6 +102,7 @@ class LessonController extends Controller
                 }
                 $index++;
             }
+
             return view('pages.admin.lessons.lesson-create', ['num' => $num, 'courses' => $courses,
                 'title' => $title, 'course_id' => $course_id,'module_id' => $module_id, 'quillItems' => $quillItems]);
 
@@ -126,6 +131,21 @@ class LessonController extends Controller
                         $nameType = 'link';
                     }else{
                         $nameType = 'text';
+                    }
+                    $dom_desc = new Crawler($quillItem);
+                    $images = $dom_desc->filterXPath('//img')->extract(array('src')); // extract images
+
+                    $index2 = 0;
+                    foreach ($images as $key => $value) {
+                        if (strpos($value, 'base64') !== false) {
+                            $name = $lesson->id.'-'.$index2.'-'.time().'.' . explode('/',
+                                    explode(':', substr($value, 0, strpos($value, ';')))[1])[1];
+                            $path = public_path('img/lessons/'.$name);
+                            $img = Image::make($value)->save($path);
+                            $path = asset('img/lessons/'.$name);
+                            $quillItem = str_replace($value, $path, $quillItem); // replace src of converted file to fs path
+                        }
+                        $index2++;
                     }
 
                     $content_type = ContentType::select('id')->where('name', $nameType)->first();
@@ -251,13 +271,7 @@ class LessonController extends Controller
 
         } else if ($_POST['action'] == 'save') {
 
-            $lesson_number = Lesson::Select('id')
-                ->where('module_id', $request->module_id)
-                ->count();
-            $lesson_number++;
-
             $lesson->title = $request->title;
-            $lesson->lesson_number = $lesson_number;
             $lesson->module_id = $request->module_id;
             $lesson->save();
 
@@ -265,54 +279,53 @@ class LessonController extends Controller
             foreach ($request as $item) {
                 $quillItem = $request->input(('editor' . $index));
 //                $total_quillItems = count($quillItem);
-                if (!is_null($quillItem)) {
+                $contents = Content::find(Content::select('id')->where('lesson_id', $lesson->id)->get());
+                if (!is_null($contents)){
+                    if (!is_null($quillItem)) {
 
-                    $contains = Str::contains($quillItem, 'youtube.com');
+                        $contains = Str::contains($quillItem, 'youtube.com');
 
-                    if ($contains) {
-                        $nameType = 'link';
-                    } else {
-                        $nameType = 'text';
-                    }
-
-                    $content_type = ContentType::select('id')->where('name', $nameType)->first();
-                    $contents = Content::find(Content::select('id')->where('lesson_id', $lesson->id)->get());
-
-                    if (isset($contents)) {
-                        if ($request->containers > count($contents)) {
-                            if ($index+1 > count($contents)) {
-
-                                Content::create([
-                                    'content_type_id' => (integer)$content_type->id,
-                                    'lesson_id' => $lesson->id,
-                                    'content' => $quillItem
-                                ]);
-                            } else {
-
-                                updateContent($contents[$index], $content_type, $quillItem);
-
-                            }
-
-                        } elseif ($request->containers < count($contents)) {
-                            if ($index <= count($contents)) {
-
-                                updateContent($contents[$index], $content_type, $quillItem);
-                            }
+                        if ($contains) {
+                            $nameType = 'link';
                         } else {
-
-                            updateContent($contents[$index], $content_type, $quillItem);
+                            $nameType = 'text';
                         }
+
+                        $content_type = ContentType::select('id')->where('name', $nameType)->first();
+                        if (isset($contents)) {
+                            if ($request->containers > count($contents)) {
+                                if ($index+1 > count($contents)) {
+
+                                    Content::create([
+                                        'content_type_id' => (integer)$content_type->id,
+                                        'lesson_id' => $lesson->id,
+                                        'content' => $quillItem
+                                    ]);
+                                } else {
+                                    updateContent($contents[$index], $content_type, $quillItem);
+                                }
+
+                            } elseif ($request->containers < count($contents)) {
+                                if ($index <= count($contents)) {
+                                    updateContent($contents[$index], $content_type, $quillItem);
+                                }
+                            } else {
+                                updateContent($contents[$index], $content_type, $quillItem);
+                            }
+                            $index++;
+                        }
+                    }
+                }
+            }
+            if (!is_null($contents)){
+                if($request->containers < count($contents)){
+                    while($index !=  count($contents)){
+                        $contents[$index]->delete();
                         $index++;
                     }
                 }
             }
-            if($request->containers < count($contents)){
-                while($index !=  count($contents)){
 
-                    $contents[$index]->delete();
-                    $index++;
-                }
-            }
         }else if ($_POST['action'] == 'delete'){
             $module_id = $lesson->module_id;
             $lesson_number = $lesson->lesson_number;

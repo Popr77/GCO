@@ -107,18 +107,17 @@
             @for($i = 0; $i < $num; $i++)
                 <label for="{{'editor' . $i}}" class="mt-3">{{'Content '.($i+1)}}</label>
 
-                <textarea
-                    rows="7"
+                <div
                     id="{{'editor' . $i}}"
-                    name="{{'editor' . $i}}"
-                    class="form-control
+                    class="form-control quill-editor
             @error('editor' . $i) is-invalid @enderror"
-                    aria-describedby="nameHelp">@if(isset($quillItems[$i])){{$quillItems[$i]}}@else{{old('editor'.$i)}}@endif</textarea>
+                    aria-describedby="nameHelp">@if(isset($quillItems[$i])){{$quillItems[$i]}}@else{{old('editor'.$i)}}@endif</div>
                 @error('editor' . $i)
                 <span class="invalid-feedback" role="alert">
             <strong>{{ $message }}</strong>
         </span>
                 @enderror
+                <input id="{{'inputQuill' . $i}}" name="{{'editor' . $i}}" type="hidden"></input>
 
             @endfor
             <div class="div-show text-right mt-3">

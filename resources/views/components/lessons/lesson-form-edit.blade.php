@@ -79,21 +79,21 @@
             @foreach($lesson->contents as $content)
                     <label for="{{'editor' . $loop->index}}" class="mt-3">{{'Content '.($loop->index+1)}}</label>
 
-                    <textarea
-                        rows="7"
+                    <div
                         id="{{'editor' . $loop->index}}"
-                        name="{{'editor' . $loop->index}}"
-                        class="form-control
+                        class="form-control quill-editor
                 @error('editor' . $loop->index) is-invalid @enderror"
                         aria-describedby="nameHelp">
-                    @if(isset($content->content)){{$content->content}}@else{{old('editor'.$loop->index)}}@endif</textarea>
+{{--                    @if(isset($content->content)){{$content->content}}@else{{old('editor'.$loop->index)}}@endif--}}
+                    </div>
                     @error('editor' . $loop->index)
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
                     </span>
                     @enderror
+                    <input id="{{'inputQuill' . $loop->index}}" name="{{'editor' . $loop->index}}" type="hidden"></input>
 
-                                    <div type="text" id="{{'editor' . $loop->index}}" name="{{'editor' . $loop->index}}" class="quill-box rounded"></div>
+
                 @endforeach
                 <div class="div-show text-right mt-3">
                     <button type="submit" value="delete" name="action" onclick="submitted = true;"
@@ -167,22 +167,21 @@
                 <h5 class="ql-color-blue mt-5" mb-3 pl-2> - Content will appear in the same order on the page!</h5>
                 @for($i = 0; $i < $num; $i++)
 
-                <label for="{{'editor' . $i}}" class="mt-3">{{'Content '.($i+1)}}</label>
-                    <textarea
-                        rows="7"
+                    <label for="{{'editor' . $i}}" class="mt-3">{{'Content '.($i+1)}}</label>
+                    <div
                         id="{{'editor' . $i}}"
-                        name="{{'editor' . $i}}"
-                        class="form-control
-            @error('editor' . $i) is-invalid @enderror"
-                        aria-describedby="nameHelp">@if(isset($quillItems[$i])){{$quillItems[$i]}}@else{{old('editor'.$i)}}@endif</textarea>
+                        class="form-control quill-editor
+                    @error('editor' . $i) is-invalid @enderror"
+                        aria-describedby="nameHelp">@if(isset($quillItems[$i])){{$quillItems[$i]}}@else{{old('editor'.$i)}}@endif</div>
                     @error('editor' . $i)
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
                     </span>
                     @enderror
 
-                    <div type="text" id="{{'editor' . $i}}" name="{{'editor' . $i}}" class="quill-box rounded"></div>
+                    <input id="{{'inputQuill' . $i}}" name="{{'editor' . $i}}" type="hidden"></input>
                 @endfor
+
                 <div class="div-show text-right mt-3">
                     <button type="submit" value="delete" name="action" onclick="submitted = true;"
                             class="mt-2 mb-5 btn btn-danger mx-auto">Delete Lesson</button>
@@ -191,49 +190,6 @@
                 </div>
             @endif
         </div>
-
     </form>
-
-
 </div>
 
-
-<script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
-<link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
-<script>
-    let submitted = false;
-    @if(!isset($num) && isset($lesson))
-        @foreach($lesson->contents as $content)
-            let {{'quill'. $loop->index}} = new Quill('{{'#editor'. $loop->index}}', {
-                theme: 'snow'
-            });
-        @endforeach
-    @else
-        @for($i = 0; $i < $num; $i++)
-            let {{'quill'. $i}} = new Quill('{{'#editor'. $i}}', {
-                theme: 'snow'
-            });
-        @endfor
-    @endif
-
-    // impedir o refresh por f5
-    window.onbeforeunload = function() {
-        //      // addTolink();
-        //         console.log("clicou")
-        if (!submitted)
-            return "Are you sure you want to leave?";
-    }
-
-    const formEl = document.querySelector('form');
-
-    formEl.addEventListener('submit', (e)=>{
-        // Impedir o envio do formulario
-        e.preventDefault()
-
-        console.log("flag")
-        // $(window).off('beforeunload');
-        // warnBeforeUnload = false;
-        submitted = true;
-    });
-
-</script>

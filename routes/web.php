@@ -151,7 +151,6 @@ Route::prefix('')->middleware('auth')->group(function () {
     Route::get('progress', [UserProgressController::class, 'index']);
 });
 
-Route::view('quill', 'pages.quill');
 
 
 

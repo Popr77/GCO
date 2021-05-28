@@ -38,7 +38,7 @@
                         <div class="form-group">
                             @foreach($myCourses as $course)
                             <div class="row px-3">
-                                <a href="{{ url('courses/' . $course->id) }}">{{ $course->name }}</a>
+                                <a class="text-decoration-none a-hover " href="{{ url('courses/' . $course->id) }}">{{ $course->name }}</a>
                             </div>
                             <hr>
                             @endforeach
