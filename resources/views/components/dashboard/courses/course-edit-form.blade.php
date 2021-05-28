@@ -1,4 +1,4 @@
-<form class="col-12 px-lg-0" method="POST" action="{{ route('d-course-update', ['course' => $course->id]) }}" enctype="multipart/form-data">
+<form class="col-12 col-xl-6 mx-auto px-lg-0" method="POST" action="{{ route('d-course-update', ['course' => $course->id]) }}" enctype="multipart/form-data">
     @csrf
     @method('PUT')
     <div class="form-group">
@@ -56,36 +56,40 @@
             </span>
         @enderror
     </div>
-    <div class="form-group">
-        <label for="duration">Duration</label>
-        <input type="number"
-               class="form-control @error('duration') is-invalid @enderror"
-               name="duration"
-               id="duration"
-               value="{{ $course->duration }}"
-               required>
-        @error('duration')
+
+    <div class="row">
+        <div class="form-group col-6 pl-0">
+            <label for="duration">Duration</label>
+            <input type="number"
+                   class="form-control @error('duration') is-invalid @enderror"
+                   name="duration"
+                   id="duration"
+                   value="{{ $course->duration }}"
+                   required>
+            @error('duration')
             <span class="invalid-feedback" role="alert">
                 <strong>{{ $message }}</strong>
             </span>
-        @enderror
-    </div>
-    <div class="form-group">
-        <label for="price">Price</label>
-        <input type="number"
-               min="0"
-               step="0.01"
-               class="form-control @error('price') is-invalid @enderror"
-               name="price"
-               id="price"
-               value="{{ $course->price / 100}}"
-               required>
-        @error('price')
+            @enderror
+        </div>
+        <div class="form-group col-6 px-0">
+            <label for="price">Price</label>
+            <input type="number"
+                   min="0"
+                   step="0.01"
+                   class="form-control @error('price') is-invalid @enderror"
+                   name="price"
+                   id="price"
+                   value="{{ $course->price / 100}}"
+                   required>
+            @error('price')
             <span class="invalid-feedback" role="alert">
                 <strong>{{ $message }}</strong>
             </span>
-        @enderror
+            @enderror
+        </div>
     </div>
+
     <category-select
         :subsubcat="{{ $course->subsubcategory->id }}"
         @error('sub_sub_category_id') errormsg="{{ $message }}" @enderror

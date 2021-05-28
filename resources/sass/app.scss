@@ -28,25 +28,6 @@ h2 {
     color: $blue;
 }
 
-// NAVBAR
-#search-input {
-    display: flex;
-
-    i {
-        position: relative;
-        z-index: 2;
-    }
-
-    input {
-        width: 100%;
-        margin-left: 6px;
-
-        &:focus {
-            outline: none;
-        }
-    }
-}
-
 #navUserMenu {
     display: block;
 

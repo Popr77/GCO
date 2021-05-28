@@ -17,7 +17,6 @@ class CreateExamGradesTable extends Migration
             $table->id();
             $table->foreignId('enrollment_id')->constrained();
             $table->integer('grade');
-            $table->dateTime('date');
             $table->timestamps();
         });
     }

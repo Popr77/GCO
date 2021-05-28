@@ -1,7 +1,10 @@
 <template>
     <div>
-        <form class="form-inline my-2 my-lg-0">
-            <input @input="changed" v-model="searchValue" class="form-control rounded-pill" type="text" placeholder="Search">
+        <form class="my-2 my-lg-0 mx-lg-auto form-inline">
+            <div class="form-control mr-sm-2 rounded-pill w-100 w-md-50" id="search-input">
+                <i class="bi bi-search"></i>
+                <input @input="changed" v-model="searchValue" class="border-0" type="text" placeholder="Search">
+            </div>
         </form>
     </div>
 
@@ -19,12 +22,29 @@
         },
         methods: {
             changed: debounce(function() {
-                this.$emit('searchValueChanged', this.searchValue)
+                console.log('emit')
+                window.Event.$emit('searchValueChanged', this.searchValue)
             }, 300)
         }
     }
 </script>
 
-<style>
+<style scoped>
+#search-input {
+    display: flex;
+}
 
+#search-input i {
+    position: relative;
+    z-index: 2;
+}
+
+#search-input input {
+    width: 100%;
+    margin-left: 6px;
+}
+
+#search-input input:focus {
+     outline: none;
+}
 </style>

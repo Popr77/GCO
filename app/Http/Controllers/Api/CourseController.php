@@ -33,33 +33,50 @@ class CourseController extends Controller {
 
         $num = $request->query('num');
         $userid = $request->query('userid');
+        $search = $request->query('search');
 
         if ($userid)
         {
-            return CourseResource::collection(Course::
-            withCount(['students' => function ($query) {
-                $query->where('payment_status', 1);
-            }])
-                ->whereNotIn('id', function ($query) use ($userid) {
-
+            return CourseResource::collection(Course::withCount(['students' => function ($query) {
+                    $query->where('payment_status', 1);
+                }])
+                ->join('sub_sub_categories', 'courses.sub_sub_category_id', '=', 'sub_sub_categories.id')
+                ->join('sub_categories', 'sub_sub_categories.sub_category_id', '=', 'sub_categories.id')
+                ->join('categories', 'sub_categories.category_id', '=', 'categories.id')
+                ->where('status', 1)
+                ->whereNotIn('courses.id', function ($query) use ($userid) {
                     $query->select('course_id')
                         ->from('enrollments')
                         ->join('courses', 'courses.id', '=', 'enrollments.course_id')
                         ->whereRaw("user_id = ? AND enrollments.created_at >= now() - (courses.duration || ' DAY')::INTERVAL", [$userid]);
                 })
-                ->where('status', 1)
-                ->orderBy('students_count', 'desc')
-                ->take($num)
-                ->get('courses.*'));
+                ->where(function ($query) use ($search) {
+                    $query->where('courses.name', 'ILIKE', "%{$search}%")
+                        ->orWhere('sub_sub_categories.name', 'ILIKE', "%{$search}%")
+                        ->orWhere('sub_categories.name', 'ILIKE', "%{$search}%")
+                        ->orWhere('categories.name', 'ILIKE', "%{$search}%");
+                })
+                        ->orderBy('students_count', 'desc')
+                        ->distinct()
+                        ->paginate(6, 'courses.*'));
         }
 
         return CourseResource::collection(Course::withCount(['students' => function ($query) {
             $query->where('payment_status', 1);
         }])
+            ->join('sub_sub_categories', 'courses.sub_sub_category_id', '=', 'sub_sub_categories.id')
+            ->join('sub_categories', 'sub_sub_categories.sub_category_id', '=', 'sub_categories.id')
+            ->join('categories', 'sub_categories.category_id', '=', 'categories.id')
             ->where('status', 1)
+            ->where(function ($query) use ($search) {
+                $query->where('courses.name', 'ILIKE', "%{$search}%")
+                    ->orWhere('sub_sub_categories.name', 'ILIKE', "%{$search}%")
+                    ->orWhere('sub_categories.name', 'ILIKE', "%{$search}%")
+                    ->orWhere('categories.name', 'ILIKE', "%{$search}%");
+            })
             ->orderBy('students_count', 'desc')
-            ->take($num)
-            ->get('courses.*'));
+            ->distinct()
+            ->paginate(6, 'courses.*'));
     }
 
     public function userCourses(Request $request) {
