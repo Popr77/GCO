@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Enrollment;
 use Illuminate\Http\Request;
 use App\Models\Lesson;
+use Illuminate\Support\Facades\Auth;
 
 class UserProgressController extends Controller
 {
@@ -20,13 +21,36 @@ class UserProgressController extends Controller
             ->get();
 
         $progress = [];
+        $takeExam = [];
+        $expired = [];
+        $days = [];
 
         foreach ($enrollments as $enrollment) {
+
             $totalGrades = 0;
+            $endDate = $enrollment->created_at->addDays($enrollment->course->duration);
+            $daysRemaining = $endDate->diffInDays(now());
+
+            // Check the remaining days to complete the course
+            if($daysRemaining > 0) {
+                array_push($days, $daysRemaining);
+            } else {
+                array_push($days, '-');
+            }
+
+            // Check if the duration of the course is not expired
+            if($endDate < now()) {
+                array_push($expired, 'true');
+            } else {
+                array_push($expired, 'false');
+            }
+
+            // Check if the lesson grades are positive and increment to the progress list
             foreach ($enrollment->grades as $grade) {
-                if ($grade->grade != null)
-                    if ($grade->grade > 49)
+                if ($grade->pivot->grade != null){
+                    if ($grade->pivot->grade > 49)
                         $totalGrades++;
+                }
             }
 
             $totalLessons = 0;
@@ -35,10 +59,17 @@ class UserProgressController extends Controller
                 $totalLessons += Lesson::where('module_id', $module->id)->count();
             }
 
+            // Check if the user have the total quiz done to do the exam
+            if ($totalLessons == $totalGrades)
+                array_push($takeExam, 'true');
+            else
+                array_push($takeExam, 'false');
+
+            // User progress
             array_push($progress, $totalGrades . ' / ' . $totalLessons);
         }
 
-        return view('pages.user-progress', ['enrollments' => $enrollments, 'progress' => $progress]);
+        return view('pages.user-progress', ['enrollments' => $enrollments, 'progress' => $progress, 'takeExam' => $takeExam, 'expired' => $expired, 'days' => $days]);
     }
 
     /**

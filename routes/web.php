@@ -14,6 +14,7 @@ use App\Http\Controllers\EnrollmentController;
 use App\Http\Controllers\Dashboard\CourseController as DCourseController;
 use Illuminate\Support\Facades\Request;
 use App\Http\Controllers\UserProgressController;
+use \App\Http\Controllers\UserPurchaseController;
 
 /*
 |--------------------------------------------------------------------------
@@ -144,6 +145,7 @@ Route::prefix('checkout')->middleware('auth')->group(function () {
 
 Route::prefix('')->middleware('auth')->group(function () {
     Route::get('progress', [UserProgressController::class, 'index']);
+    Route::get('purchases', [UserPurchaseController::class, 'index']);
 });
 
 

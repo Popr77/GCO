@@ -10,7 +10,8 @@ class Enrollment extends Model
     use HasFactory;
 
     public function grades() {
-        return $this->belongsToMany(Lesson::class, 'lesson_grades');
+        return $this->belongsToMany(Lesson::class, 'lesson_grades')
+            ->withPivot('grade');
     }
 
     public function examGrade() {
