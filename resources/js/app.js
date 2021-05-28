@@ -33,6 +33,7 @@ import Checkout from './components/courses/Checkout'
 import EditQuestions from "./components/quiz/EditQuestions";
 import SearchBar from './components/SearchBar'
 import QuillItem from "./components/lessons/QuillItem";
+import FeedbackForm from "./components/courses/feedback/FeedbackForm";
 
 const app = new Vue({
     el: '#app',
@@ -49,7 +50,8 @@ const app = new Vue({
         CourseList,
         Checkout,
         SearchBar,
-        QuillItem
+        QuillItem,
+        FeedbackForm
     },
     store
 });

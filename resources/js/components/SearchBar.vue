@@ -1,7 +1,7 @@
 <template>
     <div>
-        <form class="my-2 my-lg-0 mx-lg-auto form-inline">
-            <div class="form-control mr-sm-2 rounded-pill w-100 w-md-50" id="search-input">
+        <form class="my-2 my-lg-0 ml-lg-0">
+            <div class="form-control rounded-pill w-100 w-md-50" id="search-input">
                 <i class="bi bi-search"></i>
                 <input @input="changed" v-model="searchValue" class="border-0" type="text" placeholder="Search">
             </div>

@@ -13,11 +13,15 @@ class Enrollment extends Model
         return $this->belongsToMany(Lesson::class, 'lesson_grades');
     }
 
-    public function examGrade() {
+    public function examGrades() {
         return $this->hasMany(ExamGrade::class);
     }
 
     public function course(){
         return $this->belongsTo(Course::class);
+    }
+
+    public function user() {
+        return $this->belongsTo(User::class);
     }
 }

@@ -45,13 +45,18 @@ class CourseController extends Controller
      * Display the specified resource.
      *
      * @param  \App\Models\Course  $course
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
      */
     public function show(Course $course)
     {
         $course = Course::where('id', $course->id)->with('subsubcategory.subcategory.category', 'students')->get()->first();
+        $feedbacks = Enrollment::with('user.userData')->where('course_id', $course->id)
+                ->where('feedback_stars', '<>', null)->get();
 
-        return view('pages.courses.course-show', compact('course'));
+        return view('pages.courses.course-show', [
+            'course' => $course,
+            'feedbacks' => $feedbacks
+        ]);
     }
 
     /**

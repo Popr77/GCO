@@ -57,6 +57,9 @@ Route::prefix('/lessons')->middleware(['auth'])->group(function(){
 Route::prefix('/courses')->group(function(){
     Route::get('', [CourseController::class, 'index']);
     Route::get('{course}', [CourseController::class, 'show'])->middleware('IsCourseActive');
+    Route::put('{course}/givefeedback', [EnrollmentController::class, 'giveFeedback'])
+        ->middleware(['checkCourse', 'canGiveFeedback'])
+        ->name('post-feedback');
 });
 
 // Admin Dashboard Routes
