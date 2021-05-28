@@ -20,7 +20,7 @@ class Lesson extends Model
     }
 
     public function contents() {
-        return $this->hasMany(Content::class);
+        return $this->hasMany(Content::class)->orderBy('id');
     }
 
     public function questions() {

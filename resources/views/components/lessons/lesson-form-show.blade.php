@@ -49,7 +49,7 @@
                 </script>
         @elseif($content->type->name == "text")
                 <div class="container container-lesson-text w-75 ml-1 mt-5  mb-5 rounded">
-                    <p>{{$content->content}}</p>
+                    <p>{!! $content->content !!}</p>
                 </div>
         @else
                 <div class="p-2 col-lg-5"><img class="col-12" src="asset('{{$content->content}}')" alt=""></div>

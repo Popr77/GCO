@@ -181,7 +181,6 @@
                     </span>
                     @enderror
 
-                    <div type="text" id="{{'editor' . $i}}" name="{{'editor' . $i}}" class="quill-box rounded"></div>
                 @endfor
                 <div class="div-show text-right mt-3">
                     <button type="submit" value="delete" name="action" onclick="submitted = true;"

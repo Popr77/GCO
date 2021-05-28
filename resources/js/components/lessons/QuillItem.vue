@@ -43,4 +43,13 @@ export default {
 </script>
 
 <style>
+#editor {
+    width: 200px;
+    height: 200px;
+    border: 1px solid red;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: stretch;
+}
 </style>

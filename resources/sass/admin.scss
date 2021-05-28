@@ -58,7 +58,9 @@ a.disabled {
     background-repeat: no-repeat;
     height: 230px;
 }
-
+.quill-editor{
+    height: 300px !important;
+}
 
 @media (min-width: 768px) {
     .a-back-button:hover{

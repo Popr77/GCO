@@ -5,4 +5,3 @@
         ['lesson' => $lesson, 'modules'=> $modules, 'flag' => $flag])
     @endcomponent
 @endsection
-
