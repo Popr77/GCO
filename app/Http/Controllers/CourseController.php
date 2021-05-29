@@ -52,6 +52,7 @@ class CourseController extends Controller
         $course = Course::where('id', $course->id)->with('subsubcategory.subcategory.category', 'students')->get()->first();
         $feedbacks = Enrollment::with('user.userData')->where('course_id', $course->id)
                 ->where('feedback_stars', '<>', null)
+                ->where('feedback_is_approved', 1)
                 ->orderBy('updated_at', 'desc')
                 ->get();
 

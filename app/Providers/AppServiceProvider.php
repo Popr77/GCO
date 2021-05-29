@@ -49,15 +49,18 @@ class AppServiceProvider extends ServiceProvider
 
         Blade::if('hasGrade', function(Course $course) {
 
-            $enrollment = Enrollment::where('course_id', $course->id)
-                ->where('user_id', auth()->user()->id)
-                ->where('created_at', '>=', now()->subDays($course->duration))
-                ->get()
-                ->first();
+            if(auth()->check()) {
+                $enrollment = Enrollment::where('course_id', $course->id)
+                    ->where('user_id', auth()->user()->id)
+                    ->where('created_at', '>=', now()->subDays($course->duration))
+                    ->get()
+                    ->first();
 
-            if ($enrollment) {
-                return $enrollment->examGrades()->where('grade', '>=', 50)->count() > 0;
+                if ($enrollment) {
+                    return $enrollment->examGrades()->where('grade', '>=', 50)->count() > 0;
+                }
             }
+
             return false;
         });
 
