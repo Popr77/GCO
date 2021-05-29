@@ -24,6 +24,25 @@
             max-width: 700px!important;
         }
 
+        #feedback-container hr {
+            border: 0;
+            border-top: 1px solid #eee;
+            opacity: 0.3;
+        }
+
+        #feedback-container .user-img {
+            border: 2px solid var(--light);
+        }
+
+        .breadcrumb {
+            background-color: #fff;
+            border: none;
+        }
+
+        .breadcrumb .breadcrumb-item a {
+            font-size: 1rem;
+        }
+
 
     </style>
 @endsection

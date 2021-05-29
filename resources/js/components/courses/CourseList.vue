@@ -2,7 +2,7 @@
     <div class="row text-center">
         <course-item v-for="(course, index) in courses" data-aos="fade-up"
                      :key="index"
-            :course="course"
+                     :course="course"
         ></course-item>
 
         <mugen-scroll :handler="fetchData" :should-handle="!loading && !noMore" :threshold="1"></mugen-scroll>
@@ -38,13 +38,18 @@ export default {
         userId: {
             type: String,
             required: false
+        },
+        searchQueryString: {
+            type: String,
+            required: false
         }
     },
     created() {
         AOS.init()
 
+        this.search = this.searchQueryString
+
         window.Event.$on('searchValueChanged', (value) => {
-            console.log(value)
             this.search = value
             this.courses = []
             this.page = 1
@@ -71,6 +76,7 @@ export default {
                 }
             })
                 .then((response) => {
+                    console.log(response)
                     if(response.data.data.length > 0) {
                         this.courses.push(...response.data.data)
                         this.loading = false

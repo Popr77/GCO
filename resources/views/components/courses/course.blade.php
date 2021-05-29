@@ -1,13 +1,32 @@
 <!-- Course Categories, Sub and SubSub -->
 
 <div class="container">
-    <div>
-        <ul class="d-flex text-decoration-none list-unstyled mt-5">
-            <li><a href="{{url('categories/' . $course->subsubcategory->subcategory->category->id . '/subcategories')}}">{{$course->subsubcategory->subcategory->category->name}}</a> > </li>
-            <li><a href="{{url('subcategories/' . $course->subsubcategory->subcategory->id . '/subsubcategories')}}">{{$course->subsubcategory->subcategory->name}}</a> > </li>
-            <li><a href="{{url('subsubcategories/' . $course->subsubcategory->id)}}">{{$course->subsubcategory->name}}</a></li>
-        </ul>
-    </div>
+{{--    <div>--}}
+{{--        <ul class="d-flex text-decoration-none list-unstyled mt-5">--}}
+{{--            <li><a href="{{url('categories/' . $course->subsubcategory->subcategory->category->id . '/subcategories')}}">{{$course->subsubcategory->subcategory->category->name}}</a> > </li>--}}
+{{--            <li><a href="{{url('subcategories/' . $course->subsubcategory->subcategory->id . '/subsubcategories')}}">{{$course->subsubcategory->subcategory->name}}</a> > </li>--}}
+{{--            <li><a href="{{url('subsubcategories/' . $course->subsubcategory->id)}}">{{$course->subsubcategory->name}}</a></li>--}}
+{{--        </ul>--}}
+{{--    </div>--}}
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb pl-0 mt-5 mb-0">
+            <li class="breadcrumb-item">
+                <a href="{{url('categories/' . $course->subsubcategory->subcategory->category->id . '/subcategories')}}">
+                    {{$course->subsubcategory->subcategory->category->name}}
+                </a>
+            </li>
+            <li class="breadcrumb-item">
+                <a href="{{url('subcategories/' . $course->subsubcategory->subcategory->id . '/subsubcategories')}}">
+                    {{$course->subsubcategory->subcategory->name}}
+                </a>
+            </li>
+            <li class="breadcrumb-item">
+                <a href="{{url('subsubcategories/' . $course->subsubcategory->id)}}">
+                    {{$course->subsubcategory->name}}
+                </a>
+            </li>
+        </ol>
+    </nav>
 
     <!-- Course Info -->
 

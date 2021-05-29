@@ -30,7 +30,7 @@ class UserSeeder extends Seeder
             'city' => 'Porto',
             'phone' => '254362854',
             'nif' => 105204132,
-            'photo' => 'logo.jpg'
+            'photo' => 'placeholder.png'
         ]);
 
         DB::table('users')->insert([
@@ -49,7 +49,7 @@ class UserSeeder extends Seeder
             'city' => 'gaia',
             'phone' => '121363545',
             'nif' => 254635236,
-            'photo' => 'logo.jpg'
+            'photo' => 'placeholder.png'
         ]);
 
         DB::table('users')->insert([
@@ -68,7 +68,7 @@ class UserSeeder extends Seeder
             'city' => 'gaia',
             'phone' => '121333545',
             'nif' => 253635236,
-            'photo' => 'logo.jpg'
+            'photo' => 'placeholder.png'
         ]);
 
     }
