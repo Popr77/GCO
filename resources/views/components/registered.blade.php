@@ -11,19 +11,26 @@
 
 <!-- Courses title and categories button -->
 
-<h1 class="title-courses text-center mt-5 mb-5">Enjoy our Courses</h1>
+@if($search == null)
+    <h1 class="title-courses text-center mt-5">Enjoy our Courses</h1>
+@endif
 
-<div class="container mb-5">
-    <div class="dropdown d-flex justify-content-end">
-        <button class="btn btn-primary dropdown-toggle mb-3" type="button" id="dropdownMenuButton"
-                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Categories
-        </button>
-        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <a class="dropdown-item" href="/categories">See All</a>
-            @foreach($categories as $category)
-                <a href="{{url('categories/' . $category->id . '/subcategories')}}" class="dropdown-item">{{$category->name}}</a>
-            @endforeach
+<div class="container mb-5 mt-5">
+    <div class="dropdown d-flex {{$search != null ? 'justify-content-between' : 'justify-content-end'}}">
+        @if($search != null)
+            <h4>Search Results for: <strong class="title-courses">{{$search}}</strong></h4>
+        @endif
+        <div>
+            <button class="btn btn-primary dropdown-toggle mb-3" type="button" id="dropdownMenuButton"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Categories
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" href="/categories">See All</a>
+                @foreach($categories as $category)
+                    <a href="{{url('categories/' . $category->id . '/subcategories')}}" class="dropdown-item">{{$category->name}}</a>
+                @endforeach
+            </div>
         </div>
     </div>
 
