@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Enrollment;
+use App\Models\LessonGrade;
 use Illuminate\Http\Request;
 use App\Models\Lesson;
 use Illuminate\Support\Facades\Auth;
+use PhpParser\Node\Stmt\DeclareDeclare;
 
 class UserProgressController extends Controller
 {
@@ -22,28 +24,21 @@ class UserProgressController extends Controller
 
         $progress = [];
         $takeExam = [];
-        $expired = [];
         $days = [];
         $takeQuiz = [];
+        $finalGrades = [];
 
         foreach ($enrollments as $enrollment) {
 
             $totalGrades = 0;
             $endDate = $enrollment->created_at->addDays($enrollment->course->duration);
-            $daysRemaining = $endDate->diffInDays(now());
+            $daysRemaining = now()->diffInDays($endDate, false);
 
             // Check the remaining days to complete the course
             if($daysRemaining > 0) {
                 array_push($days, $daysRemaining);
             } else {
                 array_push($days, '-');
-            }
-
-            // Check if the duration of the course is not expired
-            if($endDate < now()) {
-                array_push($expired, 'true');
-            } else {
-                array_push($expired, 'false');
             }
 
 
@@ -55,11 +50,10 @@ class UserProgressController extends Controller
             //count completed quizzes and puts in an array
             $lessonGrades = [];
             $lessonsNotCompleted = [];
+
             foreach ($enrollment->grades as $lesson) {
-                if ($lesson->pivot->grade != null){
-                    if ($lesson->pivot->grade == 1)
-                        dd('adeus');
-                    if ($lesson->pivot->grade > 49){
+                if (count(collect($lesson->pivot->grade)) > 0){
+                    if ($lesson->pivot->grade >= 50){
                         array_push($lessonGrades, $lesson->pivot->grade);
                         $totalGrades++;
                     }else
@@ -71,12 +65,14 @@ class UserProgressController extends Controller
                 foreach($enrollment->examGrades as $grade){
                     $avgLessonGrades = round(collect($lessonGrades)->avg(), 2);
                     $finalGrade = round(0.4*$avgLessonGrades + 0.6*$grade->grade, 2);
-                    if ($finalGrade >= 50)
+                    if ($finalGrade >= 50){
                         $courseFinished = true;
+                        array_push($finalGrades, $enrollment);
+                    }
                 }
             }else{
                 if ($lessonsNotCompleted == null)
-                    array_push($takeQuiz,1);
+                    array_push($takeQuiz, $enrollment->course->modules[0]->lessons[0]);
                 else
                     array_push($takeQuiz,collect($lessonsNotCompleted)->sortBy('id')->first());
             }
@@ -91,10 +87,11 @@ class UserProgressController extends Controller
 
             // User progress
             array_push($progress, $totalGrades . ' / ' . $totalLessons);
-        }
-        dd($lessonsNotCompleted);
 
-        return view('pages.user-progress', ['enrollments' => $enrollments, 'progress' => $progress, 'takeExam' => $takeExam, 'expired' => $expired, 'days' => $days]);
+        }
+
+        return view('pages.user-progress', ['enrollments' => $enrollments, 'progress' => $progress,
+            'takeQuiz' => $takeQuiz, 'finalGrades' => $finalGrades, 'takeExam' => $takeExam, 'days' => $days]);
     }
 
     /**

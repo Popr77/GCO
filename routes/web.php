@@ -53,7 +53,7 @@ Route::prefix('/subsubcategories')->group(function(){
 
 Route::prefix('/lessons')->middleware(['auth'])->group(function(){
     Route::get('{lesson}', [App\Http\Controllers\LessonController::class,'show'])
-        ->middleware(['checkCourse', 'IsCourseActive']);
+        ->middleware(['checkCourse', 'IsCourseActive'])->name('lesson');
 });
 
 Route::prefix('/courses')->group(function(){

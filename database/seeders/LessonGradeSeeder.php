@@ -28,7 +28,6 @@ class LessonGradeSeeder extends Seeder
                     $lessonGrade->enrollment_id = $enrollment->id;
                     $lessonGrade->grade = rand(50, 100);
                     $lessonGrade->save();
-
                 }
             }
         }
