@@ -8,15 +8,14 @@
         </button>
     </div>
 
-    <search-bar class="search-div order-md-1 mx-auto"></search-bar>
+    <search-bar
+        :has-dropdown="{{ request()->is('home') || request()->is('/') ? 'false' : 'true' }}"
+        class="search-div order-md-1 mx-auto"
+        action="{{ route('home') }}"
+        search-query-string="{{ request()->query('search') ?? '' }}">
+    </search-bar>
 
     <div class="collapse navbar-collapse d-lg-flex justify-content-between order-md-2 flex-lg-grow-0" id="navbarCollapse">
-{{--        <form class="my-2 my-lg-0 mx-lg-auto">--}}
-{{--            <div class="form-control mr-sm-2 rounded-pill w-100 w-md-50" id="search-input">--}}
-{{--                <i class="bi bi-search"></i>--}}
-{{--                <input type="text" class="border-0" placeholder="Search">--}}
-{{--            </div>--}}
-{{--        </form>--}}
         <ul class="navbar-nav d-lg-flex flex-lg-row align-items-lg-center">
             @guest
                 <li class="nav-item mx-sm-1 flex-fill">
@@ -49,11 +48,10 @@
                     </div>
                 </li>
                 <li class="nav-item mx-sm-1 flex-fill dropdown">
-                    <a class="nav-link dropdown-toggle w-100 d-none d-lg-block" data-toggle="dropdown" href="#"
-                       role="button" aria-haspopup="true" aria-expanded="false">{{ auth()->user()->userData->name }}</a>
+                    <a class="nav-link dropdown-toggle w-100 d-none d-lg-block" id="nav-username" data-toggle="dropdown" href="#"
+                       role="button" aria-haspopup="true" aria-expanded="false"><i class="bi bi-person-fill"></i> {{ auth()->user()->userData->name }}</a>
                     <div class="dropdown-menu dropdown-menu-right" id="navUserMenu">
                         <div id="navUserMenuInfo" class="d-flex align-items-center">
-{{--                            <p>@php dd(auth()->user()->userData->photo)@endphp</p>--}}
                             <img class="rounded-circle" src="{{ asset('storage/img/users/'. auth()->user()->userData->photo)}}" alt="">
                             <div class="ml-2">
                                 <h4 class="mb-0">{{auth()->user()->userData->name}}</h4>

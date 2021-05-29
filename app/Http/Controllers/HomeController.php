@@ -32,8 +32,12 @@ class HomeController extends Controller
     public function registered()
     {
         $categories = Category::all();
+        $search = $_GET["search"] ?? null;
 
-        return view('pages.registered', ['categories' => $categories]);
+        return view('pages.registered', [
+            'categories' => $categories,
+            'search' => $search
+        ]);
     }
 
     public function dashboard() {
