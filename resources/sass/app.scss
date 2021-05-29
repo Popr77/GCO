@@ -31,6 +31,10 @@ h1, h2 {
     width: 100%;
 }
 
+#nav-username {
+    font-size: 1rem;
+}
+
 #navUserMenu {
     display: block;
 
@@ -383,10 +387,6 @@ footer {
     .master-video-container{
         margin-left: 10vw !important;
         width: 77vw;
-    }
-
-    .cart {
-        position: static;
     }
 
     #navUserMenu {

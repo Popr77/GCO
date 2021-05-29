@@ -21,7 +21,7 @@ class CreateUserDataTable extends Migration
             $table->string('city');
             $table->string('phone')->unique();
             $table->integer('nif')->unique();
-            $table->string('photo')->default('logo.jpg');
+            $table->string('photo')->default('placeholder.png');
             $table->timestamps();
 
 //            $table->foreign('id')->references('id')->on('users');

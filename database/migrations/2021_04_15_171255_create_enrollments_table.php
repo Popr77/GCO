@@ -20,8 +20,8 @@ class CreateEnrollmentsTable extends Migration
             $table->boolean('payment_status')->default(1);
             $table->integer('feedback_stars')->nullable();
             $table->text('feedback_comment')->nullable();
+            $table->boolean('feedback_is_approved')->default(0);
             $table->timestamps();
-
         });
     }
 

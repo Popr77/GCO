@@ -97,7 +97,7 @@ class RegisterController extends Controller
         $userData->city = $data['city'];
         $userData->phone = $data['phone'];
         $userData->nif = $data['nif'];
-        isset($data['photo'])?$userData->photo = $newImage : null;
+        $userData->photo = isset($data['photo']) ? $newImage : 'placeholder.png';
         $userData->save();
 
         return $user;
