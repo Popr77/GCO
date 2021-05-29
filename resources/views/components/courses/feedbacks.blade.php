@@ -1,4 +1,4 @@
-@if($feedbacks->where('user_id', auth()->user()->id)->count() > 0)
+@if(auth()->check() && $feedbacks->where('user_id', auth()->user()->id)->count() > 0)
     <div class="row text-light">
         <div class="col-12 d-flex align-items-center">
             <div class="user-img mr-2 shadow-sm" style="background-image: url({{ asset('storage/img/users/' . auth()->user()->userData->photo) }})"></div>
@@ -21,7 +21,7 @@
     </div>
     <hr>
 @endif
-@foreach($feedbacks->where('user_id', '<>', auth()->user()->id) as $feedback)
+@forelse($feedbacks->where('user_id', '<>', auth()->user()->id ?? '') as $feedback)
     <div class="row text-light">
         <div class="col-12 d-flex align-items-center">
             <div class="user-img mr-2" style="background-image: url({{ asset('storage/img/users/logo.jpg') }})"></div>
@@ -45,4 +45,11 @@
     @if(!$loop->last)
         <hr>
     @endif
-@endforeach
+@empty
+    <div class="row text-light text-center">
+        <div class="col-12">
+            <i class="bi bi-emoji-frown" style="font-size: 2rem;"></i>
+            <p class="text-center">No feedbacks yet...</p>
+        </div>
+    </div>
+@endforelse
