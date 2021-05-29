@@ -14,7 +14,7 @@
             <div class="card ml-5 my-2 my-card-shadow" style="width: 20rem;">
                 <img class="card-img-top" src="{{asset('img/category.png')}}" alt="Category Image">
                 <div class="card-body categories-select text-center">
-                    <a href="#" class="course-name">{{$subsubcategory->name}}</a>
+                    <a href="{{auth()->check() ? route('home', ['search'=>$subsubcategory->name]) : url('/?search=' . $subsubcategory->name)}}" class="course-name">{{$subsubcategory->name}}</a>
                 </div>
             </div>
         @endforeach

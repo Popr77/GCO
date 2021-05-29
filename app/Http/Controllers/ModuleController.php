@@ -63,7 +63,7 @@ class ModuleController extends Controller
         $module->course_id = $request->input('course_id');
         $module->save();
 
-        return redirect(route('d-module', $module->course_id)->with('status', 'Module created successfully!!'));
+        return redirect(route('d-module', $module->course_id))->with('status', 'Module created successfully!!');
     }
     /**
      * Display the specified resource.
