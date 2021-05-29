@@ -151,6 +151,7 @@ Route::prefix('checkout')->middleware('auth')->group(function () {
 Route::prefix('')->middleware('auth')->group(function () {
     Route::get('progress', [UserProgressController::class, 'index']);
     Route::get('purchases', [UserPurchaseController::class, 'index']);
+    Route::view('help', 'pages.user-help');
 });
 
 

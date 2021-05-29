@@ -63,7 +63,8 @@
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="{{ url('profile/'.auth()->user()->id).'/edit' }}">Edit Profile</a>
                         <a class="dropdown-item" href="/purchases">Purchase History</a>
-                        <a class="dropdown-item" href="#">Help</a>
+                        <a class="dropdown-item" href="/progress">My Progress</a>
+                        <a class="dropdown-item" href="/help">Help</a>
                         <a class="dropdown-item" href="{{ route('logout') }}"
                            onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">Logout</a>

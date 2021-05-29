@@ -11,7 +11,7 @@
 <div class="container mt-5 mb-5 d-flex justify-content-center">
     <div class="row mr-0">
         @foreach($subsubcategories as $subsubcategory)
-            <div class="card ml-5 my-2" style="width: 20rem;">
+            <div class="card ml-5 my-2 my-card-shadow" style="width: 20rem;">
                 <img class="card-img-top" src="{{asset('img/category.png')}}" alt="Category Image">
                 <div class="card-body categories-select text-center">
                     <a href="#" class="course-name">{{$subsubcategory->name}}</a>

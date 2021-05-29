@@ -22,7 +22,7 @@
         <th scope="col">Course</th>
         <th scope="col">Date</th>
         <th scope="col">Amount</th>
-        <th scope="col">is Active</th>
+        <th scope="col">Is Active</th>
         <th scope="col">Watch</th>
     </tr>
     </thead>
