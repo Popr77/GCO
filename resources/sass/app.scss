@@ -278,6 +278,13 @@ footer {
     color: gray;
 }
 
+.my-card-shadow {
+    transition: box-shadow .3s;
+}
+
+.my-card-shadow:hover {
+    box-shadow: 0 0 11px rgba(33,33,33,.2);
+}
 
 // Small devices (landscape phones, 576px and up)
 @media (min-width: 576px) {
