@@ -25,9 +25,6 @@
         <div class="col-6 d-flex align-items-center justify-content-around bg-primary mx-auto mt-4 rounded-sm py-3 ">
             <h5 class="text-white pt-2">Exam Grade: </h5><h3 class="text-white mb-0">{{$examGrade->grade}} %</h3>
         </div>
-{{--        <div class="col-6 d-flex align-items-center border-top justify-content-around bg-primary mx-auto mb-4 rounded-sm py-3 ">--}}
-{{--            <h5 class="text-white pt-2">Final Grade: </h5><h3 class="text-white mb-0">{{$finalGrade}} %</h3>--}}
-{{--        </div>--}}
         <div id="accordion" class="col-6 mx-auto  px-0">
             <div class="card ">
                 <button class="btn btn-link py-3 container-fluid text-decoration-none  d-flex align-items-center border-top justify-content-around bg-primary mx-auto rounded-sm " data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">

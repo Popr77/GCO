@@ -16,19 +16,38 @@ class LessonGradeSeeder extends Seeder
      */
     public function run()
     {
-        $enrollment = Enrollment::where('user_id', 2)
-            ->where('course_id', 1)->get();
 
-        foreach ($enrollment[0]->course->modules as $module){
-            foreach ($module->lessons as $lesson){
+        $enrollments = Enrollment::where('user_id', 1)->get();
 
-                $lessonGrade = new LessonGrade();
-                $lessonGrade->lesson_id = $lesson->id;
-                $lessonGrade->enrollment_id = $enrollment[0]->id;
-                $lessonGrade->grade = rand(50, 100);
-                $lessonGrade->save();
+        foreach ($enrollments as $enrollment){
+            foreach ($enrollment->course->modules as $module){
+                foreach ($module->lessons as $lesson){
 
+                    $lessonGrade = new LessonGrade();
+                    $lessonGrade->lesson_id = $lesson->id;
+                    $lessonGrade->enrollment_id = $enrollment->id;
+                    $lessonGrade->grade = rand(50, 100);
+                    $lessonGrade->save();
+
+                }
             }
         }
+
+        $enrollments = Enrollment::where('user_id', 2)->get();
+
+        foreach ($enrollments as $enrollment){
+            foreach ($enrollment->course->modules as $module){
+                foreach ($module->lessons as $lesson){
+
+                    $lessonGrade = new LessonGrade();
+                    $lessonGrade->lesson_id = $lesson->id;
+                    $lessonGrade->enrollment_id = $enrollment->id;
+                    $lessonGrade->grade = rand(50, 100);
+                    $lessonGrade->save();
+
+                }
+            }
+        }
+
     }
 }

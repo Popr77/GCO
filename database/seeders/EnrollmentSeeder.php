@@ -113,6 +113,14 @@ class EnrollmentSeeder extends Seeder {
             'feedback_comment' => "valeu!",
             'created_at'       => now(),
             'updated_at'       => now()
+        ]); DB::table('enrollments')->insert([
+            'user_id'          => 2,
+            'course_id'        => 2,
+            'payment_status'   => 1,
+            'feedback_stars'   => 4,
+            'feedback_comment' => "valeu!",
+            'created_at'       => now(),
+            'updated_at'       => now()
         ]);
         DB::table('enrollments')->insert([
             'user_id'          => 3,

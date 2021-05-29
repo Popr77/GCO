@@ -24,6 +24,7 @@ class UserProgressController extends Controller
         $takeExam = [];
         $expired = [];
         $days = [];
+        $takeQuiz = [];
 
         foreach ($enrollments as $enrollment) {
 
@@ -45,22 +46,45 @@ class UserProgressController extends Controller
                 array_push($expired, 'false');
             }
 
-            // Check if the lesson grades are positive and increment to the progress list
-            foreach ($enrollment->grades as $grade) {
-                if ($grade->pivot->grade != null){
-                    if ($grade->pivot->grade > 49)
-                        $totalGrades++;
-                }
-            }
 
             $totalLessons = 0;
-
             foreach ($enrollment->course->modules as $module) {
                 $totalLessons += Lesson::where('module_id', $module->id)->count();
             }
 
+            //count completed quizzes and puts in an array
+            $lessonGrades = [];
+            $lessonsNotCompleted = [];
+            foreach ($enrollment->grades as $lesson) {
+                if ($lesson->pivot->grade != null){
+                    if ($lesson->pivot->grade == 1)
+                        dd('adeus');
+                    if ($lesson->pivot->grade > 49){
+                        array_push($lessonGrades, $lesson->pivot->grade);
+                        $totalGrades++;
+                    }else
+                        array_push($lessonsNotCompleted, $lesson);
+                }
+            }
+            $courseFinished = false;
+            if ($totalLessons == count($lessonGrades)){
+                foreach($enrollment->examGrades as $grade){
+                    $avgLessonGrades = round(collect($lessonGrades)->avg(), 2);
+                    $finalGrade = round(0.4*$avgLessonGrades + 0.6*$grade->grade, 2);
+                    if ($finalGrade >= 50)
+                        $courseFinished = true;
+                }
+            }else{
+                if ($lessonsNotCompleted == null)
+                    array_push($takeQuiz,1);
+                else
+                    array_push($takeQuiz,collect($lessonsNotCompleted)->sortBy('id')->first());
+            }
+
             // Check if the user have the total quiz done to do the exam
-            if ($totalLessons == $totalGrades)
+            if ($courseFinished)
+                array_push($takeExam, 'done');
+            elseif($totalLessons == $totalGrades)
                 array_push($takeExam, 'true');
             else
                 array_push($takeExam, 'false');
@@ -68,6 +92,7 @@ class UserProgressController extends Controller
             // User progress
             array_push($progress, $totalGrades . ' / ' . $totalLessons);
         }
+        dd($lessonsNotCompleted);
 
         return view('pages.user-progress', ['enrollments' => $enrollments, 'progress' => $progress, 'takeExam' => $takeExam, 'expired' => $expired, 'days' => $days]);
     }
