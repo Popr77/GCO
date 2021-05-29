@@ -11,7 +11,7 @@
     <search-bar
         :has-dropdown="{{ request()->is('home') || request()->is('/') ? 'false' : 'true' }}"
         class="search-div order-md-1 mx-auto"
-        action="{{ route('home') }}"
+        action="{{ auth()->check() ? route('home') : url('/') }}"
         search-query-string="{{ request()->query('search') ?? '' }}">
     </search-bar>
 
