@@ -35,6 +35,7 @@ class HasQuiz
             foreach ($lessonGrade as $grade){
                 if ($grade->grade >= 50 ){
                     $flag = true;
+                    break;
                 }
             }
         }else{

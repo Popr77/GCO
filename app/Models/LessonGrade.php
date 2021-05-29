@@ -12,7 +12,6 @@ class LessonGrade extends Model
     protected $fillable = [
         'lesson_id',
         'enrollment_id',
-        'date',
         'grade',
         'created_at'
     ];

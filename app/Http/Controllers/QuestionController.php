@@ -89,7 +89,6 @@ class QuestionController extends Controller
                 $lessonGrade = LessonGrade::find($lessonGrade[0]->id);
                 $lessonGrade->lesson_id = $questions[0]->lesson_id;
                 $lessonGrade->grade = $grade;
-                $lessonGrade->date = $dateTime;
                 $lessonGrade->created_at = $dateTime;
                 $lessonGrade->enrollment_id = $enrollment_id[0]->id;
                 $lessonGrade->save();
@@ -97,7 +96,6 @@ class QuestionController extends Controller
                 $lessonGrade = new  LessonGrade();
                 $lessonGrade->lesson_id = $questions[0]->lesson_id;
                 $lessonGrade->grade = $grade;
-                $lessonGrade->date = $dateTime;
                 $lessonGrade->created_at = $dateTime;
                 $lessonGrade->enrollment_id = $enrollment_id[0]->id;
                 $lessonGrade->save();

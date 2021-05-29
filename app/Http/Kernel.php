@@ -57,6 +57,7 @@ class Kernel extends HttpKernel
         'canGiveFeedback' => \App\Http\Middleware\CanGiveFeedback::class,
         'checkCourse' => \App\Http\Middleware\HasCourse::class,
         'checkHasDoneQuiz' => \App\Http\Middleware\HasQuiz::class,
+        'checkHasDoneAllQuizzes' => \App\Http\Middleware\HasAllQuizzes::class,
         'checkProfile' => \App\Http\Middleware\CheckProfile::class,
         'auth' => \App\Http\Middleware\Authenticate::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,

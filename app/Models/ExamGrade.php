@@ -9,6 +9,12 @@ class ExamGrade extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'enrollment_id',
+        'grade',
+        'created_at'
+    ];
+
     public function enrollment() {
         return $this->belongsTo(Enrollment::class);
     }

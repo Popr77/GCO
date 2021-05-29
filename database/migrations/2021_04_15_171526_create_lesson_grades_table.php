@@ -17,11 +17,9 @@ class CreateLessonGradesTable extends Migration
             $table->id();
             $table->foreignId('lesson_id')->constrained();
             $table->foreignId('enrollment_id')->constrained();
-            $table->dateTime('date');
             $table->integer('grade');
             $table->timestamps();
 
-            $table->unique(['lesson_id', 'enrollment_id']);
         });
     }
 

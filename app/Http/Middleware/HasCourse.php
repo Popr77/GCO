@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Models\Course;
 use App\Models\Enrollment;
 use Carbon\Carbon;
 use Closure;
@@ -50,6 +51,7 @@ class HasCourse
                 $request->merge(['enrollment' => $enrollment]);
                 return $next($request);
             }
+
         }
 
         return redirect('/');

@@ -16,6 +16,7 @@ use App\Http\Controllers\Dashboard\CourseController as DCourseController;
 use Illuminate\Support\Facades\Request;
 use App\Http\Controllers\UserProgressController;
 use \App\Http\Controllers\UserPurchaseController;
+use App\Http\Controllers\ExamGradeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -138,7 +139,8 @@ Route::post('change-password', [ChangePasswordController::class, 'store'])->name
 
 
 Route::prefix('/quiz')->middleware(['auth', 'checkCourse', 'IsCourseActive'])->group(function () {
-    Route::get('/take/{lesson}', [QuestionController::class, 'index'])->middleware('checkHasDoneQuiz')->name('quiz');
+    Route::get('/take/{lesson}', [QuestionController::class, 'index'])
+        ->middleware('checkHasDoneQuiz')->name('quiz');
     Route::post('/take/{lesson}', [QuestionController::class, 'save']);
 });
 
@@ -151,6 +153,15 @@ Route::prefix('checkout')->middleware('auth')->group(function () {
 Route::prefix('')->middleware('auth')->group(function () {
     Route::get('progress', [UserProgressController::class, 'index']);
     Route::get('purchases', [UserPurchaseController::class, 'index']);
+});
+
+Route::prefix('finalExam')->middleware(['auth', 'checkCourse', 'IsCourseActive'])->group(function () {
+    Route::get('{course}', [ExamGradeController::class, 'index'])
+            ->middleware(['checkCourse', 'IsCourseActive','checkHasDoneAllQuizzes'])
+            ->name('finalExam');
+    Route::post('{course}', [ExamGradeController::class, 'store'])
+            ->middleware(['checkCourse', 'IsCourseActive','checkHasDoneAllQuizzes'])
+            ->name('finalExam-result');
 });
 
 

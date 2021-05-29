@@ -14,3 +14,4 @@ yarn-error.log
 .idea/
 /public/css
 /public/js
+app/Http/Middleware/HasCourse.php
