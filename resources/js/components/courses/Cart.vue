@@ -5,9 +5,10 @@
             <span class="number-items shadow-sm">{{ $store.state.cart.length }}</span>
         </div>
         <div class="dropdown-menu p-4 shadow">
-            <cart-course-list :user-id="userId" />
+            <cart-course-list v-if="$store.state.cart.length > 0" :user-id="userId" />
+            <p v-else>The cart is empty...</p>
             <div class="d-flex justify-content-between align-items-center">
-                <p>Total: <span class="text-danger font-weight-bold">{{ totalPrice }}€</span></p>
+                <p class="mb-0">Total: <span class="text-danger font-weight-bold">{{ totalPrice }}€</span></p>
                 <a href="/checkout" class="btn btn-primary">Checkout</a>
             </div>
         </div>
@@ -74,7 +75,7 @@ div i {
 
 .dropdown-menu {
     position: fixed;
-    top: 60px;
+    top: 50px;
     left: 50%;
     margin-left: -45vw;
     width: 90vw;
@@ -83,6 +84,7 @@ div i {
 @media (min-width: 768px) {
     .dropdown-menu {
         width: 70vw;
+        top:60px;
         left: auto;
         right: 20px;
     }

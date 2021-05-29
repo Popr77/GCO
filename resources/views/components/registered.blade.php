@@ -2,10 +2,9 @@
 
 <div class="container-fluid col-lg-12 welcome-message d-flex justify-content-center align-items-center">
     <div class="row">
-        <div class="mt-3 text-center">
+        <div class="mt-3 d-flex flex-column align-items-center">
             <h1 class="welcome-user">Hello, {{ auth()->user()->userData->name }}</h1>
-            <img src="{{ asset('storage/img/users/' . auth()->user()->userData->photo) }}" alt="user photo"
-                 class="rounded-circle" style="width: 150px; height: 150px;">
+            <div class="user-photo rounded-circle shadow mt-2" style="background-image: url({{ asset('storage/img/users/' . auth()->user()->userData->photo) }})"></div>
         </div>
     </div>
 </div>
@@ -30,5 +29,5 @@
 
 <!-- Course List -->
 
-    <course-list user-id="{{ auth()->check() ? auth()->user()->id : null }}"></course-list>
+    <course-list search-query-string="{{ request()->query('search') ?? '' }}" user-id="{{ auth()->check() ? auth()->user()->id : null }}"></course-list>
 </div>
