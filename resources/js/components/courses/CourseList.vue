@@ -6,7 +6,7 @@
                      :course="course"
         ></course-item>
 
-        <mugen-scroll :handler="fetchData" :should-handle="!loading && !noMore" :threshold="1"></mugen-scroll>
+        <mugen-scroll v-if="!isRelatedCourses" :handler="fetchData" :should-handle="!loading && !noMore" :threshold="1"></mugen-scroll>
     </div>
 </template>
 
@@ -43,12 +43,22 @@ export default {
         searchQueryString: {
             type: String,
             required: false
+        },
+        isRelatedCourses: {
+            type: Boolean,
+            required: false,
+            default: false
         }
     },
     created() {
         AOS.init()
 
         this.search = this.searchQueryString
+
+        if(this.isRelatedCourses) {
+            this.fetchData()
+        }
+
 
         window.Event.$on('searchValueChanged', (value) => {
             this.search = value
@@ -70,7 +80,7 @@ export default {
             this.loading = true
             axios.get('http://127.0.0.1:8000/api/courses/recommended', {
                 params: {
-                    num: this.numCourses ?? null,
+                    num: this.numCourses ?? 6,
                     userid: this.userId ?? null,
                     search: this.search,
                     page: this.page

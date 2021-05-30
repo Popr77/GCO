@@ -155,3 +155,15 @@
             @endcomponent
     </div>
 </div>
+
+<div class="container my-4">
+    <h1 class="text-center">Related Courses</h1>
+    <course-list
+        :num-courses="3"
+        user-id="{{ auth()->check() ? auth()->user()->id : null }}"
+        :is-related-courses="true"
+        search-query-string="{{ $course->subsubcategory->subcategory->category->name }}"
+    ></course-list>
+</div>
+
+

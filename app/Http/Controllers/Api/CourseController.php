@@ -58,7 +58,7 @@ class CourseController extends Controller {
                 })
                         ->orderBy('students_count', 'desc')
                         ->distinct()
-                        ->paginate(6, 'courses.*'));
+                        ->paginate($num, 'courses.*'));
         }
 
         return CourseResource::collection(Course::withCount(['students' => function ($query) {
@@ -76,7 +76,7 @@ class CourseController extends Controller {
             })
             ->orderBy('students_count', 'desc')
             ->distinct()
-            ->paginate(6, 'courses.*'));
+            ->paginate($num, 'courses.*'));
     }
 
     public function userCourses(Request $request) {
