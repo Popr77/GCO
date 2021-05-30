@@ -12,7 +12,8 @@
         :has-dropdown="{{ request()->is('home') || request()->is('/') ? 'false' : 'true' }}"
         class="search-div order-md-1 mx-auto"
         action="{{ auth()->check() ? route('home') : url('/') }}"
-        search-query-string="{{ request()->query('search') ?? '' }}">
+        search-query-string="{{ request()->query('search') ?? '' }}"
+        user-id="{{ auth()->check() ? auth()->user()->id : null }}">
     </search-bar>
 
     <div class="collapse navbar-collapse d-lg-flex justify-content-between order-md-2 flex-lg-grow-0" id="navbarCollapse">
@@ -27,7 +28,7 @@
             @else
                 @admin
                 <li class="nav-item mx-sm-1 flex-fill">
-                    <a href="{{ url('dashboard') }}" class="btn btn-primary my-1 my-lg-0 w-100">Admin Dashboard</a>
+                    <a href="{{ url('dashboard') }}" target="_blank" class="btn btn-primary my-1 my-lg-0 w-100">Admin Dashboard</a>
                 </li>
                 @endadmin
 

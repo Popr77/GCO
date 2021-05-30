@@ -5,11 +5,11 @@
             <span class="number-items shadow-sm">{{ $store.state.cart.length }}</span>
         </div>
         <div class="dropdown-menu p-4 shadow">
-            <cart-course-list v-if="$store.state.cart.length > 0" :user-id="userId" />
+            <cart-course-list v-if="!cartIsEmpty" :user-id="userId" />
             <p v-else>The cart is empty...</p>
             <div class="d-flex justify-content-between align-items-center">
                 <p class="mb-0">Total: <span class="text-danger font-weight-bold">{{ totalPrice }}€</span></p>
-                <a href="/checkout" class="btn btn-primary">Checkout</a>
+                <a href="/checkout" :disabled="cartIsEmpty" :class="{ 'disabled' : cartIsEmpty }" class="btn btn-primary">Checkout</a>
             </div>
         </div>
     </div>
@@ -42,6 +42,9 @@ export default {
             }
 
             return total.toFixed(2)
+        },
+        cartIsEmpty() {
+            return this.$store.state.cart.length < 1;
         }
     },
 

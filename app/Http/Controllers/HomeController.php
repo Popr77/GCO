@@ -13,8 +13,7 @@ use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
-class HomeController extends Controller
-{
+class HomeController extends Controller {
 
     /**
      * Show the application dashboard.
@@ -26,7 +25,13 @@ class HomeController extends Controller
         if (auth()->check())
             return redirect(route('home'));
 
-        return view('pages.unregistered');
+        $categories = Category::orderBy('name')->take(10)->get();
+        $search = $_GET["search"] ?? null;
+
+        return view('pages.unregistered', [
+            'categories' => $categories,
+            'search'     => $search
+        ]);
     }
 
     public function registered()
@@ -36,11 +41,12 @@ class HomeController extends Controller
 
         return view('pages.registered', [
             'categories' => $categories,
-            'search' => $search
+            'search'     => $search
         ]);
     }
 
-    public function dashboard() {
+    public function dashboard()
+    {
 
         $coursesBought = Enrollment::where('payment_status', 1)->where('created_at', '>=', now()->subDays(7))->count();
         $registeredUsers = User::where('user_type_id', '<>', 1)->count();
@@ -50,28 +56,28 @@ class HomeController extends Controller
 
         $stats = [
             [
-                'name' => 'Courses Bought',
-                'time' => 'Last 7 Days',
+                'name'  => 'Courses Bought',
+                'time'  => 'Last 7 Days',
                 'value' => $coursesBought ?? 0,
-                'icon' => 'bi bi-book'
+                'icon'  => 'bi bi-book'
             ],
             [
-                'name' => 'Registered Users',
-                'time' => 'Total',
+                'name'  => 'Registered Users',
+                'time'  => 'Total',
                 'value' => $registeredUsers ?? 0,
-                'icon' => 'bi bi-people'
+                'icon'  => 'bi bi-people'
             ],
             [
-                'name' => 'Avg Feedback',
-                'time' => 'Total',
+                'name'  => 'Avg Feedback',
+                'time'  => 'Total',
                 'value' => $avgFeedback ?? 0,
-                'icon' => 'bi bi-star'
+                'icon'  => 'bi bi-star'
             ],
             [
-                'name' => 'Avg Exam Grades',
-                'time' => 'Total',
+                'name'  => 'Avg Exam Grades',
+                'time'  => 'Total',
                 'value' => $avgExamGrades ?? 0,
-                'icon' => 'bi bi-clipboard-check'
+                'icon'  => 'bi bi-clipboard-check'
             ],
         ];
 

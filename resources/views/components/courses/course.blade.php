@@ -33,7 +33,8 @@
     <div class="row d-md-flex justify-content-md-between">
         <div class="col-md-6">
             <h1 class="mt-4 mb-4 font-weight-bold">{{ $course->name }}</h1>
-            <p>{!! $course->description !!}</p>
+            
+            <p>{!! implode(' ', array_slice(explode(' ', $course->description), 0, 30)) !!}...</p>
 
             <div class="d-flex align-items-center">
                 <p class="font-weight-bold mr-2 mb-0">Rating:</p>
@@ -58,7 +59,7 @@
                 <div class="d-flex align-items-center">
                     <buy-course-btn :course="{{ $course }}" :buy-now="true" class="mr-1"></buy-course-btn>
                     <buy-course-btn :course="{{ $course }}"></buy-course-btn>
-                    <p class="text-danger font-weight-bold ml-2 mb-0">{{$course->price/100}} €</p>
+                    <p class="text-danger font-weight-bold ml-2 mb-0">{{ number_format($course->price/100, 2) }} €</p>
                 </div>
                 @endhasCourse
         </div>
@@ -84,9 +85,7 @@
     <div class="course-description rounded py-3 px-4 px-md-5">
         <h2 class="text-center font-weight-bold">Course Description</h2>
         <hr class="col-4">
-        {{--        <p class="mt-4">{{$course->description}}</p>--}}
-        <p class="mt-4"><span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A aliquam autem dicta dolorem, earum eius incidunt magnam maiores nam natus optio pariatur reiciendis rem repellendus reprehenderit, tempore totam unde, velit?</span><span>Delectus eum officia qui? Amet aperiam aspernatur at dicta distinctio dolores error et excepturi laborum laudantium magni odio officiis, quia sed sit suscipit voluptas voluptatum? Asperiores hic iure officiis qui!</span><span>Amet aperiam deleniti, dolorem exercitationem expedita in itaque, libero minus neque odit perspiciatis placeat quae qui quia ratione, sapiente soluta ut velit vitae voluptates! Asperiores cum minus necessitatibus odit repellendus?</span><span>Dolorem eaque expedita laudantium nihil ratione sed! Consequuntur dicta, dignissimos dolor ducimus est harum, ipsa ipsam itaque odit omnis quasi quia quidem ratione repellendus sint sit suscipit ut vel voluptate.</span><span>A debitis dignissimos doloremque iste necessitatibus nulla quae quia totam? Explicabo facilis fugiat necessitatibus nulla reprehenderit vero voluptatibus! Aliquid atque beatae earum maxime molestiae odit possimus quidem reiciendis suscipit voluptas.</span><span>Asperiores doloribus iure voluptatum. Architecto commodi ex fugit ipsa nulla porro quae. Accusantium, consequuntur corporis cupiditate dolor eius, error exercitationem ipsum magnam maiores, pariatur quasi quibusdam rerum totam unde voluptatum?</span><span>Aliquid aperiam architecto asperiores at aut culpa, cum deserunt distinctio dolorum eius error fugit illo iste nam natus praesentium quibusdam quos sapiente similique suscipit tempore ullam unde vitae voluptatem voluptates?</span><span>Accusamus deserunt earum exercitationem illum iure, laboriosam natus, perferendis ratione rem reprehenderit saepe sequi sit vero? A adipisci amet consectetur cum eaque, necessitatibus numquam odio recusandae, repellendus, sequi ullam unde.</span><span>Ad deserunt est facilis illo ipsam magni nobis odit praesentium qui quos ratione, rem sint sit, voluptas voluptates. Accusantium perspiciatis quam quibusdam tempora voluptatibus. Fugiat ipsam placeat sequi sint temporibus?</span><span>Adipisci alias animi assumenda at blanditiis corporis cum enim expedita explicabo facere facilis ipsam ipsum maxime minus necessitatibus nesciunt nobis non, nostrum nulla obcaecati quod recusandae reiciendis repellendus soluta tempora?</span>
-        </p>
+        <p class="mt-4">{{$course->description}}</p>
     </div>
 
     <!-- Content -->
@@ -94,7 +93,7 @@
 
     <div class="mb-5">
         <div id="accordion">
-            @foreach($course->modules as $index => $module)
+            @forelse($course->modules as $index => $module)
                 <div class="card">
                     <div class="card-header" id="heading">
                         <h5 class="mb-0">
@@ -124,7 +123,11 @@
                         @endforeach
                     </div>
                 </div>
-            @endforeach
+            @empty
+                <div class="card">
+                    <p class="text-center mt-3">Lessons will be released soon...</p>
+                </div>
+            @endforelse
         </div>
     </div>
 </div> <!-- End of container -->

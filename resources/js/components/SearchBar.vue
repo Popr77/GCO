@@ -12,7 +12,7 @@
                        placeholder="Search"
                        autocomplete="off">
             </div>
-            <search-bar-dropdown @moreResults="moreResults" v-if="hasDropdown"></search-bar-dropdown>
+            <search-bar-dropdown :user-id="userId" @moreResults="moreResults" v-if="hasDropdown"></search-bar-dropdown>
         </form>
     </div>
 
@@ -43,6 +43,10 @@
                 required: false
             },
             searchQueryString: {
+                type: String,
+                required: false
+            },
+            userId: {
                 type: String,
                 required: false
             }
