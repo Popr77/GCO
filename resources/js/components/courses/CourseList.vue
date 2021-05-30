@@ -1,6 +1,7 @@
 <template>
     <div class="row text-center">
-        <course-item v-for="(course, index) in courses" data-aos="fade-up"
+        <p class="text-center mt-5 mx-auto" v-if="courses.length <= 0">No courses to show :(</p>
+        <course-item v-else v-for="(course, index) in courses" data-aos="fade-up"
                      :key="index"
                      :course="course"
         ></course-item>
