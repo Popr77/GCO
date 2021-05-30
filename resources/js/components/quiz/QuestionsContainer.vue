@@ -74,12 +74,14 @@ export default {
             this.currentQuestion = this.questions[this.index]
         },
         end(){
-            this.$refs.anwserInput.value = this.optionSelected.toString()
+            if (this.optionSelected.length >= this.index+1) {
+                this.$refs.anwserInput.value = this.optionSelected.toString()
 
-            this.questions.forEach(element => this.idQuestions.push(element.id))
-            this.$refs.questionInput.value = this.idQuestions.toString()
+                this.questions.forEach(element => this.idQuestions.push(element.id))
+                this.$refs.questionInput.value = this.idQuestions.toString()
 
-            this.$refs.myform.submit()
+                this.$refs.myform.submit()
+            }
         }
     }
 }

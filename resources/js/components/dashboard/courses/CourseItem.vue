@@ -32,7 +32,7 @@
             </a>
         </div>
         <div class="card-body">
-            <p class="card-text">{{ description }}</p>
+            <p class="card-text" v-html="description"></p>
         </div>
 
         <ul class="list-group list-group-flush">

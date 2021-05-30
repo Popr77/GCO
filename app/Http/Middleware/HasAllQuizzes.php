@@ -45,7 +45,6 @@ class HasAllQuizzes
             }
         }
 
-
         $totalQuizzes = 0;
         foreach ($enrollment[0]->course->modules as $module) {
             $totalQuizzes += Lesson::where('module_id', $module->id)->count();
@@ -56,8 +55,6 @@ class HasAllQuizzes
             return $next($request);
         }else
             return redirect(route('home'));
-
-
 
     }
 }

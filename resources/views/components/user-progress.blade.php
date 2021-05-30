@@ -31,9 +31,14 @@
 
             @if($takeExam[$loop->index] == 'done')
                 <td scope="row" class="mt-2">
-                    @foreach($finalGrades as $enrollment2)
-                        @if($enrollment2->id == $enrollment->id)
-                            <button class="btn btn-primary" id="{{$enrollment->id}}" data-toggle="modal" data-target="#exampleModalCenter">
+                    @foreach($finalGrades as $finalGrade)
+                        @if($finalGrade['enrollment']->id == $enrollment->id)
+{{--                            <button class="btn btn-more-info"  onclick="moreInfo({{$enrollment->id}})" style="background-color: #00bc8c" data-toggle="modal" data-target="#exampleModalCenter">--}}
+{{--                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" class="bi bi-check-lg" viewBox="0 0 16 16">--}}
+{{--                                    <path d="M13.485 1.431a1.473 1.473 0 0 1 2.104 2.062l-7.84 9.801a1.473 1.473 0 0 1-2.12.04L.431 8.138a1.473 1.473 0 0 1 2.084-2.083l4.111 4.112 6.82-8.69a.486.486 0 0 1 .04-.045z"/>--}}
+{{--                                </svg>--}}
+{{--                            </button>--}}
+                            <button class="btn btn-more-info"  onclick="moreInfo({{$enrollment->id}})"   style="background-color: #00bc8c" data-toggle="modal" data-target="#exampleModalCenter">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" class="bi bi-check-lg" viewBox="0 0 16 16">
                                     <path d="M13.485 1.431a1.473 1.473 0 0 1 2.104 2.062l-7.84 9.801a1.473 1.473 0 0 1-2.12.04L.431 8.138a1.473 1.473 0 0 1 2.084-2.083l4.111 4.112 6.82-8.69a.486.486 0 0 1 .04-.045z"/>
                                 </svg>
@@ -59,16 +64,10 @@
                 <td scope="row" class="mt-2">{{$days[$loop->index]}}</td>
             @endif
 
-
-
             @if($takeExam[$loop->index] == 'true')
                 <td class="pl-3 pr-4" scope="row" class="mt-2">
                     <a href="{{route('finalExam', $enrollment->course->id)}}" class="btn btn-warning">Take Exam</a>
                 </td>
-{{--            @elseif($course->status)--}}
-{{--                <td class="pl-3 pr-4" scope="row" class="mt-2">--}}
-{{--                    <a href="{{route('finalExam', $enrollment->course->id)}}" class="btn btn-warning disabled">Course Inactive</a>--}}
-{{--                </td>--}}
             @elseif($takeExam[$loop->index] == 'done')
                 <td class="pl-3 pr-4" scope="row" class="mt-2">
                     <a class="btn btn-warning disabled">Exam Done</a>
@@ -103,20 +102,20 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                <h5 class="modal-title font-weight-bold" id="exampleModalLongTitle">Grades Info</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body">
-                ...
+            <div id="more-Info-Container" class="modal-body mx-auto container">
+
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
             </div>
         </div>
     </div>
 </div>
+
 
 
