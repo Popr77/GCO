@@ -52,7 +52,7 @@
             </td>
 
             <td scope="row" class="mt-2">
-                <a href="{{url('/courses/' . $enrollment->course->id)}}" class="btn btn-warning {{$enrollment->course->status == 0 ?'disabled' : ''}}">+</a>
+                <a href="{{url('/courses/' . $enrollment->course->id)}}" class="btn btn-warning ">+</a>
             </td>
         </tr>
     @endforeach
