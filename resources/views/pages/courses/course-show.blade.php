@@ -43,6 +43,10 @@
             font-size: 1rem;
         }
 
+        p {
+            margin-bottom: 0;
+        }
+
 
     </style>
 @endsection

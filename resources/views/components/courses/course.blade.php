@@ -34,7 +34,7 @@
         <div class="col-md-6">
             <h1 class="mt-4 mb-4 font-weight-bold">{{ $course->name }}</h1>
 
-            <p>
+            <p class="mb-3">
                 {!! implode('.', array_slice(explode('.', $course->description), 0, 2)) !!}...
             </p>
 
@@ -53,7 +53,7 @@
 
             <div class="d-flex">
                 <p class="font-weight-bold mr-1">Duration:</p>
-                <p>{{$course->duration}} days</p>
+                <p class="mb-2">{{$course->duration}} days</p>
             </div>
 
             @hasCourse($course)
@@ -74,20 +74,20 @@
     <!-- Goals -->
     <div class="course-goals d-flex align-items-center mt-4 rounded px-3 font-weight-bold">Goals</div>
     <div class="px-2 px-md-4">
-        <p class="mt-2">{!! $course->goals !!}</p>
+        <p class="mt-3 mb-3">{!! $course->goals !!}</p>
     </div>
 
     <!-- Requirements -->
-    <div class="course-goals d-flex align-items-center mt-4 rounded px-3 font-weight-bold">Requirements</div>
+    <div class="course-goals d-flex align-items-center rounded px-3 font-weight-bold">Requirements</div>
     <div class="px-2 px-md-4">
-        <p class="mt-2">{!! $course->requirements!!}</p>
+        <p class="mt-3 mb-3">{!! $course->requirements!!}</p>
     </div>
 
     <!-- Description -->
     <div class="course-description rounded py-3 px-4 px-md-5">
         <h2 class="text-center font-weight-bold">Course Description</h2>
         <hr class="col-4">
-        <p class="mt-4">{!! $course->description !!}</p>
+        <p class="mt-4 mb-3">{!! $course->description !!}</p>
     </div>
 
     <!-- Content -->
