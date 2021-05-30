@@ -368,13 +368,13 @@ footer {
       margin-left: 9vw;
   }
 
-    .categories-select:hover {
+    .category-card:hover .categories-select{
         background-color: $blue;
+        color: white;
     }
 
-    .categories-select:hover a {
+    .category-card:hover span {
         color: white;
-
     }
 }
 

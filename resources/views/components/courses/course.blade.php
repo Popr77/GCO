@@ -33,7 +33,7 @@
     <div class="row d-md-flex justify-content-md-between">
         <div class="col-md-6">
             <h1 class="mt-4 mb-4 font-weight-bold">{{ $course->name }}</h1>
-            <p>{{$course->description}}</p>
+            <p>{{ implode(' ', array_slice(explode(' ', $course->description), 0, 30)) }}...</p>
 
             <div class="d-flex align-items-center">
                 <p class="font-weight-bold mr-2 mb-0">Rating:</p>
