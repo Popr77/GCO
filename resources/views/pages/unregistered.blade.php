@@ -2,7 +2,7 @@
 
 @section('content')
 
-@component('components.unregistered')
+@component('components.unregistered', ['search' => $search, 'categories' => $categories])
 @endcomponent
 
 @endsection

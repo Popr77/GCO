@@ -33,6 +33,12 @@
 
 export default {
     name: 'SearchBarDropdown',
+    props: {
+        userId: {
+            type: String,
+            required: false
+        }
+    },
     data() {
         return {
             isActive: false,
@@ -59,6 +65,7 @@ export default {
                 params: {
                     page: 1,
                     search: this.search,
+                    userid: this.userId ?? null
                 }
             })
                 .then(response => {
