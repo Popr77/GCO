@@ -46,25 +46,8 @@
             });
 
             @if (old($input))
-                setTimeout(function(){
                 {{'quill'. $loop->index}}.container.firstChild.innerHTML=`{!! old($input) !!}`
-                }, 100);
             @endif
-
-{{--            {{$input}}.container.firstChild.innerHTML="{!! old($input) !!}"--}}
         @endforeach
-
-
-
-        /*const form = document.querySelector('form')
-
-        form.addEventListener('submit', (e) => {
-            e.preventDefault()
-
-            const formData = new FormData(form)
-            if (formData.get('sub_sub_category_id')) {
-                e.target.submit()
-            }
-        })*/
     </script>
 @endsection

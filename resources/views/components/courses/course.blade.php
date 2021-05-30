@@ -1,13 +1,6 @@
 <!-- Course Categories, Sub and SubSub -->
 
 <div class="container">
-    {{--    <div>--}}
-    {{--        <ul class="d-flex text-decoration-none list-unstyled mt-5">--}}
-    {{--            <li><a href="{{url('categories/' . $course->subsubcategory->subcategory->category->id . '/subcategories')}}">{{$course->subsubcategory->subcategory->category->name}}</a> > </li>--}}
-    {{--            <li><a href="{{url('subcategories/' . $course->subsubcategory->subcategory->id . '/subsubcategories')}}">{{$course->subsubcategory->subcategory->name}}</a> > </li>--}}
-    {{--            <li><a href="{{url('subsubcategories/' . $course->subsubcategory->id)}}">{{$course->subsubcategory->name}}</a></li>--}}
-    {{--        </ul>--}}
-    {{--    </div>--}}
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb pl-0 mt-5 mb-0">
             <li class="breadcrumb-item">
@@ -33,7 +26,7 @@
     <div class="row d-md-flex justify-content-md-between">
         <div class="col-md-6">
             <h1 class="mt-4 mb-4 font-weight-bold">{{ $course->name }}</h1>
-            
+
             <p>{!! implode(' ', array_slice(explode(' ', $course->description), 0, 30)) !!}...</p>
 
             <div class="d-flex align-items-center">
