@@ -56,7 +56,10 @@ h1, h2 {
 }
 
 .welcome-message {
-    background-color: whitesmoke;
+    background-image: url('./../../public/img/bg.webp');
+    background-size: cover;
+    background-position: 0 -700px;
+    background-repeat: no-repeat;
     height: 300px;
 }
 

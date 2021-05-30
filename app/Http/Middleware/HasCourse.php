@@ -51,7 +51,6 @@ class HasCourse
                 $request->merge(['enrollment' => $enrollment]);
                 return $next($request);
             }
-
         }
 
         return redirect('/');

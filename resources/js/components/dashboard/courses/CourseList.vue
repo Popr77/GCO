@@ -36,16 +36,15 @@ export default {
     data() {
         return {
             search: '',
-            isLoading: true,
+            isLoading: false,
             courses: {},
             showDeleted: false
         }
     },
     computed: {
         filteredCourses() {
-
             if(this.isLoading) {
-                return null
+                return []
             }
 
             return this.showDeleted ? this.courses.data.filter(x => x.deleted_at != undefined)
@@ -65,6 +64,7 @@ export default {
     },
     methods: {
         getResults(page = 1) {
+            this.isLoading = true
             axios.get('/api/courses', {
                 params: {
                     page: page,

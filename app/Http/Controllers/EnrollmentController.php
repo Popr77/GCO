@@ -39,4 +39,22 @@ class EnrollmentController extends Controller
 
         return back();
     }
+
+    public function feedbackApproval(Request $request) {
+
+        $enrollment = Enrollment::find($request->enrollment);
+
+        if(request()->approved) {
+            $enrollment->feedback_is_approved = true;
+            $enrollment->save();
+            return redirect(route('d-index'))->with('status', 'Feedback approved successfully!');
+        } else {
+            $enrollment->feedback_stars = null;
+            $enrollment->feedback_comment = null;
+            $enrollment->save();
+            return redirect(route('d-index'))->with('status', 'Feedback declined successfully!');
+
+        }
+
+    }
 }
