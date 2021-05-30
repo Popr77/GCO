@@ -1,19 +1,18 @@
-##Requirements to run the project:
+## Requirements to run the project:
 - Postgresql
 - Node, npm
 - PHP
 - Composer
 
-----------------------------------------------------------
 
->composer install
+> composer install
 
->npm install && npm run dev
+> npm install && npm run dev
 
-####Make a copy of .env.example and name it .env and edit with your db credentials.
+#### Make a copy of .env.example and name it .env and edit with your db credentials.
 
->php artisan storage:link
+> php artisan storage:link
 
->php artisan migrate:fresh --seed 
+> php artisan migrate:fresh --seed 
 
->php artisan serve
+> php artisan serve
