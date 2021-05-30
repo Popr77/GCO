@@ -1,10 +1,11 @@
 <template>
     <form class="p-4 shadow" method="POST" action="/checkout/submit" ref="checkoutform">
         <input type="hidden" name="_token" v-model="this.csrf">
-        <cart-course-list/>
+        <cart-course-list v-if="!isCartEmpty"/>
+        <p v-else>The cart is empty...</p>
         <div class="d-flex justify-content-between align-items-center">
             <p>Total: <span class="text-danger font-weight-bold">{{ totalPrice }}€</span></p>
-            <button type="submit" class="btn btn-primary" @click.prevent="checkout">Checkout</button>
+            <button type="submit" :disabled="isCartEmpty" :class="{ 'disabled' : isCartEmpty }" class="btn btn-primary" @click.prevent="checkout">Checkout</button>
         </div>
     </form>
 </template>
@@ -30,6 +31,9 @@ export default {
             }
 
             return total.toFixed(2)
+        },
+        isCartEmpty() {
+            return this.$store.state.cart.length < 1
         }
     },
     methods: {

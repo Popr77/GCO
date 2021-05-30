@@ -32,7 +32,7 @@
             </a>
         </div>
         <div class="card-body">
-            <p class="card-text" v-html="description"></p>
+            <div class="card-text" v-html="description.substr(0, 150) + '...'"></div>
         </div>
 
         <ul class="list-group list-group-flush">
@@ -133,21 +133,6 @@ h5 {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-}
-
-.card-text {
-    /*display: block;!* or inline-block *!*/
-    /*text-overflow: ellipsis;*/
-    /*word-wrap: normal;*/
-    /*overflow: hidden;*/
-    /*max-height: 5.4em;*/
-    /*line-height: 1.8em;*/
-    text-overflow: ellipsis;
-    overflow: hidden;
-    line-height: 25px;
-    display: -webkit-box;
-    -webkit-line-clamp: 4;
-    -webkit-box-orient: vertical;
 }
 
 .disabled-course {

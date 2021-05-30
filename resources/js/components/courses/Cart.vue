@@ -1,6 +1,6 @@
 <template>
     <div class="cart">
-        <div class="position-relative" data-toggle="dropdown">
+        <div class="position-relative cart-btn" data-toggle="dropdown">
             <i class="bi bi-cart-fill"></i>
             <span class="number-items shadow-sm">{{ $store.state.cart.length }}</span>
         </div>
@@ -56,12 +56,16 @@ export default {
     z-index: 9999;
 }
 
-div {
+.cart-btn {
     cursor: pointer;
 }
 
 div i {
     font-size: 1.5rem;
+}
+
+a.disabled {
+    pointer-events: none;
 }
 
 .number-items {
