@@ -18,17 +18,6 @@
         @enderror
     </div>
     <div class="form-group">
-{{--        <label for="description">Description</label>--}}
-{{--        <textarea class="form-control @error('description') is-invalid @enderror"--}}
-{{--                  name="description"--}}
-{{--                  id="description"--}}
-{{--                  rows="3"--}}
-{{--                  required>{{ $course->description }}</textarea>--}}
-{{--        @error('description')--}}
-{{--            <span class="invalid-feedback" role="alert">--}}
-{{--                <strong>{{ $message }}</strong>--}}
-{{--            </span>--}}
-{{--        @enderror--}}
         <label for="description">Description</label>
         <div class="form-control course-quill @error('description') is-invalid @enderror"
              id="description"></div>
@@ -40,17 +29,6 @@
         <input id="input-description" required name="description" type="hidden" ></input>
     </div>
     <div class="form-group">
-{{--        <label for="goals">Goals</label>--}}
-{{--        <textarea class="form-control @error('goals') is-invalid @enderror"--}}
-
-{{--                  id="goals"--}}
-
-{{--                  required>{{ $course->goals }}</textarea>--}}
-{{--        @error('goals')--}}
-{{--            <span class="invalid-feedback" role="alert">--}}
-{{--                <strong>{{ $message }}</strong>--}}
-{{--            </span>--}}
-{{--        @enderror--}}
         <label for="goals">Goals</label>
         <div class="form-control course-quill @error('goals') is-invalid @enderror"
              id="goals"></div>
@@ -71,19 +49,6 @@
         @enderror
         <input id="input-requirements" required name="requirements" type="hidden" ></input>
     </div>
-{{--    <div class="form-group">--}}
-{{--        <label for="requirements">Requirements</label>--}}
-{{--        <textarea class="form-control @error('requirements') is-invalid @enderror"--}}
-{{--                  name="requirements"--}}
-{{--                  id="requirements"--}}
-{{--                  rows="3"--}}
-{{--                  required>{{ $course->requirements }}</textarea>--}}
-{{--        @error('requirements')--}}
-{{--            <span class="invalid-feedback" role="alert">--}}
-{{--                <strong>{{ $message }}</strong>--}}
-{{--            </span>--}}
-{{--        @enderror--}}
-{{--    </div>--}}
 
     <div class="row">
         <div class="form-group col-6 pl-0">

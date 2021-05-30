@@ -19,7 +19,6 @@
     </a>
 </div>
 
-{{--<img src="img/category.png" alt="" class="rounded-circle w-50 h-25 p-0 mx-auto d-block mb-5 img-fluid">--}}
 
 <form class="my-2 my-lg-0 mx-lg-auto d-flex justify-content-center">
     <div class="form-control mr-sm-2 rounded-pill w-25 mt-2" id="search-input">

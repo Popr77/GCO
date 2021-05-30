@@ -18,7 +18,6 @@
 </div>
 
 <!-- Cards -->
-{{-- style="display: flex; flex-direction: row; justify-content: center; padding-bottom: 50px" --}}
 <div class="container pb-5">
     <div class="dropdown d-flex {{$search != null ? 'justify-content-between' : 'justify-content-end'}}">
         @if($search != null)

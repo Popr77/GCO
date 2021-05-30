@@ -23,8 +23,4 @@ class Content extends Model
         return $this->belongsTo(ContentType::class,'content_type_id');
     }
 
-//     public function content_type(){
-//         return $this->hasOne(ContentType::class);
-//
-//     }
 }

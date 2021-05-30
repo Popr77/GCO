@@ -30,14 +30,11 @@
                     </div>
                 </div>
                 <script>
-                    // Load the IFrame Player API code asynchronously.
                     let tag = document.createElement('script');
                     tag.src = "https://www.youtube.com/player_api";
                     let firstScriptTag = document.getElementsByTagName('script')[0];
                     firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
-                    // Replace the 'ytplayer' element with an <iframe> and
-                    // YouTube player after the API code downloads.
                     let player;
                     let width =  window.innerWidth*0.5;
                     let height =  window.innerWidth/2.5;
@@ -62,11 +59,6 @@
                 <div class="p-2 col-lg-5"><img class="col-12" src="asset('{{$content->content}}')" alt=""></div>
             @endif
     @endforeach
-
-        {{--    <iframe id="ytplayer" class="mx-auto iframe-lessons" type="text/html" width="640" height="360"--}}
-    {{--            src="http://www.youtube.com/embed/M7lc1UVf-VE?autoplay=1&origin=http://example.com"--}}
-    {{--            frameborder="0"/>--}}
-
 
     <div class="collapse" id="collapseExample">
         <div class="card card-body lessons-menu rounded col-lg-2 py-3 px-4" id="lesson-menu">

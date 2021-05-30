@@ -66,7 +66,6 @@ export default {
             if (this.optionSelected.length >= this.index+1){
                 this.index++
                 this.currentQuestion = this.questions[this.index]
-                console.log(this.questions)
             }
         },
         previous(){

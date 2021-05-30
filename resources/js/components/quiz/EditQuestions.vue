@@ -57,7 +57,6 @@ export default {
             array: this.questions.slice(),
             index: this.questions.length-1,
             flag: false,
-            // questions: [1,2,3,4,5],
             csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content')
         }
     },
@@ -75,17 +74,12 @@ export default {
             required: true
         }
     },
-    created() {
-        console.log(this.questions)
-        console.log(this.index)
-    },
     methods: {
         addQuestion() {
             this.index++
             this.array.push(this.index)
 
             this.flag = false
-            console.log(this.array)
 
             this.$refs.buttonAdd.scrollIntoView()
 
@@ -97,7 +91,6 @@ export default {
             if (this.index+1 >5){
                 this.index--
                 this.array.pop()
-                console.log(this.array)
 
             }else{
                 this.flag = true
@@ -107,7 +100,6 @@ export default {
             if (this.$refs.buttonAlert){
                 this.$refs.buttonAlert.click()
             }
-            console.log(this.index)
 
         }
     }
