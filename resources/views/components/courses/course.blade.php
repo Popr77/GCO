@@ -33,8 +33,10 @@
     <div class="row d-md-flex justify-content-md-between">
         <div class="col-md-6">
             <h1 class="mt-4 mb-4 font-weight-bold">{{ $course->name }}</h1>
-            
-            <p>{!! implode(' ', array_slice(explode(' ', $course->description), 0, 30)) !!}...</p>
+
+            <p>
+                {!! implode('.', array_slice(explode('.', $course->description), 0, 2)) !!}...
+            </p>
 
             <div class="d-flex align-items-center">
                 <p class="font-weight-bold mr-2 mb-0">Rating:</p>
@@ -85,7 +87,7 @@
     <div class="course-description rounded py-3 px-4 px-md-5">
         <h2 class="text-center font-weight-bold">Course Description</h2>
         <hr class="col-4">
-        <p class="mt-4">{{$course->description}}</p>
+        <p class="mt-4">{!! $course->description !!}</p>
     </div>
 
     <!-- Content -->
