@@ -135,6 +135,21 @@ h5 {
     text-overflow: ellipsis;
 }
 
+.card-text {
+    /*display: block;!* or inline-block *!*/
+    /*text-overflow: ellipsis;*/
+    /*word-wrap: normal;*/
+    /*overflow: hidden;*/
+    /*max-height: 5.4em;*/
+    /*line-height: 1.8em;*/
+    text-overflow: ellipsis;
+    overflow: hidden;
+    line-height: 25px;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+}
+
 .disabled-course {
     opacity: 0.4;
 }
