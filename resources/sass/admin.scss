@@ -21,6 +21,22 @@ h1 {
     margin-bottom: 0;
 }
 
+#nav-username {
+    font-size: 1rem;
+}
+
+#navUserMenu {
+    display: block;
+
+    #navUserMenuInfo {
+        padding: 0.25rem 1.5rem;
+        img {
+            width: 75px;
+            height: 75px;
+        }
+    }
+}
+
 #wrapper {
     overflow-x: hidden;
 }
@@ -47,6 +63,15 @@ h1 {
     width: 15rem;
 }
 
+#sidebar-wrapper .nav-link {
+    transition: all 0.4s;
+}
+
+#sidebar-wrapper .nav-link:hover {
+    background-color: $primary!important;
+    color: $white!important;
+}
+
 #page-content-wrapper {
     min-width: 100vw;
 }
@@ -67,6 +92,12 @@ a.disabled {
 }
 .ql-editor::-webkit-scrollbar {
     display: none;
+}
+
+.alert-box {
+    position: fixed;
+    bottom: 10px;
+    right: 20px;
 }
 
 @media (min-width: 768px) {

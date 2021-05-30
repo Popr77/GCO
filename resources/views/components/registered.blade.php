@@ -1,7 +1,7 @@
 <!-- Username welcome -->
 
-<div class="container-fluid col-lg-12 welcome-message d-flex justify-content-center align-items-center">
-    <div class="row">
+<div class="container-fluid welcome-message">
+    <div class="row d-flex justify-content-center align-items-center h-100" style="background-color: rgba(255, 255, 255, 0.9);">
         <div class="mt-3 d-flex flex-column align-items-center">
             <h1 class="welcome-user">Hello, {{ auth()->user()->userData->name }}</h1>
             <div class="user-photo rounded-circle shadow mt-2" style="background-image: url({{ asset('storage/img/users/' . auth()->user()->userData->photo) }})"></div>

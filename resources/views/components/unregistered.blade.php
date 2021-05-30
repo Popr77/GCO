@@ -1,7 +1,7 @@
 <!-- Initial Message -->
 
 <div class="container-fluid welcome-message">
-    <div class="row justify-content-center align-items-center h-100">
+    <div class="row justify-content-center align-items-center h-100" style="background-color: rgba(255, 255, 255, 0.9);">
         <div class="text-center col-lg-6 col-md-8 col-sm-10 col-12">
             <h1>Learn today, teach tomorrow</h1>
             <h5 class="mt-3">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci cupiditate deleniti labore laudantium quae quia quod recusandae rem repellendus unde. Accusamus ea impedit incidunt iusto laboriosam omnis quia reprehenderit, sunt.</h5>
