@@ -12,6 +12,8 @@
 
 ####Make a copy of .env.example and name it .env and edit with your db credentials.
 
+>php artisan storage:link
+
 >php artisan migrate:fresh --seed 
 
 >php artisan serve
