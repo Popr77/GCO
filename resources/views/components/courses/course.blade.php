@@ -33,7 +33,7 @@
     <div class="row d-md-flex justify-content-md-between">
         <div class="col-md-6">
             <h1 class="mt-4 mb-4 font-weight-bold">{{ $course->name }}</h1>
-            <p>{{$course->description}}</p>
+            <p>{!! $course->description !!}</p>
 
             <div class="d-flex align-items-center">
                 <p class="font-weight-bold mr-2 mb-0">Rating:</p>
@@ -70,13 +70,13 @@
     <!-- Goals -->
     <div class="course-goals d-flex align-items-center mt-4 rounded px-3 font-weight-bold">Goals</div>
     <div class="px-2 px-md-4">
-        <p class="mt-2">{{$course->goals}}</p>
+        <p class="mt-2">{!! $course->goals !!}</p>
     </div>
 
     <!-- Requirements -->
     <div class="course-goals d-flex align-items-center mt-4 rounded px-3 font-weight-bold">Requirements</div>
     <div class="px-2 px-md-4">
-        <p class="mt-2">{{$course->requirements}}</p>
+        <p class="mt-2">{!! $course->requirements!!}</p>
     </div>
 
     <!-- Description -->

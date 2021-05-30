@@ -18,44 +18,72 @@
         @enderror
     </div>
     <div class="form-group">
+{{--        <label for="description">Description</label>--}}
+{{--        <textarea class="form-control @error('description') is-invalid @enderror"--}}
+{{--                  name="description"--}}
+{{--                  id="description"--}}
+{{--                  rows="3"--}}
+{{--                  required>{{ $course->description }}</textarea>--}}
+{{--        @error('description')--}}
+{{--            <span class="invalid-feedback" role="alert">--}}
+{{--                <strong>{{ $message }}</strong>--}}
+{{--            </span>--}}
+{{--        @enderror--}}
         <label for="description">Description</label>
-        <textarea class="form-control @error('description') is-invalid @enderror"
-                  name="description"
-                  id="description"
-                  rows="3"
-                  required>{{ $course->description }}</textarea>
+        <div class="form-control course-quill @error('description') is-invalid @enderror"
+             id="description"></div>
         @error('description')
-            <span class="invalid-feedback" role="alert">
-                <strong>{{ $message }}</strong>
-            </span>
+        <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
         @enderror
+        <input id="input-description" required name="description" type="hidden" ></input>
     </div>
     <div class="form-group">
+{{--        <label for="goals">Goals</label>--}}
+{{--        <textarea class="form-control @error('goals') is-invalid @enderror"--}}
+
+{{--                  id="goals"--}}
+
+{{--                  required>{{ $course->goals }}</textarea>--}}
+{{--        @error('goals')--}}
+{{--            <span class="invalid-feedback" role="alert">--}}
+{{--                <strong>{{ $message }}</strong>--}}
+{{--            </span>--}}
+{{--        @enderror--}}
         <label for="goals">Goals</label>
-        <textarea class="form-control @error('goals') is-invalid @enderror"
-                  name="goals"
-                  id="goals"
-                  rows="3"
-                  required>{{ $course->goals }}</textarea>
+        <div class="form-control course-quill @error('goals') is-invalid @enderror"
+             id="goals"></div>
         @error('goals')
-            <span class="invalid-feedback" role="alert">
-                <strong>{{ $message }}</strong>
-            </span>
+        <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
         @enderror
-    </div>
-    <div class="form-group">
+        <input id="input-goals" required name="goals" type="hidden" ></input>
+
         <label for="requirements">Requirements</label>
-        <textarea class="form-control @error('requirements') is-invalid @enderror"
-                  name="requirements"
-                  id="requirements"
-                  rows="3"
-                  required>{{ $course->requirements }}</textarea>
+        <div class="form-control course-quill @error('requirements') is-invalid @enderror"
+             id="requirements"></div>
         @error('requirements')
-            <span class="invalid-feedback" role="alert">
-                <strong>{{ $message }}</strong>
-            </span>
+        <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
         @enderror
+        <input id="input-requirements" required name="requirements" type="hidden" ></input>
     </div>
+{{--    <div class="form-group">--}}
+{{--        <label for="requirements">Requirements</label>--}}
+{{--        <textarea class="form-control @error('requirements') is-invalid @enderror"--}}
+{{--                  name="requirements"--}}
+{{--                  id="requirements"--}}
+{{--                  rows="3"--}}
+{{--                  required>{{ $course->requirements }}</textarea>--}}
+{{--        @error('requirements')--}}
+{{--            <span class="invalid-feedback" role="alert">--}}
+{{--                <strong>{{ $message }}</strong>--}}
+{{--            </span>--}}
+{{--        @enderror--}}
+{{--    </div>--}}
 
     <div class="row">
         <div class="form-group col-6 pl-0">

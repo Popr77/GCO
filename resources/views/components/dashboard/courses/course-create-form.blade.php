@@ -18,42 +18,38 @@
     </div>
     <div class="form-group">
         <label for="description">Description</label>
-        <textarea class="form-control @error('description') is-invalid @enderror"
-                  name="description"
+        <div class="form-control course-quill @error('description') is-invalid @enderror"
                   id="description"
-                  rows="3"
-                  required>{{ old('description') }}</textarea>
+                  >{{ old('description') }}</div>
         @error('description')
         <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
                     </span>
         @enderror
+        <input id="input-description" required name="description" type="hidden" ></input>
     </div>
     <div class="form-group">
         <label for="goals">Goals</label>
-        <textarea class="form-control @error('goals') is-invalid @enderror"
-                  name="goals"
+        <div class="form-control course-quill @error('goals') is-invalid @enderror"
                   id="goals"
-                  rows="3"
-                  required>{{ old('goals') }}</textarea>
+                  >{{ old('goals') }}</div>
         @error('goals')
         <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
                     </span>
         @enderror
+        <input id="input-goals" required name="goals" type="hidden" ></input>
     </div>
     <div class="form-group">
         <label for="requirements">Requirements</label>
-        <textarea class="form-control @error('requirements') is-invalid @enderror"
-                  name="requirements"
-                  id="requirements"
-                  rows="3"
-                  required>{{ old('requirements') }}</textarea>
+        <div class="form-control course-quill @error('requirements') is-invalid @enderror"
+                  id="requirements">{{ old('requirements') }}</div>
         @error('requirements')
         <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
                     </span>
         @enderror
+        <input id="input-requirements" required name="requirements" type="hidden" ></input>
     </div>
     <div class="row">
         <div class="form-group col-6 pl-0">
