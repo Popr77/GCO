@@ -4,8 +4,11 @@ namespace App\Providers;
 
 use App\Models\Course;
 use App\Models\Enrollment;
+use App\Models\Lesson;
+use App\Models\LessonGrade;
 use Illuminate\Contracts\View\View;
 use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Blade;
 
@@ -73,6 +76,31 @@ class AppServiceProvider extends ServiceProvider
 
             return !!$enrollment->feedback_stars;
 
+        });
+
+        Blade::if('hasQuiz', function(Lesson $lesson) {
+
+            $enrollment = Enrollment::where('user_id', Auth::user()->id)
+                ->where('course_id', $lesson->module->course->id)
+                ->OrderBy('created_at', 'DESC')
+                ->first();
+
+            $lessonGrade = LessonGrade::where('lesson_id',$lesson->id)
+                ->where('enrollment_id',$enrollment->id)->get();
+
+            $flag = false;
+            if (isset($lessonGrade) && !$lessonGrade->isEmpty()) {
+                foreach ($lessonGrade as $grade) {
+                    if ($grade->grade >= 50) {
+                        $flag = true;
+                        break;
+                    }
+                }
+            }
+
+            if ($flag || Auth::user()->type->id == 1){
+                return $flag;
+            }
         });
 
         view()->composer('master.dashboard.sidebar', 'App\Http\Composers\MasterComposer');

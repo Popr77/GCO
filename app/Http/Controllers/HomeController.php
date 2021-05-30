@@ -31,7 +31,7 @@ class HomeController extends Controller
 
     public function registered()
     {
-        $categories = Category::all();
+        $categories = Category::orderBy('name')->take(10)->get();
         $search = $_GET["search"] ?? null;
 
         return view('pages.registered', [
