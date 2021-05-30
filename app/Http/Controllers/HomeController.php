@@ -25,7 +25,7 @@ class HomeController extends Controller {
         if (auth()->check())
             return redirect(route('home'));
 
-        $categories = Category::all();
+        $categories = Category::orderBy('name')->take(10)->get();
         $search = $_GET["search"] ?? null;
 
         return view('pages.unregistered', [

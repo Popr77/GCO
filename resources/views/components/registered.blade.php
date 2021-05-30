@@ -21,7 +21,7 @@
             <h4>Search Results for: <strong class="title-courses">{{$search}}</strong></h4>
         @endif
         <div>
-            <button class="btn btn-primary dropdown-toggle mb-3" type="button" id="dropdownMenuButton"
+            <button class="btn btn-primary dropdown-toggle mb-3" data-flip='false' type="button" id="dropdownMenuButton"
                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Categories
             </button>
