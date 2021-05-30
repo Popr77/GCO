@@ -30,7 +30,10 @@ class ExamGradeController extends Controller
                     array_push($questions, $question);
             }
         }
-        $tQuestions = count($questions) * 0.04;
+        $tQuestions = count($questions) * 0.8;
+        if ($tQuestions < 5)
+            $tQuestions = 5;
+
         $questions = collect($questions)->shuffle()->take($tQuestions);
 
         return view("pages.finalExam.finalExam", ['questions' => $questions]);
