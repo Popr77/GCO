@@ -1,5 +1,5 @@
 <template>
-    <div class="cenas">
+    <div>
         <form class="my-2 my-lg-0 ml-lg-0" @submit.prevent ref="searchForm" :action="action">
             <div class="form-control rounded-pill w-100 w-md-50" id="search-input">
                 <i class="bi bi-search"></i>
@@ -55,6 +55,7 @@
                 setTimeout(() => {
                     this.$emit('statusChanged')
                 }, 100)
+
             },
             moreResults() {
                 this.$refs.searchForm.submit()

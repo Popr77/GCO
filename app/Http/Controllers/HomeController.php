@@ -44,8 +44,9 @@ class HomeController extends Controller
 
         $coursesBought = Enrollment::where('payment_status', 1)->where('created_at', '>=', now()->subDays(7))->count();
         $registeredUsers = User::where('user_type_id', '<>', 1)->count();
-        $avgFeedback = (float)number_format(Enrollment::where('feedback_stars', '<>', null)->avg('feedback_stars'), 1);
+        $avgFeedback = (float)number_format(Enrollment::where('feedback_stars', '<>', null)->where('feedback_is_approved', 1)->avg('feedback_stars'), 1);
         $avgExamGrades = (float)number_format(ExamGrade::avg('grade'), 1);
+        $feedbacksToApprove = Enrollment::where('feedback_is_approved', 0)->where('feedback_stars', '<>', null)->orderBy('updated_at')->get();
 
         $stats = [
             [
@@ -74,7 +75,7 @@ class HomeController extends Controller
             ],
         ];
 
-        return view('pages.admin.dashboard', compact('stats'));
+        return view('pages.admin.dashboard', compact('stats'), compact('feedbacksToApprove'));
     }
 
 }

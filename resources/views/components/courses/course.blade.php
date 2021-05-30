@@ -21,7 +21,7 @@
                 </a>
             </li>
             <li class="breadcrumb-item">
-                <a href="{{url('subsubcategories/' . $course->subsubcategory->id)}}">
+                <a href="{{ auth()->check() ? route('home', ['search' => $course->subsubcategory->name]) : url('/?search=' . $course->subsubcategory->name) }}">
                     {{$course->subsubcategory->name}}
                 </a>
             </li>

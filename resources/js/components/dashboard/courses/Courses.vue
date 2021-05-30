@@ -49,7 +49,7 @@ export default {
     },
     methods: {
         search(search) {
-            this.$emit('searchValueChanged', search)
+            window.Event.$emit('searchValueChanged', search)
         },
         toggleArchived() {
             this.$emit('toggleArchived')

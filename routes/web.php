@@ -127,6 +127,8 @@ Route::prefix('dashboard')->middleware(['auth', 'admin'])->group(function () {
         Route::get('/{lesson}/edit', [QuestionController::class, 'edit'])->name('quiz-edit');
         Route::put('/{lesson}', [QuestionController::class, 'update'])->name('quiz-update');
     });
+
+    Route::put('/feedbackapproval', [EnrollmentController::class, 'feedbackApproval'])->name('feedbackApproval');
 });
 
 Route::prefix('/profile')->middleware(['auth', 'checkProfile'])->group(function () {
