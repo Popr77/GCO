@@ -123,7 +123,7 @@ class EnrollmentSeeder extends Seeder {
             'updated_at'       => now()
         ]);
 
-        for($i = 1; $i < 7; $i++) {
+        for($i = 1; $i < 11; $i++) {
             DB::table('enrollments')->insert([
                 'user_id'          => 3,
                 'course_id'        => $i,

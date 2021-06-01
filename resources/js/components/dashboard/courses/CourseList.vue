@@ -60,6 +60,7 @@ export default {
 
         this.$parent.$on('toggleArchived', () => {
             this.showDeleted = !this.showDeleted
+            this.getResults()
         })
     },
     methods: {
@@ -69,6 +70,7 @@ export default {
                 params: {
                     page: page,
                     search: this.search,
+                    showdeleted: this.showDeleted
                 }
             })
                 .then(response => {

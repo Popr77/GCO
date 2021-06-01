@@ -27,8 +27,10 @@ class HasQuiz
             ->OrderBy('created_at', 'DESC')
             ->first();
 
-        $lessonGrade = LessonGrade::where('lesson_id',$lesson->id)
-            ->where('enrollment_id',$enrollment->id)->get();
+        if($enrollment) {
+            $lessonGrade = LessonGrade::where('lesson_id',$lesson->id)
+                ->where('enrollment_id',$enrollment->id)->get();
+        }
 
         $flag = false;
         if (isset($lessonGrade) && !$lessonGrade->isEmpty()){
