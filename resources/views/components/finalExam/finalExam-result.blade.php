@@ -57,10 +57,9 @@
         </div>
     </div>
     @if($finalGrade < 50)
-        <div class="container mb-5">
+        <div class="container mb-5 mt-4 text-right mr-5">
             <a href="{{route('finalExam', $examGrade->enrollment->course->id)}}"><button type="button" class="btn btn-primary float-right mr-4">Repeat Exam</button></a>
         </div>
     @endif
-
 </div>
 

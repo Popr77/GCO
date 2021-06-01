@@ -16,7 +16,7 @@ class CreateExamGradesTable extends Migration
         Schema::create('exam_grades', function (Blueprint $table) {
             $table->id();
             $table->foreignId('enrollment_id')->constrained();
-            $table->integer('grade');
+            $table->float('grade');
             $table->timestamps();
         });
     }

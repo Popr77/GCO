@@ -58,7 +58,7 @@ class ExamGradeController extends Controller
      */
     public function store(Course $course, Request $request)
     {
-        try{
+//        try{
             $questionsID = explode(",", $request->questionInput);
             $answersQuiz = explode(",", $request->anwserInput);
 
@@ -77,7 +77,7 @@ class ExamGradeController extends Controller
                 }
             }
 
-            $grade = $total*100/count($questionsID);
+            $grade = round($total*100/count($questionsID), 2);
             $dateTime = now()->toDateTimeString();
 
             $lesson = Lesson::find($questions[0]->lesson_id);
@@ -105,9 +105,9 @@ class ExamGradeController extends Controller
                 ['examGrade' => $examGrade, 'lessonGrades' => $lessonGrades, 'avgLessonGrades' => $avgLessonGrades,'finalGrade'=> $finalGrade]);
 
 
-        }catch (\Exception  $e){
-            abort(403);
-        }
+//        }catch (\Exception  $e){
+//            abort(403);
+//        }
     }
 
     /**

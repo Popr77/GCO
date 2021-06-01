@@ -54,10 +54,8 @@ class HomeController extends Controller {
         $avgExamGrades = (float)number_format(ExamGrade::avg('grade'), 1);
         $feedbacksToApprove = Enrollment::where('feedback_is_approved', 0)
             ->where('feedback_stars', '<>', null)
-            ->join('courses', 'courses.id', '=', 'enrollments.course_id')
-            ->where('courses.deleted_at', '=', null)
-            ->orderBy('enrollments.updated_at')
-            ->get('enrollments.*');
+            ->orderBy('updated_at')
+            ->get();
 
         $stats = [
             [
