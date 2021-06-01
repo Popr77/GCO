@@ -23,10 +23,10 @@
         <th scope="col"></th>
     </tr>
     </thead>
-    <tbody>
+<tbody>
     @foreach($enrollments as $enrollment)
         <tr>
-            <td scope="row" class="mt-2"><a class="course-name" href="{{url('/courses/' . $enrollment->course->id)}}">{{$enrollment->course->name}}</a></td>
+            <td scope="row" class="mt-2"><a class="course-name {{$enrollment->course->trashed()?'disabled':''}}" href="{{url('/courses/' . $enrollment->course->id)}}">{{$enrollment->course->name}}</a></td>
             <td scope="row" class="mt-2">{{$progress[$loop->index]}}</td>
 
             @if($takeExam[$loop->index] == 'done')
@@ -64,7 +64,11 @@
                 <td scope="row" class="mt-2">{{$days[$loop->index]}}</td>
             @endif
 
-            @if($takeExam[$loop->index] == 'true')
+            @if($enrollment->course->trashed())
+                <td class="pl-3 pr-4" scope="row" class="mt-2">
+                    <a href="" class="btn btn-warning disabled">Deleted</a>
+                </td>
+            @elseif($takeExam[$loop->index] == 'true')
                 <td class="pl-3 pr-4" scope="row" class="mt-2">
                     <a href="{{route('finalExam', $enrollment->course->id)}}" class="btn btn-warning">Take Exam</a>
                 </td>
@@ -87,7 +91,7 @@
                     @else
                         @if($lesson->id == $enrollment->course->modules[0]->lessons[0]->id)
                             <td class="pl-3 pr-4" scope="row" class="mt-2">
-                                <a href="{{route('lesson', $lesson->id)}}" class="btn btn-warning">Next Lesson</a>
+                                <a href="{{route('lesson', $lesson->id)}}" class="btn btn-warning ">Next Lesson</a>
                             </td>
                         @endif
                     @endif

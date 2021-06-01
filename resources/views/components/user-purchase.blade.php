@@ -35,7 +35,7 @@
     @foreach($enrollments as $enrollment)
         <tr>
             <td scope="row" class="mt-2">{{$enrollmentCount--}}</td>
-            <td scope="row" class="mt-2"><a href="{{url('/courses/' . $enrollment->course->id)}}" class="a-hover text-dark {{$enrollment->course->status == 0 ?'disabled' : ''}}">{{$enrollment->course->name}}</a></td>
+                <td scope="row" class="mt-2"><a href="{{url('/courses/' . $enrollment->course->id)}}" class="a-hover text-dark {{$enrollment->course->trashed()?'disabled':''}}">{{$enrollment->course->name}}</a></td>
             <td scope="row" class="mt-2">{{$enrollment->created_at->toDateString()}}</td>
             <td scope="row" class="mt-2">{{$enrollment->course->price/100}} €</td>
 
@@ -52,7 +52,7 @@
             </td>
 
             <td scope="row" class="mt-2">
-                <a href="{{url('/courses/' . $enrollment->course->id)}}" class="btn btn-warning ">+</a>
+                    <a href="{{url('/courses/' . $enrollment->course->id)}}" class="btn btn-warning {{$enrollment->course->trashed()?'disabled':''}}">{{$enrollment->course->trashed()?'Deleted':'+'}}</a>
             </td>
         </tr>
     @endforeach

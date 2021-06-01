@@ -36,11 +36,13 @@
                     <a href="#" class="btn btn-primary my-1 my-lg-0 w-100" data-toggle="dropdown">My Courses</a>
                     <div class="dropdown-menu p-4 shadow my-courses-dropdown">
                         <div class="form-group">
-                            @foreach($myCourses as $course)
-                            <div class="row px-3">
-                                <a class="text-decoration-none a-hover " href="{{ url('courses/' . $course->id) }}">{{ $course->name }}</a>
-                            </div>
-                            <hr>
+                            @foreach($myEnrollments as $enrollment)
+                                @if(!$enrollment->course->trashed())
+                                        <div class="row px-3">
+                                                <a class="text-decoration-none a-hover " href="{{ url('courses/' . $enrollment->course->id) }}">{{ $enrollment->course->name }}</a>
+                                        </div>
+                                        <hr>
+                                @endif
                             @endforeach
                         </div>
                         <div class="d-flex justify-content-center">
