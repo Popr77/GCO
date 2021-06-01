@@ -27,7 +27,7 @@ class CourseController extends Controller {
                         ->orWhere('sub_categories.name', 'ILIKE', "%{$search}%")
                         ->orWhere('categories.name', 'ILIKE', "%{$search}%");
                 })
-                ->orderBy('courses.created_at')
+                ->orderBy('courses.created_at', 'desc')
                 ->paginate(12, 'courses.*'));
         }
 
@@ -79,6 +79,7 @@ class CourseController extends Controller {
                     $query->where('courses.id', '<>', $currentCourse);
                 })
                 ->orderBy('students_count', 'desc')
+                ->orderBy('courses.created_at', 'desc')
                 ->distinct()
                 ->paginate($num, 'courses.*'));
         }

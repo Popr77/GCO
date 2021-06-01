@@ -1,12 +1,19 @@
 <template>
-    <div class="row text-center">
-        <p class="text-center mt-5 mx-auto" v-if="courses.length <= 0">No courses to show :(</p>
-        <course-item v-else v-for="(course, index) in courses" data-aos="fade-up"
-                     :key="index"
-                     :course="course"
-        ></course-item>
+    <div>
+        <div v-if="loading" class="d-flex justify-content-center mt-2 mx-auto">
+            <div class="spinner-border text-primary mx-auto" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+        </div>
+        <div class="row text-center">
+            <p class="text-center mt-5 mx-auto" v-if="courses.length <= 0 && !loading">No courses to show :(</p>
+            <course-item v-else v-for="(course, index) in courses" data-aos="fade-up"
+                         :key="index"
+                         :course="course"
+            ></course-item>
 
-        <mugen-scroll v-if="!isRelatedCourses" :handler="fetchData" :should-handle="!loading && !noMore" :threshold="1"></mugen-scroll>
+            <mugen-scroll v-if="!isRelatedCourses" :handler="fetchData" :should-handle="!loading && !noMore" :threshold="1"></mugen-scroll>
+        </div>
     </div>
 </template>
 
@@ -100,6 +107,7 @@ export default {
                         this.noMore = false
                     } else {
                         this.noMore = true
+                        this.loading = false
                     }
 
                 })

@@ -67,18 +67,22 @@
         });
 
         function updateModules(){
+            $('#module_id option').remove();
             let selected_id = document.querySelector('#course_id').value
-            let moduleSelec = document.querySelector('#module_id').options
-
+            let moduleSelec = document.querySelector('#module_id')
+            let option
             @foreach($courses as $course)
                 if({{$course->id}} == selected_id){
                     @foreach($course->modules as $module)
-                        moduleSelec[{{$loop->index}}].text = '{{$module->name}}'
-                        moduleSelec[{{$loop->index}}].value = '{{$module->id}}'
+                        option = document.createElement('option')
+                        option.text = '{{$module->name}}'
+                        option.value = '{{$module->id}}'
+                        moduleSelec.append(option)
                     @endforeach
                 }
             @endforeach
         }
+
     </script>
 
 @endsection

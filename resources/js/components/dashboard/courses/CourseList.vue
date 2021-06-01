@@ -1,6 +1,11 @@
 <template>
     <div>
-        <p v-if="filteredCourses.length === 0" class="text-center mt-5">No courses to show...</p>
+        <div v-if="isLoading" class="d-flex justify-content-center mt-2">
+            <div class="spinner-border text-primary mx-auto" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+        </div>
+        <p v-if="filteredCourses.length === 0 && !isLoading" class="text-center mt-5">No courses to show...</p>
         <div v-else class="grid-container">
             <course-item
                 v-for="course in filteredCourses"
