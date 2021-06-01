@@ -30,23 +30,25 @@ class HasQuiz
         if($enrollment) {
             $lessonGrade = LessonGrade::where('lesson_id',$lesson->id)
                 ->where('enrollment_id',$enrollment->id)->get();
-        }
 
-        $flag = false;
-        if (isset($lessonGrade) && !$lessonGrade->isEmpty()){
-            foreach ($lessonGrade as $grade){
-                if ($grade->grade >= 50 ){
-                    $flag = true;
-                    break;
+            $flag = false;
+            if (isset($lessonGrade) && !$lessonGrade->isEmpty()){
+                foreach ($lessonGrade as $grade){
+                    if ($grade->grade >= 50 ){
+                        $flag = true;
+                        break;
+                    }
                 }
+            }else{
+                return $next($request);
             }
-        }else{
-            return $next($request);
+
+            if (!$flag){
+                return $next($request);
+            }
         }
 
-        if (!$flag || Auth::user()->type->id == 1){
-            return $next($request);
-        }
+
 
         return redirect('/');
     }

@@ -180,12 +180,15 @@ class LessonController extends Controller
             ->OrderBy('created_at', 'DESC')
             ->first();
 
+
+        $flag = false;
+
         if($enrollment) {
             $lessonGrade = LessonGrade::where('lesson_id',$lesson->id)
                 ->where('enrollment_id',$enrollment->id)->get();
-        }
+        }else
+            $flag = true;
 
-        $flag = false;
         if (isset($lessonGrade) && !$lessonGrade->isEmpty()){
             foreach ($lessonGrade as $grade){
                 if ($grade->grade >= 50 ){

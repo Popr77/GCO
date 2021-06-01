@@ -25,36 +25,40 @@ class HasAllQuizzes
         $enrollment = Enrollment::where('course_id', $course->id)
                 ->where('user_id', Auth::user()->id)->get();
 
-        $totalGrades = 0;
-        $lessonGrades  = [];
-        foreach ($enrollment[0]->grades as $lesson) {
-            if ($lesson->pivot->grade != null){
-                if ($lesson->pivot->grade > 49){
-                    array_push($lessonGrades, $lesson->pivot->grade);
-                    $totalGrades++;
+        if (count($enrollment)>0){
+
+            $totalGrades = 0;
+            $lessonGrades  = [];
+            foreach ($enrollment[0]->grades as $lesson) {
+                if ($lesson->pivot->grade != null){
+                    if ($lesson->pivot->grade > 49){
+                        array_push($lessonGrades, $lesson->pivot->grade);
+                        $totalGrades++;
+                    }
                 }
+            }
+
+            foreach ($enrollment[0]->examGrades as $examGrade){
+                if (count(collect($examGrade)) > 0){
+                    if ($examGrade->grade >= 50){
+                        $grade = $examGrade->grade;
+                        break;
+                    }
+                }
+            }
+
+            $totalQuizzes = 0;
+            foreach ($enrollment[0]->course->modules as $module) {
+                $totalQuizzes += Lesson::where('module_id', $module->id)->count();
+            }
+
+            if ($totalGrades == $totalQuizzes && !isset($grade) ){
+                $request->merge(['enrollment' => $enrollment[0]]);
+                return $next($request);
             }
         }
 
-        foreach ($enrollment[0]->examGrades as $examGrade){
-            if (count(collect($examGrade)) > 0){
-                if ($examGrade->grade >= 50){
-                    $grade = $examGrade->grade;
-                    break;
-                }
-            }
-        }
-
-        $totalQuizzes = 0;
-        foreach ($enrollment[0]->course->modules as $module) {
-            $totalQuizzes += Lesson::where('module_id', $module->id)->count();
-        }
-
-        if ($totalGrades == $totalQuizzes && !isset($grade) || Auth::user()->type->id == 1){
-            $request->merge(['enrollment' => $enrollment[0]]);
-            return $next($request);
-        }else
-            return redirect(route('home'));
+        return redirect(route('home'));
 
     }
 }

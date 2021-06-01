@@ -45,7 +45,7 @@ class AppServiceProvider extends ServiceProvider
                     ->where('payment_status', 1)
                     ->count();
 
-                return $a === 1;
+                return $a === 1 || Auth::user()->type->id == 1;
             }
             return false;
         });
@@ -84,25 +84,27 @@ class AppServiceProvider extends ServiceProvider
                 ->where('course_id', $lesson->module->course->id)
                 ->OrderBy('created_at', 'DESC')
                 ->first();
+            if ($enrollment){
+                $lessonGrade = LessonGrade::where('lesson_id',$lesson->id)
+                    ->where('enrollment_id',$enrollment->id)->get();
 
-            $lessonGrade = LessonGrade::where('lesson_id',$lesson->id)
-                ->where('enrollment_id',$enrollment->id)->get();
-
-            $flag = false;
-            if (isset($lessonGrade) && !$lessonGrade->isEmpty()) {
-                foreach ($lessonGrade as $grade) {
-                    if ($grade->grade >= 50) {
-                        $flag = true;
-                        break;
+                $flag = false;
+                if (isset($lessonGrade) && !$lessonGrade->isEmpty()) {
+                    foreach ($lessonGrade as $grade) {
+                        if ($grade->grade >= 50) {
+                            $flag = true;
+                            break;
+                        }
                     }
                 }
-            }
 
-            if ($flag || Auth::user()->type->id == 1){
-                return true;
-            }
+                if ($flag){
+                    return true;
+                }
 
-            return false;
+                return false;
+
+            }
         });
 
         view()->composer('master.dashboard.sidebar', 'App\Http\Composers\MasterComposer');
