@@ -155,6 +155,7 @@
         :num-courses="3"
         user-id="{{ auth()->check() ? auth()->user()->id : null }}"
         :is-related-courses="true"
+        current-course="{{ $course->id }}"
         search-query-string="{{ $course->subsubcategory->subcategory->category->name }}"
     ></course-list>
 </div>

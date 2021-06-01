@@ -68,7 +68,7 @@ export default {
             axios.get('/api/courses', {
                 params: {
                     page: page,
-                    search: this.search
+                    search: this.search,
                 }
             })
                 .then(response => {

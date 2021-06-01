@@ -65,7 +65,8 @@ export default {
                 params: {
                     page: 1,
                     search: this.search,
-                    userid: this.userId ?? null
+                    userid: this.userId ?? null,
+                    num: 6
                 }
             })
                 .then(response => {

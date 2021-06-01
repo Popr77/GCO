@@ -110,6 +110,11 @@ class CourseController extends Controller {
     }
 
     public function destroy(Course $course) {
+
+        if($course->students()->where('enrollments.created_at', '>=', now()->subDays($course->duration))->count() > 0) {
+            return redirect(route('d-course-index'))->with('status', 'Couldn\'t delete course. There are active enrollments!');
+        }
+
         $course->delete();
 
         return redirect(route('d-course-index'))->with('status', 'Course archived successfully!');
