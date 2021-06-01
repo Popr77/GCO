@@ -30,7 +30,7 @@ class ExamGradeController extends Controller
                     array_push($questions, $question);
             }
         }
-        $tQuestions = count($questions) * 0.8;
+        $tQuestions = count($questions) * 0.08;
         if ($tQuestions < 5)
             $tQuestions = 5;
 

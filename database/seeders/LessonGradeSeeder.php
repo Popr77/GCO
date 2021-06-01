@@ -22,11 +22,10 @@ class LessonGradeSeeder extends Seeder
         foreach ($enrollments as $enrollment){
             foreach ($enrollment->course->modules as $module){
                 foreach ($module->lessons as $lesson){
-
                     $lessonGrade = new LessonGrade();
                     $lessonGrade->lesson_id = $lesson->id;
                     $lessonGrade->enrollment_id = $enrollment->id;
-                    $lessonGrade->grade = rand(50, 100);
+                    $lessonGrade->grade = rand(45, 100);
                     $lessonGrade->save();
                 }
             }

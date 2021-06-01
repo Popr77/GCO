@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Enrollment;
+use App\Models\ExamGrade;
 use App\Models\LessonGrade;
 use Illuminate\Database\Seeder;
 
@@ -30,5 +31,6 @@ class DatabaseSeeder extends Seeder
         $this->call(EnrollmentSeeder::class);
         $this->call(ContentSeeder::class);
         $this->call(LessonGradeSeeder::class);
+        $this->call(ExamGradeSeeder::class);
     }
 }
