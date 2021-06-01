@@ -99,8 +99,10 @@ class AppServiceProvider extends ServiceProvider
             }
 
             if ($flag || Auth::user()->type->id == 1){
-                return $flag;
+                return true;
             }
+
+            return false;
         });
 
         view()->composer('master.dashboard.sidebar', 'App\Http\Composers\MasterComposer');

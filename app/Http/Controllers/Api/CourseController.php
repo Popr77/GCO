@@ -24,6 +24,7 @@ class CourseController extends Controller {
             ->orWhere('sub_categories.name', 'ILIKE', "%{$search}%")
             ->orWhere('categories.name', 'ILIKE', "%{$search}%")
             ->orWhere('courses.name', 'ILIKE', "%{$search}%")
+            ->orderBy('courses.deleted_at', 'desc')
             ->orderBy('courses.created_at', 'desc')
             ->paginate(12, 'courses.*'));
     }
@@ -34,6 +35,7 @@ class CourseController extends Controller {
         $num = $request->query('num');
         $userid = $request->query('userid');
         $search = $request->query('search');
+        $currentCourse = $request->query('currentcourse');
 
         if ($userid)
         {
@@ -56,9 +58,12 @@ class CourseController extends Controller {
                         ->orWhere('sub_categories.name', 'ILIKE', "%{$search}%")
                         ->orWhere('categories.name', 'ILIKE', "%{$search}%");
                 })
-                        ->orderBy('students_count', 'desc')
-                        ->distinct()
-                        ->paginate($num, 'courses.*'));
+                ->when($currentCourse != null, function($query) use ($currentCourse) {
+                    $query->where('courses.id', '<>', $currentCourse);
+                })
+                ->orderBy('students_count', 'desc')
+                ->distinct()
+                ->paginate($num, 'courses.*'));
         }
 
         return CourseResource::collection(Course::withCount(['students' => function ($query) {
@@ -73,6 +78,9 @@ class CourseController extends Controller {
                     ->orWhere('sub_sub_categories.name', 'ILIKE', "%{$search}%")
                     ->orWhere('sub_categories.name', 'ILIKE', "%{$search}%")
                     ->orWhere('categories.name', 'ILIKE', "%{$search}%");
+            })
+            ->when($currentCourse, function($query) use ($currentCourse) {
+                $query->where('courses.id', '<>', $currentCourse);
             })
             ->orderBy('students_count', 'desc')
             ->distinct()

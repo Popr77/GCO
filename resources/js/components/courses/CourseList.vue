@@ -48,6 +48,10 @@ export default {
             type: Boolean,
             required: false,
             default: false
+        },
+        currentCourse: {
+            type: String,
+            required: false,
         }
     },
     created() {
@@ -83,7 +87,8 @@ export default {
                     num: this.numCourses ?? 6,
                     userid: this.userId ?? null,
                     search: this.search,
-                    page: this.page
+                    page: this.page,
+                    currentcourse: this.currentCourse ?? null
                 }
             })
                 .then((response) => {
