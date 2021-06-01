@@ -14,18 +14,35 @@ class CourseController extends Controller {
     public function index(Request $request)
     {
         $search = $request->query('search');
+        $showdeleted = $request->query('showdeleted');
 
-        return CourseResource::collection(Course::withTrashed()
+        if($showdeleted == 'false') {
+            return CourseResource::collection(Course::with('subsubcategory')
+                ->join('sub_sub_categories', 'courses.sub_sub_category_id', '=', 'sub_sub_categories.id')
+                ->join('sub_categories', 'sub_sub_categories.sub_category_id', '=', 'sub_categories.id')
+                ->join('categories', 'sub_categories.category_id', '=', 'categories.id')
+                ->where(function ($query) use ($search) {
+                    $query->where('courses.name', 'ILIKE', "%{$search}%")
+                        ->orWhere('sub_sub_categories.name', 'ILIKE', "%{$search}%")
+                        ->orWhere('sub_categories.name', 'ILIKE', "%{$search}%")
+                        ->orWhere('categories.name', 'ILIKE', "%{$search}%");
+                })
+                ->orderBy('courses.created_at')
+                ->paginate(12, 'courses.*'));
+        }
+
+        return CourseResource::collection(Course::onlyTrashed()
             ->with('subsubcategory')
             ->join('sub_sub_categories', 'courses.sub_sub_category_id', '=', 'sub_sub_categories.id')
             ->join('sub_categories', 'sub_sub_categories.sub_category_id', '=', 'sub_categories.id')
             ->join('categories', 'sub_categories.category_id', '=', 'categories.id')
-            ->where('sub_sub_categories.name', 'ILIKE', "%{$search}%")
-            ->orWhere('sub_categories.name', 'ILIKE', "%{$search}%")
-            ->orWhere('categories.name', 'ILIKE', "%{$search}%")
-            ->orWhere('courses.name', 'ILIKE', "%{$search}%")
-            ->orderBy('courses.deleted_at', 'desc')
-            ->orderBy('courses.created_at', 'desc')
+            ->where(function ($query) use ($search) {
+                $query->where('courses.name', 'ILIKE', "%{$search}%")
+                    ->orWhere('sub_sub_categories.name', 'ILIKE', "%{$search}%")
+                    ->orWhere('sub_categories.name', 'ILIKE', "%{$search}%")
+                    ->orWhere('categories.name', 'ILIKE', "%{$search}%");
+            })
+            ->orderBy('courses.deleted_at')
             ->paginate(12, 'courses.*'));
     }
 
