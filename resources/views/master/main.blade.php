@@ -9,6 +9,10 @@
 
     <title>{{ config('app.name', 'GCO') }}</title>
 
+    <!-- BOOTSTRAP -->
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"> </script>
+
     <!-- Scripts -->
     @yield('scripts')
     <script src="{{ asset('js/app.js') }}" defer></script>
