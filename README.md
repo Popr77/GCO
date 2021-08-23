@@ -16,3 +16,10 @@
 > php artisan migrate:fresh --seed 
 
 > php artisan serve
+
+
+### Admin login 
+
+> User: admin@gco.com
+
+> Password: password
