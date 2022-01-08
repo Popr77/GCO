@@ -11,7 +11,7 @@
 
     <!-- Scripts -->
     @yield('scripts')
-    <script src="{{ secure_asset('public/js/app.js')" defer></script>
+    <script src="public/js/app.js" defer></script>
     <!-- JQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
@@ -20,7 +20,7 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <!-- Styles -->
-    <link href="{{ secure_asset('public/css/app.css') }}" rel="stylesheet">
+    <link href="public/css/app.css" rel="stylesheet">
 
     @yield('styles')
 </head>
