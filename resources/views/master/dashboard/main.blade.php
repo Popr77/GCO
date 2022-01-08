@@ -42,7 +42,7 @@
 
 <!-- Scripts -->
 
-<script src="/js/app.js" defer></script>
+<script src="{{ secure_asset('js/app.js') }}" defer></script>
 <script>
     $("#menu-toggle").click(function(e) {
         e.preventDefault();
