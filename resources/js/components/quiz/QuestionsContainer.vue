@@ -20,7 +20,7 @@
 
                         <div class="d-initial container mt-4 mb-3 p-0">
                             <button v-if="index>0" class="btn btn-primary float-left" @click.prevent="previous">Previous</button>
-                            <button v-if="index<questions.length-1 "class="btn btn-primary float-right" @click.prevent="next">Next</button>
+                            <button v-if="index<questions.length-1" class="btn btn-primary float-right" @click.prevent="next">Next</button>
                             <button v-if="index==questions.length-1" type="submit"
                                     class="btn btn-primary float-right" @click.prevent="end">Finish</button>
                         </div>

@@ -7,8 +7,7 @@
         "watch-poll": "mix watch -- --watch-options-poll=1000",
         "hot": "mix watch --hot",
         "prod": "npm run production",
-        "production": "mix --production",
-        "postinstall": "npm run dev"
+        "production": "mix --production"
     },
     "devDependencies": {
         "axios": "^0.21",
@@ -36,8 +35,5 @@
         "vue-router": "^3.5.1",
         "vue-star-rating": "^1.7.0",
         "vuex": "^3.6.2"
-    },
-    "engines": {
-        "node": "14.x"
     }
 }
