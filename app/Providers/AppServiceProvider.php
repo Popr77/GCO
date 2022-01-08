@@ -34,6 +34,10 @@ class AppServiceProvider extends ServiceProvider
         Paginator::defaultView('vendor.pagination.bootstrap-4');
         Paginator::defaultSimpleView('vendor.pagination.bootstrap-4');
 
+        if ($this->app->environment('development')){
+            \URL::forceScheme('https');
+        }
+
         Blade::if('admin', function() {
             return auth()->check() && auth()->user()->type->id == 1;
         });
