@@ -17,7 +17,7 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <!-- Styles -->
-    <link href="{{ secure_asset('public/js/app.js') }}" rel="stylesheet">
+    <link href="{{ secure_asset('public/css/app.css') }}" rel="stylesheet">
 </head>
 <body>
     <div id="app">
