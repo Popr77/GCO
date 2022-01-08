@@ -10,7 +10,7 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Styles -->
-    <link href="public/css/admin.css" rel="stylesheet">
+    <link href="{{ asset('/public/css/admin.css') }}" rel="stylesheet">
     @yield('styles')
 
 </head>
@@ -42,7 +42,7 @@
 
 <!-- Scripts -->
 
-<script src="public/js/app.js" defer></script>
+<script src="/js/app.js" defer></script>
 <script>
     $("#menu-toggle").click(function(e) {
         e.preventDefault();
